@@ -25,11 +25,11 @@ mkdir -p "$INSTALL_DIR/include"
 # Build GLEW
 cd "$GLEW_DIR"
 make clean || true
-make -j$(sysctl -n hw.ncpu) GLEW_DEST="$INSTALL_DIR"
+make -j$(sysctl -n hw.ncpu) GLEW_DEST="$INSTALL_DIR" GLEW_STATIC=1 glew.lib
 
 # Install
 echo "Installing to $INSTALL_DIR..."
-make install GLEW_DEST="$INSTALL_DIR"
+make install GLEW_DEST="$INSTALL_DIR" GLEW_STATIC=1
 
 echo "GLEW build completed successfully!"
 echo "Install location: $INSTALL_DIR"
