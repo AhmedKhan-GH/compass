@@ -25,7 +25,7 @@ mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 
 # Configure wxWidgets
-echo "Configuring wxWidgets..."
+echo "Configuring wxWidgets (Windows MinGW, static, all features)..."
 ../configure \
     --prefix="$INSTALL_DIR" \
     --with-opengl \
@@ -39,6 +39,7 @@ echo "Configuring wxWidgets..."
     --disable-shared \
     --enable-monolithic \
     --enable-unicode \
+    --enable-all-features \
     --disable-glcanvas-egl \
     --host=x86_64-w64-mingw32
 

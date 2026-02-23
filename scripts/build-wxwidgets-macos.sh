@@ -24,7 +24,7 @@ mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 
 # Configure wxWidgets
-echo "Configuring wxWidgets (macOS Cocoa, static, OpenGL)..."
+echo "Configuring wxWidgets (macOS Cocoa, static, all features)..."
 ../configure \
     --prefix="$INSTALL_DIR" \
     --with-opengl \
@@ -36,7 +36,8 @@ echo "Configuring wxWidgets (macOS Cocoa, static, OpenGL)..."
     --with-libpng=builtin \
     --disable-shared \
     --enable-monolithic \
-    --enable-unicode
+    --enable-unicode \
+    --enable-all-features
 
 # Build
 echo "Building..."

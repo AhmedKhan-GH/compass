@@ -31,3 +31,7 @@ target_include_directories(compass PRIVATE ${GLEW_INCLUDE_DIR} ${OPENGL_INCLUDE_
 
 # Link wxWidgets, OpenGL, GLEW, and GLM libraries
 target_link_libraries(compass ${wxWidgets_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} glm::glm)
+
+# Sound test executable
+add_executable(sound_test src/sound_test.cpp)
+target_link_libraries(sound_test ${wxWidgets_LIBRARIES})
