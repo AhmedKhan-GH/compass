@@ -17,6 +17,10 @@ find_package(OpenGL REQUIRED)
 set(GLEW_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/third-party/glew-macos/include")
 set(GLEW_LIBRARY "${CMAKE_SOURCE_DIR}/third-party/glew-macos/lib/libGLEW.a")
 
+# Set GLM paths
+set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/third-party/glm")
+find_package(glm REQUIRED)
+
 # Include directories for OpenGL and GLEW
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIR})
 
@@ -25,5 +29,5 @@ add_executable(compass src/main.cpp)
 # Explicitly set include directories for the target (helps IDE symbol resolution)
 target_include_directories(compass PRIVATE ${GLEW_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS})
 
-# Link wxWidgets, OpenGL, and GLEW libraries
-target_link_libraries(compass ${wxWidgets_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY})
+# Link wxWidgets, OpenGL, GLEW, and GLM libraries
+target_link_libraries(compass ${wxWidgets_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} glm::glm)

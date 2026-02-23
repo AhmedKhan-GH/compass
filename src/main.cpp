@@ -1,6 +1,9 @@
 #include <GL/glew.h> // Include GLEW header
 #include <wx/wx.h>
 #include <wx/glcanvas.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #ifdef __WXMAC__
 #include <OpenGL/gl.h>
@@ -14,11 +17,17 @@
 class MyGLContext : public wxGLContext {
 private:
     bool glewInitialized; // Flag to check if GLEW has been initialized
+    float rotationAngle; // Current rotation angle
+    bool isRotating; // Flag to control rotation
 
 public:
-    MyGLContext(wxGLCanvas *canvas) : wxGLContext(canvas), glewInitialized(false) {
+    MyGLContext(wxGLCanvas *canvas) : wxGLContext(canvas), glewInitialized(false), rotationAngle(0.0f), isRotating(false) {
         // Note: GLEW initialization is removed from here
     }
+
+    void StartRotation() { isRotating = true; }
+    void StopRotation() { isRotating = false; }
+    bool IsRotating() const { return isRotating; }
 
     void InitializeGLEW() {
         GLenum err = glewInit();
@@ -47,7 +56,21 @@ public:
         SetCurrent(*canvas);
         glClear(GL_COLOR_BUFFER_BIT); // Clear the background
 
-        // Rendering code remains unchanged
+        // Update rotation angle if rotating
+        if (isRotating) {
+            rotationAngle += 2.0f; // Increment rotation angle
+            if (rotationAngle >= 360.0f) {
+                rotationAngle -= 360.0f;
+            }
+        }
+
+        // Apply rotation using GLM
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glm::mat4 model = glm::rotate(glm::mat4(1.0f), glm::radians(rotationAngle), glm::vec3(0.0f, 0.0f, 1.0f));
+        glLoadMatrixf(glm::value_ptr(model));
+
+        // Rendering code
         glBegin(GL_TRIANGLES);
         glColor3f(1.0f, 0.0f, 0.0f); // Red
         glVertex2f(0.0f, 1.0f); // Top
@@ -63,17 +86,33 @@ public:
 };
 class MyGLCanvas : public wxGLCanvas {
     MyGLContext* m_context;
+    wxTimer* m_timer;
 public:
     MyGLCanvas(wxFrame* parent)
     : wxGLCanvas(parent, wxID_ANY, nullptr, wxDefaultPosition, wxSize(400, 300), 0, wxT("GLCanvas")),
-      m_context(new MyGLContext(this))
+      m_context(new MyGLContext(this)),
+      m_timer(new wxTimer(this))
     {
         Bind(wxEVT_PAINT, &MyGLCanvas::OnPaint, this);
+        Bind(wxEVT_TIMER, &MyGLCanvas::OnTimer, this);
+        m_timer->Start(16); // ~60 FPS
+    }
+
+    ~MyGLCanvas() {
+        m_timer->Stop();
+        delete m_timer;
+        delete m_context;
     }
 
     void OnPaint(wxPaintEvent& event) {
         m_context->Render(this); // Use the context to render
     }
+
+    void OnTimer(wxTimerEvent& event) {
+        Refresh(); // Trigger a repaint
+    }
+
+    MyGLContext* GetContext() { return m_context; }
 };
 
 class MyFrame : public wxFrame {
@@ -90,15 +129,11 @@ public:
         wxPanel* panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600, 100));
         wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 
-        wxButton* upButton = new wxButton(panel, wxID_ANY, wxT("Up"));
-        wxButton* downButton = new wxButton(panel, wxID_ANY, wxT("Down"));
-        wxButton* leftButton = new wxButton(panel, wxID_ANY, wxT("Left"));
-        wxButton* rightButton = new wxButton(panel, wxID_ANY, wxT("Right"));
+        wxButton* startButton = new wxButton(panel, wxID_ANY, wxT("Start"));
+        wxButton* stopButton = new wxButton(panel, wxID_ANY, wxT("Stop"));
 
-        buttonSizer->Add(upButton, 1, wxALL, 5);
-        buttonSizer->Add(downButton, 1, wxALL, 5);
-        buttonSizer->Add(leftButton, 1, wxALL, 5);
-        buttonSizer->Add(rightButton, 1, wxALL, 5);
+        buttonSizer->Add(startButton, 1, wxALL, 5);
+        buttonSizer->Add(stopButton, 1, wxALL, 5);
 
         panel->SetSizer(buttonSizer);
         sizer->Add(panel, 0, wxEXPAND | wxALL, 5);
@@ -106,11 +141,13 @@ public:
         this->SetSizer(sizer);
         this->Layout();
 
-        // Example bindings for button events
-        upButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event) { /* Handle Up */ });
-        downButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event) { /* Handle Down */ });
-        leftButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event) { /* Handle Left */ });
-        rightButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event) { /* Handle Right */ });
+        // Button bindings for rotation control
+        startButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event) {
+            canvas->GetContext()->StartRotation();
+        });
+        stopButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event) {
+            canvas->GetContext()->StopRotation();
+        });
     }
 };
 
