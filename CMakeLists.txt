@@ -4,34 +4,21 @@ project(compass VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Find wxWidgets
-set(wxWidgets_CONFIG_EXECUTABLE "${CMAKE_SOURCE_DIR}/third-party/wx-macos-static/bin/wx-config")
-find_package(wxWidgets REQUIRED COMPONENTS core base gl)
-
-include(${wxWidgets_USE_FILE})
-
-# Find OpenGL
-find_package(OpenGL REQUIRED)
-
-# Set GLEW paths
-set(GLEW_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/third-party/glew-macos/include")
-set(GLEW_LIBRARY "${CMAKE_SOURCE_DIR}/third-party/glew-macos/lib/libGLEW.a")
-
-# Set GLM paths
-set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/third-party/glm")
-find_package(glm REQUIRED)
-
-# Include directories for OpenGL and GLEW
-include_directories(${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIR})
+# Include dependency management system (PyTorch-style)
+include(cmake/Dependencies.cmake)
 
 add_executable(compass src/main.cpp)
 
-# Explicitly set include directories for the target (helps IDE symbol resolution)
-target_include_directories(compass PRIVATE ${GLEW_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS})
-
-# Link wxWidgets, OpenGL, GLEW, and GLM libraries
-target_link_libraries(compass ${wxWidgets_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARY} glm::glm)
+# Link libraries using modern CMake targets
+# Dependencies are automatically handled via the IMPORTED targets
+target_link_libraries(compass
+    PRIVATE
+        wxWidgets::wxWidgets
+        ${OPENGL_LIBRARIES}
+        GLEW::GLEW
+        glm::glm
+)
 
 # Sound test executable
 add_executable(sound_test src/sound_test.cpp)
-target_link_libraries(sound_test ${wxWidgets_LIBRARIES})
+target_link_libraries(sound_test PRIVATE wxWidgets::wxWidgets)
