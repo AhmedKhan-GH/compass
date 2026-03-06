@@ -1,8 +1,9 @@
 @echo off
-REM Script to properly initialize git submodules for Compass project
-REM This removes build artifacts and existing submodule directories before reinitializing
+REM Script to properly initialize git submodules on Windows
+REM On Windows: Only GLM is needed as a submodule (header-only library)
+REM wxWidgets and GLEW will be downloaded as prebuilt binaries by CMake
 
-echo Starting submodule initialization process...
+echo Starting submodule initialization process (Windows)...
 
 REM Remove build directories
 echo Removing build directories...
@@ -29,19 +30,23 @@ REM Sync submodule URLs
 echo Syncing submodule URLs...
 git submodule sync --recursive
 
-REM Initialize and update submodules
-echo Initializing submodules...
+REM Initialize all submodules
+echo Initializing all submodules...
 git submodule update --init --recursive --force
-
-REM Skip GLEW source generation on Windows (using pre-built binaries)
-echo Skipping GLEW source generation on Windows (using pre-built binaries)
 
 REM Verify submodules are properly initialized
 echo.
 echo Verifying submodules...
 set SUBMODULES_OK=1
 
-if exist "third_party\wxWidgets\CMakeLists.txt" (
+if exist "third_party\glm\glm\glm.hpp" (
+    echo   [OK] GLM submodule OK
+) else (
+    echo   [X] GLM submodule missing
+    set SUBMODULES_OK=0
+)
+
+if exist "third_party\wxWidgets\build\msw\makefile.vc" (
     echo   [OK] wxWidgets submodule OK
 ) else (
     echo   [X] wxWidgets submodule missing
@@ -55,13 +60,6 @@ if exist "third_party\glew\Makefile" (
     set SUBMODULES_OK=0
 )
 
-if exist "third_party\glm\glm\glm.hpp" (
-    echo   [OK] GLM submodule OK
-) else (
-    echo   [X] GLM submodule missing
-    set SUBMODULES_OK=0
-)
-
 echo.
 if %SUBMODULES_OK%==1 (
     echo [OK] Submodule initialization complete!
@@ -69,6 +67,8 @@ if %SUBMODULES_OK%==1 (
     echo Next steps:
     echo   1. Configure: cmake -B build
     echo   2. Build:     cmake --build build --parallel
+    echo.
+    echo Note: wxWidgets and GLEW will be built from source by CMake during configure.
 ) else (
     echo [X] Submodule initialization failed!
     echo Please check the errors above and try again.

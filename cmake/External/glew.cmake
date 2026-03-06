@@ -94,7 +94,54 @@ if(NOT EXISTS "${GLEW_INSTALL_DIR}/lib/${GLEW_LIB_NAME}")
             message(FATAL_ERROR "Failed to install GLEW")
         endif()
     elseif(WIN32)
-        message(FATAL_ERROR "Windows build for GLEW not yet implemented in this CMake system")
+        # Download and use pre-built binaries on Windows
+        set(GLEW_PREBUILT_DIR "${PROJECT_SOURCE_DIR}/third_party/glew-prebuilt")
+        set(GLEW_ZIP "${CMAKE_BINARY_DIR}/glew-2.2.0-win32.zip")
+
+        # Download pre-built binaries if not already present
+        if(NOT EXISTS "${GLEW_PREBUILT_DIR}")
+            message(STATUS "Downloading GLEW 2.2.0 pre-built binaries from GitHub...")
+
+            file(DOWNLOAD
+                "https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip"
+                "${GLEW_ZIP}"
+                EXPECTED_HASH SHA256=ea6b14a1c6c968d0034e61ff6cb242cff2ce0ede79267a0f2b47b1b0b652c164
+                SHOW_PROGRESS
+            )
+
+            message(STATUS "Extracting GLEW binaries...")
+            execute_process(
+                COMMAND ${CMAKE_COMMAND} -E tar xzf "${GLEW_ZIP}"
+                WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/third_party"
+                RESULT_VARIABLE GLEW_EXTRACT_RESULT
+            )
+
+            if(NOT GLEW_EXTRACT_RESULT EQUAL 0)
+                message(FATAL_ERROR "Failed to extract GLEW binaries")
+            endif()
+
+            # Rename extracted directory
+            file(RENAME "${PROJECT_SOURCE_DIR}/third_party/glew-2.2.0" "${GLEW_PREBUILT_DIR}")
+            file(REMOVE "${GLEW_ZIP}")
+
+            message(STATUS "GLEW pre-built binaries downloaded to ${GLEW_PREBUILT_DIR}")
+        else()
+            message(STATUS "Using existing GLEW pre-built binaries at ${GLEW_PREBUILT_DIR}")
+        endif()
+
+        # Copy pre-built files to install directory
+        file(MAKE_DIRECTORY "${GLEW_INSTALL_DIR}/lib")
+        file(MAKE_DIRECTORY "${GLEW_INSTALL_DIR}/include")
+
+        # Copy headers
+        file(COPY "${GLEW_PREBUILT_DIR}/include/GL"
+             DESTINATION "${GLEW_INSTALL_DIR}/include")
+
+        # Copy static library (using x64 Release version)
+        file(COPY "${GLEW_PREBUILT_DIR}/lib/Release/x64/glew32s.lib"
+             DESTINATION "${GLEW_INSTALL_DIR}/lib")
+
+        message(STATUS "GLEW pre-built binaries installed to ${GLEW_INSTALL_DIR}")
     else()
         # Linux
         message(STATUS "Building GLEW with ${N_JOBS} parallel jobs...")

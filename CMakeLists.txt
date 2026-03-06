@@ -7,7 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
 
-add_executable(compass src/main.cpp)
+add_executable(compass WIN32 src/main.cpp)
+
+# Define GLEW_STATIC for static linking
+target_compile_definitions(compass PRIVATE GLEW_STATIC)
 
 # Link libraries using modern CMake targets
 # Dependencies are automatically handled via the IMPORTED targets
