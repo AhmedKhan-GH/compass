@@ -1,3 +1,19 @@
 cmake-build-debug
 .idea
-third-party
+
+# Ignore all third_party contents except submodule metadata
+third_party/*
+!third_party/.gitkeep
+
+# Ignore build artifacts
+*.lib
+*.pdb
+*.obj
+*.o
+*.a
+*.dll
+*.so
+*.dylib
+
+# Ignore downloaded/pre-built binaries
+*-prebuilt/

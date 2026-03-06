@@ -20,30 +20,29 @@ if(WIN32)
 
     set(WX_INSTALL_DIR "${WX_SOURCE_DIR}/lib/vc_x64_lib")
     set(WX_MAIN_LIBRARY "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_core.lib")
+    set(WX_MAIN_PDB "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_core.pdb")
 
     # Check source exists
     if(NOT EXISTS "${WX_SOURCE_DIR}/build/msw/makefile.vc")
         message(FATAL_ERROR "wxWidgets submodule not initialized. Run: init-submodules.bat")
     endif()
 
-    # Build if needed
-    if(NOT EXISTS "${WX_MAIN_LIBRARY}")
+    # Build if needed (check both .lib and .pdb)
+    if(NOT EXISTS "${WX_MAIN_LIBRARY}" OR NOT EXISTS "${WX_MAIN_PDB}")
         message(STATUS "========================================")
         message(STATUS "Building wxWidgets (${WX_BUILD_TYPE}) from source for Windows...")
         message(STATUS "This may take several minutes...")
         message(STATUS "========================================")
 
         # Use batch script to set up MSVC environment and build
+        # Remove OUTPUT_VARIABLE and ERROR_VARIABLE to show output in real-time
         execute_process(
-            COMMAND cmd /c "${PROJECT_SOURCE_DIR}/cmake/build-wxwidgets-windows.bat" "${WX_SOURCE_DIR}/build/msw" "${WX_BUILD_TYPE}"
+            COMMAND cmd /c "${PROJECT_SOURCE_DIR}/cmake/build-wxwidgets-windows.bat" "${WX_BUILD_TYPE}"
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
             RESULT_VARIABLE WX_BUILD_RESULT
-            OUTPUT_VARIABLE WX_BUILD_OUTPUT
-            ERROR_VARIABLE WX_BUILD_ERROR
         )
 
         if(NOT WX_BUILD_RESULT EQUAL 0)
-            message(STATUS "Build output: ${WX_BUILD_OUTPUT}")
-            message(STATUS "Build error: ${WX_BUILD_ERROR}")
             message(FATAL_ERROR "Failed to build wxWidgets (exit code: ${WX_BUILD_RESULT}). Make sure Visual Studio Build Tools are installed.")
         endif()
 

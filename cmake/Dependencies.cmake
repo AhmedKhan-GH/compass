@@ -81,10 +81,13 @@ if(NOT GLM_ALREADY_BUILT)
             -DCMAKE_BUILD_TYPE=Release
             -DGLM_BUILD_TESTS=OFF
             -DCMAKE_INSTALL_PREFIX=${GLM_INSTALL_DIR}
+            -DCMAKE_POLICY_DEFAULT_CMP0048=NEW
+            -Wno-dev
         BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target install -- -j${N_JOBS}
         INSTALL_COMMAND ""
         USES_TERMINAL_CONFIGURE 1
         USES_TERMINAL_BUILD 1
+        LOG_CONFIGURE TRUE
     )
 
     # Create directory to prevent CMake errors
