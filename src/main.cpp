@@ -246,11 +246,15 @@ public:
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         wxSize size = canvas->GetSize();
-        glViewport(0, 0, size.x, size.y);
+        double scale = canvas->GetContentScaleFactor();
+        int width = size.x * scale;
+        int height = size.y * scale;
+
+        glViewport(0, 0, width, height);
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        float aspect = (float)size.x / (float)size.y;
+        float aspect = (float)width / (float)height;
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), aspect, 0.1f, 100.0f);
         glLoadMatrixf(glm::value_ptr(projection));
 
@@ -327,11 +331,13 @@ class MyGLCanvas : public wxGLCanvas {
     wxTimer* m_timer;
 public:
     MyGLCanvas(wxFrame* parent)
-    : wxGLCanvas(parent, wxID_ANY, nullptr, wxDefaultPosition, wxSize(400, 300), 0, wxT("GLCanvas")),
+    : wxGLCanvas(parent, wxID_ANY, nullptr, wxDefaultPosition, wxDefaultSize, 0, wxT("GLCanvas")),
       m_context(new MyGLContext(this)),
       m_timer(new wxTimer(this))
     {
+        SetMinSize(wxSize(400, 300));
         Bind(wxEVT_PAINT, &MyGLCanvas::OnPaint, this);
+        Bind(wxEVT_SIZE, &MyGLCanvas::OnSize, this);
         Bind(wxEVT_TIMER, &MyGLCanvas::OnTimer, this);
         m_timer->Start(16); // ~60 FPS
     }
@@ -345,6 +351,11 @@ public:
     void OnPaint(wxPaintEvent& event) {
         wxPaintDC dc(this);
         m_context->Render(this);
+    }
+
+    void OnSize(wxSizeEvent& event) {
+        Refresh();
+        event.Skip();
     }
 
     void OnTimer(wxTimerEvent& event) {
@@ -371,8 +382,6 @@ public:
 
     MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     : wxFrame(NULL, wxID_ANY, title, pos, size) {
-        SetSize(wxSize(1000, 750));
-
         // Dark mode colors
         SetBackgroundColour(wxColour(30, 30, 35));
 
@@ -533,8 +542,8 @@ public:
         controlPanel->SetSizer(controlSizer);
         mainSizer->Add(controlPanel, 0, wxEXPAND | wxALL, 5);
 
-        this->SetSizer(mainSizer);
-        this->Layout();
+        this->SetSizerAndFit(mainSizer);
+        this->SetClientSize(wxSize(1000, 750));
 
         // Event bindings
         eulerRadio->Bind(wxEVT_RADIOBUTTON, &MyFrame::OnModeChange, this);
@@ -674,6 +683,7 @@ class MyApp : public wxApp {
 public:
     virtual bool OnInit() {
         MyFrame* frame = new MyFrame(wxT("✨ Quaternion Visualizer - GLM Demo"), wxDefaultPosition, wxSize(1000, 750));
+        frame->Centre();
         frame->Show(true);
         return true;
     }

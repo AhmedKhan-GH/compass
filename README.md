@@ -91,6 +91,26 @@ This project uses the following libraries as Git submodules:
 
 For detailed wxWidgets configuration information, see [WXWIDGETS.md](WXWIDGETS.md).
 
+## Cross-Platform OpenGL Rendering
+
+### macOS Retina Display Fix
+
+On macOS Retina displays, `GetSize()` returns logical pixels, but OpenGL's framebuffer uses physical pixels (2x on Retina). To ensure proper rendering across all platforms, the viewport is calculated using the content scale factor:
+
+```cpp
+wxSize size = GetSize();
+double scale = GetContentScaleFactor();
+int width = size.x * scale;
+int height = size.y * scale;
+glViewport(0, 0, width, height);
+```
+
+**Why it works cross-platform:**
+- **macOS Retina:** `GetContentScaleFactor()` returns 2.0, so viewport matches the 2x physical framebuffer
+- **Windows/Linux:** `GetContentScaleFactor()` returns 1.0, so viewport equals logical size (no scaling needed)
+
+This single code path works correctly on all platforms without `#ifdef` checks.
+
 ## Troubleshooting
 
 ### Submodule Issues
