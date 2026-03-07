@@ -84,6 +84,7 @@ elseif(APPLE)
     # macOS: Build from source (existing logic)
     set(WX_SOURCE_DIR "${PROJECT_SOURCE_DIR}/third_party/wxWidgets")
     set(WX_BUILD_DIR "${CMAKE_BINARY_DIR}/third_party/wxWidgets-build")
+    set(WX_INSTALL_DIR "${WX_BUILD_DIR}/install")
     set(WX_MAIN_LIBRARY "${WX_INSTALL_DIR}/lib/libwx_osx_cocoau-${WX_VERSION}.a")
 
     # Check source exists
@@ -162,6 +163,7 @@ else()
     # Linux: Build from source
     set(WX_SOURCE_DIR "${PROJECT_SOURCE_DIR}/third_party/wxWidgets")
     set(WX_BUILD_DIR "${CMAKE_BINARY_DIR}/third_party/wxWidgets-build")
+    set(WX_INSTALL_DIR "${WX_BUILD_DIR}/install")
     set(WX_MAIN_LIBRARY "${WX_INSTALL_DIR}/lib/libwx_gtk3u_core-${WX_VERSION}.a")
 
     if(NOT EXISTS "${WX_SOURCE_DIR}/configure")
