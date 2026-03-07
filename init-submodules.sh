@@ -31,12 +31,13 @@ git submodule sync --recursive
 
 # Initialize and update submodules
 echo "Initializing submodules..."
-# Always initialize wxWidgets and glm
-git submodule update --init --recursive --force third_party/wxWidgets third_party/glm
-
-# Only initialize GLEW on non-Windows platforms
+# Initialize all submodules defined in .gitmodules
 if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
-    git submodule update --init --recursive --force third_party/glew
+    # macOS/Linux: initialize all submodules including GLEW
+    git submodule update --init --recursive --force third_party/wxWidgets third_party/glew third_party/glm
+else
+    # Windows: initialize only wxWidgets and glm (skip GLEW)
+    git submodule update --init --recursive --force third_party/wxWidgets third_party/glm
 fi
 
 # Generate GLEW sources (only needed on macOS/Linux, Windows uses pre-built binaries)
