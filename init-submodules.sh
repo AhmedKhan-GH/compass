@@ -1,31 +1,11 @@
 #!/bin/bash
 
 # Script to properly initialize git submodules for Compass project
-# This removes build artifacts and existing submodule directories before reinitializing
+# Idempotent operation - safe to run multiple times
 
 echo "Starting submodule initialization process..."
 
-# Remove build directories
-echo "Removing build directories..."
-rm -rf cmake-build-debug
-rm -rf build
-rm -rf out
-
-# Deinitialize and clean submodules first
-echo "Cleaning git submodules..."
-git submodule deinit -f --all 2>/dev/null || true
-
-# Remove submodule entries from .git
-echo "Removing .git/modules..."
-rm -rf .git/modules
-
-# Remove all third_party directories forcefully
-echo "Removing all third_party directories..."
-find third_party -mindepth 1 -delete 2>/dev/null || true
-rm -rf third_party
-mkdir -p third_party
-
-# Sync submodule URLs
+# Sync submodule URLs (ensures .gitmodules is in sync)
 echo "Syncing submodule URLs..."
 git submodule sync --recursive
 
@@ -34,29 +14,10 @@ echo "Initializing submodules..."
 # Initialize all submodules defined in .gitmodules
 if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
     # macOS/Linux: initialize all submodules including GLEW
-    git submodule update --init --recursive --force third_party/wxWidgets third_party/glew third_party/glm
+    git submodule update --init --recursive third_party/wxWidgets third_party/glew third_party/glm
 else
     # Windows: initialize only wxWidgets and glm (skip GLEW)
-    git submodule update --init --recursive --force third_party/wxWidgets third_party/glm
-fi
-
-# Generate GLEW sources (only needed on macOS/Linux, Windows uses pre-built binaries)
-if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
-    echo "Generating GLEW sources..."
-    if [ -d "third_party/glew" ]; then
-        cd third_party/glew
-        make extensions > /dev/null 2>&1
-        if [ -f "auto/src/glew_head.c" ]; then
-            echo "  ✓ GLEW sources generated successfully"
-        else
-            echo "  ⚠ GLEW source generation may have failed (check manually)"
-        fi
-        cd ../..
-    else
-        echo "  ✗ GLEW submodule not found"
-    fi
-else
-    echo "Skipping GLEW source generation on Windows (using pre-built binaries)"
+    git submodule update --init --recursive third_party/wxWidgets third_party/glm
 fi
 
 # Verify submodules are properly initialized

@@ -17,3 +17,5 @@ third_party/*
 
 # Ignore downloaded/pre-built binaries
 *-prebuilt/
+/third_party/glew/auto/OpenGL-Registry/.dummy
+/third_party/glew/auto/EGL-Registry/.dummy

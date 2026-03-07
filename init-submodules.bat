@@ -4,31 +4,20 @@ echo Initializing Submodules Script
 echo ========================================
 echo.
 
-REM Remove cmake-build-debug directory
-echo [1/3] Removing cmake-build-debug directory...
-if exist cmake-build-debug (
-    rmdir /s /q cmake-build-debug
-    echo   - Removed cmake-build-debug
-) else (
-    echo   - cmake-build-debug does not exist, skipping
+REM Sync submodule URLs (ensures .gitmodules is in sync)
+echo [1/2] Syncing submodule URLs...
+git submodule sync --recursive
+if %ERRORLEVEL% NEQ 0 (
+    echo   ERROR: Failed to sync submodules
+    pause
+    exit /b 1
 )
+echo   - Submodule URLs synced
 echo.
 
-REM Clean third_party directory contents but keep the directory
-echo [2/3] Cleaning third_party directory...
-if exist third_party (
-    rmdir /s /q third_party
-    mkdir third_party
-    echo   - Cleared third_party directory
-) else (
-    mkdir third_party
-    echo   - Created third_party directory
-)
-echo.
-
-REM Initialize and update git submodules
-echo [3/3] Initializing git submodules...
-git submodule update --init --recursive
+REM Initialize and update git submodules (Windows: wxWidgets and glm only, skip GLEW)
+echo [2/2] Initializing git submodules...
+git submodule update --init --recursive third_party/wxWidgets third_party/glm
 if %ERRORLEVEL% NEQ 0 (
     echo   ERROR: Failed to initialize submodules
     pause
