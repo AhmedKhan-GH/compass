@@ -682,7 +682,7 @@ public:
 class MyApp : public wxApp {
 public:
     virtual bool OnInit() {
-        MyFrame* frame = new MyFrame(wxT("✨ Quaternion Visualizer - GLM Demo"), wxDefaultPosition, wxSize(1000, 750));
+        MyFrame* frame = new MyFrame(wxT("Quaternion Visualizer - GLM Demo"), wxDefaultPosition, wxSize(1000, 750));
         frame->Centre();
         frame->Show(true);
         return true;
