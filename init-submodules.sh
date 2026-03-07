@@ -8,8 +8,6 @@ echo "Starting submodule initialization process..."
 # Remove build directories
 echo "Removing build directories..."
 rm -rf cmake-build-debug
-rm -rf cmake-build-release
-rm -rf cmake-build-relwithdebinfo
 rm -rf build
 rm -rf out
 
@@ -33,7 +31,13 @@ git submodule sync --recursive
 
 # Initialize and update submodules
 echo "Initializing submodules..."
-git submodule update --init --recursive --force
+# Always initialize wxWidgets and glm
+git submodule update --init --recursive --force third_party/wxWidgets third_party/glm
+
+# Only initialize GLEW on non-Windows platforms
+if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
+    git submodule update --init --recursive --force third_party/glew
+fi
 
 # Generate GLEW sources (only needed on macOS/Linux, Windows uses pre-built binaries)
 if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
@@ -66,11 +70,16 @@ else
     SUBMODULES_OK=false
 fi
 
-if [ -f "third_party/glew/Makefile" ]; then
-    echo "  ✓ GLEW submodule OK"
+# Only verify GLEW on non-Windows platforms
+if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
+    if [ -f "third_party/glew/Makefile" ]; then
+        echo "  ✓ GLEW submodule OK"
+    else
+        echo "  ✗ GLEW submodule missing"
+        SUBMODULES_OK=false
+    fi
 else
-    echo "  ✗ GLEW submodule missing"
-    SUBMODULES_OK=false
+    echo "  ⊘ GLEW submodule skipped (Windows uses pre-built binaries)"
 fi
 
 if [ -f "third_party/glm/glm/glm.hpp" ]; then
