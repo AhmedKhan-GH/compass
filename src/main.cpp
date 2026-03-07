@@ -388,9 +388,9 @@ public:
 
         // Animation controls
         wxStaticBoxSizer* animSizer = new wxStaticBoxSizer(wxHORIZONTAL, controlPanel, "Animation");
-        autoRotateBtn = new wxButton(controlPanel, wxID_ANY, "Auto-Rotate", wxDefaultPosition, wxSize(120, -1), wxBORDER_SIMPLE);
-        autoSlerpBtn = new wxButton(controlPanel, wxID_ANY, "Auto-SLERP", wxDefaultPosition, wxSize(120, -1), wxBORDER_SIMPLE);
-        wxButton* clearTrailBtn = new wxButton(controlPanel, wxID_ANY, "Clear Trail", wxDefaultPosition, wxSize(100, -1), wxBORDER_SIMPLE);
+        autoRotateBtn = new wxButton(animSizer->GetStaticBox(), wxID_ANY, "Auto-Rotate", wxDefaultPosition, wxSize(120, -1), wxBORDER_SIMPLE);
+        autoSlerpBtn = new wxButton(animSizer->GetStaticBox(), wxID_ANY, "Auto-SLERP", wxDefaultPosition, wxSize(120, -1), wxBORDER_SIMPLE);
+        wxButton* clearTrailBtn = new wxButton(animSizer->GetStaticBox(), wxID_ANY, "Clear Trail", wxDefaultPosition, wxSize(100, -1), wxBORDER_SIMPLE);
         autoRotateBtn->SetBackgroundColour(wxColour(45, 45, 50));
         autoRotateBtn->SetForegroundColour(wxColour(220, 220, 220));
         autoSlerpBtn->SetBackgroundColour(wxColour(45, 45, 50));
@@ -404,8 +404,8 @@ public:
 
         // Visual options
         wxStaticBoxSizer* visSizer = new wxStaticBoxSizer(wxHORIZONTAL, controlPanel, "Visual Options");
-        trailCheck = new wxCheckBox(controlPanel, wxID_ANY, "Show Trail");
-        cubeCheck = new wxCheckBox(controlPanel, wxID_ANY, "Show Cube");
+        trailCheck = new wxCheckBox(visSizer->GetStaticBox(), wxID_ANY, "Show Trail");
+        cubeCheck = new wxCheckBox(visSizer->GetStaticBox(), wxID_ANY, "Show Cube");
         trailCheck->SetValue(true);
         cubeCheck->SetValue(true);
         trailCheck->SetBackgroundColour(wxColour(30, 30, 35));
@@ -418,9 +418,9 @@ public:
 
         // Presets
         wxStaticBoxSizer* presetSizer = new wxStaticBoxSizer(wxHORIZONTAL, controlPanel, "Quick Presets");
-        wxButton* gimbalBtn = new wxButton(controlPanel, wxID_ANY, "Gimbal Lock Demo", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
-        wxButton* spinBtn = new wxButton(controlPanel, wxID_ANY, "360° Spin", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
-        wxButton* flipBtn = new wxButton(controlPanel, wxID_ANY, "Flip", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
+        wxButton* gimbalBtn = new wxButton(presetSizer->GetStaticBox(), wxID_ANY, "Gimbal Lock Demo", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
+        wxButton* spinBtn = new wxButton(presetSizer->GetStaticBox(), wxID_ANY, "360° Spin", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
+        wxButton* flipBtn = new wxButton(presetSizer->GetStaticBox(), wxID_ANY, "Flip", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
         gimbalBtn->SetBackgroundColour(wxColour(45, 45, 50));
         gimbalBtn->SetForegroundColour(wxColour(220, 220, 220));
         spinBtn->SetBackgroundColour(wxColour(45, 45, 50));
@@ -434,8 +434,8 @@ public:
 
         // Mode selection
         wxStaticBoxSizer* modeSizer = new wxStaticBoxSizer(wxHORIZONTAL, controlPanel, "Mode");
-        eulerRadio = new wxRadioButton(controlPanel, wxID_ANY, "Euler Angles", wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-        slerpRadio = new wxRadioButton(controlPanel, wxID_ANY, "SLERP Interpolation");
+        eulerRadio = new wxRadioButton(modeSizer->GetStaticBox(), wxID_ANY, "Euler Angles", wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+        slerpRadio = new wxRadioButton(modeSizer->GetStaticBox(), wxID_ANY, "SLERP Interpolation");
         eulerRadio->SetValue(true);
         eulerRadio->SetBackgroundColour(wxColour(30, 30, 35));
         eulerRadio->SetForegroundColour(wxColour(220, 220, 220));
@@ -449,40 +449,40 @@ public:
         wxStaticBoxSizer* eulerSizer = new wxStaticBoxSizer(wxVERTICAL, controlPanel, "Euler Angles");
 
         wxBoxSizer* pitchSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxStaticText* pitchLabel = new wxStaticText(controlPanel, wxID_ANY, "Pitch (X):", wxDefaultPosition, wxSize(70, -1));
+        wxStaticText* pitchLabel = new wxStaticText(eulerSizer->GetStaticBox(), wxID_ANY, "Pitch (X):", wxDefaultPosition, wxSize(70, -1));
         pitchLabel->SetForegroundColour(wxColour(220, 220, 220));
         pitchSizer->Add(pitchLabel, 0, wxALIGN_CENTER_VERTICAL);
-        pitchSlider = new wxSlider(controlPanel, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize(250, -1));
+        pitchSlider = new wxSlider(eulerSizer->GetStaticBox(), wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize(250, -1));
         pitchSlider->SetBackgroundColour(wxColour(40, 40, 45));
         pitchSlider->SetForegroundColour(wxColour(100, 150, 255));
         pitchSizer->Add(pitchSlider, 1, wxEXPAND);
-        wxStaticText* pitchVal = new wxStaticText(controlPanel, wxID_ANY, " 0°", wxDefaultPosition, wxSize(50, -1));
+        wxStaticText* pitchVal = new wxStaticText(eulerSizer->GetStaticBox(), wxID_ANY, " 0°", wxDefaultPosition, wxSize(50, -1));
         pitchVal->SetForegroundColour(wxColour(220, 220, 220));
         pitchSizer->Add(pitchVal, 0, wxALIGN_CENTER_VERTICAL);
         eulerSizer->Add(pitchSizer, 0, wxEXPAND | wxALL, 3);
 
         wxBoxSizer* yawSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxStaticText* yawLabel = new wxStaticText(controlPanel, wxID_ANY, "Yaw (Y):", wxDefaultPosition, wxSize(70, -1));
+        wxStaticText* yawLabel = new wxStaticText(eulerSizer->GetStaticBox(), wxID_ANY, "Yaw (Y):", wxDefaultPosition, wxSize(70, -1));
         yawLabel->SetForegroundColour(wxColour(220, 220, 220));
         yawSizer->Add(yawLabel, 0, wxALIGN_CENTER_VERTICAL);
-        yawSlider = new wxSlider(controlPanel, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize(250, -1));
+        yawSlider = new wxSlider(eulerSizer->GetStaticBox(), wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize(250, -1));
         yawSlider->SetBackgroundColour(wxColour(40, 40, 45));
         yawSlider->SetForegroundColour(wxColour(100, 255, 150));
         yawSizer->Add(yawSlider, 1, wxEXPAND);
-        wxStaticText* yawVal = new wxStaticText(controlPanel, wxID_ANY, " 0°", wxDefaultPosition, wxSize(50, -1));
+        wxStaticText* yawVal = new wxStaticText(eulerSizer->GetStaticBox(), wxID_ANY, " 0°", wxDefaultPosition, wxSize(50, -1));
         yawVal->SetForegroundColour(wxColour(220, 220, 220));
         yawSizer->Add(yawVal, 0, wxALIGN_CENTER_VERTICAL);
         eulerSizer->Add(yawSizer, 0, wxEXPAND | wxALL, 3);
 
         wxBoxSizer* rollSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxStaticText* rollLabel = new wxStaticText(controlPanel, wxID_ANY, "Roll (Z):", wxDefaultPosition, wxSize(70, -1));
+        wxStaticText* rollLabel = new wxStaticText(eulerSizer->GetStaticBox(), wxID_ANY, "Roll (Z):", wxDefaultPosition, wxSize(70, -1));
         rollLabel->SetForegroundColour(wxColour(220, 220, 220));
         rollSizer->Add(rollLabel, 0, wxALIGN_CENTER_VERTICAL);
-        rollSlider = new wxSlider(controlPanel, wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize(250, -1));
+        rollSlider = new wxSlider(eulerSizer->GetStaticBox(), wxID_ANY, 0, -180, 180, wxDefaultPosition, wxSize(250, -1));
         rollSlider->SetBackgroundColour(wxColour(40, 40, 45));
         rollSlider->SetForegroundColour(wxColour(255, 150, 100));
         rollSizer->Add(rollSlider, 1, wxEXPAND);
-        wxStaticText* rollVal = new wxStaticText(controlPanel, wxID_ANY, " 0°", wxDefaultPosition, wxSize(50, -1));
+        wxStaticText* rollVal = new wxStaticText(eulerSizer->GetStaticBox(), wxID_ANY, " 0°", wxDefaultPosition, wxSize(50, -1));
         rollVal->SetForegroundColour(wxColour(220, 220, 220));
         rollSizer->Add(rollVal, 0, wxALIGN_CENTER_VERTICAL);
         eulerSizer->Add(rollSizer, 0, wxEXPAND | wxALL, 3);
@@ -492,22 +492,22 @@ public:
         // SLERP control
         wxStaticBoxSizer* slerpSizer = new wxStaticBoxSizer(wxVERTICAL, controlPanel, "SLERP Interpolation");
         wxBoxSizer* slerpHSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxStaticText* slerpLabel = new wxStaticText(controlPanel, wxID_ANY, "Factor:", wxDefaultPosition, wxSize(70, -1));
+        wxStaticText* slerpLabel = new wxStaticText(slerpSizer->GetStaticBox(), wxID_ANY, "Factor:", wxDefaultPosition, wxSize(70, -1));
         slerpLabel->SetForegroundColour(wxColour(220, 220, 220));
         slerpHSizer->Add(slerpLabel, 0, wxALIGN_CENTER_VERTICAL);
-        slerpSlider = new wxSlider(controlPanel, wxID_ANY, 0, 0, 100, wxDefaultPosition, wxSize(250, -1));
+        slerpSlider = new wxSlider(slerpSizer->GetStaticBox(), wxID_ANY, 0, 0, 100, wxDefaultPosition, wxSize(250, -1));
         slerpSlider->SetBackgroundColour(wxColour(40, 40, 45));
         slerpSlider->SetForegroundColour(wxColour(255, 200, 100));
         slerpSlider->Enable(false);
         slerpHSizer->Add(slerpSlider, 1, wxEXPAND);
-        wxStaticText* slerpVal = new wxStaticText(controlPanel, wxID_ANY, " 0.00", wxDefaultPosition, wxSize(50, -1));
+        wxStaticText* slerpVal = new wxStaticText(slerpSizer->GetStaticBox(), wxID_ANY, " 0.00", wxDefaultPosition, wxSize(50, -1));
         slerpVal->SetForegroundColour(wxColour(220, 220, 220));
         slerpHSizer->Add(slerpVal, 0, wxALIGN_CENTER_VERTICAL);
         slerpSizer->Add(slerpHSizer, 0, wxEXPAND | wxALL, 3);
 
         wxBoxSizer* slerpButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxButton* setStartBtn = new wxButton(controlPanel, wxID_ANY, "Set Start", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
-        wxButton* setEndBtn = new wxButton(controlPanel, wxID_ANY, "Set End", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
+        wxButton* setStartBtn = new wxButton(slerpSizer->GetStaticBox(), wxID_ANY, "Set Start", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
+        wxButton* setEndBtn = new wxButton(slerpSizer->GetStaticBox(), wxID_ANY, "Set End", wxDefaultPosition, wxDefaultSize, wxBORDER_SIMPLE);
         setStartBtn->SetBackgroundColour(wxColour(45, 45, 50));
         setStartBtn->SetForegroundColour(wxColour(220, 220, 220));
         setEndBtn->SetBackgroundColour(wxColour(45, 45, 50));
@@ -520,7 +520,7 @@ public:
 
         // Quaternion display
         wxStaticBoxSizer* displaySizer = new wxStaticBoxSizer(wxVERTICAL, controlPanel, "Current Quaternion");
-        quatDisplay = new wxStaticText(controlPanel, wxID_ANY, "w: 1.000, x: 0.000, y: 0.000, z: 0.000");
+        quatDisplay = new wxStaticText(displaySizer->GetStaticBox(), wxID_ANY, "w: 1.000, x: 0.000, y: 0.000, z: 0.000");
         quatDisplay->SetForegroundColour(wxColour(220, 220, 220));
         displaySizer->Add(quatDisplay, 0, wxALL, 8);
         controlSizer->Add(displaySizer, 0, wxEXPAND | wxALL, 5);
