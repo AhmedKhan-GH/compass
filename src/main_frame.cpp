@@ -30,6 +30,10 @@ MainFrame::MainFrame()
     auto onChanged = [this] { OnDocumentChanged(); };
 
     m_canvas = new PlotCanvas(this, &m_doc);
+    m_canvas->SetOnChanged(onChanged);
+    m_canvas->SetOnCursor([this](double x, double y) {
+        SetStatusText(wxString::Format("x = %.4g   y = %.4g", x, y));
+    });
     m_aui.AddPane(m_canvas, wxAuiPaneInfo()
                                 .Name("workspace")
                                 .CenterPane());
