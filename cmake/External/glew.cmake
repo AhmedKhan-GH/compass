@@ -60,10 +60,16 @@ if(WIN32)
         message(STATUS "Using existing GLEW pre-built binaries at ${GLEW_SOURCE_DIR}")
     endif()
 else()
-    # macOS/Linux: Download source for building
-    if(NOT EXISTS "${GLEW_SOURCE_DIR}/Makefile")
-        message(STATUS "GLEW source not found at ${GLEW_SOURCE_DIR}")
-        message(STATUS "Downloading GLEW 2.2.0 source from SourceForge...")
+    # macOS/Linux: Need release tarball which has pre-generated src/glew.c
+    # (git submodule clones don't include this generated file)
+    if(NOT EXISTS "${GLEW_SOURCE_DIR}/src/glew.c")
+        message(STATUS "GLEW generated source (src/glew.c) not found at ${GLEW_SOURCE_DIR}")
+        message(STATUS "Downloading GLEW 2.2.0 release tarball from SourceForge...")
+
+        # Remove incomplete source directory if it exists (e.g. git submodule without generated files)
+        if(EXISTS "${GLEW_SOURCE_DIR}")
+            file(REMOVE_RECURSE "${GLEW_SOURCE_DIR}")
+        endif()
 
         # Create third_party directory if it doesn't exist
         file(MAKE_DIRECTORY "${PROJECT_SOURCE_DIR}/third_party")

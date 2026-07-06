@@ -25,3 +25,6 @@ target_link_libraries(compass
 # Sound test executable
 add_executable(sound_test src/sound_test.cpp)
 target_link_libraries(sound_test PRIVATE wxWidgets::wxWidgets)
+
+# Demos (PLATFORM.md §5.7 quarantine area)
+add_subdirectory(demos/hello_world)
