@@ -1,5 +1,6 @@
 cmake-build-debug
 .idea
+build/
 
 # Ignore all third_party contents except submodule metadata
 third_party/*

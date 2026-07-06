@@ -1,11 +1,11 @@
 # wxWidgets Configuration Reference
 
-This document outlines the available features and configure options for wxWidgets 3.2.9 used in this project.
+This document outlines the available features and configure options for wxWidgets 3.3.2 used in this project.
 
 ## Build Configuration
 
-- **Version**: 3.2.9
-- **Build Type**: osx_cocoa-unicode-static-3.2
+- **Version**: 3.3.2
+- **Build Type**: osx_cocoa-unicode-static-3.3
 - **Total Headers**: 420+
 
 ## Major Feature Categories

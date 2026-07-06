@@ -1,0 +1,32 @@
+site_name: Compass Platform
+docs_dir: docs/wiki
+site_dir: build/wiki-site
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+    - search.suggest
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: ['.']
+      check_paths: true
+nav:
+  - Home: index.md
+  - Tutorials:
+      - Building from source: tutorials/building-from-source.md
+  - How-to:
+      - Run the demos: howto/run-the-demos.md
+      - Admit a library: howto/admit-a-library.md
+  - Reference:
+      - Build system: reference/build-system.md
+      - Library catalog: reference/library-catalog.md
+  - Explanation:
+      - Architecture: explanation/architecture.md
+      - The static-binary principle: explanation/static-binary.md
+      - Rendering: explanation/rendering.md
+  - Decisions: decisions/index.md
