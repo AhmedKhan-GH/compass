@@ -2,6 +2,10 @@
 
 # Script to properly initialize git submodules for Compass project
 # Idempotent operation - safe to run multiple times
+#
+# NOTE: wxWidgets is the only submodule. GLEW and GLM are fetched by CMake
+# at configure time (GLEW release tarball, GLM 1.0.1 clone) — see
+# cmake/External/glew.cmake and cmake/Dependencies.cmake.
 
 echo "Starting submodule initialization process..."
 
@@ -11,14 +15,7 @@ git submodule sync --recursive
 
 # Initialize and update submodules
 echo "Initializing submodules..."
-# Initialize all submodules defined in .gitmodules
-if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
-    # macOS/Linux: initialize all submodules including GLEW
-    git submodule update --init --recursive third_party/wxWidgets third_party/glew third_party/glm
-else
-    # Windows: initialize only wxWidgets and glm (skip GLEW)
-    git submodule update --init --recursive third_party/wxWidgets third_party/glm
-fi
+git submodule update --init --recursive third_party/wxWidgets
 
 # Verify submodules are properly initialized
 echo ""
@@ -29,25 +26,6 @@ if [ -f "third_party/wxWidgets/CMakeLists.txt" ]; then
     echo "  ✓ wxWidgets submodule OK"
 else
     echo "  ✗ wxWidgets submodule missing"
-    SUBMODULES_OK=false
-fi
-
-# Only verify GLEW on non-Windows platforms
-if [[ "$OSTYPE" != "msys" && "$OSTYPE" != "win32" && "$OSTYPE" != "cygwin" ]]; then
-    if [ -f "third_party/glew/Makefile" ]; then
-        echo "  ✓ GLEW submodule OK"
-    else
-        echo "  ✗ GLEW submodule missing"
-        SUBMODULES_OK=false
-    fi
-else
-    echo "  ⊘ GLEW submodule skipped (Windows uses pre-built binaries)"
-fi
-
-if [ -f "third_party/glm/glm/glm.hpp" ]; then
-    echo "  ✓ GLM submodule OK"
-else
-    echo "  ✗ GLM submodule missing"
     SUBMODULES_OK=false
 fi
 

@@ -20,3 +20,7 @@ third_party/*
 *-prebuilt/
 /third_party/glew/auto/OpenGL-Registry/.dummy
 /third_party/glew/auto/EGL-Registry/.dummy
+
+# glew/glm are fetched by CMake (glew tarball, glm 1.0.1 clone), not submodules
+third_party/glew/
+third_party/glm/
