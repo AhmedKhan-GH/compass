@@ -17,6 +17,7 @@ Recovery map. Tasks marked complete are DONE — do NOT re-dispatch. Trust this 
 ## Phase I1 — Plot Workbench — IN PROGRESS (branch `i1-plot-workbench`)
 Increment 1 (foundation) — DONE @ 9161c47.
 Increment 2 (Sampler + PlotDocument logic) — DONE. 3 test suites green via CTest.
+Increment 3 (CsvExporter + first visible PlotCanvas) — DONE. 4 test suites green; compass draws sin(x), audit clean.
 Design spec: docs/superpowers/specs/2026-07-05-plot-workbench-design.md (approved).
 Detailed task plan: NOT yet written (author from the spec before full execution).
 
@@ -24,8 +25,9 @@ Detailed task plan: NOT yet written (author from the spec before full execution)
 - **Expression** (parser/evaluator) — COMPLETE + INTEGRATED. On branch `i1-plot-workbench` (cherry-picked → 0267e9d, 9af84ac); CMake/CTest wired (9161c47) via `compass_plot` static lib + `tests/plot/`. `ctest` green (test_expression, 22 cases). Worktree removed.
 - Sampler — COMPLETE (i1 branch). 2 samples/px, non-finite gap split. 5 cases, ctest green.
 - PlotDocument — COMPLETE (i1 branch). Expr list + view + memento undo/redo + .plot JSON (hand-rolled, defensive). 12 cases, ctest green.
-- CsvExporter — NOT STARTED (depends on Sampler).
-- UI (PlotCanvas, ExpressionPanel, ViewPanel, frame wiring) — NOT STARTED (depends on logic units + I0 shell).
+- CsvExporter — COMPLETE (i1). Uniform-grid CSV, empty cells for non-finite. 5 cases, ctest green.
+- PlotCanvas — COMPLETE (i1). Native-2D axes/grid/curve; docked center pane; shell draws sin(x). Launches, audit clean.
+- ExpressionPanel, ViewPanel, menus, interaction — NOT STARTED (increment 4).
 
 ## Open decisions for controller
 1. Merge `i0-identity-hygiene` → main (phase exit)?
