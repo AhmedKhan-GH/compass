@@ -53,9 +53,9 @@ for f in ${files}; do
       *)   continue ;;                  # no slash — standard library, allow
     esac
 
-    # Allowed third-party / system prefixes.
+    # Allowed catalog / system prefixes (compass:: targets + system frameworks).
     case "${header}" in
-      wx/*|glm/*|GL/*|OpenGL/*)
+      wx/*|glm/*|GL/*|OpenGL/*|nlohmann/*|glad/*|compass/*)
         continue ;;
     esac
 

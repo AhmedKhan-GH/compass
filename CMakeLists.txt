@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include(cmake/Dependencies.cmake)
 # GLAD 3.3-core loader → compass::gl (§6.2, CD12; replaces GLEW at I3).
 include(cmake/External/glad.cmake)
+# nlohmann/json → compass::json (§5.2 admission, I3): Plot + Signal sidecars.
+include(cmake/External/nlohmann.cmake)
 # Layer 0 catalog: compass:: targets + compass_add_instrument() (§5.2, §5.4).
 include(cmake/catalog.cmake)
 
@@ -16,6 +18,7 @@ add_subdirectory(libcompass)
 
 # Plot Workbench logic (wx-free); shared by the app and the tests.
 add_subdirectory(src/plot)
+add_subdirectory(src/signal)
 
 # The instrument template must always build against the framework (PLATFORM.md
 # §5.6 — the template is the SDK spec; a framework change that breaks it fails here).
@@ -47,4 +50,5 @@ if(COMPASS_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests/compass)
     add_subdirectory(tests/plot)
+    add_subdirectory(tests/signal)
 endif()
