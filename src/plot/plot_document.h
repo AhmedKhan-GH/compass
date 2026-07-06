@@ -1,10 +1,7 @@
 // Compass — Plot Workbench (Instrument #1)
-// PlotDocument: the .plot worksheet — expressions + view rect + undo/redo + JSON.
-//
-// Pure C++, headless, wx-free. Undo is memento-based (each mutation snapshots the
-// document state); the mutation methods ARE the commands from the design spec §5.
-// A drag/wheel gesture in the UI coalesces into a single SetView call, so each
-// method invocation is exactly one undo step.
+// PlotDocument: the .plot worksheet. Domain state + mutations + JSON; the generic
+// undo/dirty/serialize machinery comes from compass::UndoableDocument (libcompass).
+// Pure C++, headless, wx-free.
 
 #ifndef COMPASS_PLOT_PLOT_DOCUMENT_H
 #define COMPASS_PLOT_PLOT_DOCUMENT_H
@@ -13,6 +10,8 @@
 #include <optional>
 #include <string>
 #include <vector>
+
+#include "compass/document.h"
 
 namespace plot {
 
@@ -23,8 +22,8 @@ struct Style {
     bool visible = true;
 };
 
-// One expression row: the source text plus its styling. The text is stored
-// verbatim even if it fails to parse (a saved worksheet never loses user input).
+// One expression row: source text plus styling. Text is stored verbatim even if
+// it fails to parse (a saved worksheet never loses user input).
 struct ExprEntry {
     std::string text;
     Style style;
@@ -39,13 +38,19 @@ struct ViewRect {
     bool grid = true;
 };
 
-class PlotDocument {
+// The document's undoable snapshot: everything that Save persists and Undo restores.
+struct PlotState {
+    std::vector<ExprEntry> expressions;
+    ViewRect view;
+};
+
+class PlotDocument : public compass::UndoableDocument<PlotState> {
 public:
-    // --- state ---
-    const std::vector<ExprEntry>& expressions() const { return cur_.expressions; }
-    const ViewRect& view() const { return cur_.view; }
-    bool dirty() const { return dirty_; }
-    void MarkSaved() { dirty_ = false; }  // call after a successful save
+    // --- state accessors ---
+    const std::vector<ExprEntry>& expressions() const { return state().expressions; }
+    const ViewRect& view() const { return state().view; }
+    bool can_undo() const { return CanUndo(); }  // snake-case app/test aliases
+    bool can_redo() const { return CanRedo(); }
 
     // --- mutations (each is exactly one undo step; each sets dirty) ---
     void AddExpression(const ExprEntry& e);
@@ -54,31 +59,14 @@ public:
     void SetExpressionStyle(std::size_t index, const Style& s);           // no-op if oob
     void SetView(const ViewRect& v);
 
-    // --- undo/redo ---
-    bool can_undo() const { return !undo_.empty(); }
-    bool can_redo() const { return !redo_.empty(); }
-    void Undo();
-    void Redo();
+    // --- framework serialize contract (.plot JSON, spec §4) ---
+    std::string Serialize() const override;
+    bool Deserialize(const std::string& data) override;
 
-    // --- persistence (.plot JSON, spec §4) ---
-    std::string ToJson() const;
-    // Parse a .plot document. Returns nullopt on malformed JSON, wrong types, or
-    // an unsupported version (> 1). Unknown fields are ignored; missing optional
-    // fields take their defaults. The returned document is clean (dirty()==false)
-    // with an empty undo history.
+    // Compatibility helpers used by the app and tests.
+    std::string ToJson() const { return Serialize(); }
+    // Parse a .plot document; nullopt on malformed JSON, wrong types, or version > 1.
     static std::optional<PlotDocument> FromJson(const std::string& json);
-
-private:
-    struct State {
-        std::vector<ExprEntry> expressions;
-        ViewRect view;
-    };
-    void Commit(State next);  // push undo, adopt next, clear redo, mark dirty
-
-    State cur_;
-    std::vector<State> undo_;
-    std::vector<State> redo_;
-    bool dirty_ = false;
 };
 
 }  // namespace plot

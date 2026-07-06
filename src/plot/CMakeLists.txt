@@ -7,3 +7,4 @@ add_library(compass_plot STATIC
     csv_exporter.cpp
 )
 target_include_directories(compass_plot PUBLIC ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(compass_plot PUBLIC compass_framework)

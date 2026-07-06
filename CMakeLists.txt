@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
 
+# Layer 1 — the instrument framework (header-only for now).
+add_subdirectory(libcompass)
+
 # Plot Workbench logic (wx-free); shared by the app and the tests.
 add_subdirectory(src/plot)
 
@@ -33,5 +36,6 @@ endif()
 option(COMPASS_BUILD_TESTS "Build unit tests (doctest + CTest)" ON)
 if(COMPASS_BUILD_TESTS)
     enable_testing()
+    add_subdirectory(tests/compass)
     add_subdirectory(tests/plot)
 endif()

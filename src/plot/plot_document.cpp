@@ -14,64 +14,41 @@
 namespace plot {
 
 // ---------------------------------------------------------------------------
-// Mutations + undo/redo (memento)
+// Mutations (undo/redo + dirty come from compass::UndoableDocument)
 // ---------------------------------------------------------------------------
 
-void PlotDocument::Commit(State next) {
-    undo_.push_back(cur_);
-    cur_ = std::move(next);
-    redo_.clear();
-    dirty_ = true;
-}
-
 void PlotDocument::AddExpression(const ExprEntry& e) {
-    State next = cur_;
+    PlotState next = state();
     next.expressions.push_back(e);
     Commit(std::move(next));
 }
 
 void PlotDocument::RemoveExpression(std::size_t index) {
-    if (index >= cur_.expressions.size()) return;
-    State next = cur_;
+    if (index >= state().expressions.size()) return;
+    PlotState next = state();
     next.expressions.erase(next.expressions.begin() +
                            static_cast<std::ptrdiff_t>(index));
     Commit(std::move(next));
 }
 
 void PlotDocument::EditExpressionText(std::size_t index, const std::string& text) {
-    if (index >= cur_.expressions.size()) return;
-    State next = cur_;
+    if (index >= state().expressions.size()) return;
+    PlotState next = state();
     next.expressions[index].text = text;
     Commit(std::move(next));
 }
 
 void PlotDocument::SetExpressionStyle(std::size_t index, const Style& s) {
-    if (index >= cur_.expressions.size()) return;
-    State next = cur_;
+    if (index >= state().expressions.size()) return;
+    PlotState next = state();
     next.expressions[index].style = s;
     Commit(std::move(next));
 }
 
 void PlotDocument::SetView(const ViewRect& v) {
-    State next = cur_;
+    PlotState next = state();
     next.view = v;
     Commit(std::move(next));
-}
-
-void PlotDocument::Undo() {
-    if (undo_.empty()) return;
-    redo_.push_back(std::move(cur_));
-    cur_ = std::move(undo_.back());
-    undo_.pop_back();
-    dirty_ = true;
-}
-
-void PlotDocument::Redo() {
-    if (redo_.empty()) return;
-    undo_.push_back(std::move(cur_));
-    cur_ = std::move(redo_.back());
-    redo_.pop_back();
-    dirty_ = true;
 }
 
 // ---------------------------------------------------------------------------
@@ -111,16 +88,17 @@ std::string QuoteString(const std::string& s) {
 
 }  // namespace
 
-std::string PlotDocument::ToJson() const {
+std::string PlotDocument::Serialize() const {
+    const PlotState& st = state();
     std::string out = "{\"version\":1,\"view\":{";
-    out += "\"xmin\":" + NumToStr(cur_.view.xmin);
-    out += ",\"xmax\":" + NumToStr(cur_.view.xmax);
-    out += ",\"ymin\":" + NumToStr(cur_.view.ymin);
-    out += ",\"ymax\":" + NumToStr(cur_.view.ymax);
-    out += std::string(",\"grid\":") + (cur_.view.grid ? "true" : "false");
+    out += "\"xmin\":" + NumToStr(st.view.xmin);
+    out += ",\"xmax\":" + NumToStr(st.view.xmax);
+    out += ",\"ymin\":" + NumToStr(st.view.ymin);
+    out += ",\"ymax\":" + NumToStr(st.view.ymax);
+    out += std::string(",\"grid\":") + (st.view.grid ? "true" : "false");
     out += "},\"expressions\":[";
-    for (std::size_t i = 0; i < cur_.expressions.size(); ++i) {
-        const ExprEntry& e = cur_.expressions[i];
+    for (std::size_t i = 0; i < st.expressions.size(); ++i) {
+        const ExprEntry& e = st.expressions[i];
         if (i) out += ",";
         out += "{\"text\":" + QuoteString(e.text);
         out += ",\"color\":" + QuoteString(e.style.color);
@@ -323,44 +301,50 @@ std::string StrOr(const JsonValue& o, const char* key, const std::string& def) {
 
 }  // namespace
 
-std::optional<PlotDocument> PlotDocument::FromJson(const std::string& json) {
+bool PlotDocument::Deserialize(const std::string& json) {
     JsonParser parser(json);
     std::optional<JsonValue> root = parser.Parse();
-    if (!root || root->type != JsonValue::Type::Object) return std::nullopt;
+    if (!root || root->type != JsonValue::Type::Object) return false;
 
     // Version gate: absent → treat as 1; present and > 1 → unsupported.
     const JsonValue* ver = Find(*root, "version");
     if (ver) {
-        if (ver->type != JsonValue::Type::Number || ver->num > 1.0) return std::nullopt;
+        if (ver->type != JsonValue::Type::Number || ver->num > 1.0) return false;
     }
 
-    PlotDocument doc;
-    Style defstyle;  // for per-field defaults
+    PlotState st;  // built fully before we commit it, so a failure changes nothing
+    Style defstyle;
     ViewRect defview;
 
     if (const JsonValue* v = Find(*root, "view")) {
-        if (v->type != JsonValue::Type::Object) return std::nullopt;
-        doc.cur_.view.xmin = NumOr(*v, "xmin", defview.xmin);
-        doc.cur_.view.xmax = NumOr(*v, "xmax", defview.xmax);
-        doc.cur_.view.ymin = NumOr(*v, "ymin", defview.ymin);
-        doc.cur_.view.ymax = NumOr(*v, "ymax", defview.ymax);
-        doc.cur_.view.grid = BoolOr(*v, "grid", defview.grid);
+        if (v->type != JsonValue::Type::Object) return false;
+        st.view.xmin = NumOr(*v, "xmin", defview.xmin);
+        st.view.xmax = NumOr(*v, "xmax", defview.xmax);
+        st.view.ymin = NumOr(*v, "ymin", defview.ymin);
+        st.view.ymax = NumOr(*v, "ymax", defview.ymax);
+        st.view.grid = BoolOr(*v, "grid", defview.grid);
     }
 
     if (const JsonValue* exprs = Find(*root, "expressions")) {
-        if (exprs->type != JsonValue::Type::Array) return std::nullopt;
+        if (exprs->type != JsonValue::Type::Array) return false;
         for (const JsonValue& e : exprs->arr) {
-            if (e.type != JsonValue::Type::Object) return std::nullopt;
+            if (e.type != JsonValue::Type::Object) return false;
             ExprEntry entry;
             entry.text = StrOr(e, "text", "");
             entry.style.color = StrOr(e, "color", defstyle.color);
             entry.style.width = NumOr(e, "width", defstyle.width);
             entry.style.visible = BoolOr(e, "visible", defstyle.visible);
-            doc.cur_.expressions.push_back(std::move(entry));
+            st.expressions.push_back(std::move(entry));
         }
     }
 
-    doc.dirty_ = false;  // freshly loaded == clean, empty history
+    ResetState(std::move(st));  // installs the state, clears history, marks clean
+    return true;
+}
+
+std::optional<PlotDocument> PlotDocument::FromJson(const std::string& json) {
+    PlotDocument doc;
+    if (!doc.Deserialize(json)) return std::nullopt;
     return doc;
 }
 
