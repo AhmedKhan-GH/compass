@@ -275,7 +275,7 @@ Every phase leaves Compass shippable as a static binary. No phase depends on Cal
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| R1: Static wx on Windows unproven here | High | Medium | Unchanged from v1; now an I3 deliverable with CI. wx officially supports static msw. |
+| R1: Static wx on Windows unproven here | High | Medium | I3 code-complete (portable GL loader, `/MT`, matrix CI) but **CI-unverified** — no Windows toolchain locally; a green windows-latest run is the proof. |
 | R2: Instrument #2's domain scope creeps (annotation models are deep) | Medium | Medium | I3 exit is deliberately narrow: view + annotate + export one format (EDF). Formats/features added on demand. |
 | R3: Framework extracted too early ossifies; too late duplicates | Medium | Medium | CD9 fixes the moment: extraction happens at I2, from one real instrument, sized to what Instrument #2 actually needs. |
 | R4: No-ABI discipline drifts (instruments reach around the catalog) | Medium | Low | §5.6 build-time lints; template-as-spec in CI. |
