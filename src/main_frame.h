@@ -13,6 +13,9 @@ private:
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnResetLayout(wxCommandEvent& event);
+    void OnClose(wxCloseEvent& event);
+    void SaveLayout();
+    void RestoreLayout();
 
     wxAuiManager m_aui;
     wxString m_defaultPerspective;

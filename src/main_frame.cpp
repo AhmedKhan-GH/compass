@@ -1,6 +1,7 @@
 #include "main_frame.h"
 
 #include <wx/aboutdlg.h>
+#include <wx/config.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/settings.h>
@@ -39,6 +40,9 @@ MainFrame::MainFrame()
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnResetLayout, this, ID_RESET_LAYOUT);
+
+    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
+    RestoreLayout();
 }
 
 MainFrame::~MainFrame() {
@@ -79,4 +83,21 @@ void MainFrame::OnAbout(wxCommandEvent&) {
 
 void MainFrame::OnResetLayout(wxCommandEvent&) {
     m_aui.LoadPerspective(m_defaultPerspective, true);
+}
+
+void MainFrame::OnClose(wxCloseEvent& event) {
+    SaveLayout();
+    event.Skip();
+}
+
+void MainFrame::SaveLayout() {
+    wxConfigBase::Get()->Write("/Layout/Perspective", m_aui.SavePerspective());
+}
+
+void MainFrame::RestoreLayout() {
+    wxString perspective;
+    if (wxConfigBase::Get()->Read("/Layout/Perspective", &perspective)
+        && !perspective.empty()) {
+        m_aui.LoadPerspective(perspective, true);
+    }
 }

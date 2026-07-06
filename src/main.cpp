@@ -1,4 +1,5 @@
 #include <wx/wx.h>
+#include <wx/persist/toplevel.h>
 
 #include "main_frame.h"
 
@@ -9,7 +10,9 @@ public:
             return false;
         SetAppName("Compass");
         SetVendorName("Compass");
-        (new MainFrame())->Show(true);
+        auto* frame = new MainFrame();
+        wxPersistentRegisterAndRestore(frame, "MainFrame");
+        frame->Show(true);
         return true;
     }
 };
