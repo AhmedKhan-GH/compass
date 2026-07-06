@@ -8,13 +8,13 @@ Two routes, one rule each (`PLATFORM.md` §6).
 
 ## Route 2 — the GL viewport
 
-**OpenGL 3.3 core, forward-compatible, compatibility profile banned**, via the framework's `Canvas3D`/`Canvas2D` widgets (I1+) for spatial and dense documents: 3-D scenes, million-point waveforms with pan/zoom. macOS caps core profiles at 4.1, so 3.3 core is the honest portable target — the same frozen-GL reasoning as Caliper's fallback renderer.
+**OpenGL 3.3 core, forward-compatible, compatibility profile banned**, via the framework's `Canvas3D`/`Canvas2D` widgets (I3+, per CD12) for spatial and dense documents: 3-D scenes, million-point waveforms with pan/zoom. macOS caps core profiles at 4.1, so 3.3 core is the honest portable target — the same frozen-GL reasoning as Caliper's fallback renderer.
 
 GL is an *internal implementation choice of the framework*: instruments write against the canvas API (a per-frame draw callback plus small mesh/line/text helpers), never raw GL state. If a future family phase needs a toolkit-free plugin contract, the canvas API — not GL — is what crosses it.
 
-## The GL debt, paid once at I1
+## The GL debt, paid once at I3
 
-The legacy quaternion demo renders with GL 2.1 fixed-function (`glBegin`, GLU) — doubly deprecated. The I1 modernization: GLAD replaces GLEW, `Canvas3D` owns the context, the demo's drawing is rewritten on small VBO/shader helpers, and **no fixed-function call survives in the repo**.
+The legacy quaternion demo renders with GL 2.1 fixed-function (`glBegin`, GLU) — doubly deprecated. The modernization lands at I3 (deferred from I1 by CD12: Instrument #1 is native-2D, and GLAD's first real consumer is the flagship's waveform canvas): GLAD replaces GLEW, `Canvas2D` owns the context, the quarantined demo is deleted, and **no fixed-function call survives in the repo from I3 on**.
 
 ## The pixel-space rule
 

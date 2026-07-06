@@ -37,7 +37,7 @@ Each exemplar is keyed to capabilities native toolkits are *for* and immediate-m
 
 | Instrument | Opens | wx strengths on display | Spatial rendering | When |
 |---|---|---|---|---|
-| **Rotation Workbench** | `.quat` rotation sessions (keyframes, interpolation settings) | wxPropertyGrid live-editing keyframe parameters; native menus + document/view undo; a GL viewport docked inside native chrome | `Canvas3D` | I1 |
+| **Plot Workbench** | `.plot` function worksheets (expressions, axis ranges, per-curve styling) | wxDataViewCtrl expression list (show/hide, color, inline error badges); wxPropertyGrid axis/grid editing; native menus + document/view undo spanning every panel; native dialogs for PNG/CSV export | native 2D (`wxGraphicsContext` curves) | I1 |
 | **Signal Workbench** *(flagship)* | EDF/WFDB recordings + annotation sidecar files | AUI docking (channel tree ⋮ waveform canvas ⋮ annotation table); wxTreeCtrl lead/channel tree; wxDataViewCtrl annotation list synced to the canvas; command-stack undo spanning both; native file dialogs + drag-and-drop of recordings | `Canvas2D` (decimated min/max waveforms) | I3 |
 | **Run Browser** | Caliper's DuckDB run/artifact stores, read-only | wxDataViewCtrl in **virtual-model mode** paging thousands of runs straight from DuckDB (sort/filter without materializing the table); artifact-lineage tree; side-by-side run comparison as persisted AUI layouts | native 2D (sparkline cells via `wxGraphicsContext`) | I4 |
 | **Graph Explorer** | knowledge-graph output directories (e.g. `graphify-out/`) | search-driven navigation (wxSearchCtrl + tree) twinned with a spatial canvas; wxStyledTextCtrl — Scintilla, built into wx — showing node source with syntax highlighting; print/export of subgraph views | `Canvas2D` (force layout) | backlog, on demand |
@@ -68,8 +68,8 @@ The only live coupling is deliberately the weakest kind: **shared file formats**
 | wxWidgets 3.3.2 built **static** via ExternalProject | `cmake/External/wxwidgets.cmake`, `WXWIDGETS.md` | **Keep — the founding principle in motion.** Seed of the fresh-install guarantee (§4). |
 | Three-layer build (Source/Build/Integration) | `cmake/README.md`, `cmake/Dependencies.cmake` | **Keep — it becomes Layer 0 of the SDK** (§5.2). |
 | Retina content-scale fix, single code path | `README.md` | Keep. Promoted to the pixel-space rule (§6.3); lesson already exported to Caliper's family ABI. |
-| Quaternion/slerp visualization demo | `src/main.cpp` | **Reframed: the seed of Instrument #1**, not dead weight. Its GL 2.1 immediate-mode rendering is still debt (§6.2) — the *math and interaction* are the asset. |
-| GLEW (static) | `cmake/External/glew.cmake` | **Replace with a GLAD 3.3-core loader** during the I1 GL modernization (§6.2). GLEW solves a loader problem we stop having once the context is fixed at 3.3 core. |
+| Quaternion/slerp visualization demo | `src/main.cpp` | **Quarantined history** (moves to `demos/quaternion/` at I0, still buildable). Its GL 2.1 rendering is debt deleted at the I3 GL modernization (§6.2); the quaternion math returns only if a spatial instrument ever wants it (backlog). CD12 made Plot Workbench Instrument #1 instead. |
+| GLEW (static) | `cmake/External/glew.cmake` | **Replace with a GLAD 3.3-core loader** during the I3 GL modernization (§6.2, CD12). GLEW solves a loader problem we stop having once the context is fixed at 3.3 core. |
 | GLM | submodule | **Keep — reverses v1.** v1 retired GLM with the GL demo; v2 keeps GL, so GLM stays as the geometry-math library (`compass::glm`, §5.2). |
 | `sound_test` utility | `src/sound_test.cpp` | Park; not platform-relevant. |
 | Windows build | `cmake/README.md` | Still unimplemented; becomes a phase deliverable (I3) since cross-platform is the use case. |
@@ -134,7 +134,7 @@ Initial catalog:
 | Target | Library | Role | Status |
 |---|---|---|---|
 | `compass::wx` | wxWidgets 3.3.2 (static, monolithic build — core+aui+propgrid in one lib — plus glcanvas lib) | native UI | built today; wrap as target |
-| `compass::gl` | GLAD 3.3-core loader (replaces GLEW) | GL function loading | I1 deliverable |
+| `compass::gl` | GLAD 3.3-core loader (replaces GLEW) | GL function loading | I3 deliverable — first consumer is the flagship's waveform canvas (CD12) |
 | `compass::glm` | GLM | geometry math for viewport code | present; wrap as target |
 
 **Admission policy** — a library enters the catalog only when **all** hold:
@@ -163,10 +163,10 @@ Rule of thumb for what belongs here: **if the second instrument would copy-paste
 
 ```cmake
 # an instrument's entire CMakeLists.txt, target shape:
-compass_add_instrument(rotation_workbench
-    SOURCES   src/quat_document.cpp src/quat_view.cpp src/quat_canvas.cpp
-    DOC_TYPES ".quat;Rotation session"
-    LIBS      compass::glm            # catalog targets only
+compass_add_instrument(plot_workbench
+    SOURCES   src/plot_document.cpp src/plot_view.cpp src/plot_canvas.cpp
+    DOC_TYPES ".plot;Function worksheet"
+    LIBS      # catalog targets only; plot_workbench needs none beyond libcompass
 )
 ```
 
@@ -196,7 +196,7 @@ compass/
 ├── cmake/                    # Layer 0 — External/ builds + compass:: catalog targets
 ├── libcompass/               # Layer 1 — the framework (extracted at I2)
 ├── instruments/
-│   ├── rotation_workbench/   # Layer 2 — one directory = one product
+│   ├── plot_workbench/       # Layer 2 — one directory = one product
 │   └── signal_workbench/
 ├── templates/instrument/     # the buildable skeleton; CI-gated spec of the SDK
 └── demos/                    # quarantined history (GL 2.1 quaternion demo)
@@ -204,7 +204,7 @@ compass/
 
 But the **release unit is the binary, not the repo.** Instruments version and ship independently:
 
-- Tags are namespaced per instrument — `rotation-workbench/v0.3.0` — and each tag triggers CI to build that instrument's static binaries for macOS (arm64) and Windows (x64) and publish a GitHub Release for that instrument alone.
+- Tags are namespaced per instrument — `plot-workbench/v0.3.0` — and each tag triggers CI to build that instrument's static binaries for macOS (arm64) and Windows (x64) and publish a GitHub Release for that instrument alone.
 - Each instrument declares its own version in its `compass_add_instrument()` call; `libcompass` is deliberately unversioned (it lives at repo HEAD) until the split trigger below.
 - Release artifacts are the identity made literal: **Windows — a zipped single `.exe`; macOS — a notarized `.dmg`** (zipped `.app` until notarization lands at I4). **No installers, ever** — an installer is the exact experience CD1 exists to delete. An in-app *update check* (version compared against the GitHub Releases API) is permitted polish; an auto-update daemon is not.
 - Per-push CI stays fast with path filters (an instrument-only change builds that instrument + the template); tag builds and a nightly run the full matrix.
@@ -232,7 +232,7 @@ How an instrument is meant to be written, end to end:
 
 ### 6.2 The GL debt, paid once
 
-The demo's GL 2.1 immediate-mode path (`glBegin`, GLU) is the doubly-deprecated dead end Caliper's docs cite as a cautionary tale — and macOS caps core profiles at 4.1, so the honest, portable target is **3.3 core, forward-compatible, compatibility profile banned** (same rule as Caliper's frozen GL fallback, same reasoning). The I1 modernization: GLAD replaces GLEW, `Canvas3D` owns the context, the quaternion demo's drawing is rewritten on small VBO/shader helpers, and no fixed-function call survives in the repo.
+The demo's GL 2.1 immediate-mode path (`glBegin`, GLU) is the doubly-deprecated dead end Caliper's docs cite as a cautionary tale — and macOS caps core profiles at 4.1, so the honest, portable target is **3.3 core, forward-compatible, compatibility profile banned** (same rule as Caliper's frozen GL fallback, same reasoning). The modernization lands at **I3** (deferred from I1 by CD12, since Instrument #1 is native-2D and GLAD's first real consumer is the flagship's waveform canvas): GLAD replaces GLEW, `Canvas2D` owns the context, the quarantined quaternion demo is deleted, and no fixed-function call survives in the repo from I3 on.
 
 ### 6.3 The pixel-space rule
 
@@ -245,9 +245,9 @@ Unchanged and non-negotiable: framebuffer sizes are **physical pixels**, widget/
 Every phase leaves Compass shippable as a static binary. No phase depends on Caliper.
 
 - **I0 — Identity & hygiene (now).** Commit this document. Quarantine the demo (`src/main.cpp` → `demos/quaternion/`, still buildable). App target becomes the minimal shell: frame, menus, AUI manager, empty workspace, layout persistence — **the static-binary deliverable**. Park `sound_test`. *Exit:* fresh-install shell binary on macOS.
-- **I1 — Instrument #1: Rotation Workbench (monolithic on the shell).** GL modernization per §6.2 (GLAD in, GLEW out, 3.3 core `Canvas3D`, demo rendering rewritten). Document type `.quat` (a rotation session: keyframes, interpolation settings), property-grid editing, slerp/squad comparison views, image export. Built *inside* the app — no framework extraction yet. *Exit:* a real instrument a student can download and use; zero fixed-function GL in the repo.
+- **I1 — Instrument #1: Plot Workbench (monolithic on the shell).** A function grapher — the anti-web-app demo (design: `docs/superpowers/specs/2026-07-05-plot-workbench-design.md`). Document type `.plot` (a worksheet: expressions, axis ranges, per-curve styling); expression parser/evaluator (the TDD core), uniform sampler with non-finite gap handling, native-2D plot canvas (`wxGraphicsContext`, §6.1) with pan/zoom, expression-list panel + view property grid, undo across all panels, PNG/CSV export. **No GL** — the §6.2 modernization moves to I3 (CD12). Built *inside* the app — no framework extraction yet. *Exit:* a student downloads one macOS binary, types `sin(x)/x`, restyles it, saves/reopens the worksheet, exports a PNG; parser/document logic fully unit-tested.
 - **I2 — Extract the SDK (rule of two, applied at first opportunity).** Split `libcompass` + `compass_add_instrument()` + the template out of Instrument #1's code. Wrap the catalog targets (§5.2). CI: template builds against the framework on every commit; catalog lint on. *Exit:* the template instrument builds, runs, and opens a document on macOS — created without touching framework code.
-- **I3 — Instrument #2: Signal Workbench (flagship) + Windows.** Admit the signal-format library (EDF first) through the §5.2 policy. GL waveform canvas (decimated min/max rendering for long records), lead/channel tree, annotation model (document + undo), label export. **Windows port** lands here — static wx msw, `/MT`, both instruments in CI — because the flagship's audience is where "runs on a locked-down machine" gets proven. *Exit:* both instruments ship as fresh-install binaries on macOS **and** Windows; an annotation session survives save/reopen round-trip.
+- **I3 — Instrument #2: Signal Workbench (flagship) + Windows + the GL debt.** GL modernization per §6.2 lands here first (GLAD admitted as `compass::gl` — the waveform canvas is its first consumer — GLEW out, 3.3-core `Canvas2D`, quaternion demo deleted; zero fixed-function GL in the repo). Admit the signal-format library (EDF first) through the §5.2 policy. GL waveform canvas (decimated min/max rendering for long records), lead/channel tree, annotation model (document + undo), label export. **Windows port** lands here — static wx msw, `/MT`, both instruments in CI — because the flagship's audience is where "runs on a locked-down machine" gets proven. *Exit:* both instruments ship as fresh-install binaries on macOS **and** Windows; an annotation session survives save/reopen round-trip.
 - **I4 — Distribution polish & optional convergences.** Codesign/notarize (macOS) wired into the §5.7 release trains; suite binary if wanted (§5.5); AppImage-style Linux bundle if demanded. Optional, zero-ABI cross-project feature: the **Run Browser** exemplar (§1.1) — Caliper's DuckDB run/artifact stores opened read-only (file-format contract, not family membership). Family membership itself remains gated in Appendix A.
 
 ---
@@ -267,6 +267,7 @@ Every phase leaves Compass shippable as a static binary. No phase depends on Cal
 | CD9 | Framework/SDK is **extracted at I2 from Instrument #1**, never designed up front. | Proposed | The same extract-don't-invent rule that kept Caliper's services honest. Cost: I1 code gets refactored once, deliberately. |
 | CD10 | **Monorepo for code; per-instrument release trains** — namespaced tags (`<name>/vX.Y.Z`), one GitHub Release per instrument, path-filtered CI. `libcompass` splits into its own tagged repo only when a third-party instrument author exists — the Compass mirror of Caliper's Phase 3 trigger. | Proposed | One build keeps the source-level SDK honest; multi-repo now = the ABI problem rebuilt at the source level. Cost: repo-wide recompiles on framework change (acceptable; CI path-filtered). |
 | CD11 | **The distribution artifact is the bare static binary** — zipped single `.exe` (Windows), notarized `.dmg` (macOS); no installers; in-app update *check* allowed, auto-update daemon not. | Proposed | Installers betray the fresh-install identity. Cost: forgo installer conveniences; file associations ship via bundle metadata where the OS allows. |
+| CD12 | **Instrument #1 = Plot Workbench** (function grapher, `.plot` worksheets, native-2D canvas). Replaces the Rotation Workbench exemplar; the §6.2 GL modernization and GLAD admission defer to I3, whose flagship waveform canvas is GLAD's first real consumer. Quaternion demo stays quarantined history until deleted at I3. | **Ratified** (owner directive, 2026-07-05) | A utility with no external files, demonstrating the native-desktop identity against web apps (Desmos as a static binary). Keeps I1 light; the TDD core (expression parser) is real logic. Cost: GL debt outstanding until I3, which grows heavier (R7). |
 
 ---
 
@@ -280,6 +281,7 @@ Every phase leaves Compass shippable as a static binary. No phase depends on Cal
 | R4: No-ABI discipline drifts (instruments reach around the catalog) | Medium | Low | §5.6 build-time lints; template-as-spec in CI. |
 | R5: Deferred family plan rots | Low | Low | Appendix A is a summary + pointer to the fully-detailed v1 in git history; revival re-derives against Caliper's then-current spec anyway. |
 | R6: Monorepo couples instruments (one bad commit blocks all releases) | Low | Medium | Releases cut from tags, not HEAD; path-filtered CI isolates per-instrument breakage; the template gate catches framework regressions in the commit that causes them. |
+| R7: I3 overloaded — GL modernization + EDF flagship + Windows port in one phase (consequence of CD12) | Medium | Medium | Sequence inside I3: `Canvas2D`/GLAD first as its own reviewable milestone, flagship second, Windows last; if the phase drags, split the GL milestone out as I2.5 without re-litigating CD12. |
 
 ---
 

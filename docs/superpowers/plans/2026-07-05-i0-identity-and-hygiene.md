@@ -8,13 +8,13 @@
 
 **Tech Stack:** C++20, CMake ≥3.16, wxWidgets 3.3.2 (static, monolithic, built from the `third_party/wxWidgets` submodule by `cmake/External/wxwidgets.cmake`).
 
-**Testing posture (per owner's global TDD rule):** I0 is UI scaffolding — nothing branches, transforms, or enforces a rule. No unit tests are written in this phase; verification is compile + runtime smoke + `otool -L` static-linking checks, spelled out per task. The first TDD target arrives in I1 (the `.quat` document model and its undo command stack).
+**Testing posture (per owner's global TDD rule):** I0 is UI scaffolding — nothing branches, transforms, or enforces a rule. No unit tests are written in this phase; verification is compile + runtime smoke + `otool -L` static-linking checks, spelled out per task. The first TDD target arrives in I1 (the Plot Workbench expression parser and `.plot` document model per CD12).
 
 ## Global Constraints
 
 - **Static binary on a fresh install** (PLATFORM.md CD1): the `compass` binary may link only system frameworks/libs. Verified by `otool -L` in Task 6.
-- **No new dependencies** — nothing enters `third_party/` or `cmake/External/` in this phase (§5.2 admission policy; GLAD arrives at I1, not now).
-- **No new fixed-function GL** — the shell contains zero GL code. The demo's GL 2.1 code moves verbatim (its rewrite is I1, §6.2).
+- **No new dependencies** — nothing enters `third_party/` or `cmake/External/` in this phase (§5.2 admission policy; GLAD arrives at I3 per CD12, not now).
+- **No new fixed-function GL** — the shell contains zero GL code. The demo's GL 2.1 code moves verbatim (it is deleted at the I3 GL modernization, §6.2/CD12).
 - **No self-registering static initializers** (§5.4) — everything the shell wires up is explicit.
 - **wxWidgets version is 3.3.2 everywhere** — docs currently drift (say 3.2.9); Task 1 fixes them. Build strings: `libwx_osx_cocoau-3.3.a`, setup dir `osx_cocoa-unicode-static-3.3`.
 - **C++20, CMake ≥3.16** (existing `CMakeLists.txt` values, unchanged).
@@ -180,8 +180,8 @@ git mv src/sound_test.cpp demos/sound_test/sound_test.cpp
 - [ ] **Step 2: Create `demos/quaternion/CMakeLists.txt`**
 
 ```cmake
-# Quarantined GL 2.1 demo (PLATFORM.md §2, §7 I0). Rendering is rewritten on
-# GL 3.3 core in I1; do not extend this code.
+# Quarantined GL 2.1 demo (PLATFORM.md §2, §7 I0). Deleted at the I3 GL
+# modernization (§6.2, CD12); do not extend this code.
 add_executable(quaternion_demo WIN32 main.cpp)
 target_compile_definitions(quaternion_demo PRIVATE GLEW_STATIC)
 target_link_libraries(quaternion_demo
@@ -235,7 +235,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
 
-# The shell — links native UI only; GL enters via libcompass at I1 (PLATFORM.md §6)
+# The shell — links native UI only; GL enters via libcompass at I3 (PLATFORM.md §6, CD12)
 add_executable(compass WIN32 src/main.cpp)
 target_link_libraries(compass PRIVATE wxWidgets::wxWidgets)
 
@@ -558,7 +558,7 @@ Append a short section:
 ## Layout (post-I0)
 
 - `src/` — the Compass shell (frame, menus, AUI workspace, layout persistence)
-- `demos/quaternion/` — quarantined GL 2.1 quaternion/slerp demo (rewritten on GL 3.3 core in I1)
+- `demos/quaternion/` — quarantined GL 2.1 quaternion/slerp demo (deleted at the I3 GL modernization, CD12)
 - `demos/sound_test/` — parked audio utility
 - `PLATFORM.md` — governing spec (v2.1); this phase was I0
 
@@ -577,7 +577,7 @@ git commit -m "docs(I0): record demo quarantine layout and static-binary audit; 
 
 ## Out of scope for this plan (by the spec's own rules)
 
-- **I1 (Rotation Workbench + GL 3.3 modernization)** — needs its own plan; it introduces GLAD through the §5.2 admission policy and rewrites the demo's rendering. Plan it after I0 ships.
+- **I1 (Plot Workbench)** — needs its own plan, derived from the approved design spec (`docs/superpowers/specs/2026-07-05-plot-workbench-design.md`). Plan it after I0 ships. (GL/GLAD work moved to I3 by CD12.)
 - **I2 (extract `libcompass` + template)** — CD9 forbids designing the framework before Instrument #1 exists monolithically; planning its contents now would violate the spec being implemented.
 - **I3/I4 (Signal Workbench, Windows port, notarization, release trains)** — sequenced behind I2.
 - **`.github/workflows` CI** (§5.7 path-filtered CI, template gate) — becomes meaningful at I2 when the template exists; a bare macOS build check could land any time but is not an I0 exit criterion.

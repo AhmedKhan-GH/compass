@@ -23,7 +23,7 @@ cmake --build build --target compass -j8
 ```
 
 !!! warning "Legacy GL — do not extend"
-    This demo renders with OpenGL 2.1 fixed-function calls (`glBegin`, GLU) — the deprecated path `PLATFORM.md` §6.2 commits to eliminating. Its *math and interaction* seed Instrument #1 (Rotation Workbench, phase I1); its rendering gets rewritten on GL 3.3 core there. Do not add new fixed-function code anywhere in the repo.
+    This demo renders with OpenGL 2.1 fixed-function calls (`glBegin`, GLU) — the deprecated path `PLATFORM.md` §6.2 commits to eliminating. It is quarantined history: CD12 made the Plot Workbench (native 2D) Instrument #1, and this demo is deleted when the GL modernization lands at phase I3. Do not add new fixed-function code anywhere in the repo.
 
 ## sound_test
 

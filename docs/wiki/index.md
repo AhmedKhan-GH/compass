@@ -11,9 +11,9 @@ The governing spec is `PLATFORM.md` v2.1 at the repo root, delivered in phases *
 | Phase | Delivers | Status |
 |---|---|---|
 | I0 | Spec committed, demo quarantined, minimal shell as static binary | **in progress** |
-| I1 | Instrument #1: Rotation Workbench; GL 3.3 core modernization | planned |
+| I1 | Instrument #1: Plot Workbench (function grapher, native 2D — CD12) | planned |
 | I2 | `libcompass` + `compass_add_instrument()` + template extracted | planned |
-| I3 | Instrument #2: Signal Workbench (flagship); Windows port | planned |
+| I3 | Instrument #2: Signal Workbench (flagship); GL 3.3 modernization; Windows port | planned |
 | I4 | Notarization, release trains, optional Run Browser | planned |
 
 ## What's here

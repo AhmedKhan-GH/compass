@@ -29,6 +29,7 @@ Per `PLATFORM.md` §5.8, a single PR adds:
 
 | Library | Consumer that will justify it | When |
 |---|---|---|
-| GLAD (GL 3.3-core loader) | `Canvas3D` GL modernization — replaces GLEW | I1 |
+| GLAD (GL 3.3-core loader) | `Canvas2D` GL modernization — replaces GLEW; first consumer is the flagship's waveform canvas (CD12) | I3 |
+| doctest (dev-only test framework) | Plot Workbench unit tests — never linked into shipped binaries | I1 |
 | EDF/WFDB parser | Signal Workbench | I3 |
 | SQLite **or** DuckDB | first instrument needing persistence beyond documents (DuckDB tiebreaker: opens Caliper's run/artifact stores read-only) | on demand |

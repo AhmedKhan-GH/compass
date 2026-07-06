@@ -15,12 +15,12 @@ The SDK is exactly three artifacts:
 | Layer | Artifact | Status |
 |---|---|---|
 | 0 | the curated [library catalog](../reference/library-catalog.md) (`compass::` targets) | build exists; wrappers at I2 |
-| 1 | `libcompass` — App, Document/View + undo, workspace shell, `Canvas3D/2D`, export | extracted at I2 from Instrument #1 |
+| 1 | `libcompass` — App, Document/View + undo, workspace shell, export (`Canvas2D/3D` join at I3 with the GL modernization) | extracted at I2 from Instrument #1 |
 | 2 | instruments + `compass_add_instrument()` + the buildable template | I2 |
 
 ## The extraction rule (CD9)
 
-`libcompass` is **extracted at I2 from Instrument #1's real code, never designed up front**. Rule of thumb: if the second instrument would copy-paste it from the first, it moves into `libcompass`. Corollary: Instrument #1 (Rotation Workbench, I1) is deliberately built monolithically on the shell first.
+`libcompass` is **extracted at I2 from Instrument #1's real code, never designed up front**. Rule of thumb: if the second instrument would copy-paste it from the first, it moves into `libcompass`. Corollary: Instrument #1 (Plot Workbench, I1 — see the design spec in `docs/superpowers/specs/`) is deliberately built monolithically on the shell first.
 
 ## Discipline without an ABI
 
@@ -30,7 +30,7 @@ The SDK is exactly three artifacts:
 
 ## Monorepo, per-instrument release trains (CD10)
 
-The *code* is a monorepo (one build keeps the source-level SDK honest); the *release unit* is the binary. Tags are namespaced per instrument (`rotation-workbench/v0.3.0`), each triggering CI to publish that instrument's static binaries alone. `libcompass` lives unversioned at repo HEAD until a third-party instrument author exists — the Compass mirror of Caliper's Phase 3 split trigger.
+The *code* is a monorepo (one build keeps the source-level SDK honest); the *release unit* is the binary. Tags are namespaced per instrument (`plot-workbench/v0.3.0`), each triggering CI to publish that instrument's static binaries alone. `libcompass` lives unversioned at repo HEAD until a third-party instrument author exists — the Compass mirror of Caliper's Phase 3 split trigger.
 
 ## Relationship to Caliper
 

@@ -17,7 +17,7 @@ Everything third-party is built from source, statically, inside the repo — the
 | `glm::glm` | GLM (header-only) | `cmake/Dependencies.cmake` |
 | `${OPENGL_LIBRARIES}` *(variable)* | system OpenGL framework | `find_package(OpenGL)` |
 
-At phase I2 these gain `compass::` wrapper names (`compass::wx`, `compass::gl`, `compass::glm`) per the [library catalog](library-catalog.md); at I1 GLEW is replaced by a GLAD 3.3-core loader.
+At phase I2 these gain `compass::` wrapper names (`compass::wx`, `compass::glm`) per the [library catalog](library-catalog.md); at I3 GLEW is replaced by a GLAD 3.3-core loader (`compass::gl`, CD12).
 
 ## Root CMakeLists.txt (embedded live)
 
