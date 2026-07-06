@@ -145,7 +145,7 @@ Initial catalog:
 4. **Wrapped as a `compass::` target** with complete usage requirements.
 5. **Cataloged** — one row in this table, one paragraph in the SDK docs saying what it's for and what *not* to use it for.
 
-Anticipated future admissions, each waiting on its consumer: an EDF/WFDB parser (Signal Workbench, I3); an embedded store — SQLite or DuckDB — when the first instrument needs persistence beyond documents (DuckDB has a tiebreaker: it would let Compass open Caliper's run/artifact stores read-only, a cross-project feature that needs no ABI, just a file format).
+Anticipated future admissions, each waiting on its consumer: an EDF parser (Signal Workbench, I3 — implemented in-repo, no external lib); nlohmann/json (`compass::json`, admitted I3 for document sidecars); an embedded store — SQLite or DuckDB — when the first instrument needs persistence beyond documents (DuckDB has a tiebreaker: it would let Compass open Caliper's run/artifact stores read-only, a cross-project feature that needs no ABI, just a file format).
 
 ### 5.3 Layer 1 — `libcompass`, the instrument framework
 

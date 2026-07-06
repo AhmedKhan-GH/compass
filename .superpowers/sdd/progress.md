@@ -49,4 +49,5 @@ Detailed task plan: NOT yet written (author from the spec before full execution)
 
 ## Phase I3 — Signal Workbench + GL + Windows — IN PROGRESS (branch `i3-signal-workbench`)
 - GL modernization milestone DONE: GLAD admitted (compass::gl); compass::Canvas2D (GL 3.3 core, pixel-space rule) built; demos/gl_smoke proves it; GLEW + quaternion demo deleted; zero fixed-function GL in src/libcompass/demos. ctest 5/5, audits clean.
-- I3 next: EDF parser admission + Signal Workbench flagship (waveform Canvas2D + channel tree + annotations), then Windows port.
+- I3 signal logic core DONE: EdfReader + WaveformDecimator + SignalDocument (8 CTest suites green). nlohmann/json admitted as compass::json; both plot+signal migrated, hand-rolled parsers deleted.
+- I3 next: Signal Workbench UI (waveform Canvas2D + channel tree + annotation table, as compass_add_instrument), then Windows port.
