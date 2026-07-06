@@ -87,9 +87,10 @@ if(WIN32)
     endif()
     # opengl32: wx's _gl lib and the GLAD loader (wglGetProcAddress) resolve here.
     # comdlg32/oleaut32/advapi32/ws2_32/version: pulled in by wx core/base modules.
+    # dwmapi: DwmSetWindowAttribute for the Mica backdrop call in compass::App.
     set(WX_SYSTEM_LIBS
         comctl32 rpcrt4 winmm gdi32 ole32 oleaut32 uuid shell32
-        comdlg32 advapi32 ws2_32 version opengl32
+        comdlg32 advapi32 ws2_32 version opengl32 dwmapi
     )
 
 elseif(APPLE)

@@ -6,6 +6,7 @@
 #include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/scrolwin.h>
+#include <wx/settings.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
 
@@ -45,7 +46,10 @@ void ExpressionPanel::ApplyStatus(wxTextCtrl* ctrl, const std::string& text) {
     } else {
         plot::Expression e = plot::Expression::Compile(text);
         if (e.has_error()) {
-            ctrl->SetForegroundColour(wxColour(200, 0, 0));  // red on parse error
+            // red on parse error; brighter variant stays legible on dark bg (design §3)
+            ctrl->SetForegroundColour(wxSystemSettings::GetAppearance().IsDark()
+                                          ? wxColour(255, 110, 110)
+                                          : wxColour(200, 0, 0));
             ctrl->SetToolTip(wxString::Format("column %d: %s", e.error().column,
                                               e.error().message));
         } else {

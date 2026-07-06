@@ -57,6 +57,11 @@ void DocumentFrame::FinishConstruction() {
     Bind(wxEVT_MENU, &DocumentFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &DocumentFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_CLOSE_WINDOW, &DocumentFrame::OnClose, this);
+    // Repaint custom-drawn children when the OS theme flips (design §4).
+    Bind(wxEVT_SYS_COLOUR_CHANGED, [this](wxSysColourChangedEvent& e) {
+        e.Skip();
+        Refresh();
+    });
 
     RestoreLayout();
     UpdateEditMenu();

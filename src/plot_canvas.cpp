@@ -6,6 +6,7 @@
 #include <wx/dcbuffer.h>
 #include <wx/dcmemory.h>
 #include <wx/graphics.h>
+#include <wx/settings.h>
 
 #include <algorithm>
 #include <cmath>
@@ -24,6 +25,15 @@ double NiceStep(double range, int target_lines) {
     const double norm = raw / mag;
     const double nice = (norm < 1.5) ? 1.0 : (norm < 3.0) ? 2.0 : (norm < 7.0) ? 5.0 : 10.0;
     return nice * mag;
+}
+
+// Per-channel linear interpolation from → to by t∈[0,1] (theme-derived tints).
+wxColour Blend(const wxColour& from, const wxColour& to, double t) {
+    auto mix = [&](unsigned char a, unsigned char b) {
+        return static_cast<unsigned char>(a + (b - a) * t);
+    };
+    return wxColour(mix(from.Red(), to.Red()), mix(from.Green(), to.Green()),
+                    mix(from.Blue(), to.Blue()));
 }
 
 // Smallest span we allow a view axis to reach (double-precision guard).
@@ -69,7 +79,12 @@ void PlotCanvas::Draw(wxGraphicsContext& graphics, double w, double h) {
     wxGraphicsContext* gc = &graphics;
     if (w < 2 || h < 2) return;
 
-    gc->SetBrush(*wxWHITE_BRUSH);
+    // System-derived palette, read per-paint so live theme switches take effect
+    // and PNG export inherits the theme by construction (design §3).
+    const wxColour bg = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW);
+    const wxColour fg = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
+
+    gc->SetBrush(wxBrush(bg));
     gc->SetPen(*wxTRANSPARENT_PEN);
     gc->DrawRectangle(0, 0, w, h);
 
@@ -80,7 +95,7 @@ void PlotCanvas::Draw(wxGraphicsContext& graphics, double w, double h) {
     auto mapY = [&](double y) { return h - (y - v.ymin) / (v.ymax - v.ymin) * h; };
 
     if (v.grid) {
-        gc->SetPen(wxPen(wxColour(230, 230, 230), 1));
+        gc->SetPen(wxPen(Blend(bg, fg, 0.12), 1));  // gridlines: faint tint
         const double xstep = NiceStep(v.xmax - v.xmin, 10);
         for (double gx = std::ceil(v.xmin / xstep) * xstep; gx <= v.xmax; gx += xstep) {
             gc->StrokeLine(mapX(gx), 0, mapX(gx), h);
@@ -91,7 +106,7 @@ void PlotCanvas::Draw(wxGraphicsContext& graphics, double w, double h) {
         }
     }
 
-    gc->SetPen(wxPen(wxColour(120, 120, 120), 1));
+    gc->SetPen(wxPen(Blend(bg, fg, 0.45), 1));  // axes: stronger tint
     if (v.ymin < 0 && v.ymax > 0) gc->StrokeLine(0, mapY(0), w, mapY(0));
     if (v.xmin < 0 && v.xmax > 0) gc->StrokeLine(mapX(0), 0, mapX(0), h);
 
