@@ -15,11 +15,11 @@ Read `demos/hello_world/hello_world.cpp` first when learning the codebase — it
 
 ## The quaternion/slerp demo
 
-The original Compass application: interactive quaternion vs. Euler rotation, slerp/squad interpolation, camera orbit, rotation trails. Currently it *is* the `compass` target (`src/main.cpp`); phase I0 moves it to `demos/quaternion/` as a `quaternion_demo` target.
+The original Compass application: interactive quaternion vs. Euler rotation, slerp/squad interpolation, camera orbit, rotation trails. Phase I0 moved it out of the `compass` target into `demos/quaternion/` as the `quaternion_demo` target (`demos/quaternion/main.cpp`); the `compass` target is now the instrument shell.
 
 ```bash
-cmake --build build --target compass -j8
-./build/compass
+cmake --build build --target quaternion_demo -j8
+./build/demos/quaternion/quaternion_demo
 ```
 
 !!! warning "Legacy GL — do not extend"
@@ -27,9 +27,9 @@ cmake --build build --target compass -j8
 
 ## sound_test
 
-A parked audio utility (`src/sound_test.cpp`), kept buildable but not platform-relevant.
+A parked audio utility (`demos/sound_test/sound_test.cpp`), kept buildable but not platform-relevant.
 
 ```bash
 cmake --build build --target sound_test -j8
-./build/sound_test
+./build/demos/sound_test/sound_test
 ```

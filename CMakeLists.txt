@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(compass VERSION 1.0)
+project(compass VERSION 0.1)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -7,24 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
 
+# The shell — links native UI only; GL enters via libcompass at I3 (PLATFORM.md §6, CD12)
 add_executable(compass WIN32 src/main.cpp)
+target_link_libraries(compass PRIVATE wxWidgets::wxWidgets)
 
-# Define GLEW_STATIC for static linking
-target_compile_definitions(compass PRIVATE GLEW_STATIC)
-
-# Link libraries using modern CMake targets
-# Dependencies are automatically handled via the IMPORTED targets
-target_link_libraries(compass
-    PRIVATE
-        wxWidgets::wxWidgets
-        ${OPENGL_LIBRARIES}
-        GLEW::GLEW
-        glm::glm
-)
-
-# Sound test executable
-add_executable(sound_test src/sound_test.cpp)
-target_link_libraries(sound_test PRIVATE wxWidgets::wxWidgets)
-
-# Demos (PLATFORM.md §5.7 quarantine area)
-add_subdirectory(demos/hello_world)
+option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
+if(COMPASS_BUILD_DEMOS)
+    add_subdirectory(demos/hello_world)
+    add_subdirectory(demos/quaternion)
+    add_subdirectory(demos/sound_test)
+endif()

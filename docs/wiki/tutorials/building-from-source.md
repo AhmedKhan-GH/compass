@@ -32,9 +32,10 @@ cmake --build build -j8
 
 | Target | What it is |
 |---|---|
-| `compass` | Today: the legacy quaternion/slerp GL demo. Becomes the instrument shell at I0 (see the [roadmap](../index.md#where-the-project-stands)). |
+| `compass` | The instrument shell: native window, menus, status bar, AUI workspace with layout persistence — static wx only. `src/` |
 | `hello_world` | The minimal instrument shape: native window, menus, status bar — static wx only. `demos/hello_world/` |
-| `sound_test` | Parked audio utility. |
+| `quaternion_demo` | Quarantined legacy quaternion/slerp GL demo. `demos/quaternion/` (deleted at the I3 GL modernization). |
+| `sound_test` | Parked audio utility. `demos/sound_test/` |
 
 ## Run
 
