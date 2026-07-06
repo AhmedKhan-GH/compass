@@ -15,14 +15,15 @@ Recovery map. Tasks marked complete are DONE — do NOT re-dispatch. Trust this 
 - Original executor agent (aec60caf…) was interrupted before writing a report; controller verified independently.
 
 ## Phase I1 — Plot Workbench — IN PROGRESS (branch `i1-plot-workbench`)
-Increment 1 (consolidate foundation: merge I0, integrate Expression, CTest wiring) — DONE @ 9161c47.
+Increment 1 (foundation) — DONE @ 9161c47.
+Increment 2 (Sampler + PlotDocument logic) — DONE. 3 test suites green via CTest.
 Design spec: docs/superpowers/specs/2026-07-05-plot-workbench-design.md (approved).
 Detailed task plan: NOT yet written (author from the spec before full execution).
 
 ### Logic units (headless, TDD):
 - **Expression** (parser/evaluator) — COMPLETE + INTEGRATED. On branch `i1-plot-workbench` (cherry-picked → 0267e9d, 9af84ac); CMake/CTest wired (9161c47) via `compass_plot` static lib + `tests/plot/`. `ctest` green (test_expression, 22 cases). Worktree removed.
-- Sampler — NOT STARTED (depends on Expression interface, now final).
-- PlotDocument — NOT STARTED (depends on Expression).
+- Sampler — COMPLETE (i1 branch). 2 samples/px, non-finite gap split. 5 cases, ctest green.
+- PlotDocument — COMPLETE (i1 branch). Expr list + view + memento undo/redo + .plot JSON (hand-rolled, defensive). 12 cases, ctest green.
 - CsvExporter — NOT STARTED (depends on Sampler).
 - UI (PlotCanvas, ExpressionPanel, ViewPanel, frame wiring) — NOT STARTED (depends on logic units + I0 shell).
 
