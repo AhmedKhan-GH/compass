@@ -16,7 +16,11 @@ on:
 
 jobs:
   build-test-lint:
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout (with submodules)
@@ -24,14 +28,14 @@ jobs:
         with:
           submodules: recursive
 
-      # First build compiles static wxWidgets from source (~10 min).
-      # Cache the wx build tree, keyed on the External recipe so it invalidates
-      # when the wx version/config changes.
+      # First build compiles static wxWidgets from source — ~10 min on macOS,
+      # longer for the static msw build on Windows. Cache keyed on the recipe so
+      # it invalidates when the wx version/config changes. (Best-effort path.)
       - name: Cache wxWidgets build
         uses: actions/cache@v4
         with:
-          path: build/_deps
-          key: wxwidgets-${{ runner.os }}-${{ hashFiles('cmake/External/wxwidgets.cmake') }}
+          path: build/third_party
+          key: wx-${{ runner.os }}-${{ hashFiles('cmake/External/wxwidgets.cmake') }}
 
       - name: Configure
         run: cmake -S . -B build
@@ -42,5 +46,7 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
+      # catalog-lint is a bash script; Windows runners ship Git Bash.
       - name: Catalog-include lint
+        shell: bash
         run: bash scripts/catalog-lint.sh

@@ -30,4 +30,8 @@ function(compass_add_instrument name)
     add_executable(${name} WIN32 ${ARG_SOURCES})
     target_include_directories(${name} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
     target_link_libraries(${name} PRIVATE compass_shell compass::wx ${ARG_LIBS})
+    # Windows: static CRT (/MT) so the instrument is a single self-contained .exe
+    # with no VC++ redistributable (CD3, CD1). Requires CMake policy CMP0091.
+    set_target_properties(${name} PROPERTIES
+        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endfunction()

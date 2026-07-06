@@ -4,23 +4,38 @@
 
 #include <wx/dcclient.h>
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(__linux__)
 #include <dlfcn.h>
+#elif defined(_WIN32)
+#include <windows.h>
 #endif
 
 namespace compass {
 namespace {
 
-// GLAD proc-address loader. macOS resolves GL entry points from the OpenGL
-// framework via dlsym; the Windows port (I3) will use wglGetProcAddress here.
+// GLAD proc-address loader, per platform. NOTE: the Windows branch below is
+// written but UNVERIFIED — it needs a Windows CI run to prove (the port is
+// code-complete-pending-CI, I3).
 GLADapiproc GlLoader(const char* name) {
 #if defined(__APPLE__)
+    // macOS ships GL in a framework; resolve entry points with dlsym.
     static void* lib = dlopen(
         "/System/Library/Frameworks/OpenGL.framework/OpenGL", RTLD_LAZY | RTLD_LOCAL);
     return lib ? reinterpret_cast<GLADapiproc>(dlsym(lib, name)) : nullptr;
-#else
-    (void)name;
-    return nullptr;
+#elif defined(_WIN32)
+    // wglGetProcAddress returns the modern (>1.1) entry points; the fixed 1.1
+    // core lives in opengl32.dll, so fall back there when wgl returns null.
+    auto p = reinterpret_cast<GLADapiproc>(wglGetProcAddress(name));
+    if (p == nullptr || p == reinterpret_cast<GLADapiproc>(1) ||
+        p == reinterpret_cast<GLADapiproc>(2) || p == reinterpret_cast<GLADapiproc>(3) ||
+        p == reinterpret_cast<GLADapiproc>(-1)) {
+        static HMODULE gl = LoadLibraryA("opengl32.dll");
+        p = gl ? reinterpret_cast<GLADapiproc>(GetProcAddress(gl, name)) : nullptr;
+    }
+    return p;
+#else  // Linux (dev platform)
+    static void* lib = dlopen("libGL.so.1", RTLD_LAZY | RTLD_LOCAL);
+    return lib ? reinterpret_cast<GLADapiproc>(dlsym(lib, name)) : nullptr;
 #endif
 }
 

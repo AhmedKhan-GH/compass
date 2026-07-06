@@ -4,6 +4,12 @@ project(compass VERSION 0.1)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Windows: static CRT (/MT) across every target — single self-contained .exe, no
+# VC++ redistributable (CD1, CD3). CMP0091 is NEW by default at cmake >= 3.16.
+if(MSVC)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
+
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
 # GLAD 3.3-core loader → compass::gl (§6.2, CD12; replaces GLEW at I3).
