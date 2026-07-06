@@ -8,6 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # VC++ redistributable (CD1, CD3). CMP0091 is NEW by default at cmake >= 3.16.
 if(MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    # /utf-8: read UTF-8 sources correctly (no BOM) and silence C4819. wxMSW
+    # decodes narrow char* via the ANSI codepage (mangling "…"/"—"), so UI strings
+    # carrying those glyphs use wide L"..." literals, which wxString decodes losslessly.
+    add_compile_options(/utf-8)
 endif()
 
 # Include dependency management system (PyTorch-style)

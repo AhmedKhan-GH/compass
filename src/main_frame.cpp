@@ -57,8 +57,8 @@ void MainFrame::SyncViews() {
 
 void MainFrame::PopulateFileMenu(wxMenu& file_menu) {
     file_menu.AppendSeparator();
-    file_menu.Append(ID_EXPORT_PNG, "Export &PNG…");
-    file_menu.Append(ID_EXPORT_CSV, "Export &CSV…");
+    file_menu.Append(ID_EXPORT_PNG, L"Export &PNG…");
+    file_menu.Append(ID_EXPORT_CSV, L"Export &CSV…");
     Bind(wxEVT_MENU, &MainFrame::OnExportPng, this, ID_EXPORT_PNG);
     Bind(wxEVT_MENU, &MainFrame::OnExportCsv, this, ID_EXPORT_CSV);
 }
@@ -66,8 +66,8 @@ void MainFrame::PopulateFileMenu(wxMenu& file_menu) {
 void MainFrame::PopulateAboutDialog(wxAboutDialogInfo& info) {
     info.SetVersion("0.1");
     info.SetDescription(
-        "Plot Workbench — a function grapher.\n"
-        "A Compass desktop instrument: self-contained, native, static.");
+        L"Plot Workbench — a function grapher.\n"
+        L"A Compass desktop instrument: self-contained, native, static.");
 }
 
 void MainFrame::OnExportPng(wxCommandEvent&) {

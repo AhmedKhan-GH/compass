@@ -57,13 +57,22 @@ if(WIN32)
         message(STATUS "wxWidgets (${WX_BUILD_TYPE}) already built")
     endif()
 
-    # Library configuration
+    # Library configuration. macOS/Linux build wx --enable-monolithic (one lib);
+    # the Windows makefile.vc build is multi-lib, so every wx module the code uses
+    # must be listed explicitly. Dependents precede their dependencies (aui/propgrid
+    # → core → base) since link.exe resolves in order.
     set(WX_LIBRARIES
+        "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_aui.lib"
+        "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_propgrid.lib"
+        "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_adv.lib"
+        "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_gl.lib"
         "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_core.lib"
         "${WX_INSTALL_DIR}/wxbase33u${WX_LIB_SUFFIX}.lib"
-        "${WX_INSTALL_DIR}/wxmsw33u${WX_LIB_SUFFIX}_gl.lib"
         "${WX_INSTALL_DIR}/wxpng${WX_LIB_SUFFIX}.lib"
         "${WX_INSTALL_DIR}/wxjpeg${WX_LIB_SUFFIX}.lib"
+        "${WX_INSTALL_DIR}/wxtiff${WX_LIB_SUFFIX}.lib"
+        "${WX_INSTALL_DIR}/wxregexu${WX_LIB_SUFFIX}.lib"
+        "${WX_INSTALL_DIR}/wxexpat${WX_LIB_SUFFIX}.lib"
         "${WX_INSTALL_DIR}/wxzlib${WX_LIB_SUFFIX}.lib"
     )
     set(WX_INCLUDE_DIRS
@@ -76,8 +85,11 @@ if(WIN32)
     else()
         list(APPEND WX_DEFINITIONS "wxDEBUG_LEVEL=0")
     endif()
+    # opengl32: wx's _gl lib and the GLAD loader (wglGetProcAddress) resolve here.
+    # comdlg32/oleaut32/advapi32/ws2_32/version: pulled in by wx core/base modules.
     set(WX_SYSTEM_LIBS
-        comctl32 rpcrt4 winmm gdi32 ole32 uuid shell32
+        comctl32 rpcrt4 winmm gdi32 ole32 oleaut32 uuid shell32
+        comdlg32 advapi32 ws2_32 version opengl32
     )
 
 elseif(APPLE)

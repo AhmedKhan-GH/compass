@@ -15,11 +15,9 @@ cd third_party\wxWidgets\build\msw
 REM Build with debug symbols for both debug and release variants.
 REM Keep /FS and avoid /MP because wxWidgets shares /Fd PDB names per lib,
 REM which can still trigger C1041 under parallel compilation.
-if "%BUILD_TYPE%"=="release" (
-    nmake /f makefile.vc BUILD=%BUILD_TYPE% SHARED=0 TARGET_CPU=X64 USE_OPENGL=1 DEBUG_INFO=1 CFLAGS="/FS" CXXFLAGS="/FS"
-) else (
-    nmake /f makefile.vc BUILD=%BUILD_TYPE% SHARED=0 TARGET_CPU=X64 USE_OPENGL=1 DEBUG_INFO=1 CFLAGS="/FS" CXXFLAGS="/FS"
-)
+REM RUNTIME_LIBS=static builds wx against the static CRT (/MT, /MTd) so it matches
+REM the instruments' /MT — CD3: one self-contained .exe, no VC++ redistributable.
+nmake /f makefile.vc BUILD=%BUILD_TYPE% SHARED=0 TARGET_CPU=X64 USE_OPENGL=1 RUNTIME_LIBS=static DEBUG_INFO=1 CFLAGS="/FS" CXXFLAGS="/FS"
 
 if %ERRORLEVEL% NEQ 0 (
     echo ERROR: wxWidgets %BUILD_TYPE% build failed

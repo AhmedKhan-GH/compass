@@ -76,14 +76,14 @@ void SignalFrame::BuildWorkspace() {
 
 void SignalFrame::PopulateFileMenu(wxMenu& file_menu) {
     file_menu.AppendSeparator();
-    file_menu.Append(ID_OPEN_RECORDING, "Open &Recording (EDF)…\tCtrl+R");
+    file_menu.Append(ID_OPEN_RECORDING, L"Open &Recording (EDF)…\tCtrl+R");
 }
 
 void SignalFrame::PopulateAboutDialog(wxAboutDialogInfo& info) {
     info.SetVersion("0.1");
     info.SetDescription(
-        "Signal Workbench — open EDF recordings, view waveforms, annotate.\n"
-        "A Compass desktop instrument: native, static, GL 3.3 waveform canvas.");
+        L"Signal Workbench — open EDF recordings, view waveforms, annotate.\n"
+        L"A Compass desktop instrument: native, static, GL 3.3 waveform canvas.");
 }
 
 void SignalFrame::ReloadChannelTree() {

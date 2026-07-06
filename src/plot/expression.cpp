@@ -5,6 +5,11 @@
 // Domain errors (sqrt(-1), log(0), overflow) rely on <cmath>/IEEE producing
 // NaN/±inf rather than throwing — Eval never throws.
 
+// MSVC's <cmath> only defines M_PI/M_E when _USE_MATH_DEFINES is set before any
+// include pulls in <cmath>; POSIX libc's define them unconditionally. Must precede
+// the header include below (which transitively includes <cmath>).
+#define _USE_MATH_DEFINES
+
 #include "plot/expression.h"
 
 #include <cctype>

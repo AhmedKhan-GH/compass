@@ -6,6 +6,10 @@
 //       tests/plot/test_expression.cpp src/plot/expression.cpp -o /tmp/test_expr \
 //       && /tmp/test_expr
 
+// Must precede every include: doctest.h itself pulls in <cmath>, and MSVC only
+// defines M_PI / M_E when _USE_MATH_DEFINES is set before <cmath> is first seen.
+#define _USE_MATH_DEFINES
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 

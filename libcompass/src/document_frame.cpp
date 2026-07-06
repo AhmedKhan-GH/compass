@@ -66,9 +66,9 @@ void DocumentFrame::FinishConstruction() {
 void DocumentFrame::BuildMenuBar() {
     auto* fileMenu = new wxMenu;
     fileMenu->Append(wxID_NEW, "&New\tCtrl+N");
-    fileMenu->Append(wxID_OPEN, "&Open…\tCtrl+O");
+    fileMenu->Append(wxID_OPEN, L"&Open…\tCtrl+O");
     fileMenu->Append(wxID_SAVE, "&Save\tCtrl+S");
-    fileMenu->Append(wxID_SAVEAS, "Save &As…\tCtrl+Shift+S");
+    fileMenu->Append(wxID_SAVEAS, L"Save &As…\tCtrl+Shift+S");
     PopulateFileMenu(*fileMenu);  // instrument adds Export etc.
     fileMenu->AppendSeparator();
     fileMenu->Append(wxID_EXIT);
@@ -109,9 +109,11 @@ void DocumentFrame::UpdateEditMenu() {
 }
 
 void DocumentFrame::UpdateTitle() {
+    // Both ternary branches must be wxString: MSVC rejects a const char[]/wxString
+    // mix as ambiguous (C2445), where clang picks wxString.
     const wxString name =
-        m_filePath.empty() ? "Untitled" : wxFileName(m_filePath).GetFullName();
-    SetTitle(wxString::Format("%s%s — %s", name, document().dirty() ? "*" : "",
+        m_filePath.empty() ? wxString("Untitled") : wxFileName(m_filePath).GetFullName();
+    SetTitle(wxString::Format(L"%s%s — %s", name, document().dirty() ? "*" : "",
                               m_appName));
 }
 
