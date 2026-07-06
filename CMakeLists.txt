@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
+# GLAD 3.3-core loader → compass::gl (§6.2, CD12; replaces GLEW at I3).
+include(cmake/External/glad.cmake)
 # Layer 0 catalog: compass:: targets + compass_add_instrument() (§5.2, §5.4).
 include(cmake/catalog.cmake)
 
