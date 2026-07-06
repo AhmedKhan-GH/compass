@@ -17,3 +17,11 @@ if(COMPASS_BUILD_DEMOS)
     add_subdirectory(demos/quaternion)
     add_subdirectory(demos/sound_test)
 endif()
+
+# Plot Workbench (Instrument #1, I1) — headless logic units, unit-tested.
+# doctest is dev-only (never linked into shipped binaries); tests run via CTest.
+option(COMPASS_BUILD_TESTS "Build unit tests (doctest + CTest)" ON)
+if(COMPASS_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests/plot)
+endif()
