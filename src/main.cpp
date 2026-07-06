@@ -1,5 +1,7 @@
 #include <wx/wx.h>
 
+#include "main_frame.h"
+
 class CompassApp : public wxApp {
 public:
     bool OnInit() override {
@@ -7,9 +9,7 @@ public:
             return false;
         SetAppName("Compass");
         SetVendorName("Compass");
-        auto* frame = new wxFrame(nullptr, wxID_ANY, "Compass",
-                                  wxDefaultPosition, wxSize(1000, 700));
-        frame->Show(true);
+        (new MainFrame())->Show(true);
         return true;
     }
 };

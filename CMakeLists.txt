@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include(cmake/Dependencies.cmake)
 
 # The shell — links native UI only; GL enters via libcompass at I3 (PLATFORM.md §6, CD12)
-add_executable(compass WIN32 src/main.cpp)
+add_executable(compass WIN32 src/main.cpp src/main_frame.cpp)
 target_link_libraries(compass PRIVATE wxWidgets::wxWidgets)
 
 option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
