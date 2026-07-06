@@ -9,7 +9,23 @@ if "%BUILD_TYPE%"=="" set BUILD_TYPE=debug
 
 echo Building wxWidgets (%BUILD_TYPE%) with static linking and OpenGL support...
 
-call "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+REM Locate Visual Studio (any edition: Community/Professional/Enterprise/BuildTools)
+REM via vswhere and set up the x64 build environment, so nmake/cl land on PATH.
+REM Hardcoding one edition's path breaks on machines/CI with a different edition.
+set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+if not exist "%VSWHERE%" set "VSWHERE=%ProgramFiles%\Microsoft Visual Studio\Installer\vswhere.exe"
+set "VSINSTALL="
+for /f "usebackq tokens=*" %%i in (`"%VSWHERE%" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSINSTALL=%%i"
+if not defined VSINSTALL (
+    echo ERROR: could not locate a Visual Studio installation with the C++ toolset
+    exit /b 1
+)
+echo Using Visual Studio at: %VSINSTALL%
+call "%VSINSTALL%\VC\Auxiliary\Build\vcvarsall.bat" x64
+if %ERRORLEVEL% NEQ 0 (
+    echo ERROR: vcvarsall.bat failed
+    exit /b 1
+)
 cd third_party\wxWidgets\build\msw
 
 REM Build with debug symbols for both debug and release variants.
