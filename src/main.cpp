@@ -10,6 +10,7 @@ public:
             return false;
         SetAppName("Compass");
         SetVendorName("Compass");
+        wxImage::AddHandler(new wxPNGHandler);  // for File → Export PNG
         auto* frame = new MainFrame();
         wxPersistentRegisterAndRestore(frame, "MainFrame");
         frame->Show(true);

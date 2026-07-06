@@ -21,6 +21,12 @@ private:
     void OnResetLayout(wxCommandEvent& event);
     void OnUndo(wxCommandEvent& event);
     void OnRedo(wxCommandEvent& event);
+    void OnNew(wxCommandEvent& event);
+    void OnOpen(wxCommandEvent& event);
+    void OnSave(wxCommandEvent& event);
+    void OnSaveAs(wxCommandEvent& event);
+    void OnExportPng(wxCommandEvent& event);
+    void OnExportCsv(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
     void SaveLayout();
     void RestoreLayout();
@@ -28,9 +34,14 @@ private:
     // Single sync point: any edit anywhere calls this to refresh every surface.
     void OnDocumentChanged();
     void UpdateEditMenu();
+    void UpdateTitle();
+    // Prompt to save when dirty; returns false if the user cancels the action.
+    bool MaybeDiscardChanges();
+    bool DoSave(const wxString& path);  // write ToJson to path; MarkSaved on success
 
     wxAuiManager m_aui;
     wxString m_defaultPerspective;
+    wxString m_filePath;  // current .plot path; empty == untitled
     plot::PlotDocument m_doc;
     PlotCanvas* m_canvas = nullptr;
     ExpressionPanel* m_exprPanel = nullptr;

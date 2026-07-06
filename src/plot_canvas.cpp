@@ -4,6 +4,7 @@
 #include "plot_canvas.h"
 
 #include <wx/dcbuffer.h>
+#include <wx/dcmemory.h>
 #include <wx/graphics.h>
 
 #include <algorithm>
@@ -51,10 +52,21 @@ void PlotCanvas::OnPaint(wxPaintEvent&) {
     wxAutoBufferedPaintDC dc(this);
     std::unique_ptr<wxGraphicsContext> gc(wxGraphicsContext::Create(dc));
     if (!gc) return;
-
     const wxSize size = GetClientSize();
-    const double w = size.GetWidth();
-    const double h = size.GetHeight();
+    Draw(*gc, size.GetWidth(), size.GetHeight());
+}
+
+wxBitmap PlotCanvas::RenderToBitmap(int width, int height) {
+    wxBitmap bmp(std::max(width, 1), std::max(height, 1), 32);
+    wxMemoryDC mdc(bmp);
+    std::unique_ptr<wxGraphicsContext> gc(wxGraphicsContext::Create(mdc));
+    if (gc) Draw(*gc, width, height);
+    mdc.SelectObject(wxNullBitmap);
+    return bmp;
+}
+
+void PlotCanvas::Draw(wxGraphicsContext& graphics, double w, double h) {
+    wxGraphicsContext* gc = &graphics;
     if (w < 2 || h < 2) return;
 
     gc->SetBrush(*wxWHITE_BRUSH);

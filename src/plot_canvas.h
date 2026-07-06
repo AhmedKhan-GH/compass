@@ -7,9 +7,12 @@
 
 #include <functional>
 
+#include <wx/bitmap.h>
 #include <wx/window.h>
 
 #include "plot/plot_document.h"
+
+class wxGraphicsContext;
 
 class PlotCanvas : public wxWindow {
 public:
@@ -22,8 +25,12 @@ public:
         m_onCursor = std::move(cb);
     }
 
+    // Render the current plot into an offscreen bitmap (for PNG export).
+    wxBitmap RenderToBitmap(int width, int height);
+
 private:
     void OnPaint(wxPaintEvent& event);
+    void Draw(wxGraphicsContext& gc, double w, double h);
     void OnLeftDown(wxMouseEvent& event);
     void OnLeftUp(wxMouseEvent& event);
     void OnMotion(wxMouseEvent& event);
