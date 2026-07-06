@@ -15,7 +15,7 @@ Recovery map. Tasks marked complete are DONE — do NOT re-dispatch. Trust this 
 - Original executor agent (aec60caf…) was interrupted before writing a report; controller verified independently.
 
 ## Phase I1 — Plot Workbench — ✅ COMPLETE (branch `i1-plot-workbench`, macOS, 2026-07-05)
-Exit criterion MET: .plot save/reopen round-trip, PNG+CSV export, 4 CTest suites green, static audit clean (9.1M). NOT yet merged to main (awaiting owner OK).
+Exit criterion MET: .plot save/reopen round-trip, PNG+CSV export, 4 CTest suites green, static audit clean (9.1M). MERGED to main (ff) 2026-07-05 at owner request. main @ 9e4d4e5.
 Increment 1 (foundation) — DONE @ 9161c47.
 Increment 2 (Sampler + PlotDocument logic) — DONE. 3 test suites green via CTest.
 Increment 3 (CsvExporter + first visible PlotCanvas) — DONE.
