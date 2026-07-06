@@ -105,6 +105,7 @@ elseif(APPLE)
                 --with-libjpeg=builtin
                 --with-libtiff=builtin
                 --with-libpng=builtin
+                --with-libwebp=builtin
                 --with-zlib=builtin
                 --with-expat=builtin
                 --disable-shared
@@ -153,14 +154,22 @@ elseif(APPLE)
         "${WX_INSTALL_DIR}/lib/libwxpng-${WX_VERSION}.a"
         "${WX_INSTALL_DIR}/lib/libwxjpeg-${WX_VERSION}.a"
         "${WX_INSTALL_DIR}/lib/libwxtiff-${WX_VERSION}.a"
-        "${WX_INSTALL_DIR}/lib/libwxwebp-${WX_VERSION}.a"
-        "${WX_INSTALL_DIR}/lib/libwxscintilla-${WX_VERSION}.a"
-        "${WX_INSTALL_DIR}/lib/libwxlexilla-${WX_VERSION}.a"
         "${WX_INSTALL_DIR}/lib/libwxregexu-${WX_VERSION}.a"
         "${WX_INSTALL_DIR}/lib/libwxexpat-${WX_VERSION}.a"
         "${WX_INSTALL_DIR}/lib/libwxzlib-${WX_VERSION}.a"
         iconv pthread
     )
+
+    # Optional bundled sub-libraries — whether wx builds each depends on what the
+    # host toolchain provides (e.g. webp needs libwebp at configure). Link only
+    # the ones this build actually produced, so the link line adapts instead of
+    # referencing a file that was never built.
+    foreach(_wxsub webp scintilla lexilla)
+        set(_wxsub_lib "${WX_INSTALL_DIR}/lib/libwx${_wxsub}-${WX_VERSION}.a")
+        if(EXISTS "${_wxsub_lib}")
+            list(APPEND WX_SYSTEM_LIBS "${_wxsub_lib}")
+        endif()
+    endforeach()
 
 else()
     # Linux: Build from source
@@ -186,6 +195,7 @@ else()
                 --with-libjpeg=builtin
                 --with-libtiff=builtin
                 --with-libpng=builtin
+                --with-libwebp=builtin
                 --with-zlib=builtin
                 --with-expat=builtin
                 --disable-shared

@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
+# Layer 0 catalog: compass:: targets + compass_add_instrument() (§5.2, §5.4).
+include(cmake/catalog.cmake)
 
 # Layer 1 — the instrument framework (header-only for now).
 add_subdirectory(libcompass)
@@ -17,16 +19,17 @@ add_subdirectory(src/plot)
 # §5.6 — the template is the SDK spec; a framework change that breaks it fails here).
 add_subdirectory(templates/instrument)
 
-# The shell + Plot Workbench UI — native UI (wxGraphicsContext 2D, no GL at I1).
-# GL enters via libcompass at I3 (PLATFORM.md §6, CD12).
-add_executable(compass WIN32
-    src/main.cpp
-    src/main_frame.cpp
-    src/plot_canvas.cpp
-    src/expression_panel.cpp
-    src/view_panel.cpp
+# Instrument #1 — Plot Workbench, via the SDK entry point (§5.4). Native UI
+# (wxGraphicsContext 2D, no GL at I1); GL enters via libcompass at I3 (CD12).
+compass_add_instrument(compass
+    SOURCES
+        src/main.cpp
+        src/main_frame.cpp
+        src/plot_canvas.cpp
+        src/expression_panel.cpp
+        src/view_panel.cpp
+    LIBS compass_plot
 )
-target_link_libraries(compass PRIVATE compass_shell compass_plot wxWidgets::wxWidgets)
 
 option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
 if(COMPASS_BUILD_DEMOS)
