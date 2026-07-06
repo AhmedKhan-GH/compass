@@ -27,7 +27,7 @@
 - **Exit criterion:** fresh-install shell binary on macOS (static audit passes; binary runs from a bare path).
 - **TDD surface:** none (pure UI scaffolding).
 
-### I1 — Instrument #1: Plot Workbench (monolithic on the shell)
+### I1 — Instrument #1: Plot Workbench (monolithic on the shell) — ✅ SHIPPED (macOS, 2026-07-05, branch `i1-plot-workbench`)
 
 - **Detailed plan:** to be authored at I0 exit. **Design spec exists:** `docs/superpowers/specs/2026-07-05-plot-workbench-design.md` (approved 2026-07-05) — derive the plan from it.
 - **Delivers, per the design spec and `PLATFORM.md` §7-I1 (CD12):**

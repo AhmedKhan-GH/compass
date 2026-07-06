@@ -14,11 +14,13 @@ Recovery map. Tasks marked complete are DONE — do NOT re-dispatch. Trust this 
 - Exit criterion MET: `otool -L cmake-build-debug/compass` → zero non-system deps; binary builds (6.7M) and launches. All 4 targets build (compass, hello_world, quaternion_demo, sound_test).
 - Original executor agent (aec60caf…) was interrupted before writing a report; controller verified independently.
 
-## Phase I1 — Plot Workbench — IN PROGRESS (branch `i1-plot-workbench`)
+## Phase I1 — Plot Workbench — ✅ COMPLETE (branch `i1-plot-workbench`, macOS, 2026-07-05)
+Exit criterion MET: .plot save/reopen round-trip, PNG+CSV export, 4 CTest suites green, static audit clean (9.1M). NOT yet merged to main (awaiting owner OK).
 Increment 1 (foundation) — DONE @ 9161c47.
 Increment 2 (Sampler + PlotDocument logic) — DONE. 3 test suites green via CTest.
 Increment 3 (CsvExporter + first visible PlotCanvas) — DONE.
-Increment 4 (interactivity: panels + menus + pan/zoom/cursor + undo/redo) — DONE. Also fixed wx link list (webp/scintilla/lexilla). Build+audit clean, ctest 4/4.
+Increment 4 (interactivity) — DONE.
+Increment 5 (persistence + PNG/CSV export + exit-criterion verification) — DONE. I1 COMPLETE.
 Design spec: docs/superpowers/specs/2026-07-05-plot-workbench-design.md (approved).
 Detailed task plan: NOT yet written (author from the spec before full execution).
 
@@ -29,7 +31,7 @@ Detailed task plan: NOT yet written (author from the spec before full execution)
 - CsvExporter — COMPLETE (i1). Uniform-grid CSV, empty cells for non-finite. 5 cases, ctest green.
 - PlotCanvas — COMPLETE (i1). Native-2D axes/grid/curve; docked center pane; shell draws sin(x). Launches, audit clean.
 - ExpressionPanel, ViewPanel, Edit/Undo/Redo menu, canvas pan/zoom + cursor — COMPLETE (i1 inc4a+4b). All surfaces sync via MainFrame::OnDocumentChanged. Build+audit clean, ctest 4/4.
-- Save/Open .plot, PNG/CSV export, final audit — NOT STARTED (increment 5).
+- Save/Open .plot, PNG/CSV export, final audit — COMPLETE (i1 inc5). File menu New/Open/Save/SaveAs + dirty prompt + title; Export PNG/CSV. Exit criterion verified.
 
 ## Open decisions for controller
 1. Merge `i0-identity-hygiene` → main (phase exit)?
