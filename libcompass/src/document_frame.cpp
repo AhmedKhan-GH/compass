@@ -3,6 +3,7 @@
 #include "compass/document_frame.h"
 
 #include <wx/aboutdlg.h>
+#include <wx/arrstr.h>
 #include <wx/config.h>
 #include <wx/ffile.h>
 #include <wx/filedlg.h>
@@ -15,7 +16,18 @@
 namespace compass {
 namespace {
 constexpr int ID_RESET_LAYOUT = wxID_HIGHEST + 1;
+
+// A signature of the current dockable pane set (sorted names). A saved layout is
+// restored only when its signature matches — so a layout from a build with a
+// different pane set (or one with no signature, e.g. an older/corrupt save)
+// falls back to the default instead of hiding panels or mangling the canvas.
+wxString PaneSignature(wxAuiManager& aui) {
+    wxArrayString names;
+    for (const wxAuiPaneInfo& p : aui.GetAllPanes()) names.Add(p.name);
+    names.Sort();
+    return wxJoin(names, ',');
 }
+}  // namespace
 
 DocumentFrame::DocumentFrame(const wxString& app_name)
     : wxFrame(nullptr, wxID_ANY, app_name, wxDefaultPosition, wxSize(1000, 700)),
@@ -215,13 +227,19 @@ void DocumentFrame::OnClose(wxCloseEvent& event) {
 }
 
 void DocumentFrame::SaveLayout() {
-    wxConfigBase::Get()->Write("/Layout/Perspective", m_aui.SavePerspective());
+    wxConfigBase* cfg = wxConfigBase::Get();
+    cfg->Write("/Layout/Signature", PaneSignature(m_aui));
+    cfg->Write("/Layout/Perspective", m_aui.SavePerspective());
 }
 
 void DocumentFrame::RestoreLayout() {
+    wxConfigBase* cfg = wxConfigBase::Get();
+    wxString sig;
+    // Only restore a layout saved by a build with the same pane set.
+    if (!cfg->Read("/Layout/Signature", &sig) || sig != PaneSignature(m_aui))
+        return;
     wxString perspective;
-    if (wxConfigBase::Get()->Read("/Layout/Perspective", &perspective) &&
-        !perspective.empty()) {
+    if (cfg->Read("/Layout/Perspective", &perspective) && !perspective.empty()) {
         m_aui.LoadPerspective(perspective, true);
     }
 }
