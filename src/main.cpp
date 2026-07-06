@@ -1,21 +1,14 @@
-#include <wx/wx.h>
-#include <wx/persist/toplevel.h>
+// Compass — Plot Workbench (Instrument #1) entry point.
+// The whole app is now a compass::App subclass naming the instrument and its frame.
+
+#include "compass/app.h"
 
 #include "main_frame.h"
 
-class CompassApp : public wxApp {
-public:
-    bool OnInit() override {
-        if (!wxApp::OnInit())
-            return false;
-        SetAppName("Compass");
-        SetVendorName("Compass");
-        wxImage::AddHandler(new wxPNGHandler);  // for File → Export PNG
-        auto* frame = new MainFrame();
-        wxPersistentRegisterAndRestore(frame, "MainFrame");
-        frame->Show(true);
-        return true;
-    }
+class CompassApp : public compass::App {
+protected:
+    wxFrame* CreateMainFrame() override { return new MainFrame(); }
+    wxString AppName() const override { return "Compass"; }
 };
 
 wxIMPLEMENT_APP(CompassApp);

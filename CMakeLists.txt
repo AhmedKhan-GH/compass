@@ -13,6 +13,10 @@ add_subdirectory(libcompass)
 # Plot Workbench logic (wx-free); shared by the app and the tests.
 add_subdirectory(src/plot)
 
+# The instrument template must always build against the framework (PLATFORM.md
+# §5.6 — the template is the SDK spec; a framework change that breaks it fails here).
+add_subdirectory(templates/instrument)
+
 # The shell + Plot Workbench UI — native UI (wxGraphicsContext 2D, no GL at I1).
 # GL enters via libcompass at I3 (PLATFORM.md §6, CD12).
 add_executable(compass WIN32
@@ -22,7 +26,7 @@ add_executable(compass WIN32
     src/expression_panel.cpp
     src/view_panel.cpp
 )
-target_link_libraries(compass PRIVATE wxWidgets::wxWidgets compass_plot)
+target_link_libraries(compass PRIVATE compass_shell compass_plot wxWidgets::wxWidgets)
 
 option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
 if(COMPASS_BUILD_DEMOS)
