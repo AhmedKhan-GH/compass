@@ -25,11 +25,17 @@ Per `PLATFORM.md` §5.8, a single PR adds:
 - **No system packages** — `find_package` against Homebrew/apt breaks the fresh-install guarantee (system OpenGL is the one sanctioned exception).
 - **No "while I'm at it" admissions** — a library without a consumer in the same PR fails condition 1.
 
-## Anticipated admissions (waiting on their consumers)
+## Admitted so far
+
+| Library | Consumer that justified it | Admitted |
+|---|---|---|
+| doctest (dev-only test framework) | Plot Workbench unit tests — never linked into shipped binaries | I1 |
+| GLAD (GL 3.3-core loader, `compass::gl`) | `Canvas2D` GL modernization — replaced GLEW; first consumer is the flagship's waveform canvas (CD12) | I3 |
+| nlohmann/json (`compass::json`) | document sidecars — `.plot` worksheets, Signal annotations | I3 |
+| ~~EDF/WFDB parser~~ | Signal Workbench — **implemented in-repo** (`src/signal/edf_reader`), no external lib admitted | I3 |
+
+## Anticipated (waiting on their consumers)
 
 | Library | Consumer that will justify it | When |
 |---|---|---|
-| GLAD (GL 3.3-core loader) | `Canvas2D` GL modernization — replaces GLEW; first consumer is the flagship's waveform canvas (CD12) | I3 |
-| doctest (dev-only test framework) | Plot Workbench unit tests — never linked into shipped binaries | I1 |
-| EDF/WFDB parser | Signal Workbench | I3 |
 | SQLite **or** DuckDB | first instrument needing persistence beyond documents (DuckDB tiebreaker: opens Caliper's run/artifact stores read-only) | on demand |

@@ -14,9 +14,9 @@ The SDK is exactly three artifacts:
 
 | Layer | Artifact | Status |
 |---|---|---|
-| 0 | the curated [library catalog](../reference/library-catalog.md) (`compass::` targets) | build exists; wrappers at I2 |
-| 1 | `libcompass` — App, Document/View + undo, workspace shell, export (`Canvas2D/3D` join at I3 with the GL modernization) | extracted at I2 from Instrument #1 |
-| 2 | instruments + `compass_add_instrument()` + the buildable template | I2 |
+| 0 | the curated [library catalog](../reference/library-catalog.md) (`compass::wx`/`gl`/`json`/`glm` targets) | **done** (I2) |
+| 1 | `libcompass` — App, Document/View + undo, workspace shell, export, `Canvas2D` GL viewport | **done** — extracted at I2, `Canvas2D` added at I3 |
+| 2 | instruments (`compass`, `signal_workbench`) + `compass_add_instrument()` + the buildable template | **done** (I2) |
 
 ## The extraction rule (CD9)
 

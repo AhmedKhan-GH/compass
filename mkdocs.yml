@@ -19,6 +19,7 @@ nav:
   - Home: index.md
   - Tutorials:
       - Building from source: tutorials/building-from-source.md
+      - Your first app: tutorials/first-app.md
   - How-to:
       - Run the demos: howto/run-the-demos.md
       - Admit a library: howto/admit-a-library.md

@@ -6,15 +6,17 @@ Compass is the sibling of **Caliper** (`../caliper/`), the realtime GPU-resident
 
 ## Where the project stands
 
-The governing spec is `PLATFORM.md` v2.1 at the repo root, delivered in phases **I0–I4** (§7). The repo is currently **at the start of I0** (identity & hygiene): the app target is still the legacy quaternion/slerp GL demo, and the instrument shell (frame, menus, AUI docking, layout persistence) is planned in `docs/superpowers/plans/2026-07-05-i0-identity-and-hygiene.md`. A minimal `hello_world` demo under `demos/hello_world/` already demonstrates the static-binary shape end to end.
+The governing spec is `PLATFORM.md` v2.1 at the repo root, delivered in phases **I0–I4** (§7). Phases **I0 through I3 are done**: the instrument shell, the Plot Workbench (Instrument #1), the extracted `libcompass` SDK, the Signal Workbench flagship, the GL 3.3 modernization (GLAD), and the **Windows port** have all landed. Two instruments (`compass`, `signal_workbench`) plus the buildable template compile and run on **macOS and Windows**; the Windows build is verified green (8/8 unit suites, running `.exe`s that depend only on system DLLs). I4 (notarization, release trains) is what remains.
 
 | Phase | Delivers | Status |
 |---|---|---|
-| I0 | Spec committed, demo quarantined, minimal shell as static binary | **in progress** |
+| I0 | Spec committed, demo quarantined, minimal shell as static binary | **shipped** |
 | I1 | Instrument #1: Plot Workbench (function grapher, native 2D — CD12) | **shipped (macOS)** |
 | I2 | `libcompass` + `compass_add_instrument()` + template extracted | **shipped (macOS)** |
-| I3 | Instrument #2: Signal Workbench (flagship); GL 3.3 modernization; Windows port | planned |
+| I3 | Instrument #2: Signal Workbench (flagship); GL 3.3 modernization (GLAD); Windows port | **shipped (macOS + Windows)** |
 | I4 | Notarization, release trains, optional Run Browser | planned |
+
+Beyond the phases, the UI now follows the OS appearance — **Windows 11 dark mode** (title bar, menus, controls) with a Mica backdrop, and a theme-aware plot canvas (see [rendering](explanation/rendering.md)).
 
 ## What's here
 

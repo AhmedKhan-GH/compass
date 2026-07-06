@@ -13,17 +13,26 @@ cmake --build build --target hello_world -j8
 
 Read `demos/hello_world/hello_world.cpp` first when learning the codebase — it is the instrument pattern with all domain logic removed.
 
-## The quaternion/slerp demo
+## gl_smoke — the modern GL 3.3 smoke test
 
-The original Compass application: interactive quaternion vs. Euler rotation, slerp/squad interpolation, camera orbit, rotation trails. Phase I0 moved it out of the `compass` target into `demos/quaternion/` as the `quaternion_demo` target (`demos/quaternion/main.cpp`); the `compass` target is now the instrument shell.
+The first real consumer of the framework's `compass::Canvas2D` (`demos/gl_smoke/gl_smoke.cpp`): a `wxGLCanvas` with a 3.3-core forward-compatible context, GLAD-loaded, drawing with shaders — no fixed-function calls. It proves the GLAD loader and the 3.3-core context path that the Signal Workbench waveform canvas relies on.
 
 ```bash
-cmake --build build --target quaternion_demo -j8
-./build/demos/quaternion/quaternion_demo
+cmake --build build --target gl_smoke -j
+./build/demos/gl_smoke/gl_smoke
 ```
 
-!!! warning "Legacy GL — do not extend"
-    This demo renders with OpenGL 2.1 fixed-function calls (`glBegin`, GLU) — the deprecated path `PLATFORM.md` §6.2 commits to eliminating. It is quarantined history: CD12 made the Plot Workbench (native 2D) Instrument #1, and this demo is deleted when the GL modernization lands at phase I3. Do not add new fixed-function code anywhere in the repo.
+!!! note "The old quaternion demo is gone"
+    The original app was a GL 2.1 fixed-function quaternion/slerp demo. Per CD12 it was quarantined, then **deleted at I3** when the GL modernization landed (GLAD replaced GLEW, `Canvas2D` took over the context). No fixed-function GL survives in the repo — do not reintroduce it.
+
+## hello_gl — window, a button, and an animated GL sine wave
+
+The richer GL exemplar (`demos/hello_gl/hello_gl.cpp`): a native window with a Play/Pause button and a `compass::Canvas2D` drawing a sine wave whose shape is computed in the vertex shader, animated by a `wxTimer`. It is the subject of the [Your first app](../tutorials/first-app.md) tutorial — start there for the walkthrough.
+
+```bash
+cmake --build build --target hello_gl -j
+./build/demos/hello_gl/hello_gl
+```
 
 ## sound_test
 
