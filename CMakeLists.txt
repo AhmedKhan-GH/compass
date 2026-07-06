@@ -7,9 +7,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Include dependency management system (PyTorch-style)
 include(cmake/Dependencies.cmake)
 
-# The shell — links native UI only; GL enters via libcompass at I3 (PLATFORM.md §6, CD12)
-add_executable(compass WIN32 src/main.cpp src/main_frame.cpp)
-target_link_libraries(compass PRIVATE wxWidgets::wxWidgets)
+# Plot Workbench logic (wx-free); shared by the app and the tests.
+add_subdirectory(src/plot)
+
+# The shell + Plot Workbench UI — native UI (wxGraphicsContext 2D, no GL at I1).
+# GL enters via libcompass at I3 (PLATFORM.md §6, CD12).
+add_executable(compass WIN32
+    src/main.cpp
+    src/main_frame.cpp
+    src/plot_canvas.cpp
+)
+target_link_libraries(compass PRIVATE wxWidgets::wxWidgets compass_plot)
 
 option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
 if(COMPASS_BUILD_DEMOS)

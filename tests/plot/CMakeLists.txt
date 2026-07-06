@@ -1,14 +1,7 @@
 # Plot Workbench unit tests (doctest, dev-only). One test executable per logic
-# unit as they land; registered with CTest. doctest.h is header-only in
-# third_party/ (never shipped — tests are not linked into any product binary).
-
-# The plot logic library — pure C++, wx-free. App and tests both link this.
-add_library(compass_plot STATIC
-    ${CMAKE_SOURCE_DIR}/src/plot/expression.cpp
-    ${CMAKE_SOURCE_DIR}/src/plot/sampler.cpp
-    ${CMAKE_SOURCE_DIR}/src/plot/plot_document.cpp
-)
-target_include_directories(compass_plot PUBLIC ${CMAKE_SOURCE_DIR}/src)
+# unit; registered with CTest. doctest.h is header-only in third_party/ (never
+# shipped — tests are not linked into any product binary). The compass_plot
+# logic library is defined in src/plot/ and linked here.
 
 function(compass_add_plot_test name)
     add_executable(${name} ${name}.cpp)
@@ -20,3 +13,4 @@ endfunction()
 compass_add_plot_test(test_expression)
 compass_add_plot_test(test_sampler)
 compass_add_plot_test(test_plot_document)
+compass_add_plot_test(test_csv_exporter)

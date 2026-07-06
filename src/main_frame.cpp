@@ -6,6 +6,8 @@
 #include <wx/panel.h>
 #include <wx/settings.h>
 
+#include "plot_canvas.h"
+
 namespace {
 constexpr int ID_RESET_LAYOUT = wxID_HIGHEST + 1;
 }
@@ -19,12 +21,14 @@ MainFrame::MainFrame()
     CreateStatusBar();
     SetStatusText("Ready");
 
-    auto* workspace = new wxPanel(this, wxID_ANY);
-    workspace->SetBackgroundColour(
-        wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    m_aui.AddPane(workspace, wxAuiPaneInfo()
-                                 .Name("workspace")
-                                 .CenterPane());
+    // Seed the worksheet with a curve so a fresh launch shows something.
+    m_doc.AddExpression(plot::ExprEntry{"sin(x)", plot::Style{}});
+    m_doc.MarkSaved();
+
+    m_canvas = new PlotCanvas(this, &m_doc);
+    m_aui.AddPane(m_canvas, wxAuiPaneInfo()
+                                .Name("workspace")
+                                .CenterPane());
 
     auto* sidebar = new wxPanel(this, wxID_ANY);
     m_aui.AddPane(sidebar, wxAuiPaneInfo()

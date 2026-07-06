@@ -3,6 +3,10 @@
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
 
+#include "plot/plot_document.h"
+
+class PlotCanvas;
+
 class MainFrame : public wxFrame {
 public:
     MainFrame();
@@ -19,4 +23,6 @@ private:
 
     wxAuiManager m_aui;
     wxString m_defaultPerspective;
+    plot::PlotDocument m_doc;
+    PlotCanvas* m_canvas = nullptr;
 };
