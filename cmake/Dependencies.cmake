@@ -83,7 +83,10 @@ if(NOT GLM_ALREADY_BUILT)
             -DCMAKE_INSTALL_PREFIX=${GLM_INSTALL_DIR}
             -DCMAKE_POLICY_DEFAULT_CMP0048=NEW
             -Wno-dev
-        BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --target install -- -j${N_JOBS}
+        # Use CMake's generator-agnostic flags: `-- -jN` passes -j to the native
+        # tool, which MSBuild rejects (MSB1001). --parallel/--config work on
+        # Ninja, Make, and MSBuild alike.
+        BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --target install --parallel ${N_JOBS}
         INSTALL_COMMAND ""
         USES_TERMINAL_CONFIGURE 1
         USES_TERMINAL_BUILD 1
