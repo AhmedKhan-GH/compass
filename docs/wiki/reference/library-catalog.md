@@ -6,8 +6,8 @@ The curated dependency surface (`PLATFORM.md` §5.2). A library is in the catalo
 
 | Target (planned `compass::` name at I2) | Library | For | Not for |
 |---|---|---|---|
-| `wxWidgets::wxWidgets` → `compass::wx` | wxWidgets 3.3.2 (static, monolithic + gl lib) | all native UI: frames, AUI docking, property grids, dialogs, `wxGraphicsContext` 2D | rendering dense/spatial data (that's the GL canvas) |
-| `glm::glm` → `compass::glm` | GLM | geometry math in viewport/canvas code | general-purpose math outside rendering paths |
+| `compass::wx` (alias → wxWidgets::wxWidgets) | wxWidgets 3.3.2 (static, monolithic + gl lib) | all native UI: frames, AUI docking, property grids, dialogs, `wxGraphicsContext` 2D | rendering dense/spatial data (that's the GL canvas) |
+| `compass::glm` (alias → glm::glm) | GLM | geometry math in viewport/canvas code | general-purpose math outside rendering paths |
 | `GLEW::GLEW` *(exiting)* | GLEW 2.2.0 | GL function loading for the legacy demo only | any new code — replaced by GLAD at I3 (`compass::gl`, CD12) |
 
 System OpenGL is the one sanctioned system dependency (a framework the OS ships, consistent with the fresh-install guarantee).

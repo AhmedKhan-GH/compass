@@ -39,7 +39,7 @@
 - **Exit criterion:** a student downloads one macOS binary, types `sin(x)/x`, restyles it, saves/reopens the worksheet, exports a PNG. Static audit passes. Parser/sampler/document/exporter fully unit-tested, green under CTest.
 - **TDD surface:** expression tokenize/parse/precedence/associativity + error positions; sampler non-finite splitting; every document command's apply/undo/redo + dirty transitions; `.plot` JSON round-trip incl. malformed-input rejection; CSV output.
 
-### I2 — Extract the SDK (rule of two, applied at first opportunity)
+### I2 — Extract the SDK — ✅ SHIPPED (macOS, 2026-07-06, branch `i2-extract-sdk`)
 
 - **Detailed plan:** to be authored at I1 exit, **sized by what Instrument #1 actually contains** (CD9 — this is why it cannot be written today).
 - **Delivers, per §5.3–5.4:** `libcompass/` static library (App, Document/View + command stack, workspace shell, export helpers — **no GL canvas yet**; `Canvas2D` joins the framework at I3 when it's built) extracted from Plot Workbench; `compass_add_instrument()` CMake function (static flags, bundle metadata, packaging targets, generated `main()` with **explicit** document-factory registration — no self-registering statics); `instruments/plot_workbench/` as the first Layer-2 consumer; `templates/instrument/` buildable skeleton; catalog targets wrapped as `compass::wx`, `compass::glm` (`compass::gl` arrives at I3); CI: template builds on every commit + non-catalog-include lint (§5.6).
