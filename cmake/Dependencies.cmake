@@ -116,10 +116,9 @@ endif()
 message(STATUS "GLM configured successfully")
 
 # ============================================================================
-# Category 2: Makefile-Based Libraries - GLEW (ExternalProject)
+# GLEW removed at I3 (§6.2, CD12) — replaced by the GLAD 3.3-core loader
+# (compass::gl), included from the root CMakeLists via cmake/External/glad.cmake.
 # ============================================================================
-message(STATUS "Configuring GLEW (Makefile-based)...")
-include(${CMAKE_CURRENT_LIST_DIR}/External/glew.cmake)
 
 # ============================================================================
 # Category 3: Autotools-Based Libraries - wxWidgets (ExternalProject)

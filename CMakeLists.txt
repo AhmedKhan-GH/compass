@@ -36,7 +36,7 @@ compass_add_instrument(compass
 option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
 if(COMPASS_BUILD_DEMOS)
     add_subdirectory(demos/hello_world)
-    add_subdirectory(demos/quaternion)
+    add_subdirectory(demos/gl_smoke)
     add_subdirectory(demos/sound_test)
 endif()
 

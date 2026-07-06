@@ -10,10 +10,12 @@ add_library(compass_framework INTERFACE)
 target_include_directories(compass_framework INTERFACE include)
 target_compile_features(compass_framework INTERFACE cxx_std_20)
 
-# --- wx-dependent shell ---
+# --- wx-dependent shell + GL viewport ---
 add_library(compass_shell STATIC
     src/app.cpp
     src/document_frame.cpp
+    src/canvas2d.cpp
 )
 target_include_directories(compass_shell PUBLIC include)
-target_link_libraries(compass_shell PUBLIC compass_framework wxWidgets::wxWidgets)
+target_link_libraries(compass_shell
+    PUBLIC compass_framework wxWidgets::wxWidgets compass::gl)
