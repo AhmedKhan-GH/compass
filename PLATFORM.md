@@ -69,7 +69,7 @@ The only live coupling is deliberately the weakest kind: **shared file formats**
 | Three-layer build (Source/Build/Integration) | `cmake/README.md`, `cmake/Dependencies.cmake` | **Keep — it becomes Layer 0 of the SDK** (§5.2). |
 | Retina content-scale fix, single code path | `README.md` | Keep. Promoted to the pixel-space rule (§6.3); lesson already exported to Caliper's family ABI. |
 | Quaternion/slerp visualization demo | `src/main.cpp` | **Quarantined history** (moves to `demos/quaternion/` at I0, still buildable). Its GL 2.1 rendering is debt deleted at the I3 GL modernization (§6.2); the quaternion math returns only if a spatial instrument ever wants it (backlog). CD12 made Plot Workbench Instrument #1 instead. |
-| GLEW (static) | `cmake/External/glew.cmake` | **Replace with a GLAD 3.3-core loader** during the I3 GL modernization (§6.2, CD12). GLEW solves a loader problem we stop having once the context is fixed at 3.3 core. |
+| ~~GLEW~~ → **GLAD 3.3-core** (`compass::gl`) | `cmake/External/glad.cmake` | **Done (I3).** GLEW deleted; GLAD loads only the fixed 3.3-core entry points `compass::Canvas2D` needs. |
 | GLM | submodule | **Keep — reverses v1.** v1 retired GLM with the GL demo; v2 keeps GL, so GLM stays as the geometry-math library (`compass::glm`, §5.2). |
 | `sound_test` utility | `src/sound_test.cpp` | Park; not platform-relevant. |
 | Windows build | `cmake/README.md` | Still unimplemented; becomes a phase deliverable (I3) since cross-platform is the use case. |
@@ -134,7 +134,7 @@ Initial catalog:
 | Target | Library | Role | Status |
 |---|---|---|---|
 | `compass::wx` | wxWidgets 3.3.2 (static, monolithic build — core+aui+propgrid in one lib — plus glcanvas lib) | native UI | built today; wrap as target |
-| `compass::gl` | GLAD 3.3-core loader (replaces GLEW) | GL function loading | I3 deliverable — first consumer is the flagship's waveform canvas (CD12) |
+| `compass::gl` | GLAD 3.3-core loader (replaced GLEW) | GL function loading | **admitted (I3)** — consumer `compass::Canvas2D`; proven by `demos/gl_smoke` |
 | `compass::glm` | GLM | geometry math for viewport code | present; wrap as target |
 
 **Admission policy** — a library enters the catalog only when **all** hold:

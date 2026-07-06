@@ -48,4 +48,5 @@ Detailed task plan: NOT yet written (author from the spec before full execution)
 - inc3 DONE: compass_add_instrument() CMake fn + compass::wx/glm catalog wrappers + optional instruments/plot_workbench/ move. Then propose merge to main.
 
 ## Phase I3 — Signal Workbench + GL + Windows — IN PROGRESS (branch `i3-signal-workbench`)
-- GL milestone inc1: GLAD 3.3-core admitted (compass::gl), libglad.a builds. Consumer Canvas2D next.
+- GL modernization milestone DONE: GLAD admitted (compass::gl); compass::Canvas2D (GL 3.3 core, pixel-space rule) built; demos/gl_smoke proves it; GLEW + quaternion demo deleted; zero fixed-function GL in src/libcompass/demos. ctest 5/5, audits clean.
+- I3 next: EDF parser admission + Signal Workbench flagship (waveform Canvas2D + channel tree + annotations), then Windows port.

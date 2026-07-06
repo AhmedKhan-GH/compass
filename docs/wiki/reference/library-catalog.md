@@ -8,7 +8,7 @@ The curated dependency surface (`PLATFORM.md` §5.2). A library is in the catalo
 |---|---|---|---|
 | `compass::wx` (alias → wxWidgets::wxWidgets) | wxWidgets 3.3.2 (static, monolithic + gl lib) | all native UI: frames, AUI docking, property grids, dialogs, `wxGraphicsContext` 2D | rendering dense/spatial data (that's the GL canvas) |
 | `compass::glm` (alias → glm::glm) | GLM | geometry math in viewport/canvas code | general-purpose math outside rendering paths |
-| `GLEW::GLEW` *(exiting)* | GLEW 2.2.0 | GL function loading for the legacy demo only | any new code — replaced by GLAD at I3 (`compass::gl`, CD12) |
+| `compass::gl` (GLAD 3.3-core) | GLAD loader, vendored static | loading GL 3.3-core entry points for `compass::Canvas2D` | any GL beyond 3.3 core; instruments never call raw GL — use the canvas |
 
 System OpenGL is the one sanctioned system dependency (a framework the OS ships, consistent with the fresh-install guarantee).
 
@@ -16,7 +16,6 @@ System OpenGL is the one sanctioned system dependency (a framework the OS ships,
 
 | Library | Enters as | Gated on |
 |---|---|---|
-| GLAD (3.3-core loader) | `compass::gl` | I3 GL modernization (`PLATFORM.md` §6.2, CD12) — first consumer: the flagship's waveform canvas |
 | doctest (dev-only, never shipped) | test framework via Layer 0 | Plot Workbench unit tests, I1 |
 | EDF/WFDB parser | TBD name | Signal Workbench, I3 |
 | SQLite or DuckDB | TBD name | first instrument needing embedded storage; DuckDB preferred if Run Browser happens (reads Caliper's stores) |
