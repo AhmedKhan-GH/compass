@@ -1,0 +1,46 @@
+# Compass CI — build, test, and catalog-include lint.
+#
+# NOTE: The first build compiles static wxWidgets from source (~10 minutes).
+# A wx build cache keyed on cmake/External/wxwidgets.cmake is advisable so
+# subsequent runs skip that cost — see the "Cache wxWidgets build" step below.
+#
+# DORMANT: this workflow does nothing until the repo has a GitHub remote.
+# Once pushed, it runs on pushes and pull requests to main.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test-lint:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # First build compiles static wxWidgets from source (~10 min).
+      # Cache the wx build tree, keyed on the External recipe so it invalidates
+      # when the wx version/config changes.
+      - name: Cache wxWidgets build
+        uses: actions/cache@v4
+        with:
+          path: build/_deps
+          key: wxwidgets-${{ runner.os }}-${{ hashFiles('cmake/External/wxwidgets.cmake') }}
+
+      - name: Configure
+        run: cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build -j
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Catalog-include lint
+        run: bash scripts/catalog-lint.sh
