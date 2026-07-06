@@ -9,6 +9,7 @@
 
 #include <cctype>
 #include <cmath>
+#include <cstdlib>
 #include <string>
 #include <vector>
 
@@ -174,7 +175,10 @@ std::vector<Token> Tokenize(const std::string& s) {
             Token t;
             t.type = Token::Type::Num;
             t.column = col;
-            t.num = std::stod(s.substr(i, j - i));
+            // std::strtod (not std::stod) so the parser never throws — spec §3.
+            // Overflow yields +/-HUGE_VAL (inf), underflow yields 0; both are the
+            // IEEE degradations we want, with no exception to propagate.
+            t.num = std::strtod(s.substr(i, j - i).c_str(), nullptr);
             out.push_back(std::move(t));
             i = j;
             continue;

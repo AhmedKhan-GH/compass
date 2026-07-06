@@ -217,3 +217,18 @@ TEST_CASE("move semantics preserve behavior") {
     Expression b = std::move(a);
     CHECK(close(b.Eval(3.0), 9.0));
 }
+
+TEST_CASE("overflowing numeric literal does not throw") {
+    // std::stod throws std::out_of_range on overflow; Compile must not propagate
+    // it (spec §3: overflow -> +/-inf, never an exception).
+    Expression e = Expression::Compile("1e999999");
+    REQUIRE_FALSE(e.has_error());        // it is a valid (if infinite) literal
+    CHECK(std::isinf(e.Eval(0.0)));      // degrades to +inf, not a crash
+}
+
+TEST_CASE("large-but-finite literal still parses finite") {
+    Expression e = Expression::Compile("1e300");
+    REQUIRE_FALSE(e.has_error());
+    CHECK(std::isfinite(e.Eval(0.0)));
+    CHECK(e.Eval(0.0) == doctest::Approx(1e300));
+}
