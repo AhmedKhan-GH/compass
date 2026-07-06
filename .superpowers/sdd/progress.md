@@ -40,3 +40,9 @@ Detailed task plan: NOT yet written (author from the spec before full execution)
 
 ## Notes
 - Session has crashed/interrupted twice; background agents were orphaned but work landed on disk. Prefer verifying disk state before re-dispatch.
+
+
+## Phase I2 — Extract the SDK — IN PROGRESS (branch `i2-extract-sdk`)
+- inc1 DONE: compass::Document/UndoableDocument (libcompass), PlotDocument derives it, catalog lint+CI. 5 CTest.
+- inc2 DONE: compass::App + DocumentFrame shell extracted; MainFrame thin subclass; templates/instrument builds+launches (template-as-spec §5.6 passes). Exit criterion effectively met. app+template audit clean, ctest 5/5.
+- inc3 TODO: compass_add_instrument() CMake fn + compass::wx/glm catalog wrappers + optional instruments/plot_workbench/ move. Then propose merge to main.
