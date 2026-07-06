@@ -5,6 +5,7 @@
 # The plot logic library — pure C++, wx-free. App and tests both link this.
 add_library(compass_plot STATIC
     ${CMAKE_SOURCE_DIR}/src/plot/expression.cpp
+    ${CMAKE_SOURCE_DIR}/src/plot/sampler.cpp
 )
 target_include_directories(compass_plot PUBLIC ${CMAKE_SOURCE_DIR}/src)
 
@@ -16,3 +17,4 @@ function(compass_add_plot_test name)
 endfunction()
 
 compass_add_plot_test(test_expression)
+compass_add_plot_test(test_sampler)
