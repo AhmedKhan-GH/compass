@@ -102,7 +102,7 @@ void PlotCanvas::Draw(wxGraphicsContext& graphics, double w, double h) {
         if (expr.has_error()) continue;
 
         wxColour colour(e.style.color);
-        if (!colour.IsOk()) colour = wxColour(47, 158, 68);  // #2F9E44 green
+        if (!colour.IsOk()) colour = wxColour(76, 110, 245);
         gc->SetPen(wxPen(colour, e.style.width));
 
         for (const plot::Polyline& poly : plot::Sample(expr, v.xmin, v.xmax, width_px)) {
