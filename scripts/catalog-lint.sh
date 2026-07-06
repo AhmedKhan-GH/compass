@@ -24,16 +24,20 @@ set -u
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-SRC_DIR="${REPO_ROOT}/src"
+# Instrument/UI source lives under src/, instruments/, and templates/. libcompass/
+# (the framework) is excluded — the catalog rule governs instrument code, not the
+# framework itself.
+SCAN_DIRS=""
+for d in src instruments templates; do
+  [ -d "${REPO_ROOT}/${d}" ] && SCAN_DIRS="${SCAN_DIRS} ${REPO_ROOT}/${d}"
+done
 
-if [ ! -d "${SRC_DIR}" ]; then
-  echo "catalog-lint: no src/ directory found at ${SRC_DIR}; nothing to scan."
+if [ -z "${SCAN_DIRS}" ]; then
+  echo "catalog-lint: no source directories found; nothing to scan."
   exit 0
 fi
 
-# Collect instrument/UI sources. libcompass/ (framework) is excluded — the
-# catalog rule governs instrument code, not the framework itself.
-files=$(find "${SRC_DIR}" \
+files=$(find ${SCAN_DIRS} \
   -type d -name libcompass -prune -o \
   -type f \( -name '*.cpp' -o -name '*.h' \) -print)
 
@@ -67,7 +71,7 @@ for f in ${files}; do
              | sed -E 's/^([0-9]+):[[:space:]]*#[[:space:]]*include[[:space:]]*<([^>]+)>.*/\1:\2/')
 done
 
-echo "catalog-lint: scanned ${scanned} file(s) under src/."
+echo "catalog-lint: scanned ${scanned} file(s) under src/instruments/templates."
 
 if [ "${violations}" -gt 0 ]; then
   echo "catalog-lint: FAILED — ${violations} non-catalog include(s) found."

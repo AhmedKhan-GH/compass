@@ -23,6 +23,7 @@ add_subdirectory(src/signal)
 # The instrument template must always build against the framework (PLATFORM.md
 # §5.6 — the template is the SDK spec; a framework change that breaks it fails here).
 add_subdirectory(templates/instrument)
+add_subdirectory(instruments/signal_workbench)
 
 # Instrument #1 — Plot Workbench, via the SDK entry point (§5.4). Native UI
 # (wxGraphicsContext 2D, no GL at I1); GL enters via libcompass at I3 (CD12).
