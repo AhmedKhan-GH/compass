@@ -17,7 +17,7 @@ namespace plot {
 
 // Per-curve styling. Defaults match the spec's example worksheet.
 struct Style {
-    std::string color = "#4C6EF5";  // "#RRGGBB"
+    std::string color = "#2F9E44";  // "#RRGGBB" (green — the default curve color)
     double width = 2.0;
     bool visible = true;
 };
