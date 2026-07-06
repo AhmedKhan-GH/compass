@@ -16,6 +16,8 @@ add_executable(compass WIN32
     src/main.cpp
     src/main_frame.cpp
     src/plot_canvas.cpp
+    src/expression_panel.cpp
+    src/view_panel.cpp
 )
 target_link_libraries(compass PRIVATE wxWidgets::wxWidgets compass_plot)
 

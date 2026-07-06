@@ -6,7 +6,9 @@
 #include <wx/panel.h>
 #include <wx/settings.h>
 
+#include "expression_panel.h"
 #include "plot_canvas.h"
+#include "view_panel.h"
 
 namespace {
 constexpr int ID_RESET_LAYOUT = wxID_HIGHEST + 1;
@@ -25,25 +27,38 @@ MainFrame::MainFrame()
     m_doc.AddExpression(plot::ExprEntry{"sin(x)", plot::Style{}});
     m_doc.MarkSaved();
 
+    auto onChanged = [this] { OnDocumentChanged(); };
+
     m_canvas = new PlotCanvas(this, &m_doc);
     m_aui.AddPane(m_canvas, wxAuiPaneInfo()
                                 .Name("workspace")
                                 .CenterPane());
 
-    auto* sidebar = new wxPanel(this, wxID_ANY);
-    m_aui.AddPane(sidebar, wxAuiPaneInfo()
-                               .Name("sidebar")
-                               .Caption("Panels")
-                               .Left()
-                               .BestSize(240, -1)
-                               .CloseButton(true));
+    m_exprPanel = new ExpressionPanel(this, &m_doc, onChanged);
+    m_aui.AddPane(m_exprPanel, wxAuiPaneInfo()
+                                   .Name("expressions")
+                                   .Caption("Expressions")
+                                   .Left()
+                                   .BestSize(260, -1)
+                                   .CloseButton(true));
+
+    m_viewPanel = new ViewPanel(this, &m_doc, onChanged);
+    m_aui.AddPane(m_viewPanel, wxAuiPaneInfo()
+                                   .Name("view")
+                                   .Caption("View")
+                                   .Right()
+                                   .BestSize(220, -1)
+                                   .CloseButton(true));
 
     m_aui.Update();
+    UpdateEditMenu();
     m_defaultPerspective = m_aui.SavePerspective();
 
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnResetLayout, this, ID_RESET_LAYOUT);
+    Bind(wxEVT_MENU, &MainFrame::OnUndo, this, wxID_UNDO);
+    Bind(wxEVT_MENU, &MainFrame::OnRedo, this, wxID_REDO);
 
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
     RestoreLayout();
@@ -57,6 +72,10 @@ void MainFrame::BuildMenuBar() {
     auto* fileMenu = new wxMenu;
     fileMenu->Append(wxID_EXIT);
 
+    auto* editMenu = new wxMenu;
+    editMenu->Append(wxID_UNDO, "&Undo\tCtrl+Z");
+    editMenu->Append(wxID_REDO, "&Redo\tCtrl+Shift+Z");
+
     auto* viewMenu = new wxMenu;
     viewMenu->Append(ID_RESET_LAYOUT, "&Reset Layout",
                      "Restore the default window layout");
@@ -66,6 +85,7 @@ void MainFrame::BuildMenuBar() {
 
     auto* menuBar = new wxMenuBar;
     menuBar->Append(fileMenu, "&File");
+    menuBar->Append(editMenu, "&Edit");
     menuBar->Append(viewMenu, "&View");
     menuBar->Append(helpMenu, "&Help");
     SetMenuBar(menuBar);
@@ -87,6 +107,34 @@ void MainFrame::OnAbout(wxCommandEvent&) {
 
 void MainFrame::OnResetLayout(wxCommandEvent&) {
     m_aui.LoadPerspective(m_defaultPerspective, true);
+}
+
+void MainFrame::OnUndo(wxCommandEvent&) {
+    m_doc.Undo();
+    OnDocumentChanged();
+}
+
+void MainFrame::OnRedo(wxCommandEvent&) {
+    m_doc.Redo();
+    OnDocumentChanged();
+}
+
+void MainFrame::OnDocumentChanged() {
+    if (m_canvas) m_canvas->Refresh();
+    // Defer panel rebuilds so we never delete/repopulate a control from inside
+    // one of its own event handlers.
+    CallAfter([this] {
+        if (m_exprPanel) m_exprPanel->ReloadFromDoc();
+        if (m_viewPanel) m_viewPanel->ReloadFromDoc();
+        UpdateEditMenu();
+    });
+}
+
+void MainFrame::UpdateEditMenu() {
+    wxMenuBar* bar = GetMenuBar();
+    if (!bar) return;
+    bar->Enable(wxID_UNDO, m_doc.can_undo());
+    bar->Enable(wxID_REDO, m_doc.can_redo());
 }
 
 void MainFrame::OnClose(wxCloseEvent& event) {
