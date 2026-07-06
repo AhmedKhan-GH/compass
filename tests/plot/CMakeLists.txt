@@ -6,6 +6,7 @@
 add_library(compass_plot STATIC
     ${CMAKE_SOURCE_DIR}/src/plot/expression.cpp
     ${CMAKE_SOURCE_DIR}/src/plot/sampler.cpp
+    ${CMAKE_SOURCE_DIR}/src/plot/plot_document.cpp
 )
 target_include_directories(compass_plot PUBLIC ${CMAKE_SOURCE_DIR}/src)
 
@@ -18,3 +19,4 @@ endfunction()
 
 compass_add_plot_test(test_expression)
 compass_add_plot_test(test_sampler)
+compass_add_plot_test(test_plot_document)
