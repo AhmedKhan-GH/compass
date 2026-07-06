@@ -93,6 +93,25 @@ TEST_CASE("edit, style, remove, and view are each one undo step") {
     CHECK(d.view().xmax == doctest::Approx(10.0));
 }
 
+TEST_CASE("consecutive edits to one expression coalesce into a single undo step") {
+    PlotDocument d;
+    d.AddExpression(Expr("x"));
+    // Simulate live typing "s", "si", "sin(x)" into the same field.
+    d.EditExpressionText(0, "s");
+    d.EditExpressionText(0, "si");
+    d.EditExpressionText(0, "sin(x)");
+    CHECK(d.expressions()[0].text == "sin(x)");
+    d.Undo();  // one step reverts the whole typing session, not one char
+    CHECK(d.expressions()[0].text == "x");
+    // Editing a DIFFERENT expression is its own step (different tag).
+    d.AddExpression(Expr("y"));
+    d.EditExpressionText(0, "a");
+    d.EditExpressionText(1, "b");  // different index → new step
+    d.Undo();
+    CHECK(d.expressions()[1].text == "y");
+    CHECK(d.expressions()[0].text == "a");
+}
+
 TEST_CASE("out-of-range mutations are no-ops (no undo step, no dirty)") {
     PlotDocument d;
     d.RemoveExpression(5);

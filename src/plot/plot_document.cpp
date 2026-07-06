@@ -35,7 +35,8 @@ void PlotDocument::EditExpressionText(std::size_t index, const std::string& text
     if (index >= state().expressions.size()) return;
     PlotState next = state();
     next.expressions[index].text = text;
-    Commit(std::move(next));
+    // Live typing into one field coalesces into a single undo step (tag = index).
+    CommitCoalesced(std::move(next), static_cast<int>(index));
 }
 
 void PlotDocument::SetExpressionStyle(std::size_t index, const Style& s) {

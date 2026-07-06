@@ -62,6 +62,7 @@ public:
         redo_.push_back(std::move(cur_));
         cur_ = std::move(undo_.back());
         undo_.pop_back();
+        last_tag_ = kNoTag;
         set_dirty(true);
     }
 
@@ -70,15 +71,35 @@ public:
         undo_.push_back(std::move(cur_));
         cur_ = std::move(redo_.back());
         redo_.pop_back();
+        last_tag_ = kNoTag;
         set_dirty(true);
     }
 
 protected:
+    static constexpr int kNoTag = -1;
+
     // Apply a new state as one undo step.
     void Commit(State next) {
         undo_.push_back(cur_);
         cur_ = std::move(next);
         redo_.clear();
+        last_tag_ = kNoTag;
+        set_dirty(true);
+    }
+
+    // Like Commit, but consecutive calls sharing the same tag (>= 0) collapse
+    // into a SINGLE undo step — for live edits (e.g. typing into one field),
+    // where per-keystroke undo would be useless. A different tag, or any plain
+    // Commit/Undo/Redo, starts a fresh step. tag == kNoTag never coalesces.
+    void CommitCoalesced(State next, int tag) {
+        if (tag != kNoTag && tag == last_tag_ && !undo_.empty()) {
+            cur_ = std::move(next);  // undo entry already holds the pre-edit state
+        } else {
+            undo_.push_back(cur_);
+            cur_ = std::move(next);
+            redo_.clear();
+        }
+        last_tag_ = tag;
         set_dirty(true);
     }
 
@@ -87,6 +108,7 @@ protected:
         cur_ = std::move(s);
         undo_.clear();
         redo_.clear();
+        last_tag_ = kNoTag;
         set_dirty(false);
     }
 
@@ -95,6 +117,7 @@ protected:
 private:
     std::vector<State> undo_;
     std::vector<State> redo_;
+    int last_tag_ = kNoTag;  // tag of the last CommitCoalesced, for step merging
 };
 
 }  // namespace compass
