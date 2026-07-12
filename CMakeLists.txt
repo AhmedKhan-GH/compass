@@ -4,63 +4,52 @@ project(compass VERSION 0.1)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Windows: static CRT (/MT) across every target — single self-contained .exe, no
-# VC++ redistributable (CD1, CD3). CMP0091 is NEW by default at cmake >= 3.16.
+# C1 — Compass as a CONSUMER of libcaliper (embed v1.1). The app is native wx
+# chrome (rescued libcompass App + DocumentFrame) around a live libcaliper
+# viewport + a native metrics table over caliper.metrics.v1_1. The self-rendered
+# GL path (hello_gl / gl_smoke / canvas2d / compass::gl) is deleted — the canvas
+# is libcaliper's CAMetalLayer via caliper/embed.h, never a wx GL canvas (D13).
+
 if(MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    # /utf-8: read UTF-8 sources correctly (no BOM) and silence C4819. wxMSW
-    # decodes narrow char* via the ANSI codepage (mangling "…"/"—"), so UI strings
-    # carrying those glyphs use wide L"..." literals, which wxString decodes losslessly.
     add_compile_options(/utf-8)
 endif()
 
-# Include dependency management system (PyTorch-style)
-include(cmake/Dependencies.cmake)
-# GLAD 3.3-core loader → compass::gl (§6.2, CD12; replaces GLEW at I3).
-include(cmake/External/glad.cmake)
-# nlohmann/json → compass::json (§5.2 admission, I3): Plot + Signal sidecars.
-include(cmake/External/nlohmann.cmake)
-# Layer 0 catalog: compass:: targets + compass_add_instrument() (§5.2, §5.4).
-include(cmake/catalog.cmake)
+# wxWidgets: vendored static, built from source (the proven build lore stays —
+# cmake/External/wxwidgets.cmake creates the wxWidgets::wxWidgets interface lib).
+include(cmake/External/wxwidgets.cmake)
 
-# Layer 1 — the instrument framework (header-only for now).
+# libcaliper: consumed from an already-built caliper tree (creates caliper::embed
+# + CALIPER_APPLETS_DIR). C1 links this closure; it does not build caliper.
+include(cmake/External/caliper.cmake)
+
+# Layer 1 — the rescued wx framework (App + DocumentFrame; no GL) + the wx-free
+# C2 logic library (compass_core: .compass document, SQL builders, Arrow decode,
+# store-root classifier, HTML report).
 add_subdirectory(libcompass)
 
-# Plot Workbench logic (wx-free); shared by the app and the tests.
-add_subdirectory(src/plot)
-add_subdirectory(src/signal)
-
-# The instrument template must always build against the framework (PLATFORM.md
-# §5.6 — the template is the SDK spec; a framework change that breaks it fails here).
-add_subdirectory(templates/instrument)
-add_subdirectory(instruments/signal_workbench)
-
-# Instrument #1 — Plot Workbench, via the SDK entry point (§5.4). Native UI
-# (wxGraphicsContext 2D, no GL at I1); GL enters via libcompass at I3 (CD12).
-compass_add_instrument(compass
-    SOURCES
-        src/main.cpp
-        src/main_frame.cpp
-        src/plot_canvas.cpp
-        src/expression_panel.cpp
-        src/view_panel.cpp
-    LIBS compass_plot
+# The Compass application (C2): native chrome + libcaliper viewport + the
+# run-comparison document (picker, side-by-side tables/plots, annotations, export).
+add_executable(compass
+    app/main.cpp
+    app/workspace_frame.cpp
+    app/viewport_panel.cpp
+    app/metrics_table.cpp
+    app/run_picker.cpp
+    app/plot_series_canvas.cpp
+    app/comparison_panel.cpp
+    app/annotations_panel.cpp
+    app/report_builder.cpp
 )
+target_link_libraries(compass PRIVATE compass_shell compass_core caliper::embed)
+target_compile_definitions(compass PRIVATE
+    COMPASS_APPLETS_DIR_DEFAULT="${CALIPER_APPLETS_DIR}")
+set_target_properties(compass PROPERTIES
+    CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
 
-option(COMPASS_BUILD_DEMOS "Build quarantined demos (demos/)" ON)
-if(COMPASS_BUILD_DEMOS)
-    add_subdirectory(demos/hello_world)
-    add_subdirectory(demos/gl_smoke)
-    add_subdirectory(demos/hello_gl)
-    add_subdirectory(demos/sound_test)
-endif()
-
-# Plot Workbench (Instrument #1, I1) — headless logic units, unit-tested.
-# doctest is dev-only (never linked into shipped binaries); tests run via CTest.
-option(COMPASS_BUILD_TESTS "Build unit tests (doctest + CTest)" ON)
+# C2 tests (doctest). Opt out with -DCOMPASS_BUILD_TESTS=OFF.
+option(COMPASS_BUILD_TESTS "Build Compass unit tests" ON)
 if(COMPASS_BUILD_TESTS)
     enable_testing()
-    add_subdirectory(tests/compass)
-    add_subdirectory(tests/plot)
-    add_subdirectory(tests/signal)
+    add_subdirectory(tests/c2)
 endif()
