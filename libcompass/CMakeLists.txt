@@ -8,10 +8,29 @@
 #   compass_shell     — wx-dependent shell (compass::App, DocumentFrame); linked
 #                       by the Compass executable.
 
-# --- wx-free core (header-only) ---
+# --- wx-free core (header-only base) ---
 add_library(compass_framework INTERFACE)
 target_include_directories(compass_framework INTERFACE include)
 target_compile_features(compass_framework INTERFACE cxx_std_20)
+
+# --- wx-free C2 logic (compiled): the .compass document model, the metrics.v1_1
+#     SQL builders, the Arrow decoder, the store-root classifier, and the HTML
+#     report renderer. No wx, no DuckDB linkage — only nlohmann/json and the
+#     header-only Arrow C struct layout (caliper/arrow_c.h via sdk/include). Kept
+#     wx-free so the tests exercise the branching/rule logic headless. ---
+include(${PROJECT_SOURCE_DIR}/cmake/External/nlohmann.cmake)
+add_library(compass_core STATIC
+    src/comparison_state.cpp
+    src/comparison_document.cpp
+    src/metrics_sql.cpp
+    src/arrow_decode.cpp
+    src/store_root.cpp
+    src/report.cpp
+)
+target_include_directories(compass_core PUBLIC include)
+target_include_directories(compass_core PRIVATE "${CALIPER_SRC_DIR}/sdk/include")
+target_link_libraries(compass_core PUBLIC compass_framework PRIVATE compass::json)
+target_compile_features(compass_core PUBLIC cxx_std_20)
 
 # --- wx-dependent shell (no GL) ---
 add_library(compass_shell STATIC

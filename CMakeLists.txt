@@ -23,18 +23,33 @@ include(cmake/External/wxwidgets.cmake)
 # + CALIPER_APPLETS_DIR). C1 links this closure; it does not build caliper.
 include(cmake/External/caliper.cmake)
 
-# Layer 1 — the rescued wx framework (App + DocumentFrame; no GL).
+# Layer 1 — the rescued wx framework (App + DocumentFrame; no GL) + the wx-free
+# C2 logic library (compass_core: .compass document, SQL builders, Arrow decode,
+# store-root classifier, HTML report).
 add_subdirectory(libcompass)
 
-# The Compass application (C1): native chrome + libcaliper viewport + metrics.
+# The Compass application (C2): native chrome + libcaliper viewport + the
+# run-comparison document (picker, side-by-side tables/plots, annotations, export).
 add_executable(compass
     app/main.cpp
     app/workspace_frame.cpp
     app/viewport_panel.cpp
     app/metrics_table.cpp
+    app/run_picker.cpp
+    app/plot_series_canvas.cpp
+    app/comparison_panel.cpp
+    app/annotations_panel.cpp
+    app/report_builder.cpp
 )
-target_link_libraries(compass PRIVATE compass_shell caliper::embed)
+target_link_libraries(compass PRIVATE compass_shell compass_core caliper::embed)
 target_compile_definitions(compass PRIVATE
     COMPASS_APPLETS_DIR_DEFAULT="${CALIPER_APPLETS_DIR}")
 set_target_properties(compass PROPERTIES
     CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
+
+# C2 tests (doctest). Opt out with -DCOMPASS_BUILD_TESTS=OFF.
+option(COMPASS_BUILD_TESTS "Build Compass unit tests" ON)
+if(COMPASS_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests/c2)
+endif()
