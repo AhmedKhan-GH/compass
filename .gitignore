@@ -1,6 +1,8 @@
 cmake-build-debug
 .idea
 build/
+build-c1/
+imgui.ini
 
 # Ignore all third_party contents except submodule metadata
 third_party/*

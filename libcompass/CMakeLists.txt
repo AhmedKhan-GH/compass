@@ -1,21 +1,23 @@
-# libcompass — Layer 1, the instrument framework (PLATFORM.md §5.3),
-# extracted from Instrument #1 at I2 (CD9). Two targets keep the layering honest:
+# libcompass — Layer 1, the instrument framework (PLATFORM.md §5.3).
 #
-#   compass_framework — wx-FREE core (compass::Document); linked by logic libs.
+# C1 RESCUE: the wx chrome is kept; the self-rendered GL viewport (canvas2d /
+# compass::gl) is GONE — C1's canvas is libcaliper's CAMetalLayer via the embed
+# ABI, never a wx GL canvas (D13). Two targets keep the layering honest:
+#
+#   compass_framework — wx-FREE core (compass::Document base); header-only.
 #   compass_shell     — wx-dependent shell (compass::App, DocumentFrame); linked
-#                       by instrument executables.
+#                       by the Compass executable.
 
-# --- wx-free core (header-only for now) ---
+# --- wx-free core (header-only) ---
 add_library(compass_framework INTERFACE)
 target_include_directories(compass_framework INTERFACE include)
 target_compile_features(compass_framework INTERFACE cxx_std_20)
 
-# --- wx-dependent shell + GL viewport ---
+# --- wx-dependent shell (no GL) ---
 add_library(compass_shell STATIC
     src/app.cpp
     src/document_frame.cpp
-    src/canvas2d.cpp
 )
 target_include_directories(compass_shell PUBLIC include)
 target_link_libraries(compass_shell
-    PUBLIC compass_framework wxWidgets::wxWidgets compass::gl)
+    PUBLIC compass_framework wxWidgets::wxWidgets)
