@@ -17,20 +17,24 @@ target_compile_features(compass_framework INTERFACE cxx_std_20)
 #     SQL builders, the Arrow decoder, the store-root classifier, and the HTML
 #     report renderer. No wx, no DuckDB linkage — only nlohmann/json and the
 #     header-only Arrow C struct layout (caliper/arrow_c.h via sdk/include). Kept
-#     wx-free so the tests exercise the branching/rule logic headless. ---
-include(${PROJECT_SOURCE_DIR}/cmake/External/nlohmann.cmake)
-add_library(compass_core STATIC
-    src/comparison_state.cpp
-    src/comparison_document.cpp
-    src/metrics_sql.cpp
-    src/arrow_decode.cpp
-    src/store_root.cpp
-    src/report.cpp
-)
-target_include_directories(compass_core PUBLIC include)
-target_include_directories(compass_core PRIVATE "${CALIPER_SRC_DIR}/sdk/include")
-target_link_libraries(compass_core PUBLIC compass_framework PRIVATE compass::json)
-target_compile_features(compass_core PUBLIC cxx_std_20)
+#     wx-free so the tests exercise the branching/rule logic headless.
+#     Needs caliper's sdk/include headers, so it builds only with the caliper
+#     subtree (COMPASS_WITH_CALIPER); off for generic CI. ---
+if(COMPASS_WITH_CALIPER)
+    include(${PROJECT_SOURCE_DIR}/cmake/External/nlohmann.cmake)
+    add_library(compass_core STATIC
+        src/comparison_state.cpp
+        src/comparison_document.cpp
+        src/metrics_sql.cpp
+        src/arrow_decode.cpp
+        src/store_root.cpp
+        src/report.cpp
+    )
+    target_include_directories(compass_core PUBLIC include)
+    target_include_directories(compass_core PRIVATE "${CALIPER_SRC_DIR}/sdk/include")
+    target_link_libraries(compass_core PUBLIC compass_framework PRIVATE compass::json)
+    target_compile_features(compass_core PUBLIC cxx_std_20)
+endif()
 
 # --- wx-dependent shell + GL viewport ---
 # compass::Canvas2D (the 3.3-core forward-compatible wxGLCanvas base) is kept

@@ -4,8 +4,13 @@
 # A wx build cache keyed on cmake/External/wxwidgets.cmake is advisable so
 # subsequent runs skip that cost — see the "Cache wxWidgets build" step below.
 #
-# DORMANT: this workflow does nothing until the repo has a GitHub remote.
-# Once pushed, it runs on pushes and pull requests to main.
+# SCOPE (D13/C1): the `compass` app consumes libcaliper from a local caliper
+# tree that can't exist on a runner, so CI configures with
+# -DCOMPASS_WITH_CALIPER=OFF and builds/tests the caliper-free subset — the wx
+# shell (compass_shell + compass::Canvas2D) and the demos, on macOS and Windows.
+# This finally compile-tests the Windows Canvas2D GL loader (canvas2d.cpp, marked
+# UNVERIFIED). The C2 core/tests need caliper headers and are covered only when a
+# fetchable, pinned caliper dependency lands (tracked follow-up).
 name: CI
 
 on:
@@ -38,13 +43,16 @@ jobs:
           key: wx-${{ runner.os }}-${{ hashFiles('cmake/External/wxwidgets.cmake') }}
 
       - name: Configure
-        run: cmake -S . -B build
+        run: cmake -S . -B build -DCOMPASS_WITH_CALIPER=OFF
 
       - name: Build
         run: cmake --build build -j
 
+      # The caliper-free subset ships no unit tests (the C2 suite needs caliper
+      # headers); --no-tests=ignore keeps this green rather than erroring on an
+      # empty test set, and still fails loudly if a future caliper-free test breaks.
       - name: Test
-        run: ctest --test-dir build --output-on-failure
+        run: ctest --test-dir build --output-on-failure --no-tests=ignore
 
       # catalog-lint is a bash script; Windows runners ship Git Bash.
       - name: Catalog-include lint
