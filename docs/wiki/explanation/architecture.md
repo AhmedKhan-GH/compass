@@ -14,9 +14,16 @@ The SDK is exactly three artifacts:
 
 | Layer | Artifact | Status |
 |---|---|---|
-| 0 | the curated [library catalog](../reference/library-catalog.md) (`compass::wx`/`gl`/`json`/`glm` targets) | **done** (I2) |
-| 1 | `libcompass` — App, Document/View + undo, workspace shell, export, `Canvas2D` GL viewport | **done** — extracted at I2, `Canvas2D` added at I3 |
-| 2 | instruments (`compass`, `signal_workbench`) + `compass_add_instrument()` + the buildable template | **done** (I2) |
+| 0 | the curated [library catalog](../reference/library-catalog.md) (`compass::wx`/`gl`/`json`/`glm` targets) | built at I2; **partially parked at C1** — `compass::gl` and `compass::json` live, `catalog.cmake`/`compass::glm` not wired |
+| 1 | `libcompass` — App, Document/View + undo, workspace shell, export, `Canvas2D` GL viewport | **live** — extracted at I2, `Canvas2D` added at I3; C2 added the wx-free `compass_core` (`.compass` document, SQL builders, Arrow decode, HTML report) |
+| 2 | instruments (`compass`, `signal_workbench`) + `compass_add_instrument()` + the buildable template | built at I2; **parked at C1** — sources remain in-tree, not in the build |
+
+!!! note "The C1 pivot (D13, 2026-07-12)"
+    The `compass` binary is now a **libcaliper consumer**: native wx chrome around a
+    libcaliper `CAMetalLayer` viewport (`caliper/embed.h`), plus the C2 run-comparison
+    document. The app never draws through a wx GL canvas; `Canvas2D` remains for the
+    demos and future self-rendered instruments. This page's SDK design is retained as
+    the architecture instruments return to when re-wired.
 
 ## The extraction rule (CD9)
 

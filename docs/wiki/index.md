@@ -6,14 +6,18 @@ Compass is the sibling of **Caliper** (`../caliper/`), the realtime GPU-resident
 
 ## Where the project stands
 
-The governing spec is `PLATFORM.md` v2.1 at the repo root, delivered in phases **I0–I4** (§7). Phases **I0 through I3 are done**: the instrument shell, the Plot Workbench (Instrument #1), the extracted `libcompass` SDK, the Signal Workbench flagship, the GL 3.3 modernization (GLAD), and the **Windows port** have all landed. Two instruments (`compass`, `signal_workbench`) plus the buildable template compile and run on **macOS and Windows**; the Windows build is verified green (8/8 unit suites, running `.exe`s that depend only on system DLLs). I4 (notarization, release trains) is what remains.
+The governing spec is `PLATFORM.md` v2.1 at the repo root, delivered in phases **I0–I4** (§7). Phases **I0 through I3 shipped** the instrument-platform era: the instrument shell, the Plot Workbench (Instrument #1), the extracted `libcompass` SDK, the Signal Workbench flagship, the GL 3.3 modernization (GLAD), and the Windows port.
+
+**Then the C1/C2 pivot (D13, 2026-07-12):** the `compass` binary became a **consumer of libcaliper** — native wx chrome (the rescued `libcompass` App + DocumentFrame) around a live libcaliper Metal viewport, plus the C2 run-comparison document (run picker, side-by-side tables/plots, annotations, HTML report). The app's canvas is libcaliper's `CAMetalLayer` via `caliper/embed.h`, never a wx GL canvas. The I1–I3 workbenches (`src/`, `instruments/signal_workbench/`) and the `compass_add_instrument()` SDK entry point are **parked** — present in the tree, not wired into the build. `compass::Canvas2D` remains as the demos' teaching viewport (see [run the demos](howto/run-the-demos.md)).
 
 | Phase | Delivers | Status |
 |---|---|---|
 | I0 | Spec committed, demo quarantined, minimal shell as static binary | **shipped** |
-| I1 | Instrument #1: Plot Workbench (function grapher, native 2D — CD12) | **shipped (macOS)** |
-| I2 | `libcompass` + `compass_add_instrument()` + template extracted | **shipped (macOS)** |
-| I3 | Instrument #2: Signal Workbench (flagship); GL 3.3 modernization (GLAD); Windows port | **shipped (macOS + Windows)** |
+| I1 | Instrument #1: Plot Workbench (function grapher, native 2D — CD12) | **shipped (macOS)**, parked at C1 |
+| I2 | `libcompass` + `compass_add_instrument()` + template extracted | **shipped (macOS)**, SDK entry point parked at C1 |
+| I3 | Instrument #2: Signal Workbench (flagship); GL 3.3 modernization (GLAD); Windows port | **shipped (macOS + Windows)**, parked at C1 |
+| C1 | Compass as a libcaliper consumer — wx chrome + live Metal viewport + metrics table | **shipped (macOS)** |
+| C2 | Run-comparison document — pick N runs, tables/plots, annotations, HTML report | **shipped (macOS)** |
 | I4 | Notarization, release trains, optional Run Browser | planned |
 
 Beyond the phases, the UI now follows the OS appearance — **Windows 11 dark mode** (title bar, menus, controls) with a Mica backdrop, and a theme-aware plot canvas (see [rendering](explanation/rendering.md)).

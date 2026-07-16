@@ -19,3 +19,13 @@ The platform decision log, mirroring `PLATFORM.md` §8.
 | CD10 | **Monorepo for code; per-instrument release trains** — namespaced tags, one GitHub Release per instrument, path-filtered CI; `libcompass` splits only when a third-party author exists | Proposed | One build keeps the source-level SDK honest. Cost: repo-wide recompiles on framework change. |
 | CD11 | **The distribution artifact is the bare static binary** — zipped `.exe` (Windows), notarized `.dmg` (macOS); no installers; update *check* allowed, auto-update daemon not | Proposed | Installers betray the fresh-install identity. |
 | CD12 | **Instrument #1 = Plot Workbench** (function grapher, `.plot` worksheets, native-2D canvas); GL modernization + GLAD admission defer to I3, whose flagship canvas is GLAD's first real consumer; quaternion demo quarantined until deleted at I3 | **Ratified** (owner directive, 2026-07-05) | A utility with no external files demonstrating the native-desktop identity (Desmos as a static binary). Keeps I1 light. Cost: GL debt outstanding until I3 (risk R7). |
+| D13 | **The Compass app's canvas is libcaliper's `CAMetalLayer`** (via `caliper/embed.h`), never a wx GL canvas — the C1 pivot makes `compass` a libcaliper consumer; the I1–I3 workbenches and `compass_add_instrument()` are parked (in-tree, out of the build) | **Ratified** (C1, 2026-07-12) | One rendering authority for the app; Compass gets Caliper's GPU viewport for free. Cost: the instrument-SDK product is on hold. Scope: demos are exempt — `compass::Canvas2D` was restored (2026-07-16) as the demos' teaching viewport only. |
+
+## Parked work worth knowing about
+
+Unmerged history that stays reachable (do not prune without checking here):
+
+- **`origin/i3-windows-port`** — the I3 Windows build made to compile, link, and run. `Canvas2D`'s Win32 GLAD loader in `main` is code-complete but **unverified**; this branch is the proof-run to consult when the Windows port returns (also the target of DISTRIBUTION.md Phases 1–2's Windows matrix).
+- **`worktree-agent-a137af4…`** — catalog-include lint + a dormant CI workflow: the seed of DISTRIBUTION.md Phase 1 (reproducible 3-OS CI builds).
+- **`worktree-agent-a1e5ce8…`** — I1 Expression parser + overflow-literal fix with regression tests (pre-pivot Plot Workbench logic).
+- **`src/`, `instruments/signal_workbench/`, `templates/instrument/`, `cmake/catalog.cmake`** — the parked I1–I3 instrument layer, on disk at HEAD, not in the build (see D13).

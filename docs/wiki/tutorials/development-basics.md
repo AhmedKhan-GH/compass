@@ -28,14 +28,25 @@ The short answer to "is it using libraries we have installed?": **no — there a
 
 | Target | Comes from | Role |
 |---|---|---|
-| `compass::wx` | `third_party/wxWidgets` (submodule), built static in-tree | all native UI — frames, AUI, property grids, dialogs, `wxGraphicsContext` 2D |
-| `compass::gl` | `third_party/glad` (vendored) | the GL 3.3-core loader; only GL instruments link it (via the framework shell) |
-| `compass::glm` | `third_party/glm` (pinned) | geometry math for viewport code |
+| `wxWidgets::wxWidgets` | `third_party/wxWidgets` (submodule), built static in-tree | all native UI — frames, AUI, property grids, dialogs, `wxGraphicsContext` 2D |
+| `compass::gl` | `third_party/glad` (vendored) | the GL 3.3-core loader; only GL code links it (via the framework shell) |
 | `compass::json` | `third_party/nlohmann` (vendored) | document/sidecar serialization |
+| `caliper::embed` | an already-built caliper tree (`cmake/External/caliper.cmake`) | the libcaliper embed closure the C1 app links |
+
+*(Parked since the C1 pivot: `compass::glm` — `third_party/glm` is still vendored, but its `cmake/External/` build and target are not wired; it returns with the first spatial consumer.)*
 
 See the [library catalog](../reference/library-catalog.md) for the full list and what *not* to use each for. A new library enters the catalog only through the [admission policy](../howto/admit-a-library.md) — one PR adds the `cmake/External/` build, the `compass::` wrapper, the catalog row, and the first real use. No vendored snippets, no "please install X first."
 
 ## The one CMake entry point
+
+!!! warning "Parked since the C1 pivot (D13)"
+    `compass_add_instrument()` lives in `cmake/catalog.cmake`, which is **not currently
+    included** by the root build — the instrument workflow below is the I2 SDK design,
+    kept as the roadmap for when instruments are re-wired. What builds *today*: the
+    `compass` app (libcaliper consumer), `libcompass` (`compass_shell` + `compass_core`),
+    the demos (`COMPASS_BUILD_DEMOS`), and the C2 tests. To build a standalone visual
+    app now, follow the demos' shape: `add_executable(...)` + `target_link_libraries(...
+    PRIVATE compass_shell wxWidgets::wxWidgets)` — see `demos/hello_gl/CMakeLists.txt`.
 
 An instrument's entire build is one call — `compass_add_instrument()` links `libcompass` plus any catalog targets you name and applies the static-binary flags (`/MT`, static wx). This is the template's build file, embedded verbatim so it can't drift:
 
