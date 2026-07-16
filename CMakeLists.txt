@@ -23,9 +23,13 @@ include(cmake/External/wxwidgets.cmake)
 # + CALIPER_APPLETS_DIR). C1 links this closure; it does not build caliper.
 include(cmake/External/caliper.cmake)
 
-# Layer 1 — the rescued wx framework (App + DocumentFrame; no GL) + the wx-free
-# C2 logic library (compass_core: .compass document, SQL builders, Arrow decode,
-# store-root classifier, HTML report).
+# GLAD 3.3-core loader → compass::gl (§6.2, CD12). Consumed by compass::Canvas2D
+# (the demos' self-rendered GL viewport); must precede add_subdirectory(libcompass).
+include(cmake/External/glad.cmake)
+
+# Layer 1 — the rescued wx framework (App + DocumentFrame + Canvas2D GL viewport)
+# + the wx-free C2 logic library (compass_core: .compass document, SQL builders,
+# Arrow decode, store-root classifier, HTML report).
 add_subdirectory(libcompass)
 
 # The Compass application (C2): native chrome + libcaliper viewport + the
@@ -46,6 +50,17 @@ target_compile_definitions(compass PRIVATE
     COMPASS_APPLETS_DIR_DEFAULT="${CALIPER_APPLETS_DIR}")
 set_target_properties(compass PROPERTIES
     CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
+
+# Demos (demos/) — minimal exemplars, each its own target. hello_gl is the
+# animated GL 3.3 sine wave the "Your first app" tutorial walks; it links
+# compass_shell for compass::Canvas2D. Opt out with -DCOMPASS_BUILD_DEMOS=OFF.
+option(COMPASS_BUILD_DEMOS "Build the demos (demos/)" ON)
+if(COMPASS_BUILD_DEMOS)
+    add_subdirectory(demos/hello_world) # minimal wxApp+wxFrame, static wx only
+    add_subdirectory(demos/gl_smoke)    # GL 3.3 smoke test (first compass::Canvas2D consumer)
+    add_subdirectory(demos/hello_gl)    # animated GL sine wave — "Your first app" tutorial
+    add_subdirectory(demos/sound_test)  # parked audio utility (kept buildable)
+endif()
 
 # C2 tests (doctest). Opt out with -DCOMPASS_BUILD_TESTS=OFF.
 option(COMPASS_BUILD_TESTS "Build Compass unit tests" ON)

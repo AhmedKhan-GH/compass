@@ -32,11 +32,17 @@ target_include_directories(compass_core PRIVATE "${CALIPER_SRC_DIR}/sdk/include"
 target_link_libraries(compass_core PUBLIC compass_framework PRIVATE compass::json)
 target_compile_features(compass_core PUBLIC cxx_std_20)
 
-# --- wx-dependent shell (no GL) ---
+# --- wx-dependent shell + GL viewport ---
+# compass::Canvas2D (the 3.3-core forward-compatible wxGLCanvas base) is kept
+# alongside the caliper-consumer chrome: it is the self-rendered viewport the
+# demos (demos/hello_gl) and the "Your first app" tutorial teach. The main
+# Compass app still draws via libcaliper's CAMetalLayer (D13); Canvas2D lives
+# here so instruments/demos can subclass it, per the docs.
 add_library(compass_shell STATIC
     src/app.cpp
     src/document_frame.cpp
+    src/canvas2d.cpp
 )
 target_include_directories(compass_shell PUBLIC include)
 target_link_libraries(compass_shell
-    PUBLIC compass_framework wxWidgets::wxWidgets)
+    PUBLIC compass_framework wxWidgets::wxWidgets compass::gl)
