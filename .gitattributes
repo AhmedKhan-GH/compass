@@ -1,0 +1,9 @@
+# Line-ending normalization.
+#
+# Shell scripts MUST stay LF: a CRLF `.sh` breaks `bash script.sh` under Git Bash
+# on the Windows CI runner (autocrlf=true would otherwise convert them on
+# checkout). This is what broke the catalog-include lint step on windows-latest.
+*.sh  text eol=lf
+
+# Windows batch stays CRLF (cmake/build-wxwidgets-windows.bat).
+*.bat text eol=crlf
