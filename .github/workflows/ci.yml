@@ -42,17 +42,22 @@ jobs:
           path: build/third_party
           key: wx-${{ runner.os }}-${{ hashFiles('cmake/External/wxwidgets.cmake') }}
 
+      # Release on both axes: -DCMAKE_BUILD_TYPE=Release for single-config
+      # generators (macOS Makefiles), --config Release for the Visual Studio
+      # multi-config generator. Without the latter, MSVC builds Debug (/MTd,
+      # _ITERATOR_DEBUG_LEVEL=2) while the vendored wxWidgets is always built
+      # Release /MT — LNK2038 RuntimeLibrary mismatch on every demo.
       - name: Configure
-        run: cmake -S . -B build -DCOMPASS_WITH_CALIPER=OFF
+        run: cmake -S . -B build -DCOMPASS_WITH_CALIPER=OFF -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
-        run: cmake --build build -j
+        run: cmake --build build -j --config Release
 
       # The caliper-free subset ships no unit tests (the C2 suite needs caliper
       # headers); --no-tests=ignore keeps this green rather than erroring on an
       # empty test set, and still fails loudly if a future caliper-free test breaks.
       - name: Test
-        run: ctest --test-dir build --output-on-failure --no-tests=ignore
+        run: ctest --test-dir build --output-on-failure --no-tests=ignore -C Release
 
       # catalog-lint is a bash script; Windows runners ship Git Bash.
       - name: Catalog-include lint
