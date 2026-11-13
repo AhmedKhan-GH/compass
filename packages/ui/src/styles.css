@@ -960,8 +960,8 @@ a.sb-wordmark-link {
   flex: 0 0 auto;
 }
 
-/* The placeholder sits in the slot an icon would fill, at the size of the icons' own tile (about 80 % of the
-   square, as the approved icons draw it). */
+/* The placeholder sits in the slot an icon would fill, as the icons' own square tile: the approved icons draw it from
+   100 to 924 in a 1024 canvas, an inset of 100/1024 of the square on each side. */
 .sb-thumbnail-slot {
   position: relative;
   display: inline-block;
@@ -970,7 +970,7 @@ a.sb-wordmark-link {
 
 .sb-thumbnail {
   position: absolute;
-  inset: 10%;
+  inset: calc(100% * 100 / 1024);
   background: var(--sb-mark-tile);
   border: var(--sb-rule-width) solid var(--sb-mark-tile-border);
 }
