@@ -63,7 +63,8 @@ pack directories in the same way; nothing after the source layer knows where a p
 
 Environment variables override the file: `COMPASS_RUNNER_URL`, `COMPASS_RUNNER_PORT` (the service's listening port),
 `COMPASS_CONTENT_INDEX` (the index path, default `.compass/content-index.json`) and `COMPASS_DATA_DIR` (default
-`.compass/`).
+`.compass/`). Relative paths are resolved against the repository root. `COMPASS_RUNNER_PORT` alone also moves the
+client to that port on the configured host.
 
 ## A pack
 
@@ -162,7 +163,13 @@ The static checks, which need no runner:
   prerequisite not yet taught is a warning, so a course can be converted a few exercises at a time;
 - the task headings in `instructions.md` match the `[[task]]` ids; every test in the checks file is mapped to
   exactly one task, and every mapped test exists;
-- relative links in the Markdown files resolve inside the pack.
+- relative links in the Markdown files resolve inside the pack;
+- the course's language is one its runner accepts; course ids are unique across packs;
+- the file roles of an item are distinct, and it has at most 16 starter files;
+- the checks file defines at least one test, each an `async def` under `@cocotb.test()`. The check reads the Python
+  as text and never runs it;
+- hint headings name existing tasks, once each; task headings without any `[[task]]` are an error;
+- files the manifests do not name, and declared concepts that no item teaches, are warnings.
 
 The dynamic checks, which submit jobs to the runner service:
 
@@ -170,6 +177,10 @@ The dynamic checks, which submit jobs to the runner service:
 - every wrong solution fails (a run that errors without a test report does not count as failing; a wrong solution
   must compile and fail a test);
 - each stage passes the tests of its task and of every earlier task.
+
+Every run uses the starter files with the solution file replaced. When an item has editable support files, every run
+(reference, wrong and stage) uses `reference/<name>` for each, so a wrong solution differs from the reference only in
+the solution file.
 
 `compass content check --static` runs only the static checks. CI runs the full check on `content/`.
 
@@ -179,6 +190,10 @@ The dynamic checks, which submit jobs to the runner service:
 for every course, the manifest fields, the syllabus, the concept pages, and for every item its text, its tasks, its
 starter files, its checks file and a `revision` (a SHA-256 over everything in the item that affects a run or what the
 learner reads). It does not hold references, wrong solutions, stages or notes.
+
+The revision covers the item's id, title, topic, blurb, kind, concepts, design and task map; its intro, instructions
+and hints; its starter files and checks file; and the course's runner kind. It does not cover the slug, status,
+difficulty or prerequisites, so reordering a course does not reset progress.
 
 The checks file is in the index because the runner is content-agnostic and receives it with each job. It must never
 reach the browser: only `apps/web/src/server` reads the index, and it hands pages and API responses the learner

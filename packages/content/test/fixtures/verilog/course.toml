@@ -1,0 +1,26 @@
+# A small pack for the tests of packages/content. drive-high is transcribed from the old app.
+id = "fixture/verilog"
+version = "0.1.0"
+title = "Fixture course"
+blurb = "A small pack for the tests of the content package."
+language = "verilog"
+environment = "code@1"
+runner = "iverilog-cocotb@1"
+circuit = "yosys-digitaljs@1"
+syllabus = "syllabus.md"
+status = "published"
+
+[editor]
+indent = 4
+
+[[concept]]
+slug = "constants"
+name = "Constants"
+
+[[item]]
+slug = "drive-high"
+prerequisites = []
+
+[[item]]
+slug = "light-bank"
+prerequisites = ["constants"]
