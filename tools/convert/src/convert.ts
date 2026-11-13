@@ -24,6 +24,7 @@ import {
   type OldEntry,
   type OldTrack,
 } from "./old.ts";
+import { PACK_OWN_ITEM_FILES } from "./pack-files.ts";
 import { substitute, type SubstitutionCount } from "./substitutions.ts";
 
 const RUNNER = "icarus-cocotb-v1";
@@ -283,6 +284,7 @@ const COURSE = {
   circuit: "yosys-digitaljs@1",
   syllabus: "syllabus.md",
   status: "draft",
+  category: { id: "rtl-design", title: "RTL design" },
 } as const;
 
 function writeCourse(trackDir: string, repo: string, track: OldTrack, outRoot: string, out: Output): ConvertResult {
@@ -361,8 +363,15 @@ export function convert(opts: ConvertOptions): ConvertResult & { substitutions: 
       } finally {
         rmSync(join(outRoot, ".staging"), { recursive: true, force: true });
       }
+      const kept = PACK_OWN_ITEM_FILES.flatMap((name) => {
+        const path = join(itemDir, name);
+        return existsSync(path) ? [{ name, bytes: readFileSync(path) }] : [];
+      });
       rmSync(itemDir, { recursive: true, force: true });
       built = buildItem(entry, track, trackDir, out);
+      for (const k of kept) {
+        writeFileSync(join(itemDir, k.name), k.bytes);
+      }
       result.status = "converted";
       result.tasks = built.tasks;
       result.wrong = built.wrong;

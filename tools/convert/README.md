@@ -27,3 +27,9 @@ The command prints one line per exercise and a summary, and exits with 1 when an
 ## Tests
 
 `npm test -w @compass/convert` converts a small fake old track in a temp directory.
+
+## Pack-owned files
+
+`icon.svg` in an item folder, and `icon.svg` and `category-icon.svg` at the pack root, come from the pack and not from
+the old app. The converter keeps an item's icon when it rebuilds the item and never touches the root icons; the names
+are listed in `src/pack-files.ts`. The generated `course.toml` carries the `[category]` table (`rtl-design`).

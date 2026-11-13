@@ -192,6 +192,27 @@ describe("convert", () => {
     assert.equal(existsSync(join(out, "concepts/c0")), false);
   });
 
+  it("keeps pack-owned icons across a reconversion", () => {
+    const icons: [string, string][] = [
+      ["items/alpha/icon.svg", "<svg item/>"],
+      ["icon.svg", "<svg course/>"],
+      ["category-icon.svg", "<svg category/>"],
+    ];
+    for (const [f, c] of icons) writeFileSync(join(out, f), c);
+    run(["alpha", "beta"]);
+    for (const [f, c] of icons) assert.equal(readFileSync(join(out, f), "utf8"), c);
+    for (const [f] of icons) rmSync(join(out, f));
+  });
+
+  it("writes the category between status and editor", () => {
+    run(["alpha"]);
+    const text = readFileSync(join(out, "course.toml"), "utf8");
+    const course = CourseManifest.parse(parse(text));
+    assert.deepEqual(course.category, { id: "rtl-design", title: "RTL design" });
+    assert.ok(text.indexOf("status =") < text.indexOf("[category]"));
+    assert.ok(text.indexOf("[category]") < text.indexOf("[editor]"));
+  });
+
   it("is idempotent", () => {
     run(["alpha", "beta"]);
     const snapshot = (): Map<string, string> =>
