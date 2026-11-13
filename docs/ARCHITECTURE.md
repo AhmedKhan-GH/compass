@@ -230,8 +230,13 @@ All bodies are JSON. The types are in `packages/schema/src/runner.ts`.
 |---|---|
 | `GET /v1/health` | `200 RunnerHealth`: each runner kind with whether its image is present, and the queue counts |
 | `POST /v1/jobs` with a `JobRequest` | `202 { job: Job }`; `400` for an invalid request; `429` when the queue is full |
-| `GET /v1/jobs/:id` | `200 { job: Job }`; `404` when unknown or expired. `?wait=<ms>` holds the response until the job is terminal or the wait ends (at most 30 000 ms) |
+| `GET /v1/jobs/:id` | `200 { job: Job }`; `404` when unknown or expired. `?wait=<ms>` holds the response (at most 30 000 ms); see below |
 | `DELETE /v1/jobs/:id` | `200 { job: Job }`; cancels a queued or running job |
+
+A read with `?wait=<ms>` alone is held until the job is terminal or the wait ends. A caller that wants every step adds
+what it last saw: `&state=<state>` and, while queued, `&position=<n>`. The response is then held only until the job
+differs from that (another state, or another position), so a caller that repeats the read with each answer sees
+`queued` with each position, then `running`, then the terminal state, with no polling interval.
 
 Errors are `{ error: { code, message } }`. A job must be sent as `application/json` (otherwise `415`), which stops
 another site from submitting jobs with a plain form post. A request the launcher would reject (no solution file, an
@@ -288,7 +293,7 @@ The types are in `packages/schema/src/web.ts`. `{c}` stands for `/api/courses/[n
 |---|---|
 | `POST {c}/items/[item]/runs` with `StartRunRequest` | `202 { run: RunRecord }` |
 | `GET {c}/items/[item]/runs?cursor=` | `200 RunHistoryPage` |
-| `GET /api/runs/[id]` | `200 { run: RunRecord }`; `?wait=<ms>` is passed through to the runner |
+| `GET /api/runs/[id]` | `200 { run: RunRecord }`; `?wait=<ms>`, `&state=` and `&position=` work as on the runner: the read returns as soon as the run differs from what the browser last saw |
 | `POST {c}/items/[item]/circuit` with `StartCircuitRequest` | `202 { circuit: CircuitRecord }` |
 | `GET /api/circuits/[id]` | `200 { circuit: CircuitRecord }`; `?wait=<ms>` likewise |
 | `GET {c}/progress` | `200 CourseProgress` |

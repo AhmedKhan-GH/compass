@@ -16,9 +16,12 @@ Read `docs/ARCHITECTURE.md` before changing anything. It is the contract between
 
 ## Style of the interface
 
-- Use the role names from `vendor/sternbild/1.0.0/sternbild.css` (`--sb-surface`, `--sb-text`, `--sb-accent`).
-  Never write a raw colour value, and never use the `--sb-palette-*` names.
-- Bronze is the only accent. Corners are square. Rules are 1 px.
+- Use the role names (`--sb-surface`, `--sb-text`, `--sb-accent`, the state roles and so on). Compass has two
+  themes, the light learn theme (the default) and the dark Sternbild theme, and a theme is the only place that
+  gives a role a value. Never write a raw colour value in a component or a stylesheet outside the theme files,
+  and never use the `--sb-palette-*` names.
+- Bronze is the brand accent: focus, selection and the primary action. The state colours (running, passed, failed,
+  warning, information) mark states only, each with a word or a glyph beside it. Corners are square. Rules are 1 px.
 - Labels are nouns or short noun phrases. No taglines, slogans, colon subtitles, Roman numerals or explanatory
   sentences on the surface.
 - Where a thumbnail goes, show the placeholder tile: square, dark, with a 1 px parchment border.
