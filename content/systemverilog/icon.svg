@@ -57,9 +57,9 @@
   <title>SystemVerilog course — bench oscilloscope</title>
   <g id="SystemVerilog_course" data-name="SystemVerilog course">
     <g filter="url(#filter-1)">
-      <polygon id="Tile" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+      <polygon id="Tile" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
     <path id="Enclosed_front_panel" data-name="Enclosed front panel" d="M230 270 L794 270 C813.882 270 830 286.118 830 306 L830 670 C830 689.882 813.882 706 794 706 L230 706 C210.118 706 194 689.882 194 670 L194 306 C194 286.118 210.118 270 230 270 Z" fill="#fffdf8"/>
     <path id="Display_glass" data-name="Display glass" d="M250 312 L652 312 C659.732 312 666 318.268 666 326 L666 622 C666 629.732 659.732 636 652 636 L250 636 C242.268 636 236 629.732 236 622 L236 326 C236 318.268 242.268 312 250 312 Z" fill="#e2f2e6"/>
     <g filter="url(#filter-2)">

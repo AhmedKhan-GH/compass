@@ -47,9 +47,9 @@
   <title>VHDL course — FPGA development board</title>
   <g id="VHDL_course___FPGA_development_board" data-name="VHDL course — FPGA development board">
     <g filter="url(#filter-1)">
-      <polygon id="Tile___exact_approved_geometry" data-name="Tile — exact approved geometry" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+      <polygon id="Tile___exact_approved_geometry" data-name="Tile — square" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border___exact_approved_22.523_px_weight" data-name="Border — exact approved 22.523 px weight" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <path id="Border___exact_approved_22.523_px_weight" data-name="Border — exact approved 22.523 px weight" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
     <path id="Light_interiors___four_PCB_mounting_holes" data-name="Light interiors — four PCB mounting holes" d="M272 290 C272 296.627 266.627 302 260 302 C253.373 302 248 296.627 248 290 C248 283.373 253.373 278 260 278 C266.627 278 272 283.373 272 290 Z M802 290 C802 296.627 796.627 302 790 302 C783.373 302 778 296.627 778 290 C778 283.373 783.373 278 790 278 C796.627 278 802 283.373 802 290 Z M272 718 C272 724.627 266.627 730 260 730 C253.373 730 248 724.627 248 718 C248 711.373 253.373 706 260 706 C266.627 706 272 711.373 272 718 Z M802 718 C802 724.627 796.627 730 790 730 C783.373 730 778 724.627 778 718 C778 711.373 783.373 706 790 706 C796.627 706 802 711.373 802 718 Z" fill="#fffdf8"/>
     <g filter="url(#filter-2)">
       <g id="FPGA_development_board___top_view" data-name="FPGA development board — top view">

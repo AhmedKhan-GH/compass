@@ -37,9 +37,9 @@
   <title>Scanner to printer</title>
   <g id="Layer_1" data-name="Layer 1">
     <g filter="url(#filter-1)">
-      <polygon id="Tile" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+      <polygon id="Tile" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
     <g filter="url(#filter-2)">
       <g id="Handheld_barcode_scanner" data-name="Handheld barcode scanner">
         <path id="Angled_scan-window_rim" data-name="Angled scan-window rim" d="M651 258 C661 264 671 275 678 284 L777 402 C785 415 779 435 764 444 L687 487 C675 494 662 494 650 490 L556 336 C548 323 551 310 563 303 L634 261 C639 258 646 255 651 258 Z" fill="url(#linear-gradient-2)"/>

@@ -27,9 +27,9 @@
   <title>Drive high — panel pilot lamp</title>
   <g id="Layer_1" data-name="Layer 1">
     <g filter="url(#filter-1)">
-      <polygon id="Tile" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+      <polygon id="Tile" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
     <g id="Panel_pilot_lamp" data-name="Panel pilot lamp">
       <path id="Domed_lens" data-name="Domed lens" d="M336 431.5 C336 328.5 414.795 256.5 512 256.5 C609.205 256.5 688 328.5 688 431.5 C688 462.428 609.205 487.5 512 487.5 C414.795 487.5 336 462.428 336 431.5 Z" fill="#e2f2e6"/>
       <g filter="url(#filter-2)">
