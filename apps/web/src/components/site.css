@@ -67,6 +67,13 @@
   color: var(--sb-text);
 }
 
+.catalog-descriptor {
+  color: var(--sb-text-muted);
+  font-size: var(--sb-app-font-size-ui-small);
+  letter-spacing: var(--sb-tracking-label, 0.12em);
+  text-transform: uppercase;
+}
+
 .catalog-count {
   color: var(--sb-text-muted);
   font-size: var(--sb-app-font-size-ui-small);

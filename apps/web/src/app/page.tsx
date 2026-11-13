@@ -41,6 +41,7 @@ export default function CatalogPage() {
           <Image src={MARK_SRC} alt="" width={48} height={48} unoptimized priority className="catalog-mark" />
           <div className="catalog-heading-text">
             <h1 className="catalog-name">Compass</h1>
+            <p className="catalog-descriptor">Technical skill practice platform</p>
             <p className="catalog-count">
               {count(courses.length, "course", "courses")} · {count(exercises, "exercise", "exercises")}
             </p>
