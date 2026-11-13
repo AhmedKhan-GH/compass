@@ -358,7 +358,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
 
   const leftTabs: Tab[] = [
     { id: "instructions", label: "Instructions", chord: "Alt+Digit1" },
-    { id: "introduction", label: "Introduction", chord: "Alt+Digit2", hidden: !item.intro },
+    { id: "introduction", label: "Guide", chord: "Alt+Digit2", hidden: !item.intro },
   ];
   const dockTabs: Tab[] = [
     { id: "results", label: "Results", chord: "Alt+Digit4" },
