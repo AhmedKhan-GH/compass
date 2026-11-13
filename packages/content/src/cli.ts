@@ -4,7 +4,7 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 import type { RunnerClient } from "@compass/runner-client";
 import { checkAcrossPacks, checkPack } from "./checks.ts";
-import { CompileError, compileIndex, writeIndex } from "./compile.ts";
+import { CompileError, compileContent, writeContent } from "./compile.ts";
 import {
   ConfigError,
   defaultSettings,
@@ -211,21 +211,22 @@ async function build(io: Io, args: string[]): Promise<number> {
     return EXIT_ERRORS;
   }
   if (packs.length === 0) io.out("No packs were found; the index will hold no courses.");
-  let index;
+  let compiled;
   try {
-    index = compileIndex(packs);
+    compiled = compileContent(packs);
   } catch (error) {
     if (!(error instanceof CompileError)) throw error;
     io.err(`compass: ${error.message}`);
     return EXIT_ERRORS;
   }
   const target = values.out !== undefined ? path.resolve(io.cwd, values.out) : settings.contentIndexPath;
-  await writeIndex(target, index);
+  await writeContent(target, compiled);
+  const { index, assets } = compiled;
   const items = index.courses.reduce((sum, course) => sum + course.items.length, 0);
-  io.out(
-    `Wrote ${displayPath(target, io.cwd)}: ${plural(index.courses.length, "course")}, ${plural(items, "item")}` +
-      (warnings ? `, ${plural(warnings, "warning")}.` : "."),
-  );
+  const parts = [plural(index.courses.length, "course"), plural(items, "item")];
+  if (assets.size > 0) parts.push(plural(assets.size, "icon"));
+  if (warnings) parts.push(plural(warnings, "warning"));
+  io.out(`Wrote ${displayPath(target, io.cwd)}: ${parts.join(", ")}.`);
   return EXIT_OK;
 }
 
@@ -341,7 +342,11 @@ function printResults(
     const diagnostics = byPack.get(pack) ?? [];
     const name = packName(pack);
     const where = name === pack.location.label ? "" : `  ${io.paint(pack.location.label, "dim")}`;
-    io.out(`${name}${where}  ${tallyText(io, diagnostics)}`);
+    const plan =
+      pack.manifest?.status === "in-development"
+        ? `  ${io.paint(`(in development, ${pack.manifest.planned.length} planned)`, "dim")}`
+        : "";
+    io.out(`${name}${where}  ${tallyText(io, diagnostics)}${plan}`);
     const width = Math.max(0, ...pack.items.map((item) => item.slug.length));
     for (const item of pack.items) {
       let line = `  ${item.slug.padEnd(width)}  ${tallyText(io, diagnostics.filter((d) => d.item === item.slug))}`;
@@ -387,8 +392,10 @@ async function list(io: Io, args: string[]): Promise<number> {
       io.out(`${pack.location.label}  (course.toml has errors; run compass content check)`);
       continue;
     }
+    const counts = [plural(pack.items.length, "item")];
+    if (manifest.planned.length > 0 || manifest.status === "in-development") counts.push(`${manifest.planned.length} planned`);
     io.out(
-      `${manifest.id}  ${manifest.title}  ${io.paint(`(${manifest.version}, ${manifest.status}, ${plural(pack.items.length, "item")}, ${pack.location.label})`, "dim")}`,
+      `${manifest.id}  ${manifest.title}  ${io.paint(`(${manifest.version}, ${manifest.status}, ${counts.join(", ")}, ${pack.location.label})`, "dim")}`,
     );
     const width = Math.max(0, ...pack.items.map((item) => item.slug.length));
     const number = String(pack.items.length).length;

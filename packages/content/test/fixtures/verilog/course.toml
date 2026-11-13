@@ -10,6 +10,10 @@ circuit = "yosys-digitaljs@1"
 syllabus = "syllabus.md"
 status = "published"
 
+[category]
+id = "fixture-design"
+title = "Fixture design"
+
 [editor]
 indent = 4
 

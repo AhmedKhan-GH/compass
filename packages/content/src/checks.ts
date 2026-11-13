@@ -3,7 +3,9 @@
  * The loader already reports the `manifest` and `files` rules; the rules here check what the files say.
  */
 import {
+  CATEGORY_ICON_FILE,
   ENVIRONMENT_KINDS,
+  ICON_FILE,
   RUNNER_KINDS,
   SOURCE_LIMITS,
   isCircuitRunnerKind,
@@ -16,6 +18,7 @@ import {
 import path from "node:path";
 import { DiagnosticList, type Diagnostic } from "./diagnostics.ts";
 import { packEntryKind } from "./files.ts";
+import { checkIcon } from "./icons.ts";
 import type { LoadedItem, LoadedPack } from "./loader.ts";
 import { findLinks, isRelativeLink, linkPath, splitSections } from "./markdown.ts";
 import { findCocotbTests } from "./python.ts";
@@ -28,11 +31,13 @@ type StaticRule = (context: Context) => void | Promise<void>;
 export const STATIC_RULES: readonly { name: string; run: StaticRule }[] = [
   { name: "ids", run: checkIds },
   { name: "kinds", run: checkKinds },
+  { name: "plan", run: checkPlan },
   { name: "design", run: checkDesigns },
   { name: "concepts", run: checkConcepts },
   { name: "prerequisites", run: checkPrerequisites },
   { name: "tasks", run: checkTasks },
   { name: "links", run: checkLinks },
+  { name: "icons", run: checkIcons },
 ];
 
 /** Every diagnostic of one pack: the loader's, then each rule's. */
@@ -45,7 +50,9 @@ export async function checkPack(pack: LoadedPack): Promise<Diagnostic[]> {
   return [...pack.diagnostics, ...list.items];
 }
 
-/** Checks that span packs: each course id names one pack. */
+/**
+ * Checks that span packs: each course id names one pack, and packs that name the same category agree on its title.
+ */
 export function checkAcrossPacks(packs: readonly LoadedPack[]): Diagnostic[] {
   const byId = new Map<string, LoadedPack[]>();
   for (const pack of packs) {
@@ -59,6 +66,22 @@ export function checkAcrossPacks(packs: readonly LoadedPack[]): Diagnostic[] {
       const others = group.filter((other) => other !== pack).map((other) => other.location.label);
       const list = new DiagnosticList(pack.location.label);
       list.error("ids", `the course id ${id} is also used by ${others.join(", ")}`, { file: "course.toml" });
+      diagnostics.push(...list.items);
+    }
+  }
+  const byCategory = new Map<string, LoadedPack[]>();
+  for (const pack of packs) {
+    const category = pack.manifest?.category;
+    if (category) byCategory.set(category.id, [...(byCategory.get(category.id) ?? []), pack]);
+  }
+  for (const [id, group] of byCategory) {
+    for (const pack of group) {
+      const title = pack.manifest?.category?.title;
+      const disagreeing = group.filter((other) => other.manifest?.category?.title !== title);
+      if (disagreeing.length === 0) continue;
+      const list = new DiagnosticList(pack.location.label);
+      const others = disagreeing.map((other) => `"${other.manifest?.category?.title}" in ${other.location.label}`);
+      list.error("ids", `the category ${id} has the title "${title}" here but ${others.join(", ")}`, { file: "course.toml" });
       diagnostics.push(...list.items);
     }
   }
@@ -98,26 +121,68 @@ function checkIds({ pack, manifest, list }: Context): void {
   }
 }
 
-/** The environment, runner and circuit runner are kinds this installation knows, of the right purpose. */
+/**
+ * The environment, runner and circuit runner are kinds this installation knows, of the right purpose, and the
+ * runners accept the course's language. A draft or published course needs an environment and a runner; a course in
+ * development may leave them out, but a kind it names must still be known.
+ */
 function checkKinds({ manifest, list }: Context): void {
   const at = { file: "course.toml" };
-  if (!isEnvironmentKind(manifest.environment))
-    list.error("kinds", `environment ${manifest.environment} is not known; known: ${Object.keys(ENVIRONMENT_KINDS).join(", ")}`, at);
+  const planOnly = manifest.status === "in-development";
   const testKinds = Object.keys(RUNNER_KINDS).filter(isTestRunnerKind);
   const circuitKinds = Object.keys(RUNNER_KINDS).filter(isCircuitRunnerKind);
-  if (!isRunnerKind(manifest.runner))
-    list.error("kinds", `runner ${manifest.runner} is not known; known test runners: ${testKinds.join(", ")}`, at);
-  else if (!isTestRunnerKind(manifest.runner))
-    list.error("kinds", `runner ${manifest.runner} is a ${RUNNER_KINDS[manifest.runner].purpose} runner, not a test runner`, at);
-  else if (!(RUNNER_KINDS[manifest.runner].languages as readonly string[]).includes(manifest.language))
-    list.error("kinds", `runner ${manifest.runner} does not accept the language ${manifest.language}`, at);
-  if (manifest.circuit !== undefined) {
-    if (!isRunnerKind(manifest.circuit))
-      list.error("kinds", `circuit ${manifest.circuit} is not known; known circuit runners: ${circuitKinds.join(", ")}`, at);
-    else if (!isCircuitRunnerKind(manifest.circuit))
-      list.error("kinds", `circuit ${manifest.circuit} is a ${RUNNER_KINDS[manifest.circuit].purpose} runner, not a circuit runner`, at);
-    else if (!(RUNNER_KINDS[manifest.circuit].languages as readonly string[]).includes(manifest.language))
-      list.error("kinds", `circuit ${manifest.circuit} does not accept the language ${manifest.language}`, at);
+  if (manifest.environment === undefined) {
+    if (!planOnly)
+      list.error("kinds", `environment is required for a ${manifest.status} course; known: ${Object.keys(ENVIRONMENT_KINDS).join(", ")}`, at);
+  } else if (!isEnvironmentKind(manifest.environment))
+    list.error("kinds", `environment ${manifest.environment} is not known; known: ${Object.keys(ENVIRONMENT_KINDS).join(", ")}`, at);
+  if (manifest.runner === undefined) {
+    if (!planOnly) list.error("kinds", `runner is required for a ${manifest.status} course; known test runners: ${testKinds.join(", ")}`, at);
+  } else checkRunner(manifest.runner, "runner", "test", testKinds, manifest.language, list);
+  if (manifest.circuit !== undefined) checkRunner(manifest.circuit, "circuit", "circuit", circuitKinds, manifest.language, list);
+}
+
+function checkRunner(
+  kind: string,
+  field: "runner" | "circuit",
+  purpose: "test" | "circuit",
+  known: readonly string[],
+  language: string,
+  list: DiagnosticList,
+): void {
+  const at = { file: "course.toml" };
+  if (!isRunnerKind(kind)) list.error("kinds", `${field} ${kind} is not known; known ${purpose} runners: ${known.join(", ")}`, at);
+  else if (RUNNER_KINDS[kind].purpose !== purpose)
+    list.error("kinds", `${field} ${kind} is a ${RUNNER_KINDS[kind].purpose} runner, not a ${purpose} runner`, at);
+  else if (!(RUNNER_KINDS[kind].languages as readonly string[]).includes(language))
+    list.error("kinds", `${field} ${kind} does not accept the language ${language}`, at);
+}
+
+/**
+ * A draft or published course lists at least one item. A course in development has no [[item]] and no items/
+ * folder. For any course, stage ids and planned slugs are unique, a planned stage is declared, and a planned slug
+ * is not also an item.
+ */
+function checkPlan({ pack, manifest, list }: Context): void {
+  const at = { file: "course.toml" };
+  if (manifest.status === "in-development") {
+    if (manifest.item.length > 0)
+      list.error("plan", `a course in development has no [[item]]; this one lists ${manifest.item.length}`, at);
+    if (pack.hasItemsDirectory)
+      list.error("plan", "a course in development has no items/ folder", { file: "items" });
+  } else if (manifest.item.length === 0)
+    list.error("plan", `a ${manifest.status} course lists at least one [[item]]; only a course in development has none`, at);
+  for (const id of duplicates(manifest.stage.map((stage) => stage.id)))
+    list.error("plan", `the stage ${id} is declared more than once`, at);
+  for (const slug of duplicates(manifest.planned.map((planned) => planned.slug)))
+    list.error("plan", `the planned exercise ${slug} is listed more than once`, at);
+  const stages = new Set(manifest.stage.map((stage) => stage.id));
+  const items = new Set(manifest.item.map((item) => item.slug));
+  for (const planned of manifest.planned) {
+    if (planned.stage !== undefined && !stages.has(planned.stage))
+      list.error("plan", `the planned exercise ${planned.slug} names the stage ${planned.stage}, which is not declared`, at);
+    if (items.has(planned.slug))
+      list.error("plan", `the planned exercise ${planned.slug} is also an item`, at);
   }
 }
 
@@ -171,6 +236,7 @@ function checkConcepts({ pack, manifest, list }: Context): void {
   const taught = new Set(
     withManifest(pack).flatMap(({ manifest: itemManifest }) => (itemManifest.kind === "concept" ? itemManifest.concepts : [])),
   );
+  if (manifest.status === "in-development") return;
   for (const concept of manifest.concept)
     if (!taught.has(concept.slug) && pack.items.every((item) => item.manifest))
       list.warning("concepts", `the concept ${concept.slug} is declared but no concept item teaches it`, { file: "course.toml" });
@@ -304,4 +370,24 @@ async function checkLinks({ pack, list }: Context): Promise<void> {
         list.error("links", `the link ${link.target} (line ${link.line}) passes through a symbolic link`, at);
     }
   }
+}
+
+/**
+ * Each icon is an SVG with a square viewBox and nothing active or external in it. See "Icons" in
+ * docs/ARCHITECTURE.md and src/icons.ts.
+ */
+function checkIcons({ pack, list }: Context): void {
+  const icons: { content: string; file: string; item?: string }[] = [];
+  if (pack.icon !== undefined) icons.push({ content: pack.icon, file: ICON_FILE });
+  if (pack.categoryIcon !== undefined) icons.push({ content: pack.categoryIcon, file: CATEGORY_ICON_FILE });
+  for (const item of pack.items)
+    if (item.icon !== undefined) icons.push({ content: item.icon, file: `${item.path}/${ICON_FILE}`, item: item.slug });
+  for (const icon of icons)
+    for (const problem of checkIcon(icon.content)) {
+      const message = problem.line === undefined ? problem.message : `${problem.message} (line ${problem.line})`;
+      list.add(problem.warning ? "warning" : "error", "icons", message, {
+        ...(icon.item === undefined ? {} : { item: icon.item }),
+        file: icon.file,
+      });
+    }
 }

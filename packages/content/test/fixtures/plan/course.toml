@@ -1,0 +1,40 @@
+# A course in development: a plan with stages and planned exercises, and no items.
+id = "fixture/plan"
+version = "0.1.0"
+title = "Planned fixture course"
+blurb = "A plan with no exercises yet."
+description = "Two stages of planned exercises. None of them can be opened or run yet."
+language = "systemverilog"
+status = "in-development"
+
+[category]
+id = "fixture-design"
+title = "Fixture design"
+
+[[stage]]
+id = "first-signals"
+name = "First signals"
+
+[[stage]]
+id = "state"
+name = "State"
+
+[[planned]]
+slug = "drive-high"
+title = "First Light"
+blurb = "Give a museum exhibit its first always-on power indicator."
+kind = "concept"
+stage = "first-signals"
+
+[[planned]]
+slug = "count-visitors"
+title = "Visitor Counter"
+blurb = "Count the visitors who pass a gate."
+kind = "practice"
+stage = "state"
+
+[[planned]]
+slug = "later-idea"
+title = "Later"
+blurb = "An exercise without a stage yet."
+kind = "practice"

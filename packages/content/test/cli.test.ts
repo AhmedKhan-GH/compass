@@ -1,6 +1,6 @@
 /** The `compass` command: output and exit codes. */
 import assert from "node:assert/strict";
-import { access, readFile, rm, writeFile } from "node:fs/promises";
+import { access, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { test } from "node:test";
 import { ContentIndex } from "@compass/schema";
@@ -43,11 +43,12 @@ test("check --static --source checks packs under any folder, without a configura
   const result = await run(["content", "check", "--static", "--source", FIXTURES], { cwd });
   assert.equal(result.code, 0, result.out + result.err);
   const lines = result.out.trimEnd().split("\n");
-  assert.match(lines[0] ?? "", /^fixture\/verilog {2}\S*fixtures\/verilog {2}ok$/);
-  assert.deepEqual(lines.slice(1), [
+  assert.match(lines[0] ?? "", /^fixture\/plan {2}\S*fixtures\/plan {2}ok {2}\(in development, 3 planned\)$/);
+  assert.match(lines[1] ?? "", /^fixture\/verilog {2}\S*fixtures\/verilog {2}ok$/);
+  assert.deepEqual(lines.slice(2), [
     "  drive-high  ok",
     "  light-bank  ok",
-    "Checked 1 pack and 2 items (static checks only): no errors.",
+    "Checked 2 packs and 2 items (static checks only): no errors.",
   ]);
   assert.equal(result.out.includes("\u001b["), false, "no colour codes when stdout is not a terminal");
   const coloured = await run(["content", "check", "--static", "--source", FIXTURES], { cwd, tty: true });
@@ -119,8 +120,11 @@ test("build writes a valid index under the repository root, or where it is told"
   const result = await run(["content", "build"], { cwd: path.join(pack, "items") });
   assert.equal(result.code, 0, result.out + result.err);
   const target = path.join(root, ".compass/content-index.json");
-  assert.match(result.out, /^Wrote .*\.compass\/content-index\.json: 1 course, 2 items\.$/m);
+  assert.match(result.out, /^Wrote .*\.compass\/content-index\.json: 1 course, 2 items, 3 icons\.$/m);
   const first = await readFile(target, "utf8");
+  const assets = await readdir(path.join(root, ".compass/content-assets"));
+  assert.equal(assets.length, 3);
+  for (const name of assets) assert.ok(first.includes(`"${name}"`), `the index names ${name}`);
   assert.equal(ContentIndex.safeParse(JSON.parse(first)).success, true);
   assert.equal(JSON.parse(first).courses[0].source, "local:packs/verilog");
   assert.equal((await run(["content", "build"], { cwd: root })).code, 0);

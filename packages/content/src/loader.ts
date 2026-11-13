@@ -3,9 +3,9 @@
  * collected as diagnostics with their location; the loader never stops at the first one.
  */
 import { parse } from "smol-toml";
-import { CourseManifest, ItemManifest } from "@compass/schema";
+import { CATEGORY_ICON_FILE, CourseManifest, ICON_FILE, ICON_LIMIT_BYTES, ItemManifest } from "@compass/schema";
 import { tomlMessage } from "./config.ts";
-import { DiagnosticList, issueText, type Diagnostic, type Place, type SchemaIssue } from "./diagnostics.ts";
+import { DiagnosticList, issueText, type Diagnostic, type Place, type Rule, type SchemaIssue } from "./diagnostics.ts";
 import { LIMITS, formatBytes, listPackDirectory, readPackFile } from "./files.ts";
 import { COURSE_FILE, type PackLocation } from "./sources.ts";
 
@@ -41,6 +41,8 @@ export type LoadedItem = {
   reference: Map<string, string>;
   wrong: Map<string, string>;
   stages: Map<string, string>;
+  /** icon.svg in the item folder. */
+  icon?: string;
 };
 
 export type MarkdownFile = { file: string; item?: string; content: string };
@@ -50,10 +52,16 @@ export type LoadedPack = {
   /** Undefined when course.toml is missing or invalid. */
   manifest?: CourseManifest;
   syllabus?: string;
+  /** icon.svg at the pack root: the course's icon. */
+  icon?: string;
+  /** category-icon.svg at the pack root: the icon of the course's category. */
+  categoryIcon?: string;
   /** In the order course.toml declares them. */
   concepts: LoadedConcept[];
   /** The folder names under concepts/. */
   conceptDirectories: string[];
+  /** Whether the pack has an items/ folder. */
+  hasItemsDirectory: boolean;
   /** In course order; an item listed twice is loaded once. */
   items: LoadedItem[];
   /** Every Markdown file read, for the link rule. */
@@ -77,6 +85,7 @@ const ITEM_ENTRIES = new Set([
   "reference",
   "wrong",
   "stages",
+  ICON_FILE,
 ]);
 
 /** The name of a pack before its manifest is read: its folder. */
@@ -111,6 +120,7 @@ class PackReader {
       concepts: [],
       conceptDirectories: [],
       items: [],
+      hasItemsDirectory: false,
       markdown: this.markdown,
       diagnostics: this.list.items,
     };
@@ -119,6 +129,16 @@ class PackReader {
     pack.manifest = manifest;
     if (manifest.syllabus !== undefined)
       pack.syllabus = await this.readMarkdown(manifest.syllabus, {}, { namedBy: "syllabus", in: COURSE_FILE });
+    const icon = await this.readText(ICON_FILE, ICON_LIMIT_BYTES, {}, { rule: "icons" });
+    if (icon !== undefined) pack.icon = icon;
+    const categoryIcon = await this.readText(CATEGORY_ICON_FILE, ICON_LIMIT_BYTES, {}, { rule: "icons" });
+    if (categoryIcon !== undefined) {
+      pack.categoryIcon = categoryIcon;
+      if (!manifest.category)
+        this.list.error("icons", `${CATEGORY_ICON_FILE} is present but course.toml has no [category] table`, {
+          file: CATEGORY_ICON_FILE,
+        });
+    }
     await this.loadConcepts(pack, manifest);
     await this.loadItems(pack, manifest);
     return pack;
@@ -154,6 +174,9 @@ class PackReader {
   private async loadItems(pack: LoadedPack, manifest: CourseManifest): Promise<void> {
     const listing = await listPackDirectory(this.location.directory, "items");
     if (!listing.ok) this.list.error("files", listing.message, { file: "items" });
+    pack.hasItemsDirectory = !listing.ok || listing.entries !== undefined;
+    // A course in development has no items/ folder; the plan rule reports one, so its contents are not examined.
+    if (manifest.status === "in-development") return;
     const listed = new Set(manifest.item.map((entry) => entry.slug));
     for (const entry of (listing.ok && listing.entries) || []) {
       const file = `items/${entry.name}`;
@@ -210,6 +233,8 @@ class PackReader {
     if (instructions !== undefined) item.instructions = instructions;
     if (hints !== undefined) item.hints = hints;
     if (notes !== undefined) item.notes = notes;
+    const icon = await this.readText(`${base}/${ICON_FILE}`, ICON_LIMIT_BYTES, at, { rule: "icons" });
+    if (icon !== undefined) item.icon = icon;
     if (!manifest) return item;
 
     const named = (field: string) => ({ namedBy: field, in: `${base}/item.toml` });
@@ -312,7 +337,7 @@ class PackReader {
     file: string,
     maxBytes: number,
     at: Place,
-    options: { required?: boolean; namedBy?: string; in?: string } = {},
+    options: { required?: boolean; namedBy?: string; in?: string; rule?: Rule } = {},
   ): Promise<string | undefined> {
     const result = await readPackFile(this.location.directory, file, maxBytes);
     if (result.ok) {
@@ -331,7 +356,7 @@ class PackReader {
       else if (options.required) this.list.error("files", `${file} is required and does not exist`, { ...at, file });
       return undefined;
     }
-    this.list.error("files", result.message, { ...at, file });
+    this.list.error(options.rule ?? "files", result.message, { ...at, file });
     return undefined;
   }
 }

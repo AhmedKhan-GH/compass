@@ -34,7 +34,8 @@ error. Colour is used only when standard output is a terminal and `NO_COLOR` is 
 | `src/checks.ts` | The static rules |
 | `src/markdown.ts` | Splits instructions and hints at `## N. Title` headings; finds relative links |
 | `src/python.ts` | Finds the cocotb tests of a checks file by reading its text, never by running it |
-| `src/compile.ts` | The item revision, the index compiler and the atomic write |
+| `src/icons.ts` | The icon rule: reads each SVG as text and refuses anything active or external |
+| `src/compile.ts` | The item revision, the index compiler, the icon assets and the atomic writes |
 | `src/dynamic.ts` | Builds job requests, runs them through an injected `RunnerClient` (four at a time) and judges the results |
 | `src/cli.ts` | The `compass` command |
 
@@ -45,6 +46,11 @@ error. Colour is used only when standard output is a terminal and `NO_COLOR` is 
 - The revision of an item is a SHA-256 over its learner-facing manifest fields, its design and task map, its
   intro, instructions and hints, its starter files, its checks file and the course's runner kind. The slug,
   status, difficulty, prerequisites, references, wrong solutions, stages and notes do not enter it.
+- Icons (`icon.svg` for the course and each item, `category-icon.svg` for the category) are written to
+  `content-assets/<sha256>.svg` beside the index, which names them in `icon`; identical icons share a file, a build
+  removes asset files the new index no longer names, and an icon never enters the item revision.
+- A course in development (`status = "in-development"`) is a plan: no items and no runner, only stages and planned
+  exercises, which the index carries and the dynamic check skips.
 - A run of a wrong solution or a stage uses the reference version of each editable support file, so it differs
   from the reference run only in the solution file.
 - `COMPASS_RUNNER_PORT` without `COMPASS_RUNNER_URL` moves the client to that port on the configured host, so the
@@ -55,4 +61,4 @@ error. Colour is used only when standard output is a terminal and `NO_COLOR` is 
 
 `npm test -w @compass/content` runs the unit tests with `node:test` and `tsx`. They use the fixture pack in
 `test/fixtures/verilog` (the old `drive-high` exercise, transcribed, and a small practice item with an editable
-support file) and a fake runner client; they need neither Docker nor the network.
+support file, with icons and a category) and `test/fixtures/plan` (a course in development) and a fake runner client; they need neither Docker nor the network.

@@ -61,6 +61,7 @@ export function buildTestJob(
 ): { ok: true; request: TestJobRequest } | { ok: false; message: string } {
   const manifest = item.manifest;
   if (!manifest || !item.checks) return { ok: false, message: "the item has errors, so no job can be built" };
+  if (course.runner === undefined) return { ok: false, message: "the course names no runner" };
   if (!isTestRunnerKind(course.runner)) return { ok: false, message: `${course.runner} is not a test runner` };
   const store = variant.kind === "reference" ? item.reference : variant.kind === "wrong" ? item.wrong : item.stages;
   const source = store.get(variant.name);
@@ -114,7 +115,8 @@ export function planRuns(
   const list = new DiagnosticList(pack.location.label);
   const runs: PlannedRun[] = [];
   const course = pack.manifest;
-  if (!course) return { runs, diagnostics: list.items };
+  // A course in development has no items, so nothing to run.
+  if (!course || course.status === "in-development") return { runs, diagnostics: list.items };
   for (const item of items) {
     for (const variant of itemVariants(item)) {
       const file = `${item.path}/${FOLDER[variant.kind]}/${variant.name}`;
