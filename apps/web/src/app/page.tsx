@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { KeyHint, Label, Meter, StatusItem, Thumbnail } from "@compass/ui";
 import { listCourses } from "@/server/content";
 import { SiteFrame } from "@/components/site-frame";
-import { MARK_SRC } from "@/components/brand";
 import { RowNavigation } from "@/components/row-navigation";
 import { CatalogStatus } from "@/components/catalog-status";
 import type { CourseView } from "@compass/schema";
@@ -16,7 +14,6 @@ export const dynamic = "force-dynamic";
 
 export default function CatalogPage() {
   const courses = listCourses();
-  const exercises = courses.reduce((total, course) => total + course.items.length, 0);
   return (
     <SiteFrame
       trail={["Courses"]}
@@ -37,16 +34,6 @@ export default function CatalogPage() {
       }
     >
       <div className="site-page">
-        <header className="catalog-heading">
-          <Image src={MARK_SRC} alt="" width={48} height={48} unoptimized priority className="catalog-mark" />
-          <div className="catalog-heading-text">
-            <h1 className="catalog-name">Compass</h1>
-            <p className="catalog-descriptor">Technical skill practice platform</p>
-            <p className="catalog-count">
-              {count(courses.length, "course", "courses")} · {count(exercises, "exercise", "exercises")}
-            </p>
-          </div>
-        </header>
         <RowNavigation className="catalog">
           {groupByCategory(courses).map((group) => (
             <section key={group.category?.id ?? "other"} className="catalog-group" aria-label={group.category?.title}>
