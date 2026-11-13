@@ -89,7 +89,7 @@ export default async function CoursePage({
         <header className="course-heading">
           <Thumbnail size={72} src={assetUrl(course.icon)} />
           <div className="course-heading-text">
-            <h1 className="sb-page-title">{course.title}</h1>
+            <h1 className="sb-page-title course-title">{course.title}</h1>
             <p className="course-blurb">{course.blurb}</p>
             {course.description && <p className="course-description">{course.description}</p>}
             <p className="course-facts">

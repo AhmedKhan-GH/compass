@@ -16,3 +16,14 @@
   width: 32px;
   height: 32px;
 }
+
+/* Lesson and course names use the text face, in their own case. The Sternbild display face stays for the brand. */
+.lesson-head .lesson-title,
+.course-title,
+.sb-row-name.catalog-title,
+.sb-row-name.exercise-title {
+  font-family: var(--sb-font-family-text);
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+}
