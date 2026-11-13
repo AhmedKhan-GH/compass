@@ -69,8 +69,12 @@ export const ItemManifest = z.strictObject({
   concepts: z.array(Slug).min(1),
   difficulty: z.number().int().min(1).max(10).optional(),
   status: ItemStatus.default("active"),
+  /** Overrides the course test runner for this item. */
+  runner: Kind.optional(),
   design: z.strictObject({
     top: Identifier,
+    /** HDL analysis order; includes every HDL source exactly once when present. */
+    sourceOrder: z.array(FileName).min(1).optional(),
     solution: FileName,
     support: z.array(FileName).default([]),
     editable: z.array(FileName).default([]),
@@ -101,3 +105,10 @@ export const ICON_FILE = "icon.svg";
 export const CATEGORY_ICON_FILE = "category-icon.svg";
 /** The largest icon the content check accepts, in bytes. */
 export const ICON_LIMIT_BYTES = 256 * 1024;
+
+/** A wrong/*.json or stages/*.json bundle replaces the solution and any named editable support files. */
+export const SolutionBundle = z.strictObject({
+  source: z.string().max(64 * 1024),
+  sourceFiles: z.record(FileName, z.string().max(64 * 1024)),
+});
+export type SolutionBundle = z.infer<typeof SolutionBundle>;

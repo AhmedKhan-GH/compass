@@ -52,8 +52,8 @@ exercises copied into `test/fixtures/`.
 | `src/queue.ts` | The in-memory job queue with an injected executor |
 | `src/executor.ts` | The executor that runs jobs in Docker |
 | `src/sandbox.ts` | The container flags, the wall-clock limit, removal and bounded reads |
-| `src/test-launcher.ts` | Test jobs in `iverilog-cocotb@1` |
-| `src/circuit-launcher.ts` | Circuit jobs in `yosys-digitaljs@1` |
+| `src/test-launcher.ts` | Test jobs in the registered Icarus and GHDL images |
+| `src/circuit-launcher.ts` | Circuit jobs in the registered Verilog and VHDL images |
 | `src/legacy.ts` | The adapter to the image's `.meta/config.json`, `.meta/request.json` and `results.json` |
 | `src/requests.ts` | The checks on a job request that the schema cannot express |
 | `src/build-images.ts` | The `images` script |

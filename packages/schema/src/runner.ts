@@ -27,9 +27,10 @@ export const TaskMap = z.array(
 export type TaskMap = z.infer<typeof TaskMap>;
 
 export const TestJobRequest = z.strictObject({
-  runner: z.literal("iverilog-cocotb@1"),
+  runner: z.enum(["iverilog-cocotb@1", "iverilog-native@1", "ghdl-cocotb@1", "ghdl-native@1"]),
   /** The top module name. */
   top: Identifier,
+  sourceOrder: z.array(FileName).min(1).optional(),
   /** The name, in `files`, of the main source file. */
   solution: FileName,
   /** Every source and support file by name, the solution included. */
@@ -44,8 +45,9 @@ export const TestJobRequest = z.strictObject({
 export type TestJobRequest = z.infer<typeof TestJobRequest>;
 
 export const CircuitJobRequest = z.strictObject({
-  runner: z.literal("yosys-digitaljs@1"),
+  runner: z.enum(["yosys-digitaljs@1", "ghdl-yosys-digitaljs@1"]),
   top: Identifier,
+  sourceOrder: z.array(FileName).min(1).optional(),
   solution: FileName,
   files: SourceFiles,
 });

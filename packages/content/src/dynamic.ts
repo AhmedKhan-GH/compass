@@ -21,7 +21,8 @@ import {
 import { DiagnosticList, issueText, type Diagnostic } from "./diagnostics.ts";
 import { compareText } from "./files.ts";
 import type { LoadedItem, LoadedPack } from "./loader.ts";
-import { findCocotbTests } from "./python.ts";
+import { findTests } from "./python.ts";
+import { solutionBundle } from "./bundles.ts";
 
 export type Variant =
   | { kind: "reference"; name: string }
@@ -61,27 +62,40 @@ export function buildTestJob(
 ): { ok: true; request: TestJobRequest } | { ok: false; message: string } {
   const manifest = item.manifest;
   if (!manifest || !item.checks) return { ok: false, message: "the item has errors, so no job can be built" };
-  if (course.runner === undefined) return { ok: false, message: "the course names no runner" };
-  if (!isTestRunnerKind(course.runner)) return { ok: false, message: `${course.runner} is not a test runner` };
+  const runner = manifest.runner ?? course.runner;
+  if (runner === undefined) return { ok: false, message: "the course names no runner" };
+  if (!isTestRunnerKind(runner)) return { ok: false, message: `${runner} is not a test runner` };
   const store = variant.kind === "reference" ? item.reference : variant.kind === "wrong" ? item.wrong : item.stages;
   const source = store.get(variant.name);
   if (source === undefined) return { ok: false, message: `${FOLDER[variant.kind]}/${variant.name} was not read` };
+  let replacement = source;
+  let overrides: Record<string, string> = {};
+  if (variant.kind !== "reference" && variant.name.endsWith(".json")) {
+    try {
+      const bundle = solutionBundle(source, manifest);
+      replacement = bundle.source;
+      overrides = bundle.sourceFiles;
+    } catch (error) {
+      return { ok: false, message: `invalid solution bundle: ${(error as Error).message}` };
+    }
+  }
   const { design } = manifest;
   const files: [string, string][] = [];
   for (const name of [...new Set([design.solution, ...design.support])].sort(compareText)) {
     const content =
       name === design.solution
-        ? source
+        ? replacement
         : design.editable.includes(name)
-          ? item.reference.get(name)
+          ? (Object.hasOwn(overrides, name) ? overrides[name] : item.reference.get(name))
           : item.starter.get(name);
     if (content === undefined) return { ok: false, message: `the file ${name} was not read` };
     files.push([name, content]);
   }
   const tasks = manifest.task ?? [];
   const request = {
-    runner: course.runner,
+    runner,
     top: design.top,
+    ...(design.sourceOrder ? { sourceOrder: design.sourceOrder } : {}),
     solution: design.solution,
     files: Object.fromEntries(files),
     checks: { name: item.checks.name, content: item.checks.content },
@@ -180,7 +194,7 @@ export function judgeRun(run: PlannedRun, outcome: RunOutcome): Diagnostic[] {
     const failing = report.tests.filter((test) => test.status !== "pass");
     if (report.status !== "pass" || failing.length > 0)
       list.error(rule, `the reference fails ${failing.length} of ${report.tests.length} tests: ${testSummary(failing)}`, at);
-    const expected = run.item.checks ? findCocotbTests(run.item.checks.content).tests.length : undefined;
+    const expected = run.item.checks ? findTests(run.item.checks.content, run.request.runner).tests.length : undefined;
     if (expected !== undefined && report.tests.length !== expected)
       list.warning(rule, `the runner reported ${report.tests.length} test results; the checks file defines ${expected} tests`, at);
     return list.items;

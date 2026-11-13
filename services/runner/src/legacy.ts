@@ -11,7 +11,8 @@ export type LegacyConfig = {
   files: { solution: [string]; test: [string]; editor?: string[] };
   custom: {
     compass: {
-      runner: "icarus-cocotb-v1";
+      runner: string;
+      source_order?: string[];
       top_module: string;
       tasks?: { id: number; tests: string[] }[];
     };
@@ -31,7 +32,13 @@ export function legacyConfig(request: TestJobRequest): LegacyConfig {
     },
     custom: {
       compass: {
-        runner: "icarus-cocotb-v1",
+        runner: {
+          "iverilog-cocotb@1": "icarus-cocotb-v1",
+          "iverilog-native@1": "icarus-native-v1",
+          "ghdl-cocotb@1": "ghdl-cocotb-v1",
+          "ghdl-native@1": "ghdl-native-v1",
+        }[request.runner],
+        ...(request.sourceOrder ? { source_order: request.sourceOrder } : {}),
         top_module: request.top,
         ...(request.tasks ? { tasks: request.tasks.map((task) => ({ id: task.id, tests: [...task.tests] })) } : {}),
       },

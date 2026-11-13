@@ -70,7 +70,7 @@ test("kinds: the environment, runner and circuit are known kinds of the right pu
     value.language = "vhdl";
   });
   assert.deepEqual(messages(await check(pack), "kinds"), [
-    "error: runner verilator@1 is not known; known test runners: iverilog-cocotb@1",
+    "error: runner verilator@1 is not known; known test runners: iverilog-cocotb@1, iverilog-native@1, ghdl-cocotb@1, ghdl-native@1",
     "error: circuit yosys-digitaljs@1 does not accept the language vhdl",
   ]);
 });

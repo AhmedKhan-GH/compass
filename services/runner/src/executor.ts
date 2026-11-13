@@ -6,7 +6,7 @@ import type { SandboxOptions } from "./sandbox.ts";
 
 export function createDockerExecutor(options: SandboxOptions = {}): Executor {
   return (request, { signal }) =>
-    request.runner === "iverilog-cocotb@1"
+    "checks" in request
       ? runTestJob(request, { ...options, signal })
       : runCircuitJob(request, { ...options, signal });
 }

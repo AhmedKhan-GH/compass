@@ -21,7 +21,7 @@ test("the client submits, reads, waits for and cancels jobs", async (t) => {
 
   const health = await client.health();
   assert.equal(health.queue.concurrency, 1);
-  assert.equal(health.runners.length, 2);
+  assert.equal(health.runners.length, 6);
 
   const job = await client.submit(testRequest());
   assert.equal(job.state, "running");

@@ -21,14 +21,20 @@ export function checkJobRequest(request: JobRequest): string | undefined {
   if (typeof solution !== "string") return `The solution file ${request.solution} is not among the files.`;
   if (!solution.trim()) return "The solution file is empty.";
   const names = Object.keys(request.files);
-  if (request.runner === "iverilog-cocotb@1") names.push(request.checks.name);
+  if ("checks" in request) names.push(request.checks.name);
   // The files are written to one directory, which may be on a case-insensitive file system.
+  if (request.sourceOrder) {
+    const hdl = Object.keys(request.files).filter((name) => /\.(v|vhd|vhdl)$/i.test(name));
+    if (request.sourceOrder.length !== hdl.length || new Set(request.sourceOrder).size !== hdl.length ||
+        request.sourceOrder.some((name) => !hdl.includes(name)))
+      return "sourceOrder must list every HDL source exactly once.";
+  }
   const seen = new Set<string>();
   for (const name of names) {
     const key = name.toLowerCase();
     if (seen.has(key)) return `Two files are named ${name} when case is ignored.`;
     seen.add(key);
   }
-  if (request.runner === "iverilog-cocotb@1" && !isDeclaredTask(request)) return TASK_SELECTION_MESSAGE;
+  if ("checks" in request && !isDeclaredTask(request)) return TASK_SELECTION_MESSAGE;
   return undefined;
 }

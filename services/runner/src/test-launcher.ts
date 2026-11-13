@@ -1,4 +1,4 @@
-/** Runs a test job in the iverilog-cocotb@1 image. Ported from the legacy Verilog launcher. */
+/** Runs a test job in its registered image. Ported from the legacy Verilog launcher. */
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import { RUNNER_KINDS, type TestJobRequest, type TestJobResult } from "@compass/schema";
@@ -23,6 +23,12 @@ export const TEST_PROFILE: SandboxProfile = {
   outputBytes: 128 * 1024,
 };
 
+/** Debian's GHDL GCC backend executes the elaborated design from its temporary build directory. */
+export const GHDL_TEST_PROFILE: SandboxProfile = {
+  ...TEST_PROFILE,
+  tmpfs: "rw,nosuid,exec,size=64m",
+};
+
 export const TEST_OUTPUT_LIMITS = { results: 256 * 1024, log: 32 * 1024, waveform: 512 * 1024 } as const;
 
 export async function runTestJob(
@@ -36,7 +42,7 @@ export async function runTestJob(
   const imageId = await requireImage(
     RUNNER_KINDS[request.runner].image,
     docker,
-    "The Verilog runner is unavailable. Start Docker and run npm run runner:images.",
+    "The test runner is unavailable. Start Docker and run npm run runner:images.",
   );
   return withScratch("compass-run", docker, async ({ input, output, name }) => {
     for (const [file, content] of Object.entries(request.files)) await writeFile(path.join(input, file), content);
@@ -48,7 +54,8 @@ export async function runTestJob(
       imageId,
       input,
       output,
-      profile: TEST_PROFILE,
+      profile: request.runner === "ghdl-cocotb@1" || request.runner === "ghdl-native@1"
+        ? GHDL_TEST_PROFILE : TEST_PROFILE,
       command: [request.top, "/solution", "/output"],
       docker,
       timeoutMs: options.timeoutMs ?? DEFAULT_TIMEOUT_MS,

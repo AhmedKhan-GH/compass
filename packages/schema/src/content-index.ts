@@ -26,6 +26,7 @@ export type IndexedTask = z.infer<typeof IndexedTask>;
 
 export const ItemDesign = z.strictObject({
   top: Identifier,
+  sourceOrder: z.array(FileName).min(1).optional(),
   solution: FileName,
   support: z.array(FileName),
   editable: z.array(FileName),
@@ -44,6 +45,8 @@ export const IndexedItem = z.strictObject({
   prerequisites: z.array(Slug),
   difficulty: z.number().int().optional(),
   status: ItemStatus,
+  /** Optional item override of the course test runner. */
+  runner: Kind.optional(),
   /** The item's icon: an asset name. Not part of the revision. */
   icon: AssetName.optional(),
   /** SHA-256 (hex) over everything in the item that affects a run or what the learner reads. */

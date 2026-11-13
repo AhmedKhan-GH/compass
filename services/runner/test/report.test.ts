@@ -206,3 +206,20 @@ test("a circuit result maps to a CircuitJobResult, a design error to a design fa
       JSON.stringify(value),
     );
 });
+
+
+test("new test kinds keep their native adapter and validate source ordering and task selection", () => {
+  for (const [runner, legacy] of [
+    ["iverilog-native@1", "icarus-native-v1"],
+    ["ghdl-cocotb@1", "ghdl-cocotb-v1"],
+    ["ghdl-native@1", "ghdl-native-v1"],
+  ] as const) {
+    const request = { ...testRequest(), runner, sourceOrder: ["top_module.v"] };
+    assert.equal(legacyConfig(request).custom.compass.runner, legacy);
+    assert.deepEqual(legacyConfig(request).custom.compass.source_order, ["top_module.v"]);
+    assert.equal(checkJobRequest(request), undefined);
+    assert.match(checkJobRequest({ ...request, sourceOrder: ["missing.v"] }) ?? "", /sourceOrder/);
+    assert.equal(checkJobRequest({ ...request, taskId: 999 }), TASK_SELECTION_MESSAGE);
+    assert.match(checkJobRequest({ ...request, checks: { name: "top_module.v", content: "test" } }) ?? "", /Two files/);
+  }
+});

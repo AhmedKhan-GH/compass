@@ -21,7 +21,8 @@ import { packEntryKind } from "./files.ts";
 import { checkIcon } from "./icons.ts";
 import type { LoadedItem, LoadedPack } from "./loader.ts";
 import { findLinks, isRelativeLink, linkPath, splitSections } from "./markdown.ts";
-import { findCocotbTests } from "./python.ts";
+import { findTests } from "./python.ts";
+import { solutionBundle } from "./bundles.ts";
 
 type Context = { pack: LoadedPack; manifest: CourseManifest; list: DiagnosticList };
 
@@ -126,7 +127,7 @@ function checkIds({ pack, manifest, list }: Context): void {
  * runners accept the course's language. A draft or published course needs an environment and a runner; a course in
  * development may leave them out, but a kind it names must still be known.
  */
-function checkKinds({ manifest, list }: Context): void {
+function checkKinds({ pack, manifest, list }: Context): void {
   const at = { file: "course.toml" };
   const planOnly = manifest.status === "in-development";
   const testKinds = Object.keys(RUNNER_KINDS).filter(isTestRunnerKind);
@@ -140,6 +141,9 @@ function checkKinds({ manifest, list }: Context): void {
     if (!planOnly) list.error("kinds", `runner is required for a ${manifest.status} course; known test runners: ${testKinds.join(", ")}`, at);
   } else checkRunner(manifest.runner, "runner", "test", testKinds, manifest.language, list);
   if (manifest.circuit !== undefined) checkRunner(manifest.circuit, "circuit", "circuit", circuitKinds, manifest.language, list);
+  for (const { item, manifest: itemManifest } of withManifest(pack))
+    if (itemManifest.runner !== undefined)
+      checkRunner(itemManifest.runner, "runner", "test", testKinds, manifest.language, list, itemFile(item, "item.toml"));
 }
 
 function checkRunner(
@@ -149,8 +153,8 @@ function checkRunner(
   known: readonly string[],
   language: string,
   list: DiagnosticList,
+  at: { file: string; item?: string } = { file: "course.toml" },
 ): void {
-  const at = { file: "course.toml" };
   if (!isRunnerKind(kind)) list.error("kinds", `${field} ${kind} is not known; known ${purpose} runners: ${known.join(", ")}`, at);
   else if (RUNNER_KINDS[kind].purpose !== purpose)
     list.error("kinds", `${field} ${kind} is a ${RUNNER_KINDS[kind].purpose} runner, not a ${purpose} runner`, at);
@@ -203,6 +207,22 @@ function checkDesigns({ pack, list }: Context): void {
     if (checks.reference !== design.solution && design.editable.includes(checks.reference))
       list.error("design", `checks.reference ${checks.reference} has the name of an editable support file`, at);
     for (const name of duplicates(checks.wrong)) list.error("design", `checks.wrong lists ${name} more than once`, at);
+    if (design.sourceOrder) {
+      const hdl = [design.solution, ...design.support].filter((name) => /\.(v|vhd|vhdl)$/i.test(name));
+      if (design.sourceOrder.length !== hdl.length || new Set(design.sourceOrder).size !== hdl.length ||
+          design.sourceOrder.some((name) => !hdl.includes(name)))
+        list.error("design", "design.sourceOrder must list every HDL source exactly once", at);
+    }
+    const bundles = [
+      ...checks.wrong.map((name) => ({ name, folder: "wrong", store: item.wrong })),
+      ...(manifest.task ?? []).flatMap((task) => task.stage ? [{ name: task.stage, folder: "stages", store: item.stages }] : []),
+    ].filter(({ name }) => name.endsWith(".json"));
+    for (const { name, folder, store } of bundles) {
+      const text = store.get(name);
+      if (text === undefined) continue;
+      try { solutionBundle(text, manifest); }
+      catch (error) { list.error("design", `invalid solution bundle: ${(error as Error).message}`, itemFile(item, `${folder}/${name}`)); }
+    }
     const files = 1 + new Set(design.support).size;
     if (files > SOURCE_LIMITS.files)
       list.error("design", `the item has ${files} starter files; a run carries at most ${SOURCE_LIMITS.files}`, at);
@@ -316,7 +336,8 @@ function checkTasks({ pack, list }: Context): void {
 
     if (!item.checks) continue;
     const file = itemFile(item, `checks/${item.checks.name}`);
-    const scan = findCocotbTests(item.checks.content);
+    const runner = manifest.runner ?? pack.manifest?.runner;
+    const scan = findTests(item.checks.content, runner);
     for (const problem of scan.problems) list.error("tasks", problem.message, file);
     const defined = new Map<string, number>();
     for (const test of scan.tests) {
@@ -325,7 +346,9 @@ function checkTasks({ pack, list }: Context): void {
       else defined.set(test.name, test.line);
     }
     if (scan.tests.length === 0) {
-      list.error("tasks", "the checks file defines no test (an async def under @cocotb.test())", file);
+      list.error("tasks", runner?.includes("native")
+        ? "the checks file defines no native test (a synchronous test_ function)"
+        : "the checks file defines no test (an async def under @cocotb.test())", file);
       continue;
     }
     if (tasks.length === 0) continue;

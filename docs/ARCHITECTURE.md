@@ -31,7 +31,11 @@ packages/runner-client/   a typed HTTP client for the runner service
 packages/ui/              interface components on the Sternbild tokens
 services/runner/          the runner service: the HTTP API, the queue, the sandbox, the images
   images/iverilog-cocotb-1/   the Verilog test image
-  images/yosys-digitaljs-1/   the circuit image
+  images/yosys-digitaljs-1/   the Verilog circuit image
+  images/iverilog-native-1/   native Verilog testbenches
+  images/ghdl-cocotb-1/       VHDL cocotb tests
+  images/ghdl-native-1/       native VHDL testbenches
+  images/ghdl-yosys-digitaljs-1/ VHDL circuits
 content/                  the course packs kept in this repository
   verilog/
 tools/convert/            the converter from the old exercise format to an item folder
@@ -134,11 +138,13 @@ kind = "concept"                  # "concept" or "practice"
 concepts = ["constants"]          # taught (concept) or practised (practice)
 difficulty = 1                    # optional, 1 to 10
 status = "active"                 # "active", "beta", "wip" or "deprecated"
+runner = "iverilog-native@1"      # optional; overrides the course test runner
 
 [design]
-top = "top_module"                # the top module name
+top = "top_module"                # the top module or VHDL entity name
 solution = "top_module.v"         # the file in starter/ that the learner edits
 support = []                      # optional; other files in starter/, read-only unless listed in editable
+sourceOrder = ["top_module.v"]    # optional; HDL analysis order, every HDL source exactly once
 editable = []                     # optional; support files the learner may edit
 schematic = true                  # optional, default true; false hides the circuit view
 
@@ -154,6 +160,13 @@ stage = "task_1.v"                # optional; in stages/: the reference after th
 ```
 
 When an item has editable support files, `reference/` holds a file of the same name for each one.
+
+A `.json` entry in `checks.wrong` or a task's `stage` is a multi-file solution bundle, validated with `SolutionBundle`:
+`{"source": "solution text", "sourceFiles": {"editable-file.v": "replacement text"}}`. Its `source` replaces the
+solution; each `sourceFiles` key must name an editable support file. Other editable files use their reference
+versions. No other keys are allowed. Other wrong and stage files replace only the solution. The converter preserves these
+legacy bundles byte for byte; JSON is never passed to the compiler as HDL. Bundles remain author-only data and
+are not included in the content index.
 
 Task titles and task text come from `instructions.md`: each `## N. Title` heading starts task N, and the text before
 the first such heading is the preamble. The headings must match the `[[task]]` ids. `hints.md` is split the same way.
@@ -209,10 +222,11 @@ The static checks, which need no runner:
 - the task headings in `instructions.md` match the `[[task]]` ids; every test in the checks file is mapped to
   exactly one task, and every mapped test exists;
 - relative links in the Markdown files resolve inside the pack;
-- the course's language is one its runner accepts; course ids are unique across packs;
+- the course's language is one its runners accept, including item overrides; course ids are unique across packs;
 - the file roles of an item are distinct, and it has at most 16 starter files;
 - the checks file defines at least one test, each an `async def` under `@cocotb.test()`. The check reads the Python
-  as text and never runs it;
+  as text and never runs it. Native runners instead require synchronous top-level `test_` functions without
+  arguments or decorators;
 - hint headings name existing tasks, once each; task headings without any `[[task]]` are an error;
 - files the manifests do not name, and declared concepts that no item teaches, are warnings.
 
@@ -225,7 +239,7 @@ The dynamic checks, which submit jobs to the runner service:
 
 Every run uses the starter files with the solution file replaced. When an item has editable support files, every run
 (reference, wrong and stage) uses `reference/<name>` for each, so a wrong solution differs from the reference only in
-the solution file.
+the solution file, except JSON bundles which also replace their named editable support files.
 
 `compass content check --static` runs only the static checks. CI runs the full check on `content/`.
 
@@ -237,7 +251,7 @@ starter files, its checks file and a `revision` (a SHA-256 over everything in th
 learner reads). It does not hold references, wrong solutions, stages or notes.
 
 The revision covers the item's id, title, topic, blurb, kind, concepts, design and task map; its intro, instructions
-and hints; its starter files and checks file; and the course's runner kind. It does not cover the slug, status,
+and hints; its starter files and checks file; and the effective runner kind (the item override, or the course default). It does not cover the slug, status,
 difficulty or prerequisites, so reordering a course does not reset progress.
 
 The checks file is in the index because the runner is content-agnostic and receives it with each job. It must never
@@ -260,6 +274,10 @@ The registry in `packages/schema/src/registry.ts` lists what this installation k
 |---|---|---|---|
 | `iverilog-cocotb@1` | test | `compass/iverilog-cocotb:1` | Python 3.12, Icarus Verilog 11.0, cocotb 2.0.0 |
 | `yosys-digitaljs@1` | circuit | `compass/yosys-digitaljs:1` | Yosys 0.23, yosys2digitaljs 0.10.3 |
+| `iverilog-native@1` | test | `compass/iverilog-native:1` | Python 3.12.12, Icarus 11.0-1.1+b1, cocotb 2.0.0, native helpers |
+| `ghdl-cocotb@1` | test | `compass/ghdl-cocotb:1` | Python 3.12.12, GHDL 2.0.0+dfsg-6.2, cocotb 2.0.0 |
+| `ghdl-native@1` | test | `compass/ghdl-native:1` | Python 3.12.12, GHDL 2.0.0+dfsg-6.2, cocotb 2.0.0, native helpers |
+| `ghdl-yosys-digitaljs@1` | circuit | `compass/ghdl-yosys-digitaljs:1` | GHDL 2.0.0+dfsg-6.2, Yosys 0.23-6, yosys2digitaljs 0.10.3 |
 
 | Environment | Panes |
 |---|---|
@@ -293,8 +311,10 @@ Errors are `{ error: { code, message } }`. A job must be sent as `application/js
 another site from submitting jobs with a plain form post. A request the launcher would reject (no solution file, an
 undeclared task) is refused with `400` when it is submitted.
 
-A `JobRequest` carries everything the run needs: the runner kind, the top module, the source files, and for a test job
-the checks file, the task map and an optional task selection. The service never reads packs or the index.
+A `JobRequest` carries everything the run needs: the runner kind, the top module or entity, the source files, an optional `sourceOrder`, and for a test job
+the checks file, the task map and an optional task selection. The service never reads packs or the index. `sourceOrder`, when supplied, lists every HDL source exactly once;
+it is carried from the item design through the index to both test and circuit jobs. Native graders import
+`nebula_native` (the legacy author API) inside the new images; that helper is never imported by the host.
 
 ### Job states
 
@@ -322,7 +342,7 @@ restart; the web app treats a job the service no longer knows as failed with `un
 Each job runs in a fresh container: `--network none`, one CPU, 256 MB of memory with no swap (512 MB for the circuit
 runner), a pids limit,
 a read-only root filesystem, all capabilities dropped, `no-new-privileges`, user `65534:65534`, a file-size ulimit,
-a small `tmpfs` at `/tmp`, the input mounted read-only and one writable output directory. The launcher enforces a
+a small `tmpfs` at `/tmp` (executable for GHDL test images because the pinned GCC backend emits a native executable), the input mounted read-only and one writable output directory. The launcher enforces a
 wall-clock timeout, removes the container afterwards, and reads `results.json`, the log and the waveform through
 size-bounded reads that reject symlinks. The report is validated before it is returned.
 

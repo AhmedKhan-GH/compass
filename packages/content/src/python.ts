@@ -118,3 +118,30 @@ function insideQuotes(prefix: string): boolean {
   }
   return quote !== undefined;
 }
+
+/** Native graders declare top-level synchronous test_ functions without arguments or decorators. */
+export function findNativeTests(source: string): TestScan {
+  const tests: FoundTest[] = [];
+  const problems: TestScan["problems"] = [];
+  const strings = new TripleQuoteTracker();
+  let decorated = false;
+  for (const [index, line] of source.split("\n").entries()) {
+    const inString = strings.inside;
+    strings.step(line);
+    if (inString || isBlankOrComment(line)) continue;
+    if (line.startsWith("@")) { decorated = true; continue; }
+    const match = /^(async\s+)?def\s+(test_[A-Za-z0-9_]*)\s*\(([^)]*)\)/.exec(line);
+    if (match?.[2]) {
+      tests.push({ name: match[2], line: index + 1 });
+      if (match[1] || match[3]?.trim() || decorated)
+        problems.push({ line: index + 1, message: `native test ${match[2]} must be synchronous, without arguments or decorators` });
+    }
+    decorated = false;
+  }
+  return { tests, problems };
+}
+
+export function findTests(source: string, runner: string | undefined): TestScan {
+  return runner === "iverilog-native@1" || runner === "ghdl-native@1"
+    ? findNativeTests(source) : findCocotbTests(source);
+}

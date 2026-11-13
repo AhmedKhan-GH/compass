@@ -31,11 +31,39 @@ export const RUNNER_KINDS = {
     languages: ["verilog"],
     tools: "Yosys 0.23, yosys2digitaljs 0.10.3",
   },
+  "iverilog-native@1": {
+    purpose: "test",
+    image: "compass/iverilog-native:1",
+    imageDirectory: "iverilog-native-1",
+    languages: ["verilog"],
+    tools: "Python 3.12, Icarus Verilog 11.0-1.1+b1, native testbenches",
+  },
+  "ghdl-cocotb@1": {
+    purpose: "test",
+    image: "compass/ghdl-cocotb:1",
+    imageDirectory: "ghdl-cocotb-1",
+    languages: ["vhdl"],
+    tools: "Python 3.12, GHDL 2.0.0+dfsg-6.2, cocotb 2.0.0",
+  },
+  "ghdl-native@1": {
+    purpose: "test",
+    image: "compass/ghdl-native:1",
+    imageDirectory: "ghdl-native-1",
+    languages: ["vhdl"],
+    tools: "Python 3.12, GHDL 2.0.0+dfsg-6.2, native testbenches",
+  },
+  "ghdl-yosys-digitaljs@1": {
+    purpose: "circuit",
+    image: "compass/ghdl-yosys-digitaljs:1",
+    imageDirectory: "ghdl-yosys-digitaljs-1",
+    languages: ["vhdl"],
+    tools: "GHDL 2.0.0+dfsg-6.2, Yosys 0.23-6, yosys2digitaljs 0.10.3",
+  },
 } as const satisfies Record<string, RunnerKindInfo>;
 
 export type RunnerKind = keyof typeof RUNNER_KINDS;
-export type TestRunnerKind = "iverilog-cocotb@1";
-export type CircuitRunnerKind = "yosys-digitaljs@1";
+export type TestRunnerKind = "iverilog-cocotb@1" | "iverilog-native@1" | "ghdl-cocotb@1" | "ghdl-native@1";
+export type CircuitRunnerKind = "yosys-digitaljs@1" | "ghdl-yosys-digitaljs@1";
 
 export type PaneKind = "instructions" | "editor" | "results" | "waveform" | "circuit";
 

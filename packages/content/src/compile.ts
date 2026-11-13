@@ -45,7 +45,7 @@ export function itemRevision(course: Pick<CourseManifest, "runner">, item: Loade
     throw new CompileError(`${item.path}: the item is incomplete and has no revision`);
   const material = {
     format: REVISION_FORMAT,
-    runner: course.runner ?? null,
+    runner: manifest.runner ?? course.runner ?? null,
     item: {
       id: manifest.id,
       title: manifest.title,
@@ -140,6 +140,7 @@ export function compileItem(course: CourseManifest, item: LoadedItem, assets: As
     prerequisites: [...item.prerequisites],
     difficulty: manifest.difficulty,
     status: manifest.status,
+    runner: manifest.runner,
     icon: assets.add(item.icon),
     revision: itemRevision(course, item),
     intro: optionalText(item.intro),
@@ -148,6 +149,7 @@ export function compileItem(course: CourseManifest, item: LoadedItem, assets: As
     tasks: indexedTasks,
     design: {
       top: manifest.design.top,
+      ...(manifest.design.sourceOrder ? { sourceOrder: [...manifest.design.sourceOrder] } : {}),
       solution: manifest.design.solution,
       support: [...manifest.design.support],
       editable: [...manifest.design.editable],

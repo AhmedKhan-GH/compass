@@ -199,6 +199,7 @@ export async function startCircuit(
   const request = CircuitJobRequest.safeParse({
     runner: course.circuit,
     top: item.design.top,
+    ...(item.design.sourceOrder ? { sourceOrder: item.design.sourceOrder } : {}),
     solution: item.design.solution,
     files,
   });

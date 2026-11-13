@@ -60,7 +60,7 @@ test("a draft or published course needs an environment, a runner and an item", a
   });
   assert.deepEqual(messages(await check(pack), "kinds"), [
     "error: environment is required for a published course; known: code@1",
-    "error: runner is required for a published course; known test runners: iverilog-cocotb@1",
+    "error: runner is required for a published course; known test runners: iverilog-cocotb@1, iverilog-native@1, ghdl-cocotb@1, ghdl-native@1",
   ]);
   const plan = await temporaryPlan(t);
   await course(plan, (value) => {

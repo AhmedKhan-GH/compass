@@ -120,15 +120,17 @@ export function testJobRequest(
   files: SourceFiles,
   taskId: number | undefined,
 ): TestJobRequest {
-  if (!course.runner || !isTestRunnerKind(course.runner))
+  const runner = item.runner ?? course.runner;
+  if (!runner || !isTestRunnerKind(runner))
     throw new HttpError(
       409,
       "unsupported-runner",
-      course.runner ? `This app does not know the test runner ${course.runner}.` : "This course has no test runner.",
+      runner ? `This app does not know the test runner ${runner}.` : "This course has no test runner.",
     );
   const parsed = TestJobRequest.safeParse({
-    runner: course.runner,
+    runner,
     top: item.design.top,
+    ...(item.design.sourceOrder ? { sourceOrder: item.design.sourceOrder } : {}),
     solution: item.design.solution,
     files: mergeWithStarter(item, files),
     checks: item.checks,

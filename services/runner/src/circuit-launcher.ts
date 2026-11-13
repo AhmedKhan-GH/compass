@@ -78,6 +78,8 @@ export async function runCircuitJob(
       path.join(input, ".meta", "config.json"),
       JSON.stringify({
         filename: request.solution,
+        language: RUNNER_KINDS[request.runner].languages[0],
+        ...(request.sourceOrder ? { sourceOrder: request.sourceOrder } : {}),
         topModule: request.top,
         supportingFiles: Object.keys(request.files).filter((file) => file !== request.solution),
       }),
