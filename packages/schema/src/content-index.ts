@@ -6,6 +6,12 @@ import { ItemKind, ItemStatus } from "./pack.ts";
 export const CONTENT_INDEX_SCHEMA = 1;
 export const DEFAULT_CONTENT_INDEX_PATH = ".compass/content-index.json";
 
+/** The directory of static assets written beside the index file. */
+export const CONTENT_ASSETS_DIRECTORY = "content-assets";
+/** An asset in that directory, named by the SHA-256 of its bytes. */
+export const ASSET_NAME_PATTERN = /^[0-9a-f]{64}\.svg$/;
+export const AssetName = z.string().regex(ASSET_NAME_PATTERN);
+
 export const IndexedTask = z.strictObject({
   id: z.number().int().min(1),
   title: z.string(),
@@ -38,6 +44,8 @@ export const IndexedItem = z.strictObject({
   prerequisites: z.array(Slug),
   difficulty: z.number().int().optional(),
   status: ItemStatus,
+  /** The item's icon: an asset name. Not part of the revision. */
+  icon: AssetName.optional(),
   /** SHA-256 (hex) over everything in the item that affects a run or what the learner reads. */
   revision: z.string().regex(/^[0-9a-f]{64}$/),
   /** Markdown: the concept introduction shown with the exercise. */
@@ -78,6 +86,9 @@ export const IndexedCourse = z.strictObject({
   runner: Kind,
   circuit: Kind.optional(),
   status: z.enum(["draft", "published"]),
+  /** The course's icon: an asset name. */
+  icon: AssetName.optional(),
+  category: z.strictObject({ id: Slug, title: z.string(), icon: AssetName.optional() }).optional(),
   editor: z.strictObject({ indent: z.number().int() }),
   /** Markdown. */
   syllabus: z.string().optional(),

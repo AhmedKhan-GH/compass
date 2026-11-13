@@ -84,6 +84,9 @@ content/verilog/
     wrong/              deliberately wrong solutions; each must fail
     stages/             optional; the reference after each task, for concept items
     notes.md            optional author notes; never compiled into the index
+    icon.svg            optional; the item's icon
+  icon.svg              optional; the course's icon
+  category-icon.svg     optional; the icon of the course's category
 ```
 
 A pack is self-contained: nothing in it refers to a file outside its directory.
@@ -101,6 +104,10 @@ runner = "iverilog-cocotb@1"
 circuit = "yosys-digitaljs@1"     # optional; omit for a course with no circuit view
 syllabus = "syllabus.md"          # optional
 status = "draft"                  # "draft" or "published"; see the prerequisite rule
+
+[category]                        # optional; the catalog groups courses by category
+id = "rtl-design"                 # courses in different packs share a category by using the same id
+title = "RTL design"
 
 [editor]
 indent = 4
@@ -151,6 +158,17 @@ When an item has editable support files, `reference/` holds a file of the same n
 Task titles and task text come from `instructions.md`: each `## N. Title` heading starts task N, and the text before
 the first such heading is the preamble. The headings must match the `[[task]]` ids. `hints.md` is split the same way.
 
+### Icons
+
+Icons are course data. A pack may hold `icon.svg` at its root (the course), `category-icon.svg` at its root (the
+course's category) and `icon.svg` in an item folder. Each is optional; the interface shows a placeholder tile where
+one is missing. There is no category file outside the packs: a category is the `[category]` table of the courses
+that name it, and when several packs carry an icon for the same category the first source's is used.
+
+An icon must be an SVG of at most 256 KiB with a square `viewBox`, and must hold no script, no event handler
+attribute, no `foreignObject`, no embedded image, no document type or entity declaration, no style import, and no
+reference other than to an id in the same file (`href="#…"`, `url(#…)`). The check reads the file as text.
+
 ### What `compass content check` enforces
 
 The static checks, which need no runner:
@@ -198,6 +216,12 @@ difficulty or prerequisites, so reordering a course does not reset progress.
 The checks file is in the index because the runner is content-agnostic and receives it with each job. It must never
 reach the browser: only `apps/web/src/server` reads the index, and it hands pages and API responses the learner
 views (`CourseView`, `ItemView`), which carry no checks.
+
+Icons are written beside the index, in `.compass/content-assets/`, each named by the SHA-256 of its bytes
+(`<hash>.svg`), and the index holds that name in `icon`. The build removes assets the index no longer names. The site
+serves them at `/content-assets/<name>` as static, immutable files with a content security policy that forbids
+everything but inline styles, and always shows them with `<img>`, never inline, so the ids of gradients and filters
+in different icons cannot clash. An icon is not part of the item revision.
 
 The index is deterministic: the same packs produce the same bytes.
 
@@ -284,6 +308,7 @@ size-bounded reads that reject symlinks. The report is validated before it is re
 | `/` | the catalog: every course in the index |
 | `/courses/[namespace]/[course]` | the course: its exercises in order, with progress |
 | `/courses/[namespace]/[course]/[item]` | the exercise workspace, in the course's environment |
+| `/content-assets/[name]` | an icon from the content index's assets |
 
 ### API
 

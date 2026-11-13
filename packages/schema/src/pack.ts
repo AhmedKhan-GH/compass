@@ -13,6 +13,8 @@ export const CourseManifest = z.strictObject({
   circuit: Kind.optional(),
   syllabus: FileName.optional(),
   status: z.enum(["draft", "published"]).default("draft"),
+  /** The catalog groups courses by category. Courses in different packs share a category by using the same id. */
+  category: z.strictObject({ id: Slug, title: z.string().min(1).max(80) }).optional(),
   editor: z.strictObject({ indent: z.number().int().min(1).max(8) }).default({ indent: 4 }),
   concept: z.array(z.strictObject({ slug: Slug, name: z.string().min(1).max(80) })).default([]),
   item: z
@@ -68,3 +70,9 @@ export const CompassConfig = z.strictObject({
   runner: z.strictObject({ url: z.url() }).default({ url: "http://127.0.0.1:3101" }),
 });
 export type CompassConfig = z.infer<typeof CompassConfig>;
+
+/** The fixed names of the optional icons in a pack: the course's and each item's, and the category's. */
+export const ICON_FILE = "icon.svg";
+export const CATEGORY_ICON_FILE = "category-icon.svg";
+/** The largest icon the content check accepts, in bytes. */
+export const ICON_LIMIT_BYTES = 256 * 1024;

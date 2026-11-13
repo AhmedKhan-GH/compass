@@ -5,6 +5,8 @@
 import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import {
+  ASSET_NAME_PATTERN,
+  CONTENT_ASSETS_DIRECTORY,
   ContentIndex,
   DEFAULT_CONTENT_INDEX_PATH,
   toCourseView,
@@ -62,4 +64,14 @@ export function findCourse(courseId: string): CourseView | undefined {
 export function findItem(courseId: string, itemSlug: string): { course: CourseView; item: ItemView } | undefined {
   const found = findIndexedItem(courseId, itemSlug);
   return found && { course: toCourseView(found.course), item: toItemView(found.item) };
+}
+
+/** The bytes of a content asset (an icon), or undefined when the name is malformed or the file is missing. */
+export function readContentAsset(name: string): Buffer | undefined {
+  if (!ASSET_NAME_PATTERN.test(name)) return undefined;
+  try {
+    return readFileSync(path.join(path.dirname(contentIndexPath()), CONTENT_ASSETS_DIRECTORY, name));
+  } catch {
+    return undefined;
+  }
 }
