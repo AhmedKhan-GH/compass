@@ -291,6 +291,12 @@ completes the item). Progress is derived from stored runs of the item's current 
 
 SQLite (`better-sqlite3`) at `.compass/compass.db`. There are no accounts yet: one local learner. Records are keyed
 by course id and item id (the UUID), so a renamed slug keeps its history. Drafts stay in the browser's local storage.
+The store keeps the latest 100 runs of an item, the tail of each log and a bounded waveform. A reset sets a marker:
+the history stays, and progress counts only later runs.
+
+A test result carries `test_code`, the source of that one test function, and the interface shows it. The checks file
+as a whole never appears in a response. Every route refuses a request whose host is not a loopback address or whose
+origin is another site.
 
 ## The interface
 
