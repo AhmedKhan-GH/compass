@@ -1,0 +1,8 @@
+# The content sources and the runner address. See docs/ARCHITECTURE.md.
+
+[[content.source]]
+kind = "local"
+path = "content"
+
+[runner]
+url = "http://127.0.0.1:3101"

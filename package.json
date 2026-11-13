@@ -1,0 +1,37 @@
+{
+  "name": "compass",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*",
+    "tools/*"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "npm run content:build && npm run dev --workspace @compass/web",
+    "build": "npm run content:build && npm run build --workspace @compass/web",
+    "start": "npm run start --workspace @compass/web",
+    "runner": "npm run start --workspace @compass/runner",
+    "runner:images": "npm run images --workspace @compass/runner",
+    "content:build": "compass content build",
+    "content:check": "compass content check",
+    "lint": "eslint .",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:docker": "npm run test:docker --workspaces --if-present",
+    "check": "npm run lint && npm run typecheck && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tsx": "^4.23.13",
+    "typescript": "^5",
+    "typescript-eslint": "^8"
+  }
+}
