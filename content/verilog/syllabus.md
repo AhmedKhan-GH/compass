@@ -4,10 +4,10 @@ Status: implemented and editorially revised, 8 September 2026. **84 exercises:
 45 concept lessons and 39 practice problems** in `tracks/verilog`. The separate
 capstone remains planned. Counts describe the selected inventory, not a quota.
 
-This is the core course within [ROADMAP.md](ROADMAP.md). It selects material from
-[LESSON_MODULES.md](LESSON_MODULES.md), follows the teaching model in
-[PRACTICE_ROADMAP.md](PRACTICE_ROADMAP.md), and uses the visual-learning and tool
-plan in [VERILOG_ROADMAP.md](VERILOG_ROADMAP.md).
+This is the core course within ROADMAP.md. It selects material from
+LESSON_MODULES.md, follows the teaching model in
+PRACTICE_ROADMAP.md, and uses the visual-learning and tool
+plan in VERILOG_ROADMAP.md.
 
 ## 1. What this track is for
 
@@ -33,8 +33,8 @@ Establish a familiar device or engineering situation, explain why its behavior
 matters, and lead naturally into the learner's job. The sentences should develop
 one situation, with enough context to picture the work. A list of short statements
 does not become a story just by removing its line breaks. The scenarios in section 4
-reflect the published openings for all 84 lessons. The [narrative audit](NARRATIVE_AUDIT.md) records the latest review;
-[CURRICULUM_AUDIT.md](CURRICULUM_AUDIT.md) preserves the earlier teaching and formatting checks.
+reflect the published openings for all 84 lessons. The narrative audit records the latest review;
+CURRICULUM_AUDIT.md preserves the earlier teaching and formatting checks.
 The original identities and order are retained; revised content receives new revisions.
 
 A panel, lamp, sensor, recorder, display or workbench problem is enough. Keep the
@@ -234,7 +234,7 @@ SVG illustration tied to its scenario.
 Use Chu's Verilog text for the progression through combinational circuits,
 sequential circuits, FSMs, controller/datapath design and practical simulation.
 Write original explanations and problems. The edition-specific references are
-in [LANGUAGE_ROADMAP.md](LANGUAGE_ROADMAP.md#how-the-chu-books-should-be-used).
+in LANGUAGE_ROADMAP.md.
 Exercism supplies the distinction between [concept exercises](https://exercism.org/docs/building/tracks/concept-exercises)
 and [practice exercises](https://exercism.org/docs/building/tracks/practice-exercises).
 

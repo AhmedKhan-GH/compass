@@ -111,6 +111,13 @@ function exerciseDir(trackDir: string, entry: OldEntry): string {
 /** Thrown for an exercise that is deliberately not converted. */
 class Refusal extends Error {}
 
+/** Replaces `[text](relative-target)` with `text`. Links to a URL or to an anchor on the same page are kept. */
+export function unlinkOutsideDocuments(markdown: string): string {
+  return markdown.replace(/\[([^\]\n]+)\]\(([^)\s]+)\)/g, (link, text: string, target: string) =>
+    /^(?:[a-z][a-z0-9+.-]*:|#)/i.test(target) ? link : text,
+  );
+}
+
 function buildItem(
   entry: OldEntry,
   track: OldTrack,
@@ -315,7 +322,9 @@ function writeCourse(trackDir: string, repo: string, track: OldTrack, outRoot: s
     }
   }
   const syllabus = join(repo, "VERILOG_SYLLABUS.md");
-  out.copy(syllabus, "syllabus.md");
+  // The old syllabus links to planning documents at the root of the old repository. A pack is self-contained, so
+  // a relative link to a document outside it keeps its text and loses its target.
+  out.text("syllabus.md", unlinkOutsideDocuments(readFileSync(syllabus, "utf8")));
   return { exercises: [], items: slugs, concepts: concepts.map((c) => c.slug) };
 }
 

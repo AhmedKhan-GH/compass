@@ -209,3 +209,11 @@ describe("convert", () => {
     assert.equal(run(["nope"]).exercises[0]?.status, "failed");
   });
 });
+
+it("links from the syllabus to documents outside the pack lose their target", async () => {
+  const { unlinkOutsideDocuments } = await import("../src/convert.ts");
+  assert.equal(
+    unlinkOutsideDocuments("See [ROADMAP.md](ROADMAP.md), [the audit](AUDIT.md#part), [a site](https://example.org) and [below](#scope)."),
+    "See ROADMAP.md, the audit, [a site](https://example.org) and [below](#scope).",
+  );
+});
