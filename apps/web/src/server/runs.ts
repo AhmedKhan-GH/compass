@@ -120,8 +120,12 @@ export function testJobRequest(
   files: SourceFiles,
   taskId: number | undefined,
 ): TestJobRequest {
-  if (!isTestRunnerKind(course.runner))
-    throw new HttpError(409, "unsupported-runner", `This app does not know the test runner ${course.runner}.`);
+  if (!course.runner || !isTestRunnerKind(course.runner))
+    throw new HttpError(
+      409,
+      "unsupported-runner",
+      course.runner ? `This app does not know the test runner ${course.runner}.` : "This course has no test runner.",
+    );
   const parsed = TestJobRequest.safeParse({
     runner: course.runner,
     top: item.design.top,

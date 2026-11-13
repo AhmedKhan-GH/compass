@@ -95,6 +95,8 @@ function course(id: string, items: IndexedItem[], circuit: string | undefined): 
     source: "local:test",
     concepts: [{ slug: "constants", name: "Constants" }],
     items,
+    stages: [],
+    planned: [],
   };
 }
 

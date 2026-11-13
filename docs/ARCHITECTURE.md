@@ -103,7 +103,7 @@ environment = "code@1"
 runner = "iverilog-cocotb@1"
 circuit = "yosys-digitaljs@1"     # optional; omit for a course with no circuit view
 syllabus = "syllabus.md"          # optional
-status = "draft"                  # "draft" or "published"; see the prerequisite rule
+status = "draft"                  # "draft", "published" or "in-development"; see below
 
 [category]                        # optional; the catalog groups courses by category
 id = "rtl-design"                 # courses in different packs share a category by using the same id
@@ -157,6 +157,33 @@ When an item has editable support files, `reference/` holds a file of the same n
 
 Task titles and task text come from `instructions.md`: each `## N. Title` heading starts task N, and the text before
 the first such heading is the preamble. The headings must match the `[[task]]` ids. `hints.md` is split the same way.
+
+### A course in development
+
+A course whose `status` is `in-development` is a plan. It has a `course.toml` and may have icons, but no `[[item]]`,
+no `items/` folder and no need for `environment` or `runner` (a kind it does name must still be known). It lists
+what is planned as plain data:
+
+```toml
+status = "in-development"
+description = "A few plain sentences for the course page."   # optional, for any course
+
+[[stage]]
+id = "signals-and-decisions"
+name = "Signals and decisions"
+
+[[planned]]
+slug = "drive-high"
+title = "First Light"
+blurb = "Give a museum exhibit its first always-on power indicator."
+kind = "concept"
+stage = "signals-and-decisions"                               # optional; must be a declared stage
+```
+
+The catalog shows such a course with the label "In development"; its page lists the planned exercises by stage, and
+none of them can be opened or run. Every other course needs `environment`, `runner` and at least one `[[item]]`. Any
+course may carry `[[stage]]` and `[[planned]]` entries, so a draft can list what is still to come. Stage ids and
+planned slugs are unique, and a planned slug is not also an item.
 
 ### Icons
 

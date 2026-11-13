@@ -2,29 +2,54 @@
 import { z } from "zod";
 import { CourseId, FileName, Identifier, Kind, Semver, Slug, Uuid } from "./ids.ts";
 
+/**
+ * `draft` and `published` courses have exercises and a runner. An `in-development` course is a plan: it has no
+ * exercises and needs no runner, and lists what is planned.
+ */
+export const CourseStatus = z.enum(["draft", "published", "in-development"]);
+export type CourseStatus = z.infer<typeof CourseStatus>;
+
+export const ItemKind = z.enum(["concept", "practice"]);
+export type ItemKind = z.infer<typeof ItemKind>;
+
 export const CourseManifest = z.strictObject({
   id: CourseId,
   version: Semver,
   title: z.string().min(1).max(80),
   blurb: z.string().min(1).max(240),
   language: Slug,
-  environment: Kind,
-  runner: Kind,
+  /** Longer plain text for the course page. */
+  description: z.string().min(1).max(600).optional(),
+  /** Required unless the course is in development. */
+  environment: Kind.optional(),
+  /** Required unless the course is in development. */
+  runner: Kind.optional(),
   circuit: Kind.optional(),
   syllabus: FileName.optional(),
-  status: z.enum(["draft", "published"]).default("draft"),
+  status: CourseStatus.default("draft"),
   /** The catalog groups courses by category. Courses in different packs share a category by using the same id. */
   category: z.strictObject({ id: Slug, title: z.string().min(1).max(80) }).optional(),
   editor: z.strictObject({ indent: z.number().int().min(1).max(8) }).default({ indent: 4 }),
   concept: z.array(z.strictObject({ slug: Slug, name: z.string().min(1).max(80) })).default([]),
-  item: z
-    .array(z.strictObject({ slug: Slug, prerequisites: z.array(Slug).default([]) }))
-    .min(1),
+  /** The ordered exercise list. Empty exactly when the course is in development. */
+  item: z.array(z.strictObject({ slug: Slug, prerequisites: z.array(Slug).default([]) })).default([]),
+  /** The stages that group planned exercises. */
+  stage: z.array(z.strictObject({ id: Slug, name: z.string().min(1).max(80) })).default([]),
+  /** Exercises that are planned but not written: listed on the course page, never opened or run. */
+  planned: z
+    .array(
+      z.strictObject({
+        slug: Slug,
+        title: z.string().min(1).max(80),
+        blurb: z.string().min(1).max(240),
+        kind: ItemKind,
+        stage: Slug.optional(),
+      }),
+    )
+    .default([]),
 });
 export type CourseManifest = z.infer<typeof CourseManifest>;
 
-export const ItemKind = z.enum(["concept", "practice"]);
-export type ItemKind = z.infer<typeof ItemKind>;
 export const ItemStatus = z.enum(["active", "beta", "wip", "deprecated"]);
 export type ItemStatus = z.infer<typeof ItemStatus>;
 

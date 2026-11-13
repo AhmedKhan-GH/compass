@@ -1,7 +1,7 @@
 /** The compiled content index: the only form of content the web app reads. */
 import { z } from "zod";
 import { CourseId, FileName, Identifier, Kind, Semver, Slug, Uuid } from "./ids.ts";
-import { ItemKind, ItemStatus } from "./pack.ts";
+import { CourseStatus, ItemKind, ItemStatus } from "./pack.ts";
 
 export const CONTENT_INDEX_SCHEMA = 1;
 export const DEFAULT_CONTENT_INDEX_PATH = ".compass/content-index.json";
@@ -82,10 +82,14 @@ export const IndexedCourse = z.strictObject({
   title: z.string(),
   blurb: z.string(),
   language: Slug,
-  environment: Kind,
-  runner: Kind,
+  /** Plain text. */
+  description: z.string().optional(),
+  /** Absent only when the course is in development. */
+  environment: Kind.optional(),
+  /** Absent only when the course is in development. */
+  runner: Kind.optional(),
   circuit: Kind.optional(),
-  status: z.enum(["draft", "published"]),
+  status: CourseStatus,
   /** The course's icon: an asset name. */
   icon: AssetName.optional(),
   category: z.strictObject({ id: Slug, title: z.string(), icon: AssetName.optional() }).optional(),
@@ -97,6 +101,11 @@ export const IndexedCourse = z.strictObject({
   concepts: z.array(IndexedConcept),
   /** In course order. */
   items: z.array(IndexedItem),
+  stages: z.array(z.strictObject({ id: Slug, name: z.string() })).default([]),
+  /** Planned exercises, in order. They have no page and cannot be run. */
+  planned: z
+      .array(z.strictObject({ slug: Slug, title: z.string(), blurb: z.string(), kind: ItemKind, stage: Slug.optional() }))
+      .default([]),
 });
 export type IndexedCourse = z.infer<typeof IndexedCourse>;
 
