@@ -1,0 +1,24 @@
+id = "276c14a7-2a2f-4794-9254-df5d14c149f5"
+title = "Blackout timing"
+topic = "Reset stored state"
+blurb = "A theatre lighting desk stores two dimmer levels."
+kind = "concept"
+concepts = [ "reset-stored-state" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "synchronous_reset_waits_for_edge" ]
+
+[[task]]
+id = 2
+tests = [ "asynchronous_reset_clears_immediately" ]

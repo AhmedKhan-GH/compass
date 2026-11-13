@@ -1,0 +1,1 @@
+Local subprogram variables belong to their calls, while a process variable persists across suspensions of that process. Pass independent data to concurrent procedure calls and distinguish local state from shared state.

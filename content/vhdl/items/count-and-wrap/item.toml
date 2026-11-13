@@ -1,0 +1,25 @@
+id = "69b57c71-d5f3-4b25-8ce2-b32586eb4a89"
+title = "Irrigation rounds"
+topic = "Count and wrap"
+blurb = "A garden controller has six installed watering zones and a maintenance display with eight possible positions."
+kind = "concept"
+concepts = [ "count-and-wrap" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "natural_counter_wraps_at_width" ]
+
+[[task]]
+id = 2
+tests = [ "bounded_counter_wraps_at_six_and_holds" ]

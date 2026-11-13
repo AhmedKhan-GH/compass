@@ -1,0 +1,18 @@
+id = "0771e87a-4e80-4354-ba00-6f5143e16b85"
+title = "Rain gauge history"
+topic = "Circular sample recorder"
+blurb = "A field station keeps a short history of its five most recent accepted rainfall readings."
+kind = "practice"
+concepts = [ "synchronous-memory", "count-and-wrap" ]
+difficulty = 6
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_circular_sample_recorder.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

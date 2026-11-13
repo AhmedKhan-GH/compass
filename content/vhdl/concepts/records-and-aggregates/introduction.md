@@ -1,0 +1,1 @@
+A record groups related fields with their own types. Named aggregates construct a record without relying on field order, and field selection retrieves one member. Packing a record into a vector is an explicit interface decision; it does not happen merely because the record exists.

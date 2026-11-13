@@ -1,0 +1,3 @@
+# Conditional signal assignment
+
+A concurrent conditional assignment selects a value using a Boolean condition. Each output needs a defined value for every stated input combination. The selected value changes when an input in the expression changes.

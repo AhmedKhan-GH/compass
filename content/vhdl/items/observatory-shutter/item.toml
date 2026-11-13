@@ -1,0 +1,29 @@
+id = "dc497bbf-a505-40f3-a587-f46eecadea39"
+title = "Observatory shutter"
+topic = "Observatory shutter"
+blurb = "Explain a telescope shutter simulation whose startup controls have not yet settled."
+kind = "concept"
+concepts = [ "four-state-decisions" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "optimistic_selection.vhd", "ordinary_equality.vhd", "uncertain_request.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "definite_request_only" ]
+
+[[task]]
+id = 2
+tests = [ "uncertain_selection_preserves_agreeing_bits" ]
+
+[[task]]
+id = 3
+tests = [ "literal_std_logic_vector_identity" ]

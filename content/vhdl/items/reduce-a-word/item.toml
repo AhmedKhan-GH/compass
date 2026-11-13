@@ -1,0 +1,24 @@
+id = "5dd567c2-d9fb-4c55-90f1-5106b0b6810b"
+title = "Parcel Lockers"
+topic = "Reduce a word"
+blurb = "Summarize eight locker compartments for collection, capacity, and diagnostics."
+kind = "concept"
+concepts = [ "reductions" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_reduce_a_word.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]

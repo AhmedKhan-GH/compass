@@ -1,0 +1,26 @@
+id = "b9fb20b1-33c9-4af9-88ed-dcc37792ce93"
+title = "First Light"
+topic = "Drive high"
+blurb = "Give a museum exhibit its first always-on power indicator."
+kind = "concept"
+concepts = [ "constants" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_output.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "output_port_is_one_bit" ]
+stage = "task_1.vhd"
+
+[[task]]
+id = 2
+tests = [ "output_is_high", "output_stays_high" ]
+stage = "task_2.vhd"

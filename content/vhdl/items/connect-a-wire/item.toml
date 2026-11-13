@@ -1,0 +1,26 @@
+id = "cd3fff41-d205-40d0-aece-854bba6440fb"
+title = "Exhibit Switch"
+topic = "Connect a wire"
+blurb = "Let a visitor control a lightbox directly from its switch."
+kind = "concept"
+concepts = [ "connections" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_connection.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "switch_ports_are_one_bit" ]
+stage = "task_1.vhd"
+
+[[task]]
+id = 2
+tests = [ "output_follows_input" ]
+stage = "task_2.vhd"

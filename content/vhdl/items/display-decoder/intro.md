@@ -1,0 +1,1 @@
+Use a combinational `case` over the four-bit digit. Every decimal choice drives all seven segments, while `when others` blanks the display and clears validity. Because this is combinational hardware, the result is recalculated whenever a referenced input changes and no clock is needed. Each output must have a defined value for every input combination.

@@ -1,0 +1,28 @@
+id = "386efb8c-3ea4-427d-a38d-2f1781ff3833"
+title = "Register inspection bench"
+topic = "Check a clocked block"
+blurb = "A repair shop is checking replacement sample_register components before fitting them to its boards."
+kind = "concept"
+concepts = [ "check-a-clocked-block" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_negedge.vhd", "dut_live.vhd" ]
+sourceOrder = [ "dut_correct.vhd", "dut_negedge.vhd", "dut_live.vhd", "testbench.vhd" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.vhd"
+wrong = [ "always_pass.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_clocked_register" ]
+
+[[task]]
+id = 2
+tests = [ "test_rejects_clock_phase_faults" ]

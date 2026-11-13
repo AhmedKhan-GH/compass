@@ -1,0 +1,25 @@
+id = "7df580f3-6f13-45d4-b0f3-1a64ab69e2ba"
+title = "Bakery cooler warning"
+topic = "Choose output timing"
+blurb = "A bakery cooler has a live door-alarm indicator and a second indicator that remembers a sampled alarm after the door closes."
+kind = "concept"
+concepts = [ "output-timing" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_choose_output_timing.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]

@@ -1,0 +1,1 @@
+A clocked process can update state only when an enable condition holds. Leaving that state unassigned on other clock edges retains its previous value. This is intentional storage, unlike an incomplete combinational process.

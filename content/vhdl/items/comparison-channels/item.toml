@@ -1,0 +1,19 @@
+id = "3d1dec1f-c039-411a-a722-bc35a5546667"
+title = "Rooftop Tanks"
+topic = "Comparison channels"
+blurb = "Monitor two rainwater tanks with independent comparisons and a shared alert."
+kind = "practice"
+concepts = [ "module-hierarchy" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+support = [ "level_compare.vhd" ]
+sourceOrder = [ "level_compare.vhd", "top_module.vhd" ]
+
+[checks]
+file = "test_comparison_channels.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

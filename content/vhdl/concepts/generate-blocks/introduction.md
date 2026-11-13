@@ -1,0 +1,1 @@
+A `for generate` creates repeated hardware during elaboration. An `if generate` includes hardware when its static condition is true. These statements build structure; they do not describe a runtime loop.

@@ -1,0 +1,17 @@
+id = "758ca034-8a82-4a72-a80a-598d3eff5997"
+title = "Bakery Number Display"
+topic = "Display decoder"
+blurb = "Turn decimal codes into a clear seven-segment collection-counter digit."
+kind = "practice"
+concepts = [ "case-decoding" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_display_decoder.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

@@ -1,0 +1,1 @@
+A `case` statement selects a branch for an expression's value. Its alternatives must cover the value domain without overlap; `when others` supplies remaining choices. A selected signal assignment offers a concurrent form of a complete selection.

@@ -1,0 +1,1 @@
+The standard `ieee.numeric_std` package defines `unsigned` and `signed` arithmetic. Convert a `std_logic_vector` to an appropriate numeric type before adding or comparing it; convert the result back only when the interface requires a logic vector.

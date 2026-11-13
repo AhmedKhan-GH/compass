@@ -1,0 +1,1 @@
+Priority inside the rising-edge process makes reset strongest, a new fault stronger than acknowledgement, and the absence of all three conditions preserve the alarm. Clocked signal assignments schedule new values together after the active edge; code later in the same process therefore reads the old stored values. Branch order expresses reset and control priority.

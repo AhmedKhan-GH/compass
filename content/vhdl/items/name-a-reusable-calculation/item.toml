@@ -1,0 +1,25 @@
+id = "546f6b85-9bc7-4617-846e-c5c0df41ca41"
+title = "Laundromat status board"
+topic = "Name a reusable calculation"
+blurb = "A laundromat displays how many machines are running in each of three eight-machine banks."
+kind = "concept"
+concepts = [ "name-a-reusable-calculation" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "function_handles_zero_and_full_scale" ]
+
+[[task]]
+id = 2
+tests = [ "calls_are_independent" ]

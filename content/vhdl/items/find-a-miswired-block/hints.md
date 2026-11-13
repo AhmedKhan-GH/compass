@@ -1,0 +1,1 @@
+Use different values for left and right so swapped signals produce a different result. Check both enabled and disabled behavior. Work out expected values from the requirements, not from another DUT output.

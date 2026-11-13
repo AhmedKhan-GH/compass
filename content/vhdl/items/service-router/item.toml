@@ -1,0 +1,17 @@
+id = "2bc666bb-b64c-4fcd-9a34-b41bba47c9d7"
+title = "Rehearsal Lights"
+topic = "Service router"
+blurb = "Send a brightness setting to one strip of footlights while the others stay dark."
+kind = "practice"
+concepts = [ "selection", "words" ]
+difficulty = 2
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_routing.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

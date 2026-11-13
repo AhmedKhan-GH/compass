@@ -1,0 +1,25 @@
+id = "da358209-01f8-4a75-932c-4fbc2821b768"
+title = "Cinema marquee"
+topic = "Shift and load"
+blurb = "A cinema marquee has a row of eight lamps."
+kind = "concept"
+concepts = [ "shift-and-load" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "parallel_load_and_hold" ]
+
+[[task]]
+id = 2
+tests = [ "shifts_and_load_has_priority" ]

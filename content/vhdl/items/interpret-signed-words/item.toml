@@ -1,0 +1,24 @@
+id = "9d7ab312-3eb9-49a1-86b2-c3d7d0e511a2"
+title = "Mountain Thermometer"
+topic = "Interpret signed words"
+blurb = "Compare temperatures and widen their representation without losing the sign."
+kind = "concept"
+concepts = [ "signed-words" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_interpret_signed_words.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]

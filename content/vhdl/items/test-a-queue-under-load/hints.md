@@ -1,0 +1,1 @@
+Use different expected byte values and track accepted operations in a testbench-owned sequence. The expected stream must not come from DUT outputs or internal pointers. Give each driven input one process owner, and use a completion signal to keep the watchdog from reporting after normal termination.

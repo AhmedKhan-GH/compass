@@ -1,0 +1,25 @@
+id = "483691f4-18bb-4db4-ad61-ab8df1c46262"
+title = "Garden railway signal"
+topic = "Describe named states"
+blurb = "A garden railway signal moves through STOP, GO, and a brief CAUTION before it is ready for another request."
+kind = "concept"
+concepts = [ "finite-state-machines" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_describe_named_states.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]

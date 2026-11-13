@@ -1,0 +1,18 @@
+id = "fbd4c655-d4e5-406f-88fd-d0bd77ea7f07"
+title = "Pocket trail logger"
+topic = "Repair parameter boundaries"
+blurb = "A compact trail monitor records one-bit door events into three slots."
+kind = "practice"
+concepts = [ "parameters", "synchronous-memory", "count-and-wrap" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_repair_parameter_boundaries.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

@@ -1,0 +1,17 @@
+id = "eba75992-8053-4c00-aa4e-d2c50593c09b"
+title = "A Warmer Display?"
+topic = "Repair a numeric mismatch"
+blurb = "Repair the adapter that turns the hut's below-zero temperatures into positive readings."
+kind = "practice"
+concepts = [ "signed-words", "numeric-width" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_repair_a_numeric_mismatch.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

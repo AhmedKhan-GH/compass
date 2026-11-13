@@ -1,0 +1,28 @@
+id = "a42afaf9-563d-429c-b01d-521a2dedc71d"
+title = "Photo finish"
+topic = "Photo finish"
+blurb = "Repair a finish-line camera checker that mistakes the previous runner for the current one."
+kind = "concept"
+concepts = [ "simulation-ordering" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "grading_fixture.vhd" ]
+sourceOrder = [ "testbench.vhd", "grading_fixture.vhd" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.vhd"
+wrong = [ "zero_delay.vhd", "rising_edge_driver.vhd", "always_match.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_observes_settled_frames" ]
+
+[[task]]
+id = 2
+tests = [ "test_presents_bibs_between_shutter_edges" ]

@@ -1,0 +1,31 @@
+id = "370c2376-df87-4e58-aa89-462bc1a0f952"
+title = "Greenhouse Readings"
+topic = "Choose a channel"
+blurb = "Choose a planting bed's reading and make room for a service display."
+kind = "concept"
+concepts = [ "selection" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_selection.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "two_way_selection_follows_both_inputs" ]
+stage = "task_1.vhd"
+
+[[task]]
+id = 2
+tests = [ "code_selection_includes_both_unused_codes" ]
+stage = "task_2.vhd"
+
+[[task]]
+id = 3
+tests = [ "override_wins_for_every_channel_code" ]
+stage = "task_3.vhd"

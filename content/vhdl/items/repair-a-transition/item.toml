@@ -1,0 +1,18 @@
+id = "732b83ed-8970-4384-ad22-e115a347235c"
+title = "Window turntable"
+topic = "Repair a transition"
+blurb = "A shop-window turntable should cycle through three display positions, but it reaches the third and stays there."
+kind = "practice"
+concepts = [ "finite-state-machines", "update-or-hold" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_repair_a_transition.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

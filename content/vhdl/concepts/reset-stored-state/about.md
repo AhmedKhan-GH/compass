@@ -1,0 +1,3 @@
+# Reset behavior
+
+An asynchronous reset appears in the sensitivity list and is tested before the clock edge. A synchronous reset is tested inside the clocked branch. The specification decides when stored values clear and whether reset overrides an enable.

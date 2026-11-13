@@ -1,0 +1,28 @@
+id = "a7327f5e-d2f5-49e9-9f8a-4130451f318b"
+title = "Selector Checkout"
+topic = "Write a self-checking testbench"
+blurb = "Test replacement greenhouse selectors and distinguish reversed or stuck paths."
+kind = "concept"
+concepts = [ "write-a-self-checking-testbench" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_reversed.vhd", "dut_stuck.vhd" ]
+sourceOrder = [ "dut_correct.vhd", "dut_reversed.vhd", "dut_stuck.vhd", "testbench.vhd" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.vhd"
+wrong = [ "always_pass.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_selector" ]
+
+[[task]]
+id = 2
+tests = [ "test_rejects_miswired_selectors" ]

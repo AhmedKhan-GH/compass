@@ -1,0 +1,18 @@
+id = "87ead24d-785e-424f-8a5a-c7e4b31c8eb4"
+title = "Packing-line merge"
+topic = "Interlocked indicators"
+blurb = "Two packing lines feed one labelling station, so only one line may be released at a time."
+kind = "practice"
+concepts = [ "finite-state-machines" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_interlocked_indicators.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

@@ -1,0 +1,27 @@
+id = "ed626f57-0966-47af-bef4-4464a21ad842"
+title = "The Reversed Shelf"
+topic = "The Reversed Shelf"
+blurb = "Measure shelves whose index labels can run in either direction."
+kind = "concept"
+concepts = [ "array-bounds-and-attributes" ]
+status = "active"
+
+[design]
+top = "shelf_wrapper"
+solution = "shelf_tools.vhd"
+support = [ "shelf_wrapper.vhd" ]
+sourceOrder = [ "shelf_tools.vhd", "shelf_wrapper.vhd" ]
+schematic = false
+
+[checks]
+file = "test_output.py"
+reference = "exemplar.vhd"
+wrong = [ "assumes_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_bounds" ]
+
+[[task]]
+id = 2
+tests = [ "test_totals" ]

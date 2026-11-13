@@ -1,0 +1,21 @@
+id = "beeb0163-f91d-4c5b-8123-2aa566b2710f"
+title = "A missed bench fault"
+topic = "Strengthen a checker"
+blurb = "A repair bench approved a batch of register boards, yet a returned unit misbehaves when loading pauses."
+kind = "practice"
+concepts = [ "testbench-tasks", "check-a-clocked-block" ]
+difficulty = 5
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_faulty.vhd", "dut_bad_reset.vhd", "dut_bad_hold.vhd" ]
+sourceOrder = [ "testbench.vhd", "dut_correct.vhd", "dut_faulty.vhd", "dut_bad_reset.vhd", "dut_bad_hold.vhd" ]
+schematic = false
+
+[checks]
+file = "test_strengthen_a_checker.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

@@ -1,0 +1,26 @@
+id = "761effaf-6c9f-44da-9980-fba7bae1e514"
+title = "Cabinet Upgrade"
+topic = "Connect a supplied module"
+blurb = "Reuse a tested level comparator and add an independent alarm-enable control."
+kind = "concept"
+concepts = [ "module-hierarchy" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+support = [ "level_compare.vhd" ]
+sourceOrder = [ "level_compare.vhd", "top_module.vhd" ]
+
+[checks]
+file = "test_connect_a_supplied_module.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]

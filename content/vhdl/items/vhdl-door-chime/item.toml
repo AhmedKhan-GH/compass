@@ -1,0 +1,26 @@
+id = "622562a9-d797-42a0-8ca8-ec35464a4cde"
+title = "Door Chime Timing"
+topic = "Door Chime Timing"
+blurb = "Keep a door chime from reacting to a brief contact bounce while preserving real events."
+kind = "concept"
+concepts = [ "simulation-delays" ]
+status = "active"
+
+[design]
+top = "door_chime"
+solution = "door_chime.vhd"
+sourceOrder = [ "door_chime.vhd" ]
+schematic = false
+
+[checks]
+file = "test_output.py"
+reference = "exemplar.vhd"
+wrong = [ "all_transport.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_short_pulse" ]
+
+[[task]]
+id = 2
+tests = [ "test_sustained_event" ]

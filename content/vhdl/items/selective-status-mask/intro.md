@@ -1,0 +1,1 @@
+Vector `and`, `or`, and `not` create per-position masks. Keep selected old bits and combine them with updates admitted by the inverse mask. Because this is combinational hardware, the result is recalculated whenever a referenced input changes and no clock is needed. Each output must have a defined value for every input combination.

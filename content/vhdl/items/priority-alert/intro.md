@@ -1,0 +1,1 @@
+Chain conditional assignments in priority order, then reduce the active requests with `or` for the validity flag. Because this is combinational hardware, the result is recalculated whenever a referenced input changes and no clock is needed. Each output must have a defined value for every input combination.

@@ -1,0 +1,28 @@
+id = "38c65b77-1150-46f4-93a4-bc51402ae5d3"
+title = "Repair bench routine"
+topic = "Reuse testbench tasks"
+blurb = "A repair shop repeats the same register checkout for every refurbished board."
+kind = "concept"
+concepts = [ "testbench-tasks" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_wrong_load.vhd", "dut_wrong_reset.vhd" ]
+sourceOrder = [ "testbench.vhd", "dut_correct.vhd", "dut_wrong_load.vhd", "dut_wrong_reset.vhd" ]
+schematic = false
+
+[checks]
+file = "test_reuse_testbench_tasks.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_dut" ]
+
+[[task]]
+id = 2
+tests = [ "test_rejects_wrong_load_and_reset" ]

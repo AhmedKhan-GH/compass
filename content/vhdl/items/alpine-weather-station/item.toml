@@ -1,0 +1,29 @@
+id = "8bf0b2f1-d373-42f0-b856-a32ce28c0358"
+title = "Alpine weather station"
+topic = "Alpine weather station"
+blurb = "Keep below-zero weather readings correct as radio packets become calibrated display values."
+kind = "concept"
+concepts = [ "expression-width-and-sign" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "unsigned_field.vhd", "negative_calibration.vhd", "narrow_product.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "packet_fields_preserve_negative_readings" ]
+
+[[task]]
+id = 2
+tests = [ "calibration_is_always_nonnegative" ]
+
+[[task]]
+id = 3
+tests = [ "display_conversion_keeps_the_full_product" ]

@@ -1,0 +1,28 @@
+id = "6388a9f2-b48e-49da-9665-3405d2f8fd2a"
+title = "Darkroom timers"
+topic = "Darkroom timers"
+blurb = "Keep three photographic enlargers on independent timers when their exposures overlap."
+kind = "concept"
+concepts = [ "automatic-subprograms" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "grading_fixture.vhd" ]
+sourceOrder = [ "testbench.vhd", "grading_fixture.vhd" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.vhd"
+wrong = [ "static_lifetime.vhd", "overwrite_other_lamps.vhd", "too_short.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_times_individual_exposures" ]
+
+[[task]]
+id = 2
+tests = [ "test_preserves_overlapping_exposures" ]

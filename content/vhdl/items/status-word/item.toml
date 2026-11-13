@@ -1,0 +1,41 @@
+id = "c5a690f5-2772-4869-a3a3-afee7fd258ca"
+title = "Service Visit"
+topic = "Status word"
+blurb = "Give a vending-machine technician a compact, readable status connection."
+kind = "concept"
+concepts = [ "words" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_status.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "carry_a_four_bit_pattern" ]
+stage = "task_1.vhd"
+
+[[task]]
+id = 2
+tests = [ "pack_status_fields" ]
+stage = "task_2.vhd"
+
+[[task]]
+id = 3
+tests = [ "extract_fault_bit" ]
+stage = "task_3.vhd"
+
+[[task]]
+id = 4
+tests = [ "extract_mode_field" ]
+stage = "task_4.vhd"
+
+[[task]]
+id = 5
+tests = [ "recognize_service_mode" ]
+stage = "task_5.vhd"

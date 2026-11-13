@@ -1,0 +1,27 @@
+id = "cf41eeb0-64e7-4b66-bd8f-66f39c59d5ed"
+title = "The Ticket Desk"
+topic = "The Ticket Desk"
+blurb = "Coordinate concurrent ticket clerks through one protected shared desk."
+kind = "concept"
+concepts = [ "protected-types" ]
+status = "active"
+
+[design]
+top = "ticket_wrapper"
+solution = "ticket_pkg.vhd"
+support = [ "ticket_wrapper.vhd" ]
+sourceOrder = [ "ticket_pkg.vhd", "ticket_wrapper.vhd" ]
+schematic = false
+
+[checks]
+file = "test_output.py"
+reference = "exemplar.vhd"
+wrong = [ "drops_served.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_concurrent_issues" ]
+
+[[task]]
+id = 2
+tests = [ "test_served_and_waiting" ]

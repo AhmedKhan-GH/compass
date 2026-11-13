@@ -1,0 +1,1 @@
+A clock enable is a signal sampled by logic that already uses the main clock. A divider can emit a one-cycle enable at a chosen interval, allowing slower updates without introducing a separate clock domain.

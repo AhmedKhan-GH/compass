@@ -1,0 +1,18 @@
+id = "fb9a0768-ae06-48c7-8f77-f323a59ccb97"
+title = "Price-sign recall"
+topic = "One-word buffer"
+blurb = "A shop's electronic price sign can hold one pending update while its display driver is busy."
+kind = "practice"
+concepts = [ "ready-valid", "reset-stored-state" ]
+difficulty = 7
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_one_word_buffer.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd", "ignored_flush.vhd" ]

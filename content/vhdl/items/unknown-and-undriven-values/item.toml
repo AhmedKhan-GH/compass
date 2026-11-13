@@ -1,0 +1,28 @@
+id = "37d679c0-991d-48d1-9fde-ca62c7689951"
+title = "After the Move"
+topic = "Unknown and undriven values"
+blurb = "Trace missing and competing connections in a reassembled museum exhibit."
+kind = "concept"
+concepts = [ "unknown-and-undriven-values" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "connected_has_a_definite_driver" ]
+
+[[task]]
+id = 2
+tests = [ "equality_covers_both_values" ]
+
+[[task]]
+id = 3
+tests = [ "repaired_signal_never_resolves_unknown" ]

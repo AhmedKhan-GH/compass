@@ -1,0 +1,19 @@
+id = "2a246afb-fe97-439c-9b7c-6fb17ca3e195"
+title = "Sculpture Controls"
+topic = "Configurable selector"
+blurb = "Select and black out patterns on both small and large light sculptures."
+kind = "practice"
+concepts = [ "parameters", "selection" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "test_wrapper"
+solution = "top_module.vhd"
+support = [ "test_wrapper.vhd" ]
+sourceOrder = [ "top_module.vhd", "test_wrapper.vhd" ]
+
+[checks]
+file = "test_configurable_selector.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

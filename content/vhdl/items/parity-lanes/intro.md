@@ -1,0 +1,1 @@
+A generate loop instantiates one `parity8` entity per byte and maps each fixed-width slice with arithmetic bounds based on the generate index. Elaboration creates the configured hardware before simulation begins. Named associations make each connection reviewable, while generic-controlled ranges ensure that every instance has ports of the width selected for that instance.

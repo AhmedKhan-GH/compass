@@ -1,0 +1,1 @@
+A protected type exposes methods that control access to shared simulation state. Its body owns private variables, and each method call completes with exclusive access. Use this to coordinate testbench workers without exposing an ordinary shared variable to independent updates.

@@ -1,0 +1,26 @@
+id = "78d06224-7fb8-48b8-9ce7-31d09e4d18d6"
+title = "Display Kits"
+topic = "Configure a reusable block"
+blurb = "Build one configurable live-pattern and lamp-test circuit for two kit sizes."
+kind = "concept"
+concepts = [ "parameters" ]
+status = "active"
+
+[design]
+top = "test_wrapper"
+solution = "top_module.vhd"
+support = [ "test_wrapper.vhd" ]
+sourceOrder = [ "top_module.vhd", "test_wrapper.vhd" ]
+
+[checks]
+file = "test_configure_a_reusable_block.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "configured_outputs" ]
+
+[[task]]
+id = 2
+tests = [ "nonzero_matches_shown" ]

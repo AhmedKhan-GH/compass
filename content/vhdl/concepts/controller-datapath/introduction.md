@@ -1,0 +1,1 @@
+A controller decides when a datapath loads, updates, or finishes. The datapath performs the calculation and returns status. Named control signals and clear ownership make their interaction easier to inspect and test.

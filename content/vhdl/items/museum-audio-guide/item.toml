@@ -1,0 +1,30 @@
+id = "a1a8ba1e-18e7-4e69-9fa3-d234e6d5f2d3"
+title = "Museum audio guide"
+topic = "Museum audio guide"
+blurb = "Repair a museum handset that recognizes the wrong exhibits and loses its volume settings."
+kind = "concept"
+concepts = [ "explicit-nets-and-drivers" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+support = [ "guide_receiver.vhd" ]
+sourceOrder = [ "guide_receiver.vhd", "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "truncated_volume.vhd", "conflicting_request.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "every_exhibit_reaches_the_handset" ]
+
+[[task]]
+id = 2
+tests = [ "all_volume_bits_reach_the_speaker" ]
+
+[[task]]
+id = 3
+tests = [ "listening_requires_a_button_and_a_signal" ]

@@ -1,0 +1,1 @@
+A nine-bit `unsigned` temporary preserves overflow. Its high bit selects either the low eight-bit total or the maximum byte. The declarations still use resolved logic vectors at the entity boundary. `numeric_std` conversions give those bits a numeric interpretation only for the expression where they appear, which keeps signedness and result width deliberate.

@@ -1,626 +1,565 @@
-# A plan, not yet a course. The old app's VHDL track has 88 complete exercises with checks. They will replace
-# this planned list when VHDL is imported with a ghdl-cocotb@1 runner.
-
 id = "sternbild/vhdl"
 version = "0.1.0"
 title = "RTL design with VHDL"
 blurb = "Signals, processes, types and testbenches in VHDL."
-description = "The shared hardware exercises, planned for VHDL. Lessons specific to VHDL will follow."
 language = "vhdl"
-status = "in-development"
+environment = "code@1"
+runner = "ghdl-cocotb@1"
+circuit = "ghdl-yosys-digitaljs@1"
+syllabus = "syllabus.md"
+status = "published"
 
 [category]
 id = "rtl-design"
 title = "RTL design"
 
-[[stage]]
-id = "signals-and-decisions"
-name = "Signals and decisions"
+[editor]
+indent = 4
 
-[[stage]]
-id = "numbers-and-arithmetic"
-name = "Numbers and arithmetic"
+[[concept]]
+slug = "constants"
+name = "Constant logic values"
 
-[[stage]]
-id = "reusable-hardware"
-name = "Reusable hardware"
+[[concept]]
+slug = "connections"
+name = "Signal connections"
 
-[[stage]]
-id = "state-and-timing"
-name = "State and timing"
+[[concept]]
+slug = "boolean-logic"
+name = "Logic operators"
 
-[[stage]]
-id = "memories-and-controllers"
-name = "Memories and controllers"
+[[concept]]
+slug = "words"
+name = "Vectors and positions"
 
-[[stage]]
-id = "transfers-and-integration"
-name = "Transfers and integration"
+[[concept]]
+slug = "selection"
+name = "Conditional signal assignment"
 
-[[planned]]
-slug = "drive-high"
-title = "First Light"
-blurb = "Give a museum exhibit its first always-on power indicator."
-kind = "concept"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "bitwise-operators"
+name = "Vector logic"
 
-[[planned]]
-slug = "connect-a-wire"
-title = "Exhibit Switch"
-blurb = "Let a visitor control a lightbox directly from its switch."
-kind = "concept"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "reductions"
+name = "Vector reductions"
 
-[[planned]]
-slug = "workshop-controls"
-title = "Workshop Controls"
-blurb = "Bring two conveyor buttons into service behind one shared lock."
-kind = "concept"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "combinational-procedures"
+name = "Combinational processes"
 
-[[planned]]
-slug = "camera-trigger"
-title = "Bird Feeder Camera"
-blurb = "Let a wildlife camera honor picture requests only when its controls permit."
-kind = "practice"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "case-decoding"
+name = "Complete case decisions"
 
-[[planned]]
-slug = "status-word"
-title = "Service Visit"
-blurb = "Give a vending-machine technician a compact, readable status connection."
-kind = "concept"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "unsigned-arithmetic"
+name = "Unsigned arithmetic"
 
-[[planned]]
-slug = "panel-permutation"
-title = "Replacement Lights"
-blurb = "Adapt an exhibit's old controller to a new lamp-panel connector."
-kind = "practice"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "numeric-width"
+name = "Arithmetic widths"
 
-[[planned]]
-slug = "palindrome-panel"
-title = "Balanced Lights"
-blurb = "Tell a theatre desk whether an eight-lamp arch has a symmetric pattern."
-kind = "practice"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "signed-words"
+name = "Signed values"
 
-[[planned]]
-slug = "choose-a-channel"
-title = "Greenhouse Readings"
-blurb = "Choose a planting bed's reading and make room for a service display."
-kind = "concept"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "shifts"
+name = "Shifting and scaling"
 
-[[planned]]
-slug = "service-router"
-title = "Rehearsal Lights"
-blurb = "Send a brightness setting to one strip of footlights while the others stay dark."
-kind = "practice"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "module-hierarchy"
+name = "Entities and port maps"
 
-[[planned]]
-slug = "priority-alert"
-title = "Aquarium Alerts"
-blurb = "Show the aquarium keeper the most urgent active message."
-kind = "practice"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "parameters"
+name = "Generics and constraints"
 
-[[planned]]
-slug = "operate-on-every-bit"
-title = "Bicycle Light Studio"
-blurb = "Preview inverted, masked, and toggled patterns for a row of bicycle LEDs."
-kind = "concept"
-stage = "signals-and-decisions"
+[[concept]]
+slug = "generate-blocks"
+name = "Generate statements"
 
-[[planned]]
-slug = "selective-status-mask"
-title = "Route Setter"
-blurb = "Preview new climbing-wall lights while protecting part of the existing route."
-kind = "practice"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "reduce-a-word"
-title = "Parcel Lockers"
-blurb = "Summarize eight locker compartments for collection, capacity, and diagnostics."
-kind = "concept"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "parity-checker"
-title = "Weather Station Link"
-blurb = "Help an indoor display recognize a damaged sensor message using parity."
-kind = "practice"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "complete-conditional-decisions"
-title = "Drying Cabinet"
-blurb = "Choose a drying fan's operating state and speed for every control combination."
-kind = "concept"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "decode-with-case"
-title = "Camera Modes"
-blurb = "Translate a camera dial into mode lamps and an operating permission."
-kind = "concept"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "display-decoder"
-title = "Bakery Number Display"
-blurb = "Turn decimal codes into a clear seven-segment collection-counter digit."
-kind = "practice"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "repair-a-retained-output"
-title = "The Fan That Stays On"
-blurb = "Reproduce and repair a drying fan output that survives after its request ends."
-kind = "practice"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "control-panel"
-title = "Backstage Console"
-blurb = "Combine filtered backstage lights with an independent priority alert."
-kind = "practice"
-stage = "signals-and-decisions"
-
-[[planned]]
-slug = "calculate-with-unsigned-words"
-title = "Parts Bin Totals"
-blurb = "Match a parts counter's limited arithmetic display and compare the original quantities."
-kind = "concept"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "range-alarm"
-title = "Waterline Watch"
-blurb = "Accept aquarium levels within chosen bounds and report either kind of excursion."
-kind = "practice"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "preserve-numeric-width"
-title = "Room for the Total"
-blurb = "Upgrade the parts counter to preserve a total its old display could not hold."
-kind = "concept"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "saturating-sum"
-title = "Scoreboard Limit"
-blurb = "Keep an arcade score at its display maximum and flag a larger total."
-kind = "practice"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "interpret-signed-words"
-title = "Mountain Thermometer"
-blurb = "Compare temperatures and widen their representation without losing the sign."
-kind = "concept"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "signed-temperature-alarm"
-title = "Freezer Trials"
-blurb = "Check signed temperature limits during cooling and defrost test runs."
-kind = "practice"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "shift-and-scale"
-title = "Motion Display Scales"
-blurb = "Scale movement readings while accounting for lost bits and negative rounding."
-kind = "concept"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "repair-a-numeric-mismatch"
-title = "A Warmer Display?"
-blurb = "Repair the adapter that turns the hut's below-zero temperatures into positive readings."
-kind = "practice"
-stage = "numbers-and-arithmetic"
-
-[[planned]]
-slug = "connect-a-supplied-module"
-title = "Cabinet Upgrade"
-blurb = "Reuse a tested level comparator and add an independent alarm-enable control."
-kind = "concept"
-stage = "reusable-hardware"
-
-[[planned]]
-slug = "comparison-channels"
-title = "Rooftop Tanks"
-blurb = "Monitor two rainwater tanks with independent comparisons and a shared alert."
-kind = "practice"
-stage = "reusable-hardware"
-
-[[planned]]
-slug = "configure-a-reusable-block"
-title = "Display Kits"
-blurb = "Build one configurable live-pattern and lamp-test circuit for two kit sizes."
-kind = "concept"
-stage = "reusable-hardware"
-
-[[planned]]
-slug = "configurable-selector"
-title = "Sculpture Controls"
-blurb = "Select and black out patterns on both small and large light sculptures."
-kind = "practice"
-stage = "reusable-hardware"
-
-[[planned]]
-slug = "generate-repeated-hardware"
-title = "Workshop Workbenches"
-blurb = "Construct independent extraction permissions for a configurable set of benches."
-kind = "concept"
-stage = "reusable-hardware"
-
-[[planned]]
-slug = "parity-lanes"
-title = "Vineyard Readings"
-blurb = "Check each row's sensor byte independently with repeated parity components."
-kind = "practice"
-stage = "reusable-hardware"
-
-[[planned]]
+[[concept]]
 slug = "unknown-and-undriven-values"
-title = "After the Move"
-blurb = "Trace missing and competing connections in a reassembled museum exhibit."
-kind = "concept"
-stage = "reusable-hardware"
+name = "Logic values and resolution"
 
-[[planned]]
+[[concept]]
 slug = "write-a-self-checking-testbench"
-title = "Selector Checkout"
-blurb = "Test replacement greenhouse selectors and distinguish reversed or stuck paths."
-kind = "concept"
-stage = "reusable-hardware"
+name = "Assertions and testbenches"
 
-[[planned]]
-slug = "find-a-miswired-block"
-title = "Indicator Inspection"
-blurb = "Choose asymmetric tests that expose a bicycle harness's incorrect connections."
-kind = "practice"
-stage = "reusable-hardware"
-
-[[planned]]
+[[concept]]
 slug = "sample-on-a-clock-edge"
-title = "Training Monitor"
-blurb = "Keep the latest captured reading and the one before it for a side-by-side display."
-kind = "concept"
-stage = "state-and-timing"
+name = "Clocked processes"
 
-[[planned]]
-slug = "two-stage-delay"
-title = "Light Trails"
-blurb = "Make an exhibit's second lamp row echo its pattern one sample behind."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "reset-stored-state"
-title = "Blackout timing"
-blurb = "A theatre lighting desk stores two dimmer levels."
-kind = "concept"
-stage = "state-and-timing"
+name = "Reset behavior"
 
-[[planned]]
+[[concept]]
 slug = "update-or-hold"
-title = "Market scale hold"
-blurb = "A market vendor wants to lift a crate off the scale and still read its weight."
-kind = "concept"
-stage = "state-and-timing"
+name = "Enables and retained state"
 
-[[planned]]
-slug = "sticky-alarm"
-title = "Pinsetter jam light"
-blurb = "A bowling pinsetter can report a brief jam and recover before the attendant looks over."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "check-a-clocked-block"
-title = "Register inspection bench"
-blurb = "A repair shop is checking replacement sample-register units before fitting them to its boards."
-kind = "concept"
-stage = "state-and-timing"
+name = "Checking clocked behavior"
 
-[[planned]]
-slug = "repair-a-lost-cycle"
-title = "Speaker delay check"
-blurb = "A model public-address system sends one speaker the previous captured audio sample so two paths line up."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "count-and-wrap"
-title = "Irrigation rounds"
-blurb = "A garden controller has six installed watering zones and a maintenance display with eight possible positions."
-kind = "concept"
-stage = "state-and-timing"
+name = "Counters and rollover"
 
-[[planned]]
-slug = "pulse-duration-meter"
-title = "Turnstile crossing meter"
-blurb = "A turnstile breaks a light beam while a visitor passes through."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "generate-a-clock-enable"
-title = "Departure board refresh"
-blurb = "A model station departure board is scheduled to refresh once every four clock ticks."
-kind = "concept"
-stage = "state-and-timing"
+name = "Clock enables"
 
-[[planned]]
-slug = "programmable-pulse-timer"
-title = "Darkroom exposure"
-blurb = "A darkroom enlarger exposes a print for the duration chosen when the photographer presses start."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "shift-and-load"
-title = "Cinema marquee"
-blurb = "A cinema marquee has a row of eight lamps."
-kind = "concept"
-stage = "state-and-timing"
+name = "Shift registers"
 
-[[planned]]
-slug = "word-serializer"
-title = "Barn gauge link"
-blurb = "A farmhouse sends a gauge reading to a display in the barn over a serial data line with a shared clock."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
-slug = "rising-edge-pulse"
-title = "Scoreboard button"
-blurb = "A gym scoreboard should add one point when its button is pressed, even if the referee keeps holding it."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "repeat-a-bounded-calculation"
-title = "Greenhouse moisture map"
-blurb = "A greenhouse bench has eight moisture probes, with a 1 meaning that a pot is wet."
-kind = "concept"
-stage = "state-and-timing"
+name = "Loops and variables"
 
-[[planned]]
-slug = "population-count"
-title = "Cabin lamp budget"
-blurb = "An off-grid cabin has twelve equal-load lamps and a configurable budget for how many may be lit together."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "name-a-reusable-calculation"
-title = "Laundromat status board"
-blurb = "A laundromat displays how many machines are running in each of three eight-machine banks."
-kind = "concept"
-stage = "state-and-timing"
+name = "Functions"
 
-[[planned]]
-slug = "clamp-several-samples"
-title = "Plotter jog limits"
-blurb = "A small plotter accepts manual position offsets for three axes, but each permitted offset lies between -40 and 60 steps."
-kind = "practice"
-stage = "state-and-timing"
-
-[[planned]]
+[[concept]]
 slug = "address-an-array-of-words"
-title = "Organ preset cards"
-blurb = "An electronic organ stores eight preset stop patterns as individual bytes."
-kind = "concept"
-stage = "memories-and-controllers"
+name = "Array types"
 
-[[planned]]
+[[concept]]
+slug = "synchronous-memory"
+name = "Synchronous memory"
+
+[[concept]]
+slug = "testbench-tasks"
+name = "Stimulus procedures"
+
+[[concept]]
+slug = "test-vectors"
+name = "TextIO and vector replay"
+
+[[concept]]
+slug = "finite-state-machines"
+name = "Enumerated states"
+
+[[concept]]
+slug = "output-timing"
+name = "State and input dependent outputs"
+
+[[concept]]
+slug = "controller-datapath"
+name = "Controllers and datapaths"
+
+[[concept]]
+slug = "ready-valid"
+name = "Transfer handshakes"
+
+[[concept]]
+slug = "queue-state"
+name = "Queue bookkeeping"
+
+[[concept]]
+slug = "concurrent-testbenches"
+name = "Concurrent checking processes"
+
+[[concept]]
+slug = "explicit-nets-and-drivers"
+name = "Resolved and unresolved signals"
+
+[[concept]]
+slug = "expression-width-and-sign"
+name = "Explicit numeric interpretation"
+
+[[concept]]
+slug = "four-state-decisions"
+name = "Decisions with nonbinary logic"
+
+[[concept]]
+slug = "wildcard-decoding"
+name = "Matching and explicit masks"
+
+[[concept]]
+slug = "simulation-ordering"
+name = "Delta cycles and observation"
+
+[[concept]]
+slug = "automatic-subprograms"
+name = "Subprogram state and calls"
+
+[[concept]]
+slug = "event-waits-and-time"
+name = "Wait statements and time"
+
+[[concept]]
+slug = "source-organization"
+name = "Packages and source order"
+
+[[concept]]
+slug = "array-bounds-and-attributes"
+name = "Array bounds and attributes"
+
+[[concept]]
+slug = "records-and-aggregates"
+name = "Records and aggregates"
+
+[[concept]]
+slug = "simulation-delays"
+name = "Inertial and transport delays"
+
+[[concept]]
+slug = "protected-types"
+name = "Protected shared state"
+
+[[item]]
+slug = "drive-high"
+prerequisites = []
+
+[[item]]
+slug = "connect-a-wire"
+prerequisites = [ "constants" ]
+
+[[item]]
+slug = "workshop-controls"
+prerequisites = [ "connections" ]
+
+[[item]]
+slug = "camera-trigger"
+prerequisites = [ "boolean-logic" ]
+
+[[item]]
+slug = "status-word"
+prerequisites = [ "boolean-logic" ]
+
+[[item]]
+slug = "panel-permutation"
+prerequisites = [ "words" ]
+
+[[item]]
+slug = "palindrome-panel"
+prerequisites = [ "words", "boolean-logic" ]
+
+[[item]]
+slug = "choose-a-channel"
+prerequisites = [ "words", "boolean-logic" ]
+
+[[item]]
+slug = "service-router"
+prerequisites = [ "selection", "words" ]
+
+[[item]]
+slug = "priority-alert"
+prerequisites = [ "selection", "boolean-logic" ]
+
+[[item]]
+slug = "operate-on-every-bit"
+prerequisites = [ "words", "boolean-logic" ]
+
+[[item]]
+slug = "selective-status-mask"
+prerequisites = [ "bitwise-operators", "selection" ]
+
+[[item]]
+slug = "reduce-a-word"
+prerequisites = [ "bitwise-operators" ]
+
+[[item]]
+slug = "parity-checker"
+prerequisites = [ "reductions", "words" ]
+
+[[item]]
+slug = "complete-conditional-decisions"
+prerequisites = [ "selection", "reductions" ]
+
+[[item]]
+slug = "decode-with-case"
+prerequisites = [ "combinational-procedures" ]
+
+[[item]]
+slug = "display-decoder"
+prerequisites = [ "case-decoding" ]
+
+[[item]]
+slug = "repair-a-retained-output"
+prerequisites = [ "combinational-procedures" ]
+
+[[item]]
+slug = "control-panel"
+prerequisites = [ "combinational-procedures", "selection", "bitwise-operators" ]
+
+[[item]]
+slug = "calculate-with-unsigned-words"
+prerequisites = [ "words", "selection" ]
+
+[[item]]
+slug = "range-alarm"
+prerequisites = [ "unsigned-arithmetic" ]
+
+[[item]]
+slug = "preserve-numeric-width"
+prerequisites = [ "unsigned-arithmetic" ]
+
+[[item]]
+slug = "saturating-sum"
+prerequisites = [ "numeric-width", "selection" ]
+
+[[item]]
+slug = "interpret-signed-words"
+prerequisites = [ "numeric-width" ]
+
+[[item]]
+slug = "signed-temperature-alarm"
+prerequisites = [ "signed-words" ]
+
+[[item]]
+slug = "shift-and-scale"
+prerequisites = [ "signed-words", "bitwise-operators" ]
+
+[[item]]
+slug = "repair-a-numeric-mismatch"
+prerequisites = [ "signed-words", "numeric-width" ]
+
+[[item]]
+slug = "connect-a-supplied-module"
+prerequisites = [ "selection", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "comparison-channels"
+prerequisites = [ "module-hierarchy" ]
+
+[[item]]
+slug = "configure-a-reusable-block"
+prerequisites = [ "module-hierarchy", "words" ]
+
+[[item]]
+slug = "configurable-selector"
+prerequisites = [ "parameters", "selection" ]
+
+[[item]]
+slug = "generate-repeated-hardware"
+prerequisites = [ "parameters", "bitwise-operators" ]
+
+[[item]]
+slug = "parity-lanes"
+prerequisites = [ "generate-blocks", "module-hierarchy", "reductions" ]
+
+[[item]]
+slug = "unknown-and-undriven-values"
+prerequisites = [ "module-hierarchy", "boolean-logic" ]
+
+[[item]]
+slug = "write-a-self-checking-testbench"
+prerequisites = [ "unknown-and-undriven-values", "module-hierarchy" ]
+
+[[item]]
+slug = "find-a-miswired-block"
+prerequisites = [ "write-a-self-checking-testbench", "boolean-logic" ]
+
+[[item]]
+slug = "sample-on-a-clock-edge"
+prerequisites = [ "combinational-procedures", "write-a-self-checking-testbench" ]
+
+[[item]]
+slug = "two-stage-delay"
+prerequisites = [ "sample-on-a-clock-edge" ]
+
+[[item]]
+slug = "reset-stored-state"
+prerequisites = [ "sample-on-a-clock-edge" ]
+
+[[item]]
+slug = "update-or-hold"
+prerequisites = [ "reset-stored-state" ]
+
+[[item]]
+slug = "sticky-alarm"
+prerequisites = [ "update-or-hold", "boolean-logic" ]
+
+[[item]]
+slug = "check-a-clocked-block"
+prerequisites = [ "write-a-self-checking-testbench", "reset-stored-state" ]
+
+[[item]]
+slug = "repair-a-lost-cycle"
+prerequisites = [ "check-a-clocked-block" ]
+
+[[item]]
+slug = "count-and-wrap"
+prerequisites = [ "update-or-hold", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "pulse-duration-meter"
+prerequisites = [ "count-and-wrap", "update-or-hold" ]
+
+[[item]]
+slug = "generate-a-clock-enable"
+prerequisites = [ "count-and-wrap" ]
+
+[[item]]
+slug = "programmable-pulse-timer"
+prerequisites = [ "generate-a-clock-enable", "count-and-wrap", "update-or-hold" ]
+
+[[item]]
+slug = "shift-and-load"
+prerequisites = [ "update-or-hold", "shifts" ]
+
+[[item]]
+slug = "word-serializer"
+prerequisites = [ "shift-and-load", "count-and-wrap" ]
+
+[[item]]
+slug = "rising-edge-pulse"
+prerequisites = [ "sample-on-a-clock-edge", "update-or-hold", "boolean-logic" ]
+
+[[item]]
+slug = "repeat-a-bounded-calculation"
+prerequisites = [ "combinational-procedures", "bitwise-operators", "numeric-width" ]
+
+[[item]]
+slug = "population-count"
+prerequisites = [ "repeat-a-bounded-calculation", "numeric-width", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "name-a-reusable-calculation"
+prerequisites = [ "repeat-a-bounded-calculation" ]
+
+[[item]]
+slug = "clamp-several-samples"
+prerequisites = [ "name-a-reusable-calculation", "signed-words" ]
+
+[[item]]
+slug = "address-an-array-of-words"
+prerequisites = [ "parameters", "words", "repeat-a-bounded-calculation" ]
+
+[[item]]
 slug = "read-and-write-synchronous-memory"
-title = "Coffee roast profiles"
-blurb = "A coffee roaster stores five profile bytes, but its selector has eight positions."
-kind = "concept"
-stage = "memories-and-controllers"
+prerequisites = [ "address-an-array-of-words", "reset-stored-state" ]
 
-[[planned]]
+[[item]]
 slug = "circular-sample-recorder"
-title = "Rain gauge history"
-blurb = "A field station keeps a short history of its five most recent accepted rainfall readings."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "synchronous-memory", "count-and-wrap" ]
 
-[[planned]]
+[[item]]
 slug = "repair-parameter-boundaries"
-title = "Pocket trail logger"
-blurb = "A compact trail monitor records one-bit door events into three slots."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "parameters", "synchronous-memory", "count-and-wrap" ]
 
-[[planned]]
+[[item]]
 slug = "reuse-testbench-tasks"
-title = "Repair bench routine"
-blurb = "A repair shop repeats the same register checkout for every refurbished board."
-kind = "concept"
-stage = "memories-and-controllers"
+prerequisites = [ "check-a-clocked-block", "name-a-reusable-calculation" ]
 
-[[planned]]
+[[item]]
 slug = "replay-test-vectors"
-title = "Returned weather station"
-blurb = "A weather-station board has returned to the repair bench with a short capture file."
-kind = "concept"
-stage = "memories-and-controllers"
+prerequisites = [ "testbench-tasks", "address-an-array-of-words" ]
 
-[[planned]]
+[[item]]
 slug = "strengthen-a-checker"
-title = "A missed bench fault"
-blurb = "A repair bench approved a batch of register boards, yet a returned unit misbehaves when loading pauses."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "testbench-tasks", "check-a-clocked-block" ]
 
-[[planned]]
+[[item]]
 slug = "describe-named-states"
-title = "Garden railway signal"
-blurb = "A garden railway signal moves through STOP, GO, and a brief CAUTION before it is ready for another request."
-kind = "concept"
-stage = "memories-and-controllers"
+prerequisites = [ "update-or-hold", "case-decoding" ]
 
-[[planned]]
+[[item]]
 slug = "interlocked-indicators"
-title = "Packing-line merge"
-blurb = "Two packing lines feed one labelling station, so only one line may be released at a time."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "finite-state-machines" ]
 
-[[planned]]
+[[item]]
 slug = "choose-output-timing"
-title = "Bakery cooler warning"
-blurb = "A bakery cooler has a live door-alarm indicator and a second indicator that remembers a sampled alarm after the door closes."
-kind = "concept"
-stage = "memories-and-controllers"
+prerequisites = [ "finite-state-machines", "update-or-hold" ]
 
-[[planned]]
+[[item]]
 slug = "recognize-overlapping-patterns"
-title = "Rocket telemetry marker"
-blurb = "A model rocket's telemetry receiver looks for marker 101 in its incoming bit stream."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "finite-state-machines", "shifts" ]
 
-[[planned]]
+[[item]]
 slug = "repair-a-transition"
-title = "Window turntable"
-blurb = "A shop-window turntable should cycle through three display positions, but it reaches the third and stays there."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "finite-state-machines", "update-or-hold" ]
 
-[[planned]]
+[[item]]
 slug = "separate-controller-and-datapath"
-title = "Arcade token hopper"
-blurb = "An arcade change machine dispenses a requested number of tokens one working edge at a time."
-kind = "concept"
-stage = "memories-and-controllers"
+prerequisites = [ "finite-state-machines", "count-and-wrap" ]
 
-[[planned]]
+[[item]]
 slug = "iterative-multiplier"
-title = "Farm-stand total"
-blurb = "A farm-stand scale multiplies a whole-number quantity by its unsigned price-per-unit code."
-kind = "practice"
-stage = "memories-and-controllers"
+prerequisites = [ "controller-datapath", "shifts", "numeric-width" ]
 
-[[planned]]
+[[item]]
 slug = "accept-a-transfer-and-hold-it"
-title = "Scanner to printer"
-blurb = "A barcode scanner can produce a byte while a label printer is still busy."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "update-or-hold", "module-hierarchy" ]
 
-[[planned]]
+[[item]]
 slug = "one-word-buffer"
-title = "Price-sign recall"
-blurb = "A shop's electronic price sign can hold one pending update while its display driver is busy."
-kind = "practice"
-stage = "transfers-and-integration"
+prerequisites = [ "ready-valid", "reset-stored-state" ]
 
-[[planned]]
+[[item]]
 slug = "track-a-queue"
-title = "Photo-booth spool"
-blurb = "A photo booth can have five prints waiting in its spool."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "ready-valid", "count-and-wrap", "unsigned-arithmetic" ]
 
-[[planned]]
+[[item]]
 slug = "small-synchronous-fifo"
-title = "Wind-tunnel samples"
-blurb = "A wind-tunnel sensor sends bursts of readings to a display that pauses between updates."
-kind = "practice"
-stage = "transfers-and-integration"
+prerequisites = [ "queue-state", "synchronous-memory", "ready-valid", "parameters" ]
 
-[[planned]]
+[[item]]
 slug = "coordinate-testbench-workers"
-title = "Queue inspection bench"
-blurb = "The repair bench now needs to inspect a queue while sending and receiving happen independently."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "testbench-tasks", "queue-state" ]
 
-[[planned]]
+[[item]]
 slug = "test-a-queue-under-load"
-title = "Wrap and stall"
-blurb = "A queue passed the bench's three-byte checkout, but a longer field capture shows readings arriving out of order."
-kind = "practice"
-stage = "transfers-and-integration"
+prerequisites = [ "concurrent-testbenches", "queue-state" ]
 
-[[planned]]
+[[item]]
 slug = "repair-an-inferred-circuit"
-title = "Ghost frame"
-blurb = "A lecture-hall selector should blank its eight-bit display word when disabled, yet the previous image remains visible in the model."
-kind = "practice"
-stage = "transfers-and-integration"
+prerequisites = [ "combinational-procedures", "selection" ]
 
-[[planned]]
+[[item]]
 slug = "diagnose-an-integration-failure"
-title = "Belt-scale readout"
-blurb = "A model grain conveyor doubles each accepted sample into its display units."
-kind = "practice"
-stage = "transfers-and-integration"
+prerequisites = [ "controller-datapath", "numeric-width", "shifts", "update-or-hold" ]
 
-[[planned]]
+[[item]]
 slug = "museum-audio-guide"
-title = "Museum audio guide"
-blurb = "Repair a museum handset that recognizes the wrong exhibits and loses its volume settings."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "module-hierarchy", "unknown-and-undriven-values" ]
 
-[[planned]]
+[[item]]
 slug = "alpine-weather-station"
-title = "Alpine weather station"
-blurb = "Keep below-zero weather readings correct as radio packets become calibrated display values."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "signed-words", "numeric-width", "unsigned-arithmetic" ]
 
-[[planned]]
+[[item]]
 slug = "observatory-shutter"
-title = "Observatory shutter"
-blurb = "Explain a telescope shutter simulation whose startup controls have not yet settled."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "unknown-and-undriven-values", "combinational-procedures", "selection" ]
 
-[[planned]]
+[[item]]
 slug = "harbor-beacon-decoder"
-title = "Harbor beacon decoder"
-blurb = "Stop incomplete harbor messages from masquerading as valid beacon commands in simulation."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "case-decoding", "four-state-decisions", "reductions" ]
 
-[[planned]]
+[[item]]
 slug = "photo-finish-checker"
-title = "Photo finish"
-blurb = "Repair a finish-line camera checker that mistakes the previous runner for the current one."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "check-a-clocked-block", "testbench-tasks" ]
 
-[[planned]]
+[[item]]
 slug = "darkroom-timers"
-title = "Darkroom timers"
-blurb = "Keep three photographic enlargers on independent timers when their exposures overlap."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "testbench-tasks", "concurrent-testbenches" ]
 
-[[planned]]
+[[item]]
 slug = "observatory-startup"
-title = "Observatory startup"
-blurb = "Start an observatory camera without missing readiness or waiting beyond its deadline."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "concurrent-testbenches", "testbench-tasks" ]
 
-[[planned]]
+[[item]]
 slug = "trail-counter-kit"
-title = "Trail counter kit"
-blurb = "Build a portable arrival counter and milestone lamp for short surveys at trail entrances."
-kind = "concept"
-stage = "transfers-and-integration"
+prerequisites = [ "parameters", "count-and-wrap", "module-hierarchy" ]
+
+[[item]]
+slug = "vhdl-reversed-shelf"
+prerequisites = [ "name-a-reusable-calculation", "source-organization", "address-an-array-of-words" ]
+
+[[item]]
+slug = "vhdl-weather-envelope"
+prerequisites = [ "source-organization", "name-a-reusable-calculation", "signed-words" ]
+
+[[item]]
+slug = "vhdl-door-chime"
+prerequisites = [ "simulation-ordering", "event-waits-and-time" ]
+
+[[item]]
+slug = "vhdl-ticket-desk"
+prerequisites = [ "concurrent-testbenches", "source-organization", "automatic-subprograms" ]

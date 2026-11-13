@@ -1,0 +1,25 @@
+id = "f42406c5-4aa7-49a1-8f24-198c15437a0b"
+title = "Arcade token hopper"
+topic = "Separate controller and datapath"
+blurb = "An arcade change machine dispenses a requested number of tokens one working edge at a time."
+kind = "concept"
+concepts = [ "controller-datapath" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_separate_controller_and_datapath.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]

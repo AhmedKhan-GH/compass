@@ -1,0 +1,19 @@
+id = "dc6227a1-4d3f-4940-a6f7-476169d1e492"
+title = "Vineyard Readings"
+topic = "Parity lanes"
+blurb = "Check each row's sensor byte independently with repeated parity components."
+kind = "practice"
+concepts = [ "generate-blocks", "module-hierarchy", "reductions" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+support = [ "parity8.vhd" ]
+sourceOrder = [ "parity8.vhd", "top_module.vhd" ]
+
+[checks]
+file = "test_parity_lanes.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

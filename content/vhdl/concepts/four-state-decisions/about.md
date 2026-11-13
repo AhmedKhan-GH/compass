@@ -1,0 +1,3 @@
+# Decisions with nonbinary logic
+
+VHDL `std_logic` has nine values, not only zero and one. Equality produces a Boolean result and compares the actual enumeration values. State explicitly what a controller should do with `U`, `X`, or `Z` instead of silently treating them as valid binary input.

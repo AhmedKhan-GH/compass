@@ -1,0 +1,1 @@
+An unconstrained array parameter can arrive with ascending or descending indices, including bounds that do not start at zero. Follow its attributes when iterating, and preserve its shape when returning an array. Positional order and numeric index are different ideas.

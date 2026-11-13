@@ -1,0 +1,24 @@
+id = "ebbb809e-be0d-4677-a09e-5e257e9109f3"
+title = "Room for the Total"
+topic = "Preserve numeric width"
+blurb = "Upgrade the parts counter to preserve a total its old display could not hold."
+kind = "concept"
+concepts = [ "numeric-width" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_preserve_numeric_width.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]

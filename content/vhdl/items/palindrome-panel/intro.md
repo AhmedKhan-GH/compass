@@ -1,0 +1,1 @@
+Vector equality returns a Boolean, so a conditional assignment converts that decision to `'1'` or `'0'` while comparing all four mirrored pairs. Because this is combinational hardware, the result is recalculated whenever a referenced input changes and no clock is needed. Each output must have a defined value for every input combination.

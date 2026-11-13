@@ -1,0 +1,25 @@
+id = "337e7aa3-a6a8-45d3-b37e-f1282e7e6f39"
+title = "Greenhouse moisture map"
+topic = "Repeat a bounded calculation"
+blurb = "A greenhouse bench has eight moisture probes, with a 1 meaning that a pot is wet."
+kind = "concept"
+concepts = [ "repeat-a-bounded-calculation" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "loop_visits_each_bit" ]
+
+[[task]]
+id = 2
+tests = [ "accumulator_is_initialized_and_wide_enough" ]

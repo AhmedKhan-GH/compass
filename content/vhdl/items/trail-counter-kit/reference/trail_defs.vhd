@@ -1,0 +1,13 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+package trail_defs is constant TRAIL_COUNT_WIDTH:positive:=8;
+    function reaches_threshold(value:std_logic_vector;
+        threshold:natural)return std_logic;
+    end package;
+    package body trail_defs is function reaches_threshold(value:std_logic_vector;
+        threshold:natural)return std_logic is begin if unsigned(value)>=threshold then return '1';
+    else return '0';
+    end if;
+end;
+end package body;

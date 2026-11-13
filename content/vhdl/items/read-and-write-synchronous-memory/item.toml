@@ -1,0 +1,25 @@
+id = "47569e94-1bad-446e-b89f-9ecdf90022c3"
+title = "Coffee roast profiles"
+topic = "Read and write synchronous memory"
+blurb = "A coffee roaster stores five profile bytes, but its selector has eight positions."
+kind = "concept"
+concepts = [ "synchronous-memory" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_read_and_write_synchronous_memory.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]

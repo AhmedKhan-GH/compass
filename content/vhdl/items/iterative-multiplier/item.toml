@@ -1,0 +1,18 @@
+id = "613eb798-ab6d-4c8f-b61a-7d3a67c1bcf3"
+title = "Farm-stand total"
+topic = "Iterative multiplier"
+blurb = "A farm-stand scale multiplies a whole-number quantity by its unsigned price-per-unit code."
+kind = "practice"
+concepts = [ "controller-datapath", "shifts", "numeric-width" ]
+difficulty = 7
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_iterative_multiplier.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

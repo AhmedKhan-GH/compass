@@ -1,0 +1,1 @@
+Two sequential storage stages update on the same rising edge. The second stage receives the first stage's prior sample, creating an exact one-sample separation. Clocked signal assignments schedule new values together after the active edge; code later in the same process therefore reads the old stored values. Branch order expresses reset and control priority.

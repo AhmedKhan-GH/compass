@@ -1,0 +1,1 @@
+A delayed signal assignment schedules future transactions. Inertial delay can reject short pulses, while transport delay preserves them. These are simulation timing models; examine their waveforms to distinguish what was scheduled from what actually changed.

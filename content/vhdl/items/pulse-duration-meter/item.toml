@@ -1,0 +1,18 @@
+id = "8dfe0077-099b-4bc8-ad26-b27a7a40f812"
+title = "Turnstile crossing meter"
+topic = "Pulse-duration meter"
+blurb = "A turnstile breaks a light beam while a visitor passes through."
+kind = "practice"
+concepts = [ "count-and-wrap", "update-or-hold" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_design.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

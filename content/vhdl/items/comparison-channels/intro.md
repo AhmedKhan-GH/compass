@@ -1,0 +1,1 @@
+Instantiate the supplied comparator twice with separate named port maps. Both instances share the threshold but drive distinct result signals. Elaboration creates the configured hardware before simulation begins. Named associations make each connection reviewable, while generic-controlled ranges ensure that every instance has ports of the width selected for that instance.

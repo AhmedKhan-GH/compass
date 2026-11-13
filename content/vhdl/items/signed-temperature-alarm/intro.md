@@ -1,0 +1,1 @@
+Interpret every temperature vector as `signed` for both inclusive comparisons, then drive the alarm as the inverse of acceptance. The declarations still use resolved logic vectors at the entity boundary. `numeric_std` conversions give those bits a numeric interpretation only for the expression where they appear, which keeps signedness and result width deliberate.

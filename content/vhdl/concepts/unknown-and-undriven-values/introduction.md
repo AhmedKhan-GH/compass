@@ -1,0 +1,1 @@
+The `std_logic` type has nine values, including uninitialized `U`, unknown `X`, and high impedance `Z`. Its resolution function combines multiple drivers. Use native VHDL checks when the exact distinction among these values is the lesson's subject.

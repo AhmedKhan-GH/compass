@@ -1,0 +1,21 @@
+id = "2c61defc-2f06-4d9d-bcc5-f0d0b6bf1d23"
+title = "Wrap and stall"
+topic = "Test a queue under load"
+blurb = "A queue passed the bench's three-byte checkout, but a longer field capture shows readings arriving out of order."
+kind = "practice"
+concepts = [ "concurrent-testbenches", "queue-state" ]
+difficulty = 8
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_wrong_wrap.vhd", "dut_wrong_reset.vhd" ]
+sourceOrder = [ "testbench.vhd", "dut_correct.vhd", "dut_wrong_wrap.vhd", "dut_wrong_reset.vhd" ]
+schematic = false
+
+[checks]
+file = "test_test_a_queue_under_load.py"
+reference = "example.vhd"
+wrong = [ "common_mistake.vhd" ]

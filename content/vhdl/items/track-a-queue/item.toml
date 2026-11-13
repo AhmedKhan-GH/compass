@@ -1,0 +1,25 @@
+id = "e6aa9af9-7f11-4e55-b222-04eadcb496e2"
+title = "Photo-booth spool"
+topic = "Track a queue"
+blurb = "A photo booth can have five prints waiting in its spool."
+kind = "concept"
+concepts = [ "queue-state" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_track_a_queue.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]

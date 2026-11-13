@@ -1,0 +1,27 @@
+id = "893242b0-0e4d-495d-80fb-a7f940b44450"
+title = "Weather Report Envelope"
+topic = "Weather Report Envelope"
+blurb = "Pack and unpack a typed weather report without losing its named fields."
+kind = "concept"
+concepts = [ "records-and-aggregates" ]
+status = "active"
+
+[design]
+top = "weather_wrapper"
+solution = "weather_pkg.vhd"
+support = [ "weather_wrapper.vhd" ]
+sourceOrder = [ "weather_pkg.vhd", "weather_wrapper.vhd" ]
+schematic = false
+
+[checks]
+file = "test_output.py"
+reference = "exemplar.vhd"
+wrong = [ "swapped_fields.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_packed_layout" ]
+
+[[task]]
+id = 2
+tests = [ "test_round_trip" ]

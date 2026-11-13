@@ -1,0 +1,3 @@
+# TextIO and vector replay
+
+TextIO reads lines from a file into a testbench. Parse the documented format, apply each row, and check the expected result after settling. Detect malformed input and ensure the checker reaches the final required row.

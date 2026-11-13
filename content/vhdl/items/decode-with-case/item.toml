@@ -1,0 +1,24 @@
+id = "5c5beca8-0180-458b-90c1-1a8679b9594b"
+title = "Camera Modes"
+topic = "Decode with case"
+blurb = "Translate a camera dial into mode lamps and an operating permission."
+kind = "concept"
+concepts = [ "case-decoding" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_decode_with_case.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]

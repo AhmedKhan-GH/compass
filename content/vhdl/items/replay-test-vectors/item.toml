@@ -1,0 +1,28 @@
+id = "141e843b-7a93-4b94-9ba5-70fbd742105e"
+title = "Returned weather station"
+topic = "Replay test vectors"
+blurb = "A weather-station board has returned to the repair bench with a short capture file."
+kind = "concept"
+concepts = [ "test-vectors" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_faulty.vhd", "vectors.hex" ]
+sourceOrder = [ "testbench.vhd", "dut_correct.vhd", "dut_faulty.vhd" ]
+schematic = false
+
+[checks]
+file = "test_replay_test_vectors.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_dut" ]
+
+[[task]]
+id = 2
+tests = [ "test_rejects_faulty_dut" ]

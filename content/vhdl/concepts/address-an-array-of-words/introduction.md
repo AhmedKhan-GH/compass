@@ -1,0 +1,1 @@
+Declare an array type to store several words, then constrain its dimensions for a particular object. An index selects a word. Array attributes such as `'range` and `'length` let loops follow the declared bounds instead of duplicating constants.

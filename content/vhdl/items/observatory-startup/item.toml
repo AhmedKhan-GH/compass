@@ -1,0 +1,28 @@
+id = "03797db5-7ff1-4764-a645-9ee291985727"
+title = "Observatory startup"
+topic = "Observatory startup"
+blurb = "Start an observatory camera without missing readiness or waiting beyond its deadline."
+kind = "concept"
+concepts = [ "event-waits-and-time" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "grading_fixture.vhd" ]
+sourceOrder = [ "testbench.vhd", "grading_fixture.vhd" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.vhd"
+wrong = [ "edge_only.vhd", "one_sample_too_late.vhd", "wrong_time_unit.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_handles_readiness_now_and_later" ]
+
+[[task]]
+id = 2
+tests = [ "test_observes_the_complete_deadline_schedule" ]

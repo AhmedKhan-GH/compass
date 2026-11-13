@@ -1,0 +1,1 @@
+Combine the three one-bit conditions with `and` and `not`; the assignment remains active for every input combination. Because this is combinational hardware, the result is recalculated whenever a referenced input changes and no clock is needed. Each output must have a defined value for every input combination.

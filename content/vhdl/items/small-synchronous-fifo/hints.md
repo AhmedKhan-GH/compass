@@ -1,0 +1,1 @@
+Combine the queue-control rules with an array of stored words. Update each pointer only on an accepted transfer and decide whether to accept each request from the state before the edge, including when the queue has only one slot.

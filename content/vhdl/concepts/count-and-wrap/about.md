@@ -1,0 +1,3 @@
+# Counters and rollover
+
+A counter combines numeric state with an update rule. A fixed-width unsigned counter naturally wraps when its maximum value is exceeded; a counter with a specified terminal value needs an explicit boundary decision.

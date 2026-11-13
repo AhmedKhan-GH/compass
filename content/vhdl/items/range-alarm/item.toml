@@ -1,0 +1,17 @@
+id = "ecc23814-d13b-4d69-a857-0085fbb22655"
+title = "Waterline Watch"
+topic = "Range alarm"
+blurb = "Accept aquarium levels within chosen bounds and report either kind of excursion."
+kind = "practice"
+concepts = [ "unsigned-arithmetic" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_range_alarm.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

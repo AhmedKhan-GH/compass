@@ -1,0 +1,3 @@
+# Clocked processes
+
+A process with `rising_edge(clk)` describes state sampled on a rising clock edge. Signal assignments schedule updates after the process suspends, so reads during that activation still see the previous signal values.

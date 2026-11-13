@@ -1,0 +1,25 @@
+id = "2623acb1-6c70-4a3f-9847-925f339c12dc"
+title = "Scanner to printer"
+topic = "Accept a transfer and hold it"
+blurb = "A barcode scanner can produce a byte while a label printer is still busy."
+kind = "concept"
+concepts = [ "ready-valid" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+sourceOrder = [ "top_module.vhd" ]
+
+[checks]
+file = "test_accept_a_transfer_and_hold_it.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]

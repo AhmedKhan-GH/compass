@@ -1,0 +1,31 @@
+id = "e8e4c153-0361-4ddf-8a35-e299161888ce"
+title = "Workshop Controls"
+topic = "Workshop controls"
+blurb = "Bring two conveyor buttons into service behind one shared lock."
+kind = "concept"
+concepts = [ "boolean-logic" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_controls.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "availability_is_the_inverse_of_blocked" ]
+stage = "task_1.vhd"
+
+[[task]]
+id = 2
+tests = [ "first_button_requires_availability" ]
+stage = "task_2.vhd"
+
+[[task]]
+id = 3
+tests = [ "either_button_can_request_start", "blocking_applies_to_both_buttons", "both_outputs_follow_changing_inputs" ]
+stage = "task_3.vhd"

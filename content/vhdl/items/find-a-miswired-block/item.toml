@@ -1,0 +1,21 @@
+id = "ffe5dcad-1503-48e2-b052-fb00f61c2215"
+title = "Indicator Inspection"
+topic = "Find a miswired block"
+blurb = "Choose asymmetric tests that expose a bicycle harness's incorrect connections."
+kind = "practice"
+concepts = [ "write-a-self-checking-testbench", "boolean-logic" ]
+difficulty = 4
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_swapped.vhd", "dut_shared.vhd" ]
+sourceOrder = [ "dut_correct.vhd", "dut_swapped.vhd", "dut_shared.vhd", "testbench.vhd" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "example.vhd"
+wrong = [ "always_pass.vhd" ]

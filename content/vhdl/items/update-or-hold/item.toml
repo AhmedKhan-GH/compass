@@ -1,0 +1,24 @@
+id = "d96eba2a-5925-4766-bb80-37b826586e53"
+title = "Market scale hold"
+topic = "Update or hold"
+blurb = "A market vendor wants to lift a crate off the scale and still read its weight."
+kind = "concept"
+concepts = [ "update-or-hold" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.vhd"
+wrong = [ "all_zero.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "loads_and_holds" ]
+
+[[task]]
+id = 2
+tests = [ "reset_then_freeze_then_load_priority" ]

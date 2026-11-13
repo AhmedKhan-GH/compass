@@ -1,0 +1,3 @@
+# Synchronous memory
+
+A clocked array read and write describes memory behavior at sampling edges. Specify whether a simultaneous read and write to one address returns old or new data; the order of signal assignments alone does not make old state update immediately.

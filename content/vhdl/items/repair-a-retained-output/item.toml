@@ -1,0 +1,17 @@
+id = "dac08111-5221-4ecc-8fbe-62e7e5b2beef"
+title = "The Fan That Stays On"
+topic = "Repair a retained output"
+blurb = "Reproduce and repair a drying fan output that survives after its request ends."
+kind = "practice"
+concepts = [ "combinational-procedures" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_repair_a_retained_output.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

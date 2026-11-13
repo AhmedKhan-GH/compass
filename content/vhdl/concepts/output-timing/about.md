@@ -1,0 +1,3 @@
+# State and input dependent outputs
+
+An output based only on stored state changes with that state. An output that also depends on current inputs can change between clock edges. Choose the timing required by the interface and verify it explicitly.

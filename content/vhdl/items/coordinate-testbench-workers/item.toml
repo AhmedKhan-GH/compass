@@ -1,0 +1,28 @@
+id = "80d69dcd-7b4c-49dc-9d41-d09bccf56344"
+title = "Queue inspection bench"
+topic = "Coordinate testbench workers"
+blurb = "The repair bench now needs to inspect a queue while sending and receiving happen independently."
+kind = "concept"
+concepts = [ "concurrent-testbenches" ]
+status = "active"
+runner = "ghdl-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.vhd"
+support = [ "dut_correct.vhd", "dut_faulty.vhd" ]
+sourceOrder = [ "testbench.vhd", "dut_correct.vhd", "dut_faulty.vhd" ]
+schematic = false
+
+[checks]
+file = "test_coordinate_testbench_workers.py"
+reference = "exemplar.vhd"
+wrong = [ "common_mistake.vhd" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_dut" ]
+
+[[task]]
+id = 2
+tests = [ "test_rejects_faulty_dut" ]

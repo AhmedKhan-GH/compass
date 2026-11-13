@@ -1,0 +1,3 @@
+# Generics and constraints
+
+Generics configure a design when it is elaborated. Use suitable types such as `positive` for a width that cannot be zero, and derive ranges from the generic so one description can build several circuit sizes.

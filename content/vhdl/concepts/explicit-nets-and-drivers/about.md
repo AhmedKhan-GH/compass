@@ -1,0 +1,3 @@
+# Resolved and unresolved signals
+
+Use `std_ulogic` when a signal should have one driver, and `std_logic` when resolution is required. A process contributes a driver for each signal it assigns; multiple assignments inside one process do not create separate drivers.

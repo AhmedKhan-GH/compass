@@ -1,0 +1,1 @@
+Reduction `xor` produces even-parity information; XORing it with the received bit exposes disagreement. Because this is combinational hardware, the result is recalculated whenever a referenced input changes and no clock is needed. Each output must have a defined value for every input combination.

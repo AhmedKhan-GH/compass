@@ -1,0 +1,12 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.trail_defs.all;
+entity trail_indicator is generic(WIDTH:positive:=TRAIL_COUNT_WIDTH;
+    WARNING_AT:natural:=6);
+    port(visitors:in std_logic_vector(WIDTH-1 downto 0);
+    busy:out std_logic);
+end;
+architecture rtl of trail_indicator is
+    begin busy<='0';
+    -- TODO: apply the threshold
+end;

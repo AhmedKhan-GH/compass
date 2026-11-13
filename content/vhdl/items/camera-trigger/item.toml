@@ -1,0 +1,17 @@
+id = "d4727fa1-3b75-4142-99b9-5fb6c60f1596"
+title = "Bird Feeder Camera"
+topic = "Camera trigger"
+blurb = "Let a wildlife camera honor picture requests only when its controls permit."
+kind = "practice"
+concepts = [ "boolean-logic" ]
+difficulty = 1
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.vhd"
+
+[checks]
+file = "test_capture.py"
+reference = "example.vhd"
+wrong = [ "all_zero.vhd" ]

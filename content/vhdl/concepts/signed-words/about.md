@@ -1,0 +1,3 @@
+# Signed values
+
+A `signed` vector uses two's complement, while an `unsigned` vector gives every position a nonnegative weight. `resize` preserves a signed value by extending its sign bit. Conversions change the type used to interpret a bit pattern and must be chosen deliberately.

@@ -1,0 +1,3 @@
+# Entities and port maps
+
+Direct entity instantiation places an existing design inside another architecture. Named port associations connect each formal port to a local signal. Analyze the instantiated entity before a source that refers to it.

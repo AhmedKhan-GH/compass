@@ -1,0 +1,1 @@
+The multiplier bits decide which shifted multiplicand contributions to add. The value being shifted and the running total need enough width for the final sixteen-bit result. Count the working edges to determine completion; a zero product still requires all eight edges.
