@@ -1,0 +1,973 @@
+id = "sternbild/systemverilog"
+version = "0.1.0"
+title = "RTL design with SystemVerilog"
+blurb = "The shared hardware exercises in SystemVerilog, with further lessons on the language's design and testing features."
+description = "Includes the shared hardware foundation and additional SystemVerilog language lessons."
+language = "systemverilog"
+status = "in-development"
+
+[category]
+id = "rtl-design"
+title = "RTL design"
+
+[[stage]]
+id = "signals-and-decisions"
+name = "Signals and decisions"
+
+[[stage]]
+id = "numbers-and-arithmetic"
+name = "Numbers and arithmetic"
+
+[[stage]]
+id = "reusable-hardware"
+name = "Reusable hardware"
+
+[[stage]]
+id = "state-and-timing"
+name = "State and timing"
+
+[[stage]]
+id = "memories-and-controllers"
+name = "Memories and controllers"
+
+[[stage]]
+id = "transfers-and-integration"
+name = "Transfers and integration"
+
+[[stage]]
+id = "language-details"
+name = "Language details"
+
+[[stage]]
+id = "testbench-collections"
+name = "Testbench collections"
+
+[[stage]]
+id = "objects-and-transactions"
+name = "Objects and transactions"
+
+[[stage]]
+id = "time-and-cooperation"
+name = "Time and cooperation"
+
+[[stage]]
+id = "randomized-stimulus"
+name = "Randomized stimulus"
+
+[[stage]]
+id = "coverage"
+name = "Coverage"
+
+[[stage]]
+id = "temporal-checks"
+name = "Temporal checks"
+
+[[planned]]
+slug = "drive-high"
+title = "First Light"
+blurb = "Give a museum exhibit its first always-on power indicator."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "connect-a-wire"
+title = "Exhibit Switch"
+blurb = "Let a visitor control a lightbox directly from its switch."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "workshop-controls"
+title = "Workshop Controls"
+blurb = "Bring two conveyor buttons into service behind one shared lock."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "camera-trigger"
+title = "Bird Feeder Camera"
+blurb = "Let a wildlife camera honor picture requests only when its controls permit."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "status-word"
+title = "Service Visit"
+blurb = "Give a vending-machine technician a compact, readable status connection."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "panel-permutation"
+title = "Replacement Lights"
+blurb = "Adapt an exhibit's old controller to a new lamp-panel connector."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "palindrome-panel"
+title = "Balanced Lights"
+blurb = "Tell a theatre desk whether an eight-lamp arch has a symmetric pattern."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "choose-a-channel"
+title = "Greenhouse Readings"
+blurb = "Choose a planting bed's reading and make room for a service display."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "service-router"
+title = "Rehearsal Lights"
+blurb = "Send a brightness setting to one strip of footlights while the others stay dark."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "priority-alert"
+title = "Aquarium Alerts"
+blurb = "Show the aquarium keeper the most urgent active message."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "operate-on-every-bit"
+title = "Bicycle Light Studio"
+blurb = "Preview inverted, masked, and toggled patterns for a row of bicycle LEDs."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "selective-status-mask"
+title = "Route Setter"
+blurb = "Preview new climbing-wall lights while protecting part of the existing route."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "reduce-a-word"
+title = "Parcel Lockers"
+blurb = "Summarize eight locker compartments for collection, capacity, and diagnostics."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "parity-checker"
+title = "Weather Station Link"
+blurb = "Help an indoor display recognize a damaged sensor message using parity."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "complete-conditional-decisions"
+title = "Drying Cabinet"
+blurb = "Choose a drying fan's operating state and speed for every control combination."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "decode-with-case"
+title = "Camera Modes"
+blurb = "Translate a camera dial into mode lamps and an operating permission."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "display-decoder"
+title = "Bakery Number Display"
+blurb = "Turn decimal codes into a clear seven-segment collection-counter digit."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "repair-a-retained-output"
+title = "The Fan That Stays On"
+blurb = "Reproduce and repair a drying fan output that survives after its request ends."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "control-panel"
+title = "Backstage Console"
+blurb = "Combine filtered backstage lights with an independent priority alert."
+kind = "practice"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "calculate-with-unsigned-words"
+title = "Parts Bin Totals"
+blurb = "Match a parts counter's limited arithmetic display and compare the original quantities."
+kind = "concept"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "range-alarm"
+title = "Waterline Watch"
+blurb = "Accept aquarium levels within chosen bounds and report either kind of excursion."
+kind = "practice"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "preserve-numeric-width"
+title = "Room for the Total"
+blurb = "Upgrade the parts counter to preserve a total its old display could not hold."
+kind = "concept"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "saturating-sum"
+title = "Scoreboard Limit"
+blurb = "Keep an arcade score at its display maximum and flag a larger total."
+kind = "practice"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "interpret-signed-words"
+title = "Mountain Thermometer"
+blurb = "Compare temperatures and widen their representation without losing the sign."
+kind = "concept"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "signed-temperature-alarm"
+title = "Freezer Trials"
+blurb = "Check signed temperature limits during cooling and defrost test runs."
+kind = "practice"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "shift-and-scale"
+title = "Motion Display Scales"
+blurb = "Scale movement readings while accounting for lost bits and negative rounding."
+kind = "concept"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "repair-a-numeric-mismatch"
+title = "A Warmer Display?"
+blurb = "Repair the adapter that turns the hut's below-zero temperatures into positive readings."
+kind = "practice"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "connect-a-supplied-module"
+title = "Cabinet Upgrade"
+blurb = "Reuse a tested level comparator and add an independent alarm-enable control."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "comparison-channels"
+title = "Rooftop Tanks"
+blurb = "Monitor two rainwater tanks with independent comparisons and a shared alert."
+kind = "practice"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "configure-a-reusable-block"
+title = "Display Kits"
+blurb = "Build one configurable live-pattern and lamp-test circuit for two kit sizes."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "configurable-selector"
+title = "Sculpture Controls"
+blurb = "Select and black out patterns on both small and large light sculptures."
+kind = "practice"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "generate-repeated-hardware"
+title = "Workshop Workbenches"
+blurb = "Construct independent extraction permissions for a configurable set of benches."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "parity-lanes"
+title = "Vineyard Readings"
+blurb = "Check each row's sensor byte independently with repeated parity components."
+kind = "practice"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "unknown-and-undriven-values"
+title = "After the Move"
+blurb = "Trace missing and competing connections in a reassembled museum exhibit."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "sv-the-missing-reading"
+title = "The Missing Reading"
+blurb = "Discover what happens when an unknown sensor value passes through two-state and four-state types."
+kind = "concept"
+stage = "signals-and-decisions"
+
+[[planned]]
+slug = "write-a-self-checking-testbench"
+title = "Selector Checkout"
+blurb = "Test replacement greenhouse selectors and distinguish reversed or stuck paths."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "find-a-miswired-block"
+title = "Indicator Inspection"
+blurb = "Choose asymmetric tests that expose a bicycle harness's incorrect connections."
+kind = "practice"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "sv-names-on-the-control-panel"
+title = "Names on the Control Panel"
+blurb = "Give control commands clear names and valid choices with named types and enums."
+kind = "concept"
+stage = "language-details"
+
+[[planned]]
+slug = "sample-on-a-clock-edge"
+title = "Training Monitor"
+blurb = "Keep the latest captured reading and the one before it for a side-by-side display."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "sv-sensor-trays"
+title = "Sensor Trays"
+blurb = "Organize sensor words with packed and unpacked arrays, distinguishing a word from a collection."
+kind = "concept"
+stage = "language-details"
+
+[[planned]]
+slug = "two-stage-delay"
+title = "Light Trails"
+blurb = "Make an exhibit's second lamp row echo its pattern one sample behind."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "sv-the-weather-report"
+title = "The Weather Report"
+blurb = "Keep a reading, sensor identifier, and validity flag together in a struct."
+kind = "concept"
+stage = "language-details"
+
+[[planned]]
+slug = "reset-stored-state"
+title = "Blackout timing"
+blurb = "A theatre lighting desk stores two dimmer levels."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "sv-packing-the-message"
+title = "Packing the Message"
+blurb = "Initialize structured data and examine how a packed message maps onto bits."
+kind = "concept"
+stage = "language-details"
+
+[[planned]]
+slug = "update-or-hold"
+title = "Market scale hold"
+blurb = "A market vendor wants to lift a crate off the scale and still read its weight."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "sticky-alarm"
+title = "Pinsetter jam light"
+blurb = "A bowling pinsetter can report a brief jam and recover before the attendant looks over."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "check-a-clocked-block"
+title = "Register inspection bench"
+blurb = "A repair shop is checking replacement sample-register units before fitting them to its boards."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "repair-a-lost-cycle"
+title = "Speaker delay check"
+blurb = "A model public-address system sends one speaker the previous captured audio sample so two paths line up."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "sv-calibration-settings"
+title = "Calibration Settings"
+blurb = "Use casts and size queries to keep mixed-width and signed readings correct."
+kind = "concept"
+stage = "numbers-and-arithmetic"
+
+[[planned]]
+slug = "count-and-wrap"
+title = "Irrigation rounds"
+blurb = "A garden controller has six installed watering zones and a maintenance display with eight possible positions."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "pulse-duration-meter"
+title = "Turnstile crossing meter"
+blurb = "A turnstile breaks a light beam while a visitor passes through."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "generate-a-clock-enable"
+title = "Departure board refresh"
+blurb = "A model station departure board is scheduled to refresh once every four clock ticks."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "programmable-pulse-timer"
+title = "Darkroom exposure"
+blurb = "A darkroom enlarger exposes a print for the duration chosen when the photographer presses start."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "shift-and-load"
+title = "Cinema marquee"
+blurb = "A cinema marquee has a row of eight lamps."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "word-serializer"
+title = "Barn gauge link"
+blurb = "A farmhouse sends a gauge reading to a display in the barn over a serial data line with a shared clock."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "rising-edge-pulse"
+title = "Scoreboard button"
+blurb = "A gym scoreboard should add one point when its button is pressed, even if the referee keeps holding it."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "repeat-a-bounded-calculation"
+title = "Greenhouse moisture map"
+blurb = "A greenhouse bench has eight moisture probes, with a 1 meaning that a pot is wet."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "population-count"
+title = "Cabin lamp budget"
+blurb = "An off-grid cabin has twelve equal-load lamps and a configurable budget for how many may be lit together."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "name-a-reusable-calculation"
+title = "Laundromat status board"
+blurb = "A laundromat displays how many machines are running in each of three eight-machine banks."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "clamp-several-samples"
+title = "Plotter jog limits"
+blurb = "A small plotter accepts manual position offsets for three axes, but each permitted offset lies between -40 and 60 steps."
+kind = "practice"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "sv-one-owner-per-control"
+title = "One Owner per Control"
+blurb = "Find conflicting assignments and give each hardware control a clear owner."
+kind = "concept"
+stage = "language-details"
+
+[[planned]]
+slug = "address-an-array-of-words"
+title = "Organ preset cards"
+blurb = "An electronic organ stores eight preset stop patterns as individual bytes."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "read-and-write-synchronous-memory"
+title = "Coffee roast profiles"
+blurb = "A coffee roaster stores five profile bytes, but its selector has eight positions."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "circular-sample-recorder"
+title = "Rain gauge history"
+blurb = "A field station keeps a short history of its five most recent accepted rainfall readings."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "repair-parameter-boundaries"
+title = "Pocket trail logger"
+blurb = "A compact trail monitor records one-bit door events into three slots."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "sv-the-inspection-window"
+title = "The Inspection Window"
+blurb = "Describe a transparent latch and see when it follows or retains its input."
+kind = "concept"
+stage = "state-and-timing"
+
+[[planned]]
+slug = "reuse-testbench-tasks"
+title = "Repair bench routine"
+blurb = "A repair shop repeats the same register checkout for every refurbished board."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "replay-test-vectors"
+title = "Returned weather station"
+blurb = "A weather-station board has returned to the repair bench with a short capture file."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "strengthen-a-checker"
+title = "A missed bench fault"
+blurb = "A repair bench approved a batch of register boards, yet a returned unit misbehaves when loading pauses."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "sv-promises-at-the-selector"
+title = "Promises at the Selector"
+blurb = "Check the assumptions behind unique and priority decisions at a control selector."
+kind = "concept"
+stage = "language-details"
+
+[[planned]]
+slug = "describe-named-states"
+title = "Garden railway signal"
+blurb = "A garden railway signal moves through STOP, GO, and a brief CAUTION before it is ready for another request."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "interlocked-indicators"
+title = "Packing-line merge"
+blurb = "Two packing lines feed one labelling station, so only one line may be released at a time."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "choose-output-timing"
+title = "Bakery cooler warning"
+blurb = "A bakery cooler has a live door-alarm indicator and a second indicator that remembers a sampled alarm after the door closes."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "recognize-overlapping-patterns"
+title = "Rocket telemetry marker"
+blurb = "A model rocket's telemetry receiver looks for marker 101 in its incoming bit stream."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "repair-a-transition"
+title = "Window turntable"
+blurb = "A shop-window turntable should cycle through three display positions, but it reaches the third and stays there."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "separate-controller-and-datapath"
+title = "Arcade token hopper"
+blurb = "An arcade change machine dispenses a requested number of tokens one working edge at a time."
+kind = "concept"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "iterative-multiplier"
+title = "Farm-stand total"
+blurb = "A farm-stand scale multiplies a whole-number quantity by its unsigned price-per-unit code."
+kind = "practice"
+stage = "memories-and-controllers"
+
+[[planned]]
+slug = "sv-a-holder-for-any-reading"
+title = "A Holder for Any Reading"
+blurb = "Use a type parameter to configure a reusable holder for different readings."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "sv-the-shared-handbook"
+title = "The Shared Handbook"
+blurb = "Share types, constants, and functions through a package without losing track of their names."
+kind = "concept"
+stage = "reusable-hardware"
+
+[[planned]]
+slug = "accept-a-transfer-and-hold-it"
+title = "Scanner to printer"
+blurb = "A barcode scanner can produce a byte while a label printer is still busy."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "sv-one-cable-two-ends"
+title = "One Cable, Two Ends"
+blurb = "Group transfer signals in an interface and give each end its own access rules."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "one-word-buffer"
+title = "Price-sign recall"
+blurb = "A shop's electronic price sign can hold one pending update while its display driver is busy."
+kind = "practice"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "track-a-queue"
+title = "Photo-booth spool"
+blurb = "A photo booth can have five prints waiting in its spool."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "small-synchronous-fifo"
+title = "Wind-tunnel samples"
+blurb = "A wind-tunnel sensor sends bursts of readings to a display that pauses between updates."
+kind = "practice"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "coordinate-testbench-workers"
+title = "Queue inspection bench"
+blurb = "The repair bench now needs to inspect a queue while sending and receiving happen independently."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "sv-the-bench-helper-kit"
+title = "The Bench Helper Kit"
+blurb = "Make reusable bench routines with named, default, and reference arguments."
+kind = "concept"
+stage = "testbench-collections"
+
+[[planned]]
+slug = "test-a-queue-under-load"
+title = "Wrap and stall"
+blurb = "A queue passed the bench's three-byte checkout, but a longer field capture shows readings arriving out of order."
+kind = "practice"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "repair-an-inferred-circuit"
+title = "Ghost frame"
+blurb = "A lecture-hall selector should blank its eight-bit display word when disabled, yet the previous image remains visible in the model."
+kind = "practice"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "diagnose-an-integration-failure"
+title = "Belt-scale readout"
+blurb = "A model grain conveyor doubles each accepted sample into its display units."
+kind = "practice"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "museum-audio-guide"
+title = "Museum audio guide"
+blurb = "Repair a museum handset that recognizes the wrong exhibits and loses its volume settings."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "alpine-weather-station"
+title = "Alpine weather station"
+blurb = "Keep below-zero weather readings correct as radio packets become calibrated display values."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "observatory-shutter"
+title = "Observatory shutter"
+blurb = "Explain a telescope shutter simulation whose startup controls have not yet settled."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "harbor-beacon-decoder"
+title = "Harbor beacon decoder"
+blurb = "Stop incomplete harbor messages from masquerading as valid beacon commands in simulation."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "photo-finish-checker"
+title = "Photo finish"
+blurb = "Repair a finish-line camera checker that mistakes the previous runner for the current one."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "darkroom-timers"
+title = "Darkroom timers"
+blurb = "Keep three photographic enlargers on independent timers when their exposures overlap."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "observatory-startup"
+title = "Observatory startup"
+blurb = "Start an observatory camera without missing readiness or waiting beyond its deadline."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "trail-counter-kit"
+title = "Trail counter kit"
+blurb = "Build a portable arrival counter and milestone lamp for short surveys at trail entrances."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "sv-weather-station-upgrade"
+title = "Weather Station Upgrade"
+blurb = "Bring types, packages, and interfaces together to extend a familiar weather station."
+kind = "concept"
+stage = "transfers-and-integration"
+
+[[planned]]
+slug = "sv-readable-bench-notes"
+title = "Readable Bench Notes"
+blurb = "Build useful diagnostic messages with strings and formatted readings."
+kind = "concept"
+stage = "testbench-collections"
+
+[[planned]]
+slug = "sv-a-delivery-of-unknown-size"
+title = "A Delivery of Unknown Size"
+blurb = "Allocate, resize, and copy a dynamic array for a changing batch of samples."
+kind = "concept"
+stage = "testbench-collections"
+
+[[planned]]
+slug = "sv-the-expected-delivery-queue"
+title = "The Expected Delivery Queue"
+blurb = "Queue expected results and compare them with deliveries as they arrive."
+kind = "concept"
+stage = "testbench-collections"
+
+[[planned]]
+slug = "sv-find-the-parcel"
+title = "Find the Parcel"
+blurb = "Track outstanding requests by identifier with an associative array."
+kind = "concept"
+stage = "testbench-collections"
+
+[[planned]]
+slug = "sv-inspect-the-whole-batch"
+title = "Inspect the Whole Batch"
+blurb = "Search, summarize, and check a batch with collection iteration and array methods."
+kind = "concept"
+stage = "testbench-collections"
+
+[[planned]]
+slug = "sv-a-delivery-ticket"
+title = "A Delivery Ticket"
+blurb = "Create a transaction object with the data and methods needed to describe one delivery."
+kind = "concept"
+stage = "objects-and-transactions"
+
+[[planned]]
+slug = "sv-two-copies-of-the-ticket"
+title = "Two Copies of the Ticket?"
+blurb = "Distinguish a shared object from an independent copy and handle a missing ticket."
+kind = "concept"
+stage = "objects-and-transactions"
+
+[[planned]]
+slug = "sv-keep-the-ticket-consistent"
+title = "Keep the Ticket Consistent"
+blurb = "Protect a ticket's fields and provide methods that maintain its rules."
+kind = "concept"
+stage = "objects-and-transactions"
+
+[[planned]]
+slug = "sv-different-deliveries-one-desk"
+title = "Different Deliveries, One Desk"
+blurb = "Handle specialized transactions through a common class and virtual methods."
+kind = "concept"
+stage = "objects-and-transactions"
+
+[[planned]]
+slug = "sv-agree-on-the-stopwatch"
+title = "Agree on the Stopwatch"
+blurb = "Make time units and delay rounding explicit across the inspection bench."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-several-benches-at-once"
+title = "Several Benches at Once"
+blurb = "Coordinate concurrent workers with the different fork and join forms."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-the-delivery-that-never-arrived"
+title = "The Delivery That Never Arrived"
+blurb = "Race a response against a timeout and clean up the unfinished worker."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-the-shift-handover"
+title = "The Shift Handover"
+blurb = "Coordinate workers with events and discover why a notification can be missed."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-the-delivery-mailbox"
+title = "The Delivery Mailbox"
+blurb = "Pass transactions between producers and consumers through a typed mailbox."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-one-test-socket"
+title = "One Test Socket"
+blurb = "Use a semaphore to share a test socket without conflicting access."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-connect-the-test-driver"
+title = "Connect the Test Driver"
+blurb = "Give a class-based driver access to hardware signals through a virtual interface."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-meet-at-the-clock-edge"
+title = "Meet at the Clock Edge"
+blurb = "Choose sampling and driving times with a clocking block to avoid a race."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-a-working-inspection-bench"
+title = "A Working Inspection Bench"
+blurb = "Connect a driver, collector, and checker around a familiar transfer block."
+kind = "concept"
+stage = "time-and-cooperation"
+
+[[planned]]
+slug = "sv-a-different-delivery-each-time"
+title = "A Different Delivery Each Time"
+blurb = "Randomize transaction fields and reproduce a delivery sequence from its seed."
+kind = "concept"
+stage = "randomized-stimulus"
+
+[[planned]]
+slug = "sv-only-valid-orders"
+title = "Only Valid Orders"
+blurb = "Constrain legal ranges and relationships between the fields of an order."
+kind = "concept"
+stage = "randomized-stimulus"
+
+[[planned]]
+slug = "sv-a-special-request"
+title = "A Special Request"
+blurb = "Add temporary constraints and handle a request that cannot be randomized."
+kind = "concept"
+stage = "randomized-stimulus"
+
+[[planned]]
+slug = "sv-a-more-useful-test-mix"
+title = "A More Useful Test Mix"
+blurb = "Vary test traffic with weighted distributions and cyclic randomization."
+kind = "concept"
+stage = "randomized-stimulus"
+
+[[planned]]
+slug = "sv-the-inspection-checklist"
+title = "The Inspection Checklist"
+blurb = "Record meaningful operations with coverpoints, bins, and deliberate sampling."
+kind = "concept"
+stage = "coverage"
+
+[[planned]]
+slug = "sv-check-the-combinations"
+title = "Check the Combinations"
+blurb = "Find untested combinations by crossing two conditions in a coverage model."
+kind = "concept"
+stage = "coverage"
+
+[[planned]]
+slug = "sv-the-unticked-box"
+title = "The Unticked Box"
+blurb = "Find a missing test situation and distinguish it from an unreachable case."
+kind = "concept"
+stage = "coverage"
+
+[[planned]]
+slug = "sv-a-rule-at-every-tick"
+title = "A Rule at Every Tick"
+blurb = "Write a clocked property and understand the values it samples."
+kind = "concept"
+stage = "temporal-checks"
+
+[[planned]]
+slug = "sv-now-or-next-cycle"
+title = "Now or Next Cycle?"
+blurb = "Express whether a response belongs in the current cycle or the next one."
+kind = "concept"
+stage = "temporal-checks"
+
+[[planned]]
+slug = "sv-hold-the-parcel-steady"
+title = "Hold the Parcel Steady"
+blurb = "Check that transfer data stays stable while the receiver is waiting."
+kind = "concept"
+stage = "temporal-checks"
+
+[[planned]]
+slug = "sv-a-reply-within-the-window"
+title = "A Reply Within the Window"
+blurb = "Describe a bounded response with cycle delays and repeated conditions."
+kind = "concept"
+stage = "temporal-checks"
+
+[[planned]]
+slug = "sv-reset-during-a-delivery"
+title = "Reset During a Delivery"
+blurb = "Decide what happens to an outstanding temporal check when reset occurs."
+kind = "concept"
+stage = "temporal-checks"
+
+[[planned]]
+slug = "sv-the-alarm-that-never-armed"
+title = "The Alarm That Never Armed"
+blurb = "Discover a check that passes without being triggered and exercise its missing condition."
+kind = "concept"
+stage = "temporal-checks"
+
+[[planned]]
+slug = "sv-queue-inspection-upgrade"
+title = "Queue Inspection Upgrade"
+blurb = "Combine transaction objects, varied traffic, coverage, and temporal checks around a queue."
+kind = "concept"
+stage = "temporal-checks"
