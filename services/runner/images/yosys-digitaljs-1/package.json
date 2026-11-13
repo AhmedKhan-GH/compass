@@ -1,0 +1,6 @@
+{
+  "name": "compass-circuit-runner",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": { "yosys2digitaljs": "0.10.3" }
+}
