@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="291.6" y="171" width="440.8" height="670.25" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="196" x2="512" y2="365" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="376" x2="512" y2="751" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="555" x2="512" y2="816" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="762" x2="512" y2="814" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+  </defs>
+  <title>Rocket telemetry marker — refined model rocket</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Model_rocket" data-name="Model rocket">
+        <path id="Rounded_nose_cone" data-name="Rounded nose cone" d="M506 202 C510 194 514 194 518 202 C557 258 579 310 582 365 L442 365 C445 310 467 258 506 202 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Curved_tube_side_surface" data-name="Curved tube side surface" d="M548 376 L582 376 L582 742 C582 748 579 751 573 751 L548 751 C564 651 569 475 548 376 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Pale_cylindrical_body" data-name="Pale cylindrical body" d="M442 742 L442 376 L536.997 376 C536.998 376.75 537.076 377.514 537.239 378.283 C547.559 426.934 551.493 495.01 550.875 563.025 C550.255 631.351 545.051 699.804 537.138 749.262 C537.045 749.847 536.999 750.428 536.998 751 L451 751 C445 751 442 748 442 742 Z" fill="#eceef0"/>
+        <path id="Left_swept_fin" data-name="Left swept fin" d="M431 555 L431 741 L323 814 C317.667 818 315.667 816.667 317 810 L335 678 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Right_swept_fin" data-name="Right swept fin" d="M593 555 L689 678 L707 810 C708.333 816.667 706.333 818 701 814 L593 741 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Exhaust_nozzle" data-name="Exhaust nozzle" d="M479 762 L545 762 L558 809 C558 812.333 556.333 814 553 814 L471 814 C467.667 814 466 812.333 466 809 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

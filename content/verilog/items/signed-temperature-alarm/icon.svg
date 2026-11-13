@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="197" y="201" width="630" height="609" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="226" x2="512" y2="263" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="274" x2="512" y2="494" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="505" x2="512" y2="532" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="671" x2="512" y2="719" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="761" x2="512" y2="785" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Freezer Trials — chest freezer</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Chest_freezer___straight_front" data-name="Chest freezer — straight front">
+        <path id="Raised_lid_grip" data-name="Raised lid grip" d="M436 263 L436 247 C436 233 443 226 457 226 L567 226 C581 226 588 233 588 247 L588 263 L560 263 L560 251 L464 251 L464 263 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Lid_insulation" data-name="Lid insulation" d="M267 315 L757 315 C759.667 315 761 316.333 761 319 L761 449 C761 451.667 759.667 453 757 453 L267 453 C264.333 453 263 451.667 263 449 L263 319 C263 316.333 264.333 315 267 315 Z" fill="#eceef0"/>
+        <path id="Raised_insulated_lid" data-name="Raised insulated lid" d="M222 290 C222 279.333 227.333 274 238 274 L786 274 C796.667 274 802 279.333 802 290 L802 478 C802 488.667 796.667 494 786 494 L238 494 C227.333 494 222 488.667 222 478 Z M267 304 C262.961 304 259.114 305.33 256.222 308.222 C253.33 311.114 252 314.961 252 319 L252 449 C252 453.039 253.33 456.886 256.222 459.778 C259.114 462.67 262.961 464 267 464 L757 464 C761.039 464 764.886 462.67 767.778 459.778 C770.67 456.886 772 453.039 772 449 L772 319 C772 314.961 770.67 311.114 767.778 308.222 C764.886 305.33 761.039 304 757 304 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Lid_hinges" data-name="Lid hinges" d="M282 505 L350 505 L350 532 L282 532 Z M674 505 L742 505 L742 532 L674 532 Z" fill="url(#linear-gradient-4)"/>
+        <circle id="Temperature_control" data-name="Temperature control" cx="741" cy="695" r="24" fill="url(#linear-gradient-5)"/>
+        <path id="White_insulated_chest" data-name="White insulated chest" d="M222 553 C222 546.333 225.333 543 232 543 L792 543 C798.667 543 802 546.333 802 553 L802 740 C802 746.667 798.667 750 792 750 L232 750 C225.333 750 222 746.667 222 740 Z M716.251 670.251 C702.585 683.917 702.585 706.083 716.251 719.749 C729.917 733.415 752.083 733.415 765.749 719.749 C779.415 706.083 779.415 683.917 765.749 670.251 C752.083 656.585 729.917 656.585 716.251 670.251 Z" fill="#eceef0"/>
+        <path id="Lower_cabinet_plinth" data-name="Lower cabinet plinth" d="M241 761 L783 761 C785.667 761 787 762.333 787 765 L787 781 C787 783.667 785.667 785 783 785 L241 785 C238.333 785 237 783.667 237 781 L237 765 C237 762.333 238.333 761 241 761 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

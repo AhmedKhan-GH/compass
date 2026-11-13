@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="159" y="218" width="708" height="557" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="320" x2="512" y2="547" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="243" x2="512" y2="331" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="404" x2="512" y2="488" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="342" x2="512" y2="547" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="511" x2="512" y2="587" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="511" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#39858b"/>
+      <stop offset="0.5" stop-color="#0d6a71"/>
+      <stop offset="1" stop-color="#094c51"/>
+    </linearGradient>
+  </defs>
+  <title>Harbor beacon decoder — refined model tugboat</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Exhibition_model_tugboat_in_side_view" data-name="Exhibition model tugboat in side view">
+        <polygon id="Short_funnel" data-name="Short funnel" points="319,320 435,320 435,354 419,354 441,547 324,547 335,354 319,354" fill="url(#linear-gradient-2)"/>
+        <path id="Short_mast" data-name="Short mast" d="M587 331 L593 252 C594 240 610 240 611 252 L617 331 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Wheelhouse_window" data-name="Wheelhouse window" d="M542 404 L660 404 C662.209 404 664 405.791 664 408 L664 484 C664 486.209 662.209 488 660 488 L542 488 C539.791 488 538 486.209 538 484 L538 408 C538 405.791 539.791 404 542 404 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Wheelhouse_with_roof_overhang" data-name="Wheelhouse with roof overhang" d="M478 370 L478 342 L724 342 L724 370 L706 370 L706 547 L496 547 L496 370 Z M542 393 C533.72 393 527 399.72 527 408 L527 484 C527 492.28 533.72 499 542 499 L660 499 C668.28 499 675 492.28 675 484 L675 408 C675 399.72 668.28 393 660 393 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Raised_bow_and_deck_rim" data-name="Raised bow and deck rim" d="M716.269 550.952 C757.8 543.001 798.076 528.824 842 511 L840 540 C770 577 715 587 643 587 L188 587 L184 558 L324 558 L441 558 L496 558 L643 558 L706 558 C710.682 558 714.681 555.074 716.269 550.952 Z" fill="url(#linear-gradient-6)"/>
+        <path id="Tugboat_hull_in_side_profile" data-name="Tugboat hull in side profile" d="M744.677 588.104 C773.17 581.659 801.445 571.552 832.195 556.349 L818 622 C791 701 733 750 635 750 L354 750 C282 750 225 702 207 645 L192.961 598 L643 598 C679.838 598 712.358 595.414 744.677 588.104 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="241" y="222" width="542" height="593" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="611" x2="512" y2="790" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="532" x2="512" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="247" x2="512" y2="521" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6b8b4b"/>
+      <stop offset="0.5" stop-color="#4b7224"/>
+      <stop offset="1" stop-color="#36521a"/>
+    </linearGradient>
+  </defs>
+  <title>Greenhouse plant pot — front view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Greenhouse_plant_pot___front_view" data-name="Greenhouse plant pot — front view">
+        <path id="Tapered_terracotta_pot" data-name="Tapered terracotta pot" d="M303 611 L721 611 L680 763 C676 780 661 790 644 790 L380 790 C363 790 348 780 344 763 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Thick_straight_rim" data-name="Thick straight rim" d="M276 532 L748 532 C754 532 758 536 758 542 L758 590 C758 596 754 600 748 600 L276 600 C270 600 266 596 266 590 L266 542 C266 536 270 532 276 532 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Joined_two_leaf_seedling" data-name="Joined two leaf seedling" d="M496 521 C498 472 496 434 483 407 C421 410 359 371 339 302 C412 292 475 327 497 372 C512 310 570 254 667 247 C674 329 614 383 530 394 C519 438 523 480 528 521 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

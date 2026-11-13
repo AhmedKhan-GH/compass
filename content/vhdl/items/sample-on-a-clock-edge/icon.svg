@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="297" y="178" width="483" height="668" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="203" x2="512" y2="331" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="697" x2="512" y2="821" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="450" x2="512" y2="542" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="342" x2="512" y2="686" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>Training Monitor — wrist monitor</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Wrist_training_monitor___flat_front" data-name="Wrist training monitor — flat front">
+        <path id="Upper_watch_strap" data-name="Upper watch strap" d="M440 203 L584 203 C592 203 596.667 207.667 598 217 L616 331 L408 331 L426 217 C427.333 207.667 432 203 440 203 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Lower_watch_strap" data-name="Lower watch strap" d="M408 697 L616 697 L598 806 C596.667 816 591 821 581 821 L443 821 C433 821 427.333 816 426 806 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Side_control_button" data-name="Side control button" d="M722 450 L746 450 C752 450 755 453 755 459 L755 533 C755 539 752 542 746 542 L722 542 C716 542 713 539 713 533 L713 459 C713 453 716 450 722 450 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Previous_reading_window" data-name="Previous reading window" d="M373 399 L478 399 C483.333 399 486 401.667 486 407 L486 621 C486 626.333 483.333 629 478 629 L373 629 C367.667 629 365 626.333 365 621 L365 407 C365 401.667 367.667 399 373 399 Z" fill="#e4eefb"/>
+        <path id="Latest_reading_window" data-name="Latest reading window" d="M546 399 L651 399 C656.333 399 659 401.667 659 407 L659 621 C659 626.333 656.333 629 651 629 L546 629 C540.667 629 538 626.333 538 621 L538 407 C538 401.667 540.667 399 546 399 Z" fill="#e4eefb"/>
+        <path id="Blue_monitor_case" data-name="Blue monitor case" d="M322 390 C322 358 338 342 370 342 L654 342 C686 342 702 358 702 390 L702 638 C702 670 686 686 654 686 L370 686 C338 686 322 670 322 638 Z M373 388 C367.857 388 362.925 389.519 359.222 393.222 C355.519 396.925 354 401.857 354 407 L354 621 C354 626.143 355.519 631.075 359.222 634.778 C362.925 638.481 367.857 640 373 640 L478 640 C483.143 640 488.075 638.481 491.778 634.778 C495.481 631.075 497 626.143 497 621 L497 407 C497 401.857 495.481 396.925 491.778 393.222 C488.075 389.519 483.143 388 478 388 Z M546 388 C540.857 388 535.925 389.519 532.222 393.222 C528.519 396.925 527 401.857 527 407 L527 621 C527 626.143 528.519 631.075 532.222 634.778 C535.925 638.481 540.857 640 546 640 L651 640 C656.143 640 661.075 638.481 664.778 634.778 C668.481 631.075 670 626.143 670 621 L670 407 C670 401.857 668.481 396.925 664.778 393.222 C661.075 389.519 656.143 388 651 388 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

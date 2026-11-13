@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="162" y="189" width="700" height="668.792" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="701" x2="512" y2="835" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="214" x2="512" y2="259" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="270" x2="512" y2="611" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="622" x2="512" y2="690" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Ghost frame — lecture projection screen</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Lecture_projection_screen___refined_front_view" data-name="Lecture projection screen — refined front view">
+        <path id="Rear_mast_and_tapered_tripod_legs" data-name="Rear mast and tapered tripod legs" d="M490 701 L534 701 L534 746 L659 805 C667 810 670 817 665 825 C661 832 654 835 646 831 L525 778 L525 824 L499 824 L499 778 L378 831 C370 835 363 832 359 825 C354 817 357 810 365 805 L490 746 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Slate_upper_roller_casing" data-name="Slate upper roller casing" d="M203 214 L821 214 C830 214 837 221 837 230 L837 259 L187 259 L187 230 C187 221 194 214 203 214 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Blank_projection_fabric" data-name="Blank projection fabric" x="249" y="313" width="526" height="255" fill="#fffdf8"/>
+        <path id="Blue_bound_screen_edge" data-name="Blue bound screen edge" d="M206 611 L206 270 L818 270 L818 611 Z M249 302 C242.925 302 238 306.925 238 313 L238 568 C238 574.075 242.925 579 249 579 L775 579 C781.075 579 786 574.075 786 568 L786 313 C786 306.925 781.075 302 775 302 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Pull_bar_with_centred_pull_tab" data-name="Pull bar with centred pull tab" points="195,622 829,622 829,663 546,663 546,690 478,690 478,663 195,663" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="175.207" y="162.988" width="681.793" height="657.012" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="727" x2="512" y2="795" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="324" x2="512" y2="707" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="197" x2="512" y2="707" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b45996"/>
+      <stop offset="0.5" stop-color="#a3347f"/>
+      <stop offset="1" stop-color="#75255b"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="326" x2="512" y2="707" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+  </defs>
+  <title>Sculpture Controls — refined light sculpture</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Three-element_light_sculpture" data-name="Three-element light sculpture">
+        <path id="Flat_sculpture_plinth" data-name="Flat sculpture plinth" d="M228 727 L796 727 C799.866 727 803 730.134 803 734 L803 788 C803 791.866 799.866 795 796 795 L228 795 C224.134 795 221 791.866 221 788 L221 734 C221 730.134 224.134 727 228 727 Z" fill="url(#linear-gradient-2)"/>
+        <path d="M378 539 L378 668 C378 694.506 356.506 716 330 716 C303.494 716 282 694.506 282 668 L282 539 C282 537.151 281.679 536.164 281.377 535.412 C280.592 533.462 278.985 531.212 277.603 529.465 C274.502 525.545 270.69 521.703 266.804 517.879 C261.218 512.383 255.433 506.942 249.68 501.058 C242.011 493.215 234.782 484.985 228.323 475.925 C221.729 466.675 215.943 456.57 211.3 445.178 C201.305 420.655 197.258 391.469 202.518 355.966 C206.403 329.746 230.814 311.634 257.034 315.518 C283.254 319.403 301.366 343.814 297.482 370.034 C294.743 388.518 296.701 400.362 300.2 408.947 C304.124 418.574 311.135 426.594 318.32 433.942 C323.561 439.302 329.034 444.432 334.134 449.449 C340.911 456.117 347.273 462.8 352.897 469.91 C360.595 479.642 366.841 490.095 371.176 501.462 C375.574 512.996 378 525.453 378 539 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Left_luminous_tube_bright_centre" data-name="Left luminous tube bright centre" d="M346 539 L346 668 C346 679.598 336.598 689 325 689 C313.402 689 304 679.598 304 668 L304 539 C304 528.08 299.694 520.193 293.779 512.715 C286.189 503.119 274.472 492.907 263.985 482.181 C250.993 468.894 239.143 454.225 231.303 434.988 C223.134 414.943 219.676 390.643 224.227 359.922 C225.926 348.45 236.605 340.527 248.078 342.227 C259.55 343.926 267.473 354.605 265.773 366.078 C262.324 389.357 264.866 406.057 270.197 419.137 C275.827 432.953 285.024 443.623 294.015 452.819 C305.46 464.524 316.853 474.184 326.721 486.66 C338.437 501.473 346 518.183 346 539 Z" fill="#ddf0f1"/>
+        <path d="M558 435 L558 668 C558 694.506 536.506 716 510 716 C483.494 716 462 694.506 462 668 L462 435 C462 409.08 469.189 386.48 480.334 365.191 C484.703 356.845 489.65 348.765 494.764 340.728 C498.893 334.239 503.148 327.768 507.119 321.09 C512.636 311.813 517.827 301.833 519.569 291.068 C521.095 281.64 520.366 269.736 514.038 252.804 C504.758 227.975 517.367 200.317 542.196 191.038 C567.025 181.758 594.683 194.367 603.962 219.196 C616.131 251.754 618.528 280.5 614.337 306.401 C610.466 330.323 601.278 350.575 589.631 370.16 C585.165 377.669 580.404 384.964 575.756 392.268 C572.111 397.995 568.482 403.799 565.385 409.715 C561.197 417.714 558 425.832 558 435 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Tall_luminous_tube_bright_centre" data-name="Tall luminous tube bright centre" d="M526 435 L526 668 C526 679.598 516.598 689 505 689 C493.402 689 484 679.598 484 668 L484 435 C484 413.517 490.164 395.078 499.255 377.714 C507.348 362.252 516.783 349.256 525.326 334.891 C532.337 323.101 538.82 310.23 541.223 295.38 C543.5 281.308 542.302 264.686 534.329 243.352 C530.269 232.488 535.784 220.389 546.648 216.329 C557.512 212.269 569.611 217.784 573.671 228.648 C584.198 256.814 586.125 280.817 582.684 302.089 C579.378 322.518 571.274 339.797 561.424 356.359 C553.122 370.319 543.32 384.097 536.464 397.193 C530.592 408.409 526 420.544 526 435 Z" fill="#fbe6e6"/>
+        <path d="M743 566 L743 668 C743 694.506 721.506 716 695 716 C668.494 716 647 694.506 647 668 L647 566 C647 541.164 655.564 518.923 669.735 498.914 C675.024 491.447 680.845 484.584 687.081 477.941 C693.146 471.481 699.608 465.225 706.348 458.788 C714.899 450.621 725.43 440.761 731.502 432.551 C733.094 430.399 734.715 427.902 735.549 425.798 C735.778 425.219 736 424.63 736 424 C736 419.841 735.358 417.071 734.561 415.375 C734.048 414.285 733.552 413.854 733.215 413.598 C732.285 412.891 730.904 412.419 729.462 412.177 C727.558 411.856 725.431 411.901 723.342 412.27 C697.239 416.876 672.337 399.444 667.73 373.342 C663.124 347.239 680.556 322.337 706.658 317.73 C736.833 312.405 767.631 319.185 791.285 337.152 C816.233 356.103 832 386.495 832 424 C832 436.204 829.775 447.801 825.693 458.822 C821.687 469.638 815.894 479.891 808.685 489.637 C803.43 496.742 797.699 503.268 791.57 509.64 C785.621 515.825 779.29 521.872 772.652 528.212 C764.287 536.202 754.096 545.9 748.077 554.398 C746.33 556.866 744.758 559.416 743.793 562.001 C743.37 563.135 743 564.395 743 566 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Right_luminous_tube_bright_centre" data-name="Right luminous tube bright centre" d="M711 566 L711 668 C711 679.598 701.598 689 690 689 C678.402 689 669 679.598 669 668 L669 566 C669 546.814 675.867 529.912 686.769 514.519 C696.07 501.386 707.72 490.038 719.996 478.313 C730.022 468.738 740.834 458.579 748.21 448.606 C753.799 441.05 758 432.975 758 424 C758 391.109 733.572 382.165 713.649 385.68 C702.228 387.696 691.335 380.071 689.32 368.649 C687.304 357.228 694.929 346.335 706.351 344.32 C753.549 335.99 800 366.221 800 424 C800 442.365 793.056 458.602 781.978 473.581 C772.702 486.123 761.199 497.04 749.004 508.687 C739.059 518.184 728.396 528.412 721.044 538.793 C715.271 546.944 711 555.793 711 566 Z" fill="#ddf0f1"/>
+      </g>
+    </g>
+  </g>
+</svg>

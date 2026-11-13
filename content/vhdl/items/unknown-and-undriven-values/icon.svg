@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="289" y="201" width="446" height="642" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="226" x2="512" y2="660" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="671" x2="512" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="791" x2="512" y2="818" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+  </defs>
+  <title>After the Move — empty lamp holder</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Museum_exhibit_lamp___front_view" data-name="Museum exhibit lamp — front view">
+        <path id="Pear-shaped_exhibit_lamp_glass" data-name="Pear-shaped exhibit lamp glass" d="M512 226 C621 226 710 306 710 414 C710 493 670 538 632 582 C610 610 606 635 606 660 L418 660 C418 635 414 610 392 582 C354 538 314 493 314 414 C314 306 403 226 512 226 Z" fill="#fcf0d6"/>
+        <path id="Tapered_amber_glass_edge" data-name="Tapered amber glass edge" d="M430 244 C455 232 483 226 512 226 C621 226 710 306 710 414 C710 493 670 538 632 582 C610 610 606 635 606 660 L568 660 C568 621 583 589 608 559 C644 517 672 478 672 414 C672 321 601 252 512 252 C482 252 455 249 430 244 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Three_broad_screw-cap_threads" data-name="Three broad screw-cap threads" d="M418 671 L606 671 L606 696 L418 714 Z M418 725 L606 707 L606 735 L428 753 Z M438 764 L596 748 L581 780 L451 780 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Insulated_bottom_contact" data-name="Insulated bottom contact" d="M459 791 L573 791 C564 809 543 818 516 818 C489 818 468 809 459 791 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

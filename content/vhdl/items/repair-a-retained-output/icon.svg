@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="207" y="207" width="610" height="610" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="232" x2="512" y2="792" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="448" x2="512" y2="576" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="302" x2="512" y2="722" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>The Fan That Stays On — extraction fan</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Workshop_extraction_fan_-_front_view" data-name="Workshop extraction fan - front view">
+        <path id="Circular_fan_housing" data-name="Circular fan housing" d="M367.826 271.922 C409.94 246.577 459.267 232 512 232 C564.733 232 614.06 246.577 656.174 271.922 C658.808 268.641 663.084 267 669 267 L741 267 C751.667 267 757 272.333 757 283 L757 355 C757 360.916 755.359 365.192 752.078 367.826 C777.423 409.94 792 459.267 792 512 C792 564.733 777.423 614.06 752.078 656.174 C755.359 658.808 757 663.084 757 669 L757 741 C757 751.667 751.667 757 741 757 L669 757 C663.084 757 658.808 755.359 656.174 752.078 C614.06 777.423 564.733 792 512 792 C459.267 792 409.94 777.423 367.826 752.078 C365.192 755.359 360.916 757 355 757 L283 757 C272.333 757 267 751.667 267 741 L267 669 C267 663.084 268.641 658.808 271.922 656.174 C246.577 614.06 232 564.733 232 512 C232 459.267 246.577 409.94 271.922 367.826 C268.641 365.192 267 360.916 267 355 L267 283 C267 272.333 272.333 267 283 267 L355 267 C360.916 267 365.192 268.641 367.826 271.922 Z M512 277 C382.213 277 277 382.213 277 512 C277 641.787 382.213 747 512 747 C641.787 747 747 641.787 747 512 C747 382.213 641.787 277 512 277 Z" fill="url(#linear-gradient-2)"/>
+        <circle id="Light_fan_interior" data-name="Light fan interior" cx="512" cy="512" r="224" fill="#fffdf8"/>
+        <circle id="Central_motor_hub" data-name="Central motor hub" cx="512" cy="512" r="64" fill="url(#linear-gradient-3)"/>
+        <path id="Swept_fan_blade_1" data-name="Swept fan blade 1" d="M468 316 C497 288 545 292 580 318 C620 348 630 401 595 442 C586.723 451.105 577.59 458.325 568.805 463.024 C567.607 461.637 566.35 460.284 565.033 458.967 C541.715 435.649 506.859 430.896 478.838 444.708 C444.793 407.795 441.79 354.83 468 316 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Swept_fan_blade_2" data-name="Swept fan blade 2" d="M309.991 550.11 C315.972 500.469 356.871 465.309 409.878 475.12 C421.896 477.734 432.711 482.031 441.171 487.286 C432.01 513.604 437.942 544.008 458.967 565.033 C462.503 568.569 466.304 571.678 470.306 574.36 C455.363 622.303 410.994 651.389 364.259 648.105 C325.51 636.99 304.974 593.421 309.991 550.11 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Swept_fan_blade_3" data-name="Swept fan blade 3" d="M586.838 516.931 C635.835 505.892 683.216 529.775 703.741 571.895 C713.49 611.01 686.026 650.579 646.009 667.89 C600.028 687.531 549.129 669.691 531.122 618.88 C527.376 607.161 525.689 595.642 526.012 585.686 C540.308 582.981 553.969 576.097 565.033 565.033 C578.422 551.644 585.69 534.451 586.838 516.931 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

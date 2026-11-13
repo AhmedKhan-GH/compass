@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="184" y="183" width="656" height="593" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="208" x2="512" y2="307" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="318" x2="512" y2="374" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="385" x2="512" y2="705" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+  </defs>
+  <title>population-count-exercise</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Cabin_pendant___straight_front" data-name="Cabin pendant — straight front">
+        <path id="Short_hanging_cord" data-name="Short hanging cord" d="M507 208 L517 208 C523.627 208 529 213.373 529 220 L529 295 C529 301.627 523.627 307 517 307 L507 307 C500.373 307 495 301.627 495 295 L495 220 C495 213.373 500.373 208 507 208 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Socket_housing___straight_front" data-name="Socket housing — straight front" d="M479 318 L545 318 C555 318 562 325 564 335 L571 374 L453 374 L460 335 C462 325 469 318 479 318 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Enamel_bell_shade___straight_front" data-name="Enamel bell shade — straight front" d="M451 385 L573 385 C644 413 698 472 735 554 C754 596 765 639 793 665 C804 675 815 679 815 690 C815 699 807 705 797 705 L227 705 C217 705 209 699 209 690 C209 679 220 675 231 665 C259 639 270 596 289 554 C326 472 380 413 451 385 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Straight_pale_diffuser" data-name="Straight pale diffuser" d="M255 716 L769 716 L769 736 C769 744 762 751 754 751 L270 751 C262 751 255 744 255 736 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

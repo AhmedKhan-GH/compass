@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="277" y="190" width="470" height="666" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="761" x2="512" y2="831" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="696" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="215" x2="512" y2="685" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>Motion Display Scales — motion detector</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Motion_detector___refined_front_view" data-name="Motion detector — refined front view">
+        <path id="Flat_wall-mounting_plate" data-name="Flat wall-mounting plate" d="M418 761 L606 761 L606 807 C606 820 595 831 582 831 L442 831 C429 831 418 820 418 807 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Substantial_swivel_mounting_neck" data-name="Substantial swivel mounting neck" d="M465 696 L559 696 L559 720 C559 737 540 750 512 750 C484 750 465 737 465 720 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Motion_detector_housing___straight_front_view" data-name="Motion detector housing — straight front view" d="M302 274 C302 239 324 215 360 215 L664 215 C700 215 722 239 722 274 L722 570 C722 639 686 685 625 685 L399 685 C338 685 302 639 302 570 Z M345 434 C338.925 434 334 438.925 334 445 L334 566 C334 590.38 340.246 610.888 352.037 626.799 C363.922 642.837 381.31 654.025 403.268 659.655 C403.318 659.668 403.369 659.681 403.419 659.693 C433.278 666.9 472.118 671 512 671 C551.882 671 590.722 666.9 620.581 659.693 C620.631 659.681 620.682 659.668 620.732 659.655 C642.69 654.025 660.078 642.837 671.963 626.799 C683.754 610.888 690 590.38 690 566 L690 445 C690 438.925 685.075 434 679 434 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Outer_Fresnel_panels" data-name="Outer Fresnel panels" d="M345 445 L449 445 L449 540 L345 540 Z M575 445 L679 445 L679 540 L575 540 Z M345 551 L449 551 L449 655 C434 654 419 652 406 649 C367 639 345 610 345 566 Z M575 551 L679 551 L679 566 C679 610 657 639 618 649 C605 652 590 654 575 655 Z" fill="#e4eefb"/>
+        <path id="Pale_centre_Fresnel_panels" data-name="Pale centre Fresnel panels" d="M460 445 L564 445 L564 540 L460 540 Z M460 551 L564 551 L564 657 C547 659 530 660 512 660 C494 660 477 659 460 657 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

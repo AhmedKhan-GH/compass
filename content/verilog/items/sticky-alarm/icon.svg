@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="349" y="183" width="326" height="684" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="344" x2="512" y2="374" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="385" x2="512" y2="421" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="454" x2="512" y2="806" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="817" x2="512" y2="841" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Pinsetter jam light — refined bowling pin</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Bowling_pin" data-name="Bowling pin">
+        <path id="Upper_red_neck_band" data-name="Upper red neck band" d="M463 344 L561 344 C558 354 556 364 554 374 L470 374 C468 364 466 354 463 344 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Lower_red_neck_band" data-name="Lower red neck band" d="M474 385 L550 385 C550 397 552 409 555 421 L469 421 C472 409 474 397 474 385 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Tapered_side_surface" data-name="Tapered side surface" d="M568 454 C598 509 650 558 650 632 C650 704 625 764 603 806 L578 806 C614 752 631 694 631 632 C631 562 587 499 568 454 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Pale_bowling_pin" data-name="Pale bowling pin" d="M449 272 C449 234 474 208 512 208 C550 208 575 234 575 272 C575 294.437 566.725 313.565 559.697 333 L464.303 333 C457.275 313.565 449 294.437 449 272 Z M456 454 C459.755 446.831 463.045 439.428 465.748 431.514 C466.77 431.829 467.861 432 469 432 L555 432 C556.139 432 557.23 431.829 558.252 431.514 C559.732 435.848 561.389 440.029 563.201 444.102 C557.935 446.655 555.589 452.885 557.866 458.279 C561.877 467.778 566.903 477.931 572.438 488.837 C577.807 499.415 583.633 510.655 589.321 522.463 C605.802 556.672 620 593.503 620 632 C620 691.828 603.643 747.705 568.847 799.898 C567.62 801.739 567 803.866 567 806 L421 806 C399 764 374 704 374 632 C374 558 426 509 456 454 Z" fill="#fffdf8"/>
+        <path id="Flat_pin_heel" data-name="Flat pin heel" d="M429 817 L595 817 L589 838 C537.667 843.333 486.333 843.333 435 838 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

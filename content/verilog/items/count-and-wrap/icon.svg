@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="180" y="257" width="664" height="475" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="282" x2="512" y2="537" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="344" x2="512" y2="396" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="330" x2="512" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="548" x2="512" y2="707" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="565" x2="512" y2="677" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>Irrigation rounds — rotary sprinkler</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Square_tile" data-name="Square tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Neutral_tile_border" data-name="Neutral tile border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Rotary_sprinkler___front_view" data-name="Rotary sprinkler — front view">
+        <path id="Rotating_hub_and_spindle" data-name="Rotating hub and spindle" d="M482 282 L542 282 C552.667 282 558 287.333 558 298 L558 387 L548 408 L548 537 L476 537 L476 408 L466 387 L466 298 C466 287.333 471.333 282 482 282 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Opposed_metal_sprinkler_arms" data-name="Opposed metal sprinkler arms" d="M273 344 L455 344 L455 396 L273 396 Z M569 344 L751 344 L751 396 L569 396 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Solid_nozzle_tips" data-name="Solid nozzle tips" d="M216 330 L262 330 L262 410 L216 410 Z M762 330 L808 330 L808 410 L762 410 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Broad_ground_sled" data-name="Broad ground sled" d="M268 596 L424 548 L600 548 L756 596 C794 608 819 627 819 656 L819 707 L736 707 L716 682 L588 646 L574.18 646 C583.875 621.848 578.941 593.187 559.377 573.623 C533.214 547.46 490.786 547.46 464.623 573.623 C445.059 593.187 440.125 621.848 449.82 646 L436 646 L308 682 L288 707 L205 707 L205 656 C205 627 230 608 268 596 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Hose_coupling" data-name="Hose coupling" d="M568 621 C568 651.93 542.93 677 512 677 C481.07 677 456 651.93 456 621 C456 590.07 481.07 565 512 565 C542.93 565 568 590.07 568 621 Z" fill="url(#linear-gradient-6)"/>
+        <path id="Hose_socket_opening" data-name="Hose socket opening" d="M539 621 C539 635.91 526.91 648 512 648 C497.09 648 485 635.91 485 621 C485 606.09 497.09 594 512 594 C526.91 594 539 606.09 539 621 Z" fill="#e4eefb"/>
+      </g>
+    </g>
+  </g>
+</svg>

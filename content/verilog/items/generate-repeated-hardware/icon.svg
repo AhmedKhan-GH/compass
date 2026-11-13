@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="185" y="211" width="614" height="609" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="236" x2="512" y2="375" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="386" x2="512" y2="788" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="410" x2="512" y2="534" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="437" x2="512" y2="785" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="705" x2="512" y2="795" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+  </defs>
+  <title>Workshop Workbenches — extraction arm</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Square_tile" data-name="Square tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Neutral_tile_border" data-name="Neutral tile border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Canister_dust_extractor___front_view" data-name="Canister dust extractor — front view">
+        <path id="Motor_lid_and_carry_handle" data-name="Motor lid and carry handle" d="M350 337 L389 310 L735 310 L774 337 L774 375 L350 375 Z M465 299 L465 260 C465 244 473 236 489 236 L635 236 C651 236 659 244 659 260 L659 299 L623 299 L623 272 L501 272 L501 299 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Blue_dust_collection_drum" data-name="Blue dust collection drum" d="M370 427.643 L370 386 L754 386 L754 744 C754 773.333 739.333 788 710 788 L431 788 L431 705 C431 698.925 426.075 694 420 694 L370 694 L370 520.457 C379.641 518.834 390.006 518 401 518 C406.062 518 410.325 514.581 411.607 509.926 C414.575 514.801 418.167 519.403 422.382 523.618 C450.889 552.126 497.111 552.126 525.618 523.618 C554.126 495.111 554.126 448.889 525.618 420.382 C497.111 391.874 450.889 391.874 422.382 420.382 C418.167 424.597 414.575 429.199 411.607 434.074 C410.325 429.419 406.062 426 401 426 C390.379 426 380.033 426.555 370 427.643 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Suction_inlet" data-name="Suction inlet" d="M536 472 C536 506.24 508.24 534 474 534 C439.76 534 412 506.24 412 472 C412 437.76 439.76 410 474 410 C508.24 410 536 437.76 536 472 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Broad_curved_suction_hose" data-name="Broad curved suction hose" d="M401 437 C289 437 210 501 210 601 L210 676 C210 746 249 785 315 785 L350 785 L350 715 L315 715 C292 715 280 700 280 676 L280 601 C280 542 328 507 401 507 Z" fill="url(#linear-gradient-5)"/>
+        <rect id="Open_hose_end_coupling" data-name="Open hose end coupling" x="361" y="705" width="59" height="90" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

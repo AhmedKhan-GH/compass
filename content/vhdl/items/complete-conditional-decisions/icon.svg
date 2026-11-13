@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="264" y="197" width="496" height="618" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="222" x2="512" y2="257" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="297" x2="512" y2="660" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="688" x2="512" y2="733" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="268" x2="512" y2="790" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Drying cabinet — front view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Drying_cabinet___front_view" data-name="Drying cabinet — front view">
+        <rect id="Overhanging_ventilation_hood" data-name="Overhanging ventilation hood" x="289" y="222" width="446" height="35" fill="url(#linear-gradient-2)"/>
+        <path id="Vertical_metal_handle" data-name="Vertical metal handle" d="M624 402 L648 402 C654 402 659 407 659 413 L659 522 C659 528 654 533 648 533 L624 533 C618 533 613 528 613 522 L613 413 C613 407 618 402 624 402 Z" fill="#eceef0"/>
+        <path id="Inset_teal_door" data-name="Inset teal door" d="M335 306 C335 301 339 297 344 297 L680 297 C685 297 689 301 689 306 L689 651 C689 656 685 660 680 660 L344 660 C339 660 335 656 335 651 Z M624 391 C611.929 391 602 400.929 602 413 L602 522 C602 534.071 611.929 544 624 544 L648 544 C660.071 544 670 534.071 670 522 L670 413 C670 400.929 660.071 391 648 391 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Broad_ventilation_slots" data-name="Broad ventilation slots" d="M350 688 L674 688 L674 705 L350 705 Z M350 716 L674 716 L674 733 L350 733 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Cabinet_and_integral_feet" data-name="Cabinet and integral feet" d="M306 790 L306 268 L718 268 L718 790 L654 790 L654 755 L370 755 L370 790 Z M344 286 C332.929 286 324 294.929 324 306 L324 651 C324 662.071 332.929 671 344 671 L680 671 C691.071 671 700 662.071 700 651 L700 306 C700 294.929 691.071 286 680 286 Z M350 677 C343.925 677 339 681.925 339 688 L339 705 C339 707.004 339.536 708.882 340.472 710.5 C339.536 712.118 339 713.996 339 716 L339 733 C339 739.075 343.925 744 350 744 L674 744 C680.075 744 685 739.075 685 733 L685 716 C685 713.996 684.464 712.118 683.528 710.5 C684.464 708.882 685 707.004 685 705 L685 688 C685 681.925 680.075 677 674 677 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

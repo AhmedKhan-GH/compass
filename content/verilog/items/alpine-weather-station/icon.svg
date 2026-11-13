@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="247" y="217" width="526" height="565" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="508" x2="512" y2="737" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="655" x2="512" y2="757" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="383" x2="512" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="497" x2="512" y2="530" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="611" x2="512" y2="644" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Alpine weather station — front view sensor shield</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Radiation_shield" data-name="Radiation shield">
+        <path id="Bent_mounting_arm" data-name="Bent mounting arm" d="M538 685 L674 685 C688.667 685 696 677.667 696 663 L696 508 L748 508 L748 671 C748 715 726 737 682 737 L538 737 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Temperature_sensor_body" data-name="Temperature sensor body" d="M437 655 L527 655 L527 741 C527 751.667 521.667 757 511 757 L453 757 C442.333 757 437 751.667 437 741 Z" fill="url(#linear-gradient-3)"/>
+        <g id="Upper_shelter_disc" data-name="Upper shelter disc">
+          <path id="Upper_shelter_disc_pale_hood" data-name="Upper shelter disc pale hood" d="M272 372 C282 289 372 242 482 242 C592 242 682 289 692 372 Z" fill="#fffdf8"/>
+          <polygon id="Upper_shelter_disc_underside" data-name="Upper shelter disc underside" points="272,383 692,383 685,416 279,416" fill="url(#linear-gradient-4)"/>
+        </g>
+        <g id="Middle_shelter_disc" data-name="Middle shelter disc">
+          <path id="Middle_shelter_disc_pale_hood" data-name="Middle shelter disc pale hood" d="M286 486 C306 444 382 427 482 427 C582 427 658 444 678 486 Z" fill="#fffdf8"/>
+          <polygon id="Middle_shelter_disc_underside" data-name="Middle shelter disc underside" points="286,497 678,497 671,530 293,530" fill="url(#linear-gradient-5)"/>
+        </g>
+        <g id="Lower_shelter_disc" data-name="Lower shelter disc">
+          <path id="Lower_shelter_disc_pale_hood" data-name="Lower shelter disc pale hood" d="M300 600 C320 558 391 541 482 541 C573 541 644 558 664 600 Z" fill="#fffdf8"/>
+          <polygon id="Lower_shelter_disc_underside" data-name="Lower shelter disc underside" points="300,611 664,611 657,644 307,644" fill="url(#linear-gradient-6)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

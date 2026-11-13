@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="259" y="182" width="506" height="660" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="302" x2="512" y2="363" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="270" x2="512" y2="395" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="207" x2="512" y2="817" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="553" x2="512" y2="659" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="439" x2="512" y2="773" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>Speaker delay check — refined PA loudspeaker</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Front-view_public-address_loudspeaker" data-name="Front-view public-address loudspeaker">
+        <polygon id="Recessed_horn_throat" data-name="Recessed horn throat" points="448,302 576,302 561,363 463,363" fill="url(#linear-gradient-2)"/>
+        <path id="Flared_upper_horn" data-name="Flared upper horn" d="M359 284 C359 276.268 365.268 270 373 270 L651 270 C658.732 270 665 276.268 665 284 L665 381 C665 388.732 658.732 395 651 395 L373 395 C365.268 395 359 388.732 359 381 Z M448 291 C440.87 291 435.616 297.703 437.318 304.627 L452.318 365.627 C453.527 370.544 457.937 374 463 374 L561 374 C566.063 374 570.473 370.544 571.682 365.627 L586.682 304.627 C588.384 297.703 583.13 291 576 291 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Front_of_loudspeaker_enclosure" data-name="Front of loudspeaker enclosure" d="M284 239 C284 221.327 298.327 207 316 207 L708 207 C725.673 207 740 221.327 740 239 L740 785 C740 802.673 725.673 817 708 817 L316 817 C298.327 817 284 802.673 284 785 Z M373 259 C359.197 259 348 270.197 348 284 L348 381 C348 394.803 359.197 406 373 406 L651 406 C664.803 406 676 394.803 676 381 L676 284 C676 270.197 664.803 259 651 259 Z M512 428 C462.967 428 418.419 447.851 386.135 480.135 C353.851 512.419 334 556.967 334 606 C334 704.301 413.699 784 512 784 C610.301 784 690 704.301 690 606 C690 507.699 610.301 428 512 428 Z" fill="url(#linear-gradient-4)"/>
+        <circle id="Woofer_dust_cap" data-name="Woofer dust cap" cx="512" cy="606" r="53" fill="url(#linear-gradient-5)"/>
+        <path id="Large_woofer_cone" data-name="Large woofer cone" d="M345 606 C345 513.768 419.768 439 512 439 C604.232 439 679 513.768 679 606 C679 698.232 604.232 773 512 773 C419.768 773 345 698.232 345 606 Z M466.745 560.745 C441.753 585.737 441.753 626.263 466.745 651.255 C491.737 676.247 532.263 676.247 557.255 651.255 C582.247 626.263 582.247 585.737 557.255 560.745 C532.263 535.753 491.737 535.753 466.745 560.745 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

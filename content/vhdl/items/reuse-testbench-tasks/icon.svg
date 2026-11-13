@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="195" y="234" width="634" height="540" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="307" x2="512" y2="678" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="259" x2="512" y2="338" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="368" x2="512" y2="588" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="689" x2="512" y2="749" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a26c26"/>
+      <stop offset="0.5" stop-color="#845518"/>
+      <stop offset="1" stop-color="#66410f"/>
+    </linearGradient>
+  </defs>
+  <title>Refurbished plug-in register board — flat component view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Refurbished_plug-in_register_board___flat_component_view" data-name="Refurbished plug-in register board — flat component view">
+        <path id="Plug-in_board_laminate" data-name="Plug-in board laminate" d="M279.122 344.147 L304.156 307 L719.844 307 L744.878 344.147 C746.923 347.181 750.342 349 754 349 L803 349 C803.337 349 803.671 348.985 804 348.955 L804 656 L757 656 L757 678 L541 678 L541 642 L483 642 L483 678 L267 678 L267 656 L220 656 L220 348.955 C220.329 348.985 220.663 349 221 349 L270 349 C273.658 349 277.077 347.181 279.122 344.147 Z M307 357 C290.925 357 279 368.925 279 385 L279 571 C279 587.075 290.925 599 307 599 L451 599 C467.075 599 479 587.075 479 571 L479 385 C479 368.925 467.075 357 451 357 Z M573 357 C556.925 357 545 368.925 545 385 L545 571 C545 587.075 556.925 599 573 599 L717 599 C733.075 599 745 587.075 745 571 L745 385 C745 368.925 733.075 357 717 357 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Extraction_ears" data-name="Extraction ears" d="M221 259 L343 259 L343 292 L301 292 L270 338 L221 338 Z M681 259 L803 259 L803 338 L754 338 L723 292 L681 292 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Left_register_package" data-name="Left register package" d="M307 368 L451 368 C461 368 468 375 468 385 L468 571 C468 581 461 588 451 588 L307 588 C297 588 290 581 290 571 L290 385 C290 375 297 368 307 368 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Right_register_package" data-name="Right register package" d="M573 368 L717 368 C727 368 734 375 734 385 L734 571 C734 581 727 588 717 588 L573 588 C563 588 556 581 556 571 L556 385 C556 375 563 368 573 368 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Keyed_copper_contact_banks" data-name="Keyed copper contact banks" d="M278 689 L339 689 L339 749 L278 749 Z M350 689 L411 689 L411 749 L350 749 Z M422 689 L483 689 L483 749 L422 749 Z M541 689 L602 689 L602 749 L541 749 Z M613 689 L674 689 L674 749 L613 749 Z M685 689 L746 689 L746 749 L685 749 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

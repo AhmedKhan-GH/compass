@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="187" y="267" width="649" height="490" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="332" x2="512" y2="643" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="292" x2="512" y2="732" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="459" x2="512" y2="567" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Parcel Lockers — open compartment</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Parcel_locker___flat_front" data-name="Parcel locker — flat front">
+        <path id="Empty_compartment_interior" data-name="Empty compartment interior" d="M255 332 L469 332 C471 332 472 333 472 335 L472 640 C472 642 471 643 469 643 L255 643 C253 643 252 642 252 640 L252 335 C252 333 253 332 255 332 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Parcel_shelf" data-name="Parcel shelf" d="M255 654 L469 654 C471 654 472 655 472 657 L472 689 C472 691 471 692 469 692 L255 692 C253 692 252 691 252 689 L252 657 C252 655 253 654 255 654 Z" fill="#eceef0"/>
+        <path id="Locker_frame" data-name="Locker frame" d="M212 306 C212 296.667 216.667 292 226 292 L498 292 C507.333 292 512 296.667 512 306 L512 718 C512 727.333 507.333 732 498 732 L226 732 C216.667 732 212 727.333 212 718 Z M255 321 C246.921 321 241 326.921 241 335 L241 640 C241 643.27 241.97 646.187 243.66 648.5 C241.97 650.813 241 653.73 241 657 L241 689 C241 697.079 246.921 703 255 703 L469 703 C477.079 703 483 697.079 483 689 L483 657 C483 653.73 482.03 650.813 480.34 648.5 C482.03 646.187 483 643.27 483 640 L483 335 C483 326.921 477.079 321 469 321 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Door_pull" data-name="Door pull" d="M754 459 L768 459 C773.333 459 776 461.667 776 467 L776 559 C776 564.333 773.333 567 768 567 L754 567 C748.667 567 746 564.333 746 559 L746 467 C746 461.667 748.667 459 754 459 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Door_folded_fully_open" data-name="Door folded fully open" d="M523 306 C523 296.667 527.667 292 537 292 L797 292 C806.333 292 811 296.667 811 306 L811 718 C811 727.333 806.333 732 797 732 L537 732 C527.667 732 523 727.333 523 718 Z M754 448 C748.857 448 743.925 449.519 740.222 453.222 C736.519 456.925 735 461.857 735 467 L735 559 C735 564.143 736.519 569.075 740.222 572.778 C743.925 576.481 748.857 578 754 578 L768 578 C773.143 578 778.075 576.481 781.778 572.778 C785.481 569.075 787 564.143 787 559 L787 467 C787 461.857 785.481 456.925 781.778 453.222 C778.075 449.519 773.143 448 768 448 Z" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="247" y="211" width="530" height="620" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="236" x2="512" y2="274" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="307" x2="512" y2="375" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="411" x2="512" y2="743" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="321" x2="512" y2="363" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Laundromat status board — front view washing machine</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Front_loading_washer" data-name="Front loading washer">
+        <path id="Top_lip" data-name="Top lip" d="M286 236 L738 236 C747.333 236 752 240.667 752 250 L752 274 L272 274 L272 250 C272 240.667 276.667 236 286 236 Z" fill="url(#linear-gradient-2)"/>
+        <circle id="Control_knob" data-name="Control knob" cx="671" cy="341" r="34" fill="url(#linear-gradient-3)"/>
+        <path id="Circular_door_bezel_and_handle" data-name="Circular door bezel and handle" d="M346 577 C346 485 420 411 512 411 C596 411 665 473 677 552 L712 552 L712 615 L674 615 C677 602 678 590 678 577 C678 669 604 743 512 743 C420 743 346 669 346 577 Z M512 446 C475.946 446 443.148 460.59 419.369 484.369 C395.59 508.148 381 540.946 381 577 C381 649.344 439.656 708 512 708 C584.344 708 643 649.344 643 577 C643 504.656 584.344 446 512 446 Z" fill="url(#linear-gradient-4)"/>
+        <circle id="Pale_door_glass" data-name="Pale door glass" cx="512" cy="577" r="120" fill="#e4eefb"/>
+        <path id="Detergent_drawer_face" data-name="Detergent drawer face" d="M310 321 L450 321 L450 351 C450 359 446 363 438 363 L322 363 C314 363 310 359 310 351 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Enamel_cabinet_with_feet" data-name="Enamel cabinet with feet" d="M272 774 L272 285 L752 285 L752 774 C752 780.667 748.667 784 742 784 L710 784 L710 806 L651 806 L651 784 L373 784 L373 806 L314 806 L314 784 L282 784 C275.333 784 272 780.667 272 774 Z M639.18 309.18 C621.609 326.752 621.609 355.248 639.18 372.82 C656.752 390.391 685.248 390.391 702.82 372.82 C720.391 355.248 720.391 326.752 702.82 309.18 C685.248 291.609 656.752 291.609 639.18 309.18 Z M310 310 C303.925 310 299 314.925 299 321 L299 351 C299 357.234 300.718 363.274 305.222 367.778 C309.726 372.282 315.766 374 322 374 L438 374 C444.234 374 450.274 372.282 454.778 367.778 C459.282 363.274 461 357.234 461 351 L461 321 C461 314.925 456.075 310 450 310 Z M512 400 C413.931 400 335 478.931 335 577 C335 675.069 413.931 754 512 754 C560.917 754 605.215 734.341 637.278 702.278 C658.2 681.356 673.84 655.225 682.184 626 L712 626 C718.075 626 723 621.075 723 615 L723 552 C723 545.925 718.075 541 712 541 L686.192 541 C678.211 502.707 657.602 468.632 628.708 443.566 C597.458 416.455 556.648 400 512 400 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

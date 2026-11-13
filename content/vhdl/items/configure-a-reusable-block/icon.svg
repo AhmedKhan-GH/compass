@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="295" y="189" width="434" height="649" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="214" x2="512" y2="251" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="262" x2="512" y2="377" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.55" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="388" x2="512" y2="503" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.55" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="514" x2="512" y2="629" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.55" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="640" x2="512" y2="748" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="759" x2="512" y2="813" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Display Kits — three-light indicator tower</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Three-light_indicator_kit_-_front_view" data-name="Three-light indicator kit - front view">
+        <path id="Top_cap" data-name="Top cap" d="M390 214 L634 214 C642.667 214 647 218.333 647 227 L647 238 C647 246.667 642.667 251 634 251 L390 251 C381.333 251 377 246.667 377 238 L377 227 C377 218.333 381.333 214 390 214 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Green_lamp_section" data-name="Green lamp section" d="M391 262 L633 262 C639 262 642 265 642 271 L642 368 C642 374 639 377 633 377 L391 377 C385 377 382 374 382 368 L382 271 C382 265 385 262 391 262 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Amber_lamp_section" data-name="Amber lamp section" d="M391 388 L633 388 C639 388 642 391 642 397 L642 494 C642 500 639 503 633 503 L391 503 C385 503 382 500 382 494 L382 397 C382 391 385 388 391 388 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Green_lamp_section-2" data-name="Green lamp section" d="M391 514 L633 514 C639 514 642 517 642 523 L642 620 C642 626 639 629 633 629 L391 629 C385 629 382 626 382 620 L382 523 C382 517 385 514 391 514 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Support_post" data-name="Support post" d="M488 640 L536 640 C541.333 640 544 642.667 544 648 L544 740 C544 745.333 541.333 748 536 748 L488 748 C482.667 748 480 745.333 480 740 L480 648 C480 642.667 482.667 640 488 640 Z" fill="url(#linear-gradient-6)"/>
+        <path id="Wide_mounting_foot" data-name="Wide mounting foot" d="M366 759 L658 759 C671.333 759 681.333 765.667 688 779 L704 813 L320 813 L336 779 C342.667 765.667 352.667 759 366 759 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

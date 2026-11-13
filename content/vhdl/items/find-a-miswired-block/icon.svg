@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="249" y="164" width="549" height="674" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="320" x2="512" y2="699" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="189" x2="512" y2="813" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="321" x2="512" y2="352" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="278" x2="512" y2="741" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Indicator Inspection — bicycle wiring harness</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Bicycle_indicator_wiring_harness" data-name="Bicycle indicator wiring harness">
+        <path id="Flexible_staggered_cable_branches" data-name="Flexible staggered cable branches" d="M486 699 L538 699 L538 616 C538 566 675 557 719 502 C758 455 751 384 741 320 L689 320 C699 384 711 428 683 469 C649 517 556 521 512 566 C469 521 421 520 391 477 C361 443 358 401 358 363 L306 363 C306 420 315 470 347 508 C389 555 486 570 486 616 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Three_moulded_connector_housings" data-name="Three moulded connector housings" d="M290 232 L374 232 C382.837 232 390 239.163 390 248 L390 310 L274 310 L274 248 C274 239.163 281.163 232 290 232 Z M304 253 L304 285 L360 285 L360 253 Z M673 189 L757 189 C765.837 189 773 196.163 773 205 L773 267 L657 267 L657 205 C657 196.163 664.163 189 673 189 Z M687 210 L687 242 L743 242 L743 210 Z M454 752 L570 752 L570 795 C570 804.941 561.941 813 552 813 L472 813 C462.059 813 454 804.941 454 795 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Left_branch_amber_collar" data-name="Left branch amber collar" d="M274 321 L390 321 L390 340 C390 346.627 384.627 352 378 352 L286 352 C279.373 352 274 346.627 274 340 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Neutral_connector_collars" data-name="Neutral connector collars" d="M657 278 L773 278 L773 297 C773 303.627 767.627 309 761 309 L669 309 C662.373 309 657 303.627 657 297 Z M454 710 L570 710 L570 741 L454 741 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Recessed_connector_sockets" data-name="Recessed connector sockets" d="M304 253 L360 253 L360 285 L304 285 Z M687 210 L743 210 L743 242 L687 242 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

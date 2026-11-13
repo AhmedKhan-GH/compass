@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="303" y="179" width="418" height="666" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="444" x2="512" y2="558" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="292" x2="512" y2="730" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="204" x2="512" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="487" x2="512" y2="515" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Theatre lighting fader — front view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Theatre_lighting_fader___front_view" data-name="Theatre lighting fader — front view">
+        <path id="Broad_red_slider_cap" data-name="Broad red slider cap" d="M346 444 L678 444 C688 444 696 452 696 462 L696 540 C696 550 688 558 678 558 L346 558 C336 558 328 550 328 540 L328 462 C328 452 336 444 346 444 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Recessed_travel_slot" data-name="Recessed travel slot" d="M486 318 C486 303.641 497.641 292 512 292 C526.359 292 538 303.641 538 318 L538 433 L486 433 Z M486 704 L486 569 L538 569 L538 704 C538 718.359 526.359 730 512 730 C497.641 730 486 718.359 486 704 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Straight_mounting_plate" data-name="Straight mounting plate" d="M442 252 L442 204 L582 204 L582 252 L634 252 L634 433 L549 433 L549 318 C549 297.57 532.43 281 512 281 C491.57 281 475 297.57 475 318 L475 433 L390 433 L390 252 Z M390 772 L390 569 L475 569 L475 704 C475 724.43 491.57 741 512 741 C532.43 741 549 724.43 549 704 L549 569 L634 569 L634 772 L582 772 L582 820 L442 820 L442 772 Z" fill="url(#linear-gradient-4)"/>
+        <rect id="Finger_grip_inset" data-name="Finger grip inset" x="377" y="487" width="270" height="28" fill="url(#linear-gradient-5)"/>
+        <path id="Mounting_holes" data-name="Mounting holes" d="M526 228 C526 235.732 519.732 242 512 242 C504.268 242 498 235.732 498 228 C498 220.268 504.268 214 512 214 C519.732 214 526 220.268 526 228 Z M526 796 C526 803.732 519.732 810 512 810 C504.268 810 498 803.732 498 796 C498 788.268 504.268 782 512 782 C519.732 782 526 788.268 526 796 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

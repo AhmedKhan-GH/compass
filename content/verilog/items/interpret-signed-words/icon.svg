@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="345" y="185" width="334" height="668" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="210" x2="512" y2="828" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="409" x2="512" y2="772" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+  </defs>
+  <title>Mountain Thermometer — wall thermometer</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Mountain_hut_wall_thermometer" data-name="Mountain hut wall thermometer">
+        <path id="Wide_glass_tube_and_reservoir" data-name="Wide glass tube and reservoir" d="M466 341 C466 315.595 486.595 307 512 307 C537.405 307 558 315.595 558 341 L558 651 C598 666 614 692 614 728 C614 777 569 794 512 794 C455 794 410 777 410 728 C410 692 426 666 466 651 Z" fill="#fffdf8"/>
+        <path id="Slim_metal_backing_with_mounting_eye" data-name="Slim metal backing with mounting eye" d="M460 252 C460 223.28 483.28 210 512 210 C540.72 210 564 223.28 564 252 L564 280 L580 280 C593.255 280 604 290.745 604 304 L604 635 C635 659 654 691 654 729 C654 797 590 828 512 828 C434 828 370 797 370 729 C370 691 389 659 420 635 L420 304 C420 290.745 430.745 280 444 280 L460 280 Z M512 229 C499.85 229 490 238.85 490 251 C490 263.15 499.85 273 512 273 C524.15 273 534 263.15 534 251 C534 238.85 524.15 229 512 229 Z M512 296 C497.099 296 483.734 298.69 473.546 305.207 C460.833 313.338 455 326.133 455 341 L455 643.587 C438.828 650.636 424.203 660.704 413.984 675.323 C403.06 690.95 399 709.155 399 728 C399 754.749 410.887 775.781 434.217 788.954 C454.351 800.322 481.495 805 512 805 C542.505 805 569.649 800.322 589.783 788.954 C613.113 775.781 625 754.749 625 728 C625 718.015 623.868 708.66 621.482 699.976 C613.91 672.415 594.571 654.732 569 643.587 L569 341 C569 326.133 563.167 313.338 550.454 305.207 C540.266 298.69 526.901 296 512 296 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Broad_continuous_liquid_column" data-name="Broad continuous liquid column" d="M491 430 C491 418.402 500.402 409 512 409 C523.598 409 533 418.402 533 430 L533 681 C558 687 574 705 574 727 C574 757 546 772 512 772 C478 772 450 757 450 727 C450 705 466 687 491 681 Z" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

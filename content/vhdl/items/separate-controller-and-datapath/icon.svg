@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="257" y="186" width="510" height="652" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="211" x2="512" y2="813" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="296" x2="512" y2="352" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="393" x2="512" y2="473" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="607" x2="512" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="557" x2="512" y2="743" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Arcade token hopper — refined arcade change machine</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Arcade_change_machine_with_token_payout" data-name="Arcade change machine with token payout">
+        <path id="Arcade_change_machine_cabinet" data-name="Arcade change machine cabinet" d="M282 243 L314 211 L710 211 L742 243 L742 813 L282 813 Z M337 233 C326.51 233 318 241.51 318 252 L318 762 C318 772.49 326.51 781 337 781 L687 781 C697.49 781 706 772.49 706 762 L706 252 C706 241.51 697.49 233 687 233 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Bill_acceptor_mouth" data-name="Bill acceptor mouth" d="M394 296 L630 296 C633.314 296 636 298.686 636 302 L636 346 C636 349.314 633.314 352 630 352 L394 352 C390.686 352 388 349.314 388 346 L388 302 C388 298.686 390.686 296 394 296 Z" fill="url(#linear-gradient-3)"/>
+        <circle id="Payout_request_button" data-name="Payout request button" cx="512" cy="433" r="40" fill="url(#linear-gradient-4)"/>
+        <path id="Pale_machine_front_panel" data-name="Pale machine front panel" d="M329 252 C329 247.582 332.582 244 337 244 L687 244 C691.418 244 695 247.582 695 252 L695 762 C695 766.418 691.418 770 687 770 L337 770 C332.582 770 329 766.418 329 762 Z M394 285 C384.615 285 377 292.615 377 302 L377 346 C377 355.385 384.615 363 394 363 L630 363 C639.385 363 647 355.385 647 346 L647 302 C647 292.615 639.385 285 630 285 Z M475.938 396.938 C456.023 416.852 456.023 449.148 475.938 469.062 C495.852 488.977 528.148 488.977 548.062 469.062 C567.977 449.148 567.977 416.852 548.062 396.938 C528.148 377.023 495.852 377.023 475.938 396.938 Z M370 546 C363.925 546 359 550.925 359 557 L359 687 C359 699.274 363.482 710.191 371.885 719.258 C379.596 727.58 390.552 734.305 404.507 739.547 C417.625 744.475 433.436 748.107 451.679 750.5 C469.544 752.844 489.772 754 512 754 C534.228 754 554.456 752.844 572.321 750.5 C590.564 748.107 606.375 744.475 619.493 739.547 C633.448 734.305 644.404 727.58 652.115 719.258 C660.518 710.191 665 699.274 665 687 L665 557 C665 550.925 660.075 546 654 546 Z" fill="#fffdf8"/>
+        <circle id="Dispensed_brass_token" data-name="Dispensed brass token" cx="466" cy="641" r="34" fill="url(#linear-gradient-5)"/>
+        <circle id="Dispensed_brass_token-2" data-name="Dispensed brass token" cx="558" cy="641" r="34" fill="url(#linear-gradient-5)"/>
+        <path id="Token_collection_cup" data-name="Token collection cup" d="M370 687 L370 557 L654 557 L654 687 C654 725 599 743 512 743 C425 743 370 725 370 687 Z M526.18 609.18 C508.609 626.752 508.609 655.248 526.18 672.82 C543.752 690.391 572.248 690.391 589.82 672.82 C607.391 655.248 607.391 626.752 589.82 609.18 C572.248 591.609 543.752 591.609 526.18 609.18 Z M434.18 609.18 C416.609 626.752 416.609 655.248 434.18 672.82 C451.752 690.391 480.248 690.391 497.82 672.82 C515.391 655.248 515.391 626.752 497.82 609.18 C480.248 591.609 451.752 591.609 434.18 609.18 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="251" y="193" width="522" height="618" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="276" x2="512" y2="613" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="669" x2="512" y2="741" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="355" x2="512" y2="541" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="218" x2="512" y2="786" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+  </defs>
+  <title>Service Visit — front view vending machine</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Vending_machine" data-name="Vending machine">
+        <path id="Merchandise_glazing" data-name="Merchandise glazing" d="M332 276 L568 276 C575.732 276 582 282.268 582 290 L582 599 C582 606.732 575.732 613 568 613 L332 613 C324.268 613 318 606.732 318 599 L318 290 C318 282.268 324.268 276 332 276 Z" fill="#fffdf8"/>
+        <path id="Payment_panel_and_coin_opening" data-name="Payment panel and coin opening" d="M616 276 L692 276 C701.333 276 706 280.667 706 290 L706 599 C706 608.333 701.333 613 692 613 L616 613 Z M646 320 L646 398 L670 398 L670 320 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Collection_door" data-name="Collection door" d="M318 669 L706 669 L706 719 C706 733.667 698.667 741 684 741 L340 741 C325.333 741 318 733.667 318 719 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Unlabelled_drink_can" data-name="Unlabelled drink can" d="M355 363 C355 357.667 358.333 355 365 355 L409 355 C415.667 355 419 357.667 419 363 L419 380 L355 380 Z M355 391 L419 391 L423 401 L423 529 C423 537 419 541 411 541 L363 541 C355 541 351 537 351 529 L351 401 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Unlabelled_drink_can-2" data-name="Unlabelled drink can" d="M474 363 C474 357.667 477.333 355 484 355 L528 355 C534.667 355 538 357.667 538 363 L538 380 L474 380 Z M474 391 L538 391 L542 401 L542 529 C542 537 538 541 530 541 L482 541 C474 541 470 537 470 529 L470 401 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Enamel_cabinet" data-name="Enamel cabinet" d="M276 240 C276 226 284 218 298 218 L726 218 C740 218 748 226 748 240 L748 786 L276 786 Z M332 265 C318.197 265 307 276.197 307 290 L307 599 C307 612.803 318.197 624 332 624 L568 624 C581.803 624 593 612.803 593 599 L593 290 C593 276.197 581.803 265 568 265 Z M616 265 C609.925 265 605 269.925 605 276 L605 613 C605 619.075 609.925 624 616 624 L692 624 C698.778 624 705.375 622.181 710.278 617.278 C715.181 612.375 717 605.778 717 599 L717 290 C717 283.222 715.181 276.625 710.278 271.722 C705.375 266.819 698.778 265 692 265 Z M318 658 C311.925 658 307 662.925 307 669 L307 719 C307 727.942 309.231 736.788 315.722 743.278 C322.212 749.769 331.058 752 340 752 L684 752 C692.942 752 701.788 749.769 708.278 743.278 C714.769 736.788 717 727.942 717 719 L717 669 C717 662.925 712.075 658 706 658 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

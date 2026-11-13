@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="199" y="322" width="626" height="433" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="609" x2="512" y2="730" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="358" x2="512" y2="598" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="386" x2="512" y2="574" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="347" x2="512" y2="399" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="410" x2="512" y2="609" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Belt scale load cell — side view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Belt_scale_load_cell___side_view" data-name="Belt scale load cell — side view">
+        <g id="Belt_scale_load_cell___side_view-2" data-name="Belt scale load cell — side view">
+          <g id="Belt_scale_load_cell___side_view-3" data-name="Belt scale load cell — side view">
+            <path id="Short_sealed_sensor_cable" data-name="Short sealed sensor cable" d="M274 609 L308 609 L308 658 C308 679 325 696 346 696 L475 696 L475 730 L346 730 C306.236 730 274 697.764 274 658 Z" fill="url(#linear-gradient-2)"/>
+            <polygon id="Substantial_mounting_block" data-name="Substantial mounting block" points="236,358 344,358 356,370 356,586 344,598 236,598 224,586 224,370" fill="url(#linear-gradient-3)"/>
+            <path id="Reduced_neck_weighing_beam" data-name="Reduced neck weighing beam" d="M367 386 L425 386 C438 386 444 421 457 421 L581 421 C594 421 600 386 613 386 L670 386 L670 574 L613 574 C600 574 594 539 581 539 L457 539 C444 539 438 574 425 574 L367 574 Z" fill="url(#linear-gradient-4)"/>
+            <circle id="Round_mounting_hole" data-name="Round mounting hole" cx="290" cy="426" r="34" fill="#fffdf8"/>
+          </g>
+          <polygon id="Blue_loading_cushion" data-name="Blue loading cushion" points="693,347 788,347 800,359 800,399 681,399 681,359" fill="url(#linear-gradient-5)"/>
+        </g>
+        <polygon id="Loading_pad" data-name="Loading pad" points="681,597 681,410 800,410 800,597 788,609 693,609" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

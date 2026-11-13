@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="243" y="196" width="538" height="648" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="720" x2="512" y2="819" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="221" x2="512" y2="709" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="329" x2="512" y2="483" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="432" x2="512" y2="498" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Barn gauge link — dial gauge</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Farmhouse_gauge___straight_front" data-name="Farmhouse gauge — straight front">
+        <path id="Process_connection" data-name="Process connection" d="M468 720 L556 720 L574 739 L574 774 L450 774 L450 739 Z M464 785 L560 785 L560 819 L464 819 Z" fill="url(#linear-gradient-2)"/>
+        <circle id="Unmarked_dial_face" data-name="Unmarked dial face" cx="512" cy="465" r="194" fill="#fffdf8"/>
+        <path id="Circular_blue_gauge_bezel" data-name="Circular blue gauge bezel" d="M268 465 C268 330.243 377.243 221 512 221 C646.757 221 756 330.243 756 465 C756 599.757 646.757 709 512 709 C377.243 709 268 599.757 268 465 Z M512 260 C455.511 260 404.213 282.873 367.043 320.043 C329.873 357.213 307 408.511 307 465 C307 578.212 398.788 670 512 670 C625.212 670 717 578.212 717 465 C717 351.788 625.212 260 512 260 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Tapered_physical_pointer" data-name="Tapered physical pointer" d="M500.7 456.7 L605 332 C611 324 619 330 613 338 L523.3 473.3 C513 486 490 470 500.7 456.7 Z" fill="url(#linear-gradient-4)"/>
+        <circle id="Pointer_hub" data-name="Pointer hub" cx="512" cy="465" r="33" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

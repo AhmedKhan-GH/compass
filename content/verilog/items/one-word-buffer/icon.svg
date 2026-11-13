@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="177" y="274" width="670" height="568" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="637" x2="512" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="686" x2="512" y2="817" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.55" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="299" x2="512" y2="626" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Price-sign recall — clip-on electronic sign</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Clip-on_electronic_price_sign___front_elevation" data-name="Clip-on electronic price sign — front elevation">
+        <path id="Rear_mounting_shoe" data-name="Rear mounting shoe" d="M411 637 L613 637 C617.418 637 621 640.582 621 645 L621 667 C621 671.418 617.418 675 613 675 L411 675 C406.582 675 403 671.418 403 667 L403 645 C403 640.582 406.582 637 411 637 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Broad_hooked_shelf_clip" data-name="Broad hooked shelf clip" d="M545 686 L611 686 L611 721 C611 746 629 762 651 762 C674 762 691 745 697 725 L747 748 C733 790 699 817 651 817 C589 817 545 775 545 721 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Blank_e-paper_display" data-name="Blank e-paper display" d="M261 350 L763 350 C767.418 350 771 353.582 771 358 L771 567 C771 571.418 767.418 575 763 575 L261 575 C256.582 575 253 571.418 253 567 L253 358 C253 353.582 256.582 350 261 350 Z" fill="#fffdf8"/>
+        <path id="Thin_landscape_price_label" data-name="Thin landscape price label" d="M202 327 C202 311.536 214.536 299 230 299 L794 299 C809.464 299 822 311.536 822 327 L822 598 C822 613.464 809.464 626 794 626 L230 626 C214.536 626 202 613.464 202 598 Z M261 339 C250.51 339 242 347.51 242 358 L242 567 C242 577.49 250.51 586 261 586 L763 586 C773.49 586 782 577.49 782 567 L782 358 C782 347.51 773.49 339 763 339 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

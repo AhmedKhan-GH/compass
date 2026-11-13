@@ -7,18 +7,18 @@
       <stop offset="0.5" stop-color="#efe8da"/>
       <stop offset="1" stop-color="#e3d9c7"/>
     </linearGradient>
-    <filter id="filter-2" filterUnits="userSpaceOnUse" x="169" y="325" width="686" height="450" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <linearGradient id="linear-gradient-2" x1="512" y1="350" x2="512" y2="536" gradientUnits="userSpaceOnUse">
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="158" y="302" width="708" height="461" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="327" x2="512" y2="535" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#379288"/>
       <stop offset="0.5" stop-color="#0b7a6e"/>
       <stop offset="1" stop-color="#08584f"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-3" x1="512" y1="421" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+    <linearGradient id="linear-gradient-3" x1="512" y1="409" x2="512" y2="738" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#787e8a"/>
       <stop offset="0.5" stop-color="#5a6270"/>
       <stop offset="1" stop-color="#414751"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-4" x1="512" y1="394" x2="512" y2="492" gradientUnits="userSpaceOnUse">
+    <linearGradient id="linear-gradient-4" x1="512" y1="382" x2="512" y2="480" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#787e8a"/>
       <stop offset="0.5" stop-color="#5a6270"/>
       <stop offset="1" stop-color="#414751"/>
@@ -27,17 +27,17 @@
   <title>Workshop Controls</title>
   <g id="Layer_1" data-name="Layer 1">
     <g filter="url(#filter-1)">
-      <polygon id="Tile___exact_Caliper_geometry" data-name="Tile — square" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
+      <rect id="Tile___exact_Caliper_geometry" data-name="Tile — exact Caliper geometry" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border___exact_Caliper_weight" data-name="Border — exact Caliper weight" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
-    <path id="Interior___warm_white_belt_opening" data-name="Interior — warm white belt opening" d="M287 383 L737 383 C770.137 383 797 409.863 797 443 C797 476.137 770.137 503 737 503 L287 503 C253.863 503 227 476.137 227 443 C227 409.863 253.863 383 287 383 Z" fill="#fffdf8"/>
+    <path id="Border___exact_Caliper_weight" data-name="Border — exact Caliper weight" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <path id="Interior___warm_white_belt_opening" data-name="Interior — warm white belt opening" d="M287 371 L737 371 C770.137 371 797 397.863 797 431 C797 464.137 770.137 491 737 491 L287 491 C253.863 491 227 464.137 227 431 C227 397.863 253.863 371 287 371 Z" fill="#fffdf8"/>
     <g filter="url(#filter-2)">
       <g id="Workshop_Controls___side_elevation" data-name="Workshop Controls — side elevation">
-        <path id="Endless_belt___two_tangent_semicircular_returns" data-name="Endless belt — two tangent semicircular returns" d="M287 350 L737 350 C788.363 350 830 391.637 830 443 C830 494.363 788.363 536 737 536 L287 536 C235.637 536 194 494.363 194 443 C194 391.637 235.637 350 287 350 Z M287 383 C253.863 383 227 409.863 227 443 C227 476.137 253.863 503 287 503 L737 503 C770.137 503 797 476.137 797 443 C797 409.863 770.137 383 737 383 Z" fill="url(#linear-gradient-2)"/>
-        <path id="Frame_supports___gussets__straight_uprights_and_feet" data-name="Frame supports — gussets, straight uprights and feet" d="M672 547 L736 547 L726 587 L726 724 L748 724 L748 750 L660 750 L660 724 L682 724 L682 587 Z M288 547 L352 547 L342 587 L342 724 L364 724 L364 750 L276 750 L276 724 L298 724 L298 587 Z" fill="url(#linear-gradient-3)"/>
-        <circle id="Tail_roller" data-name="Tail roller" cx="287" cy="443" r="49" fill="url(#linear-gradient-4)"/>
-        <circle id="Drive_roller___steel" data-name="Drive roller — steel" cx="737" cy="443" r="49" fill="url(#linear-gradient-4)"/>
-        <path id="Frame___side_rail" data-name="Frame — side rail" d="M342.837 465 C348.386 450.893 348.386 435.107 342.837 421 L681.163 421 C675.614 435.107 675.614 450.893 681.163 465 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Endless_belt___broad_tangent_returns" data-name="Endless belt — broad tangent returns" d="M287 327 L737 327 C794.438 327 841 373.562 841 431 C841 488.438 794.438 535 737 535 L287 535 C229.562 535 183 488.438 183 431 C183 373.562 229.562 327 287 327 Z M287 371 C253.863 371 227 397.863 227 431 C227 464.137 253.863 491 287 491 L737 491 C770.137 491 797 464.137 797 431 C797 397.863 770.137 371 737 371 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Frame_supports___gussets__straight_uprights_and_feet" data-name="Frame supports — gussets, straight uprights and feet" d="M668 546 L740 546 L730 584 L730 702 L754 702 L754 738 L654 738 L654 702 L678 702 L678 584 Z M284 546 L356 546 L346 584 L346 702 L370 702 L370 738 L270 738 L270 702 L294 702 L294 584 Z" fill="url(#linear-gradient-3)"/>
+        <circle id="Tail_roller" data-name="Tail roller" cx="287" cy="431" r="49" fill="url(#linear-gradient-4)"/>
+        <circle id="Drive_roller___steel" data-name="Drive roller — steel" cx="737" cy="431" r="49" fill="url(#linear-gradient-4)"/>
+        <path id="Frame___side_rail" data-name="Frame — side rail" d="M342.837 453 C348.386 438.893 348.386 423.107 342.837 409 L681.163 409 C675.614 423.107 675.614 438.893 681.163 453 Z" fill="url(#linear-gradient-3)"/>
       </g>
     </g>
   </g>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="232" y="184" width="525" height="613" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="641" x2="512" y2="772" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="434" x2="512" y2="586" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="384" x2="512" y2="636" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="209" x2="512" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="220" x2="512" y2="725" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+  </defs>
+  <title>Aquarium Alerts — circulation pump</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Aquarium_circulation_pump___front_elevation" data-name="Aquarium circulation pump — front elevation">
+        <path id="Mounting_foot_and_pump_support" data-name="Mounting foot and pump support" d="M492 736 C552.491 736 607.336 712.389 647.846 673.856 L660 719 L727 719 L727 772 L257 772 L257 719 L324 719 L336.154 673.856 C376.664 712.389 431.509 736 492 736 Z" fill="url(#linear-gradient-2)"/>
+        <circle id="Intake_bore" data-name="Intake bore" cx="492" cy="510" r="76" fill="url(#linear-gradient-3)"/>
+        <path id="Circular_intake_union" data-name="Circular intake union" d="M366 510 C366 440.412 422.412 384 492 384 C561.588 384 618 440.412 618 510 C618 579.588 561.588 636 492 636 C422.412 636 366 579.588 366 510 Z M430.482 448.482 C396.507 482.456 396.507 537.544 430.482 571.518 C464.456 605.493 519.544 605.493 553.518 571.518 C587.493 537.544 587.493 482.456 553.518 448.482 C519.544 414.507 464.456 414.507 430.482 448.482 Z" fill="url(#linear-gradient-4)"/>
+        <rect id="Discharge_pipe_union" data-name="Discharge pipe union" x="570" y="209" width="162" height="51" fill="url(#linear-gradient-5)"/>
+        <path id="Front_pump_casing_and_upright_discharge" data-name="Front pump casing and upright discharge" d="M582 280 C582 276.93 582.212 273.926 582.623 271 L720 271 L720 286 L671 286 C664 286 658 292 658 299 L658 376 C689 413 707 460 707 510 C707 629 611 725 492 725 C373 725 277 629 277 510 C277 391 373 300 492 300 C524 300 555 307 582 320 Z M492 373 C454.289 373 419.991 388.262 395.126 413.126 C370.262 437.991 355 472.289 355 510 C355 585.658 416.342 647 492 647 C567.658 647 629 585.658 629 510 C629 434.342 567.658 373 492 373 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

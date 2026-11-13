@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="315" y="181" width="394" height="673" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="730" x2="512" y2="829" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="206" x2="512" y2="258" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="304" x2="512" y2="414" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.55" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="444" x2="512" y2="554" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.55" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="584" x2="512" y2="694" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.55" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="269" x2="512" y2="719" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Garden railway signal — colour-light signal</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Garden_railway_colour-light_signal___refined_front_view" data-name="Garden railway colour-light signal — refined front view">
+        <polygon id="Centred_signal_post_and_foot" data-name="Centred signal post and foot" points="484,730 540,730 540,778 633,791 633,829 391,829 391,791 484,778" fill="url(#linear-gradient-2)"/>
+        <path id="Flat_projecting_rain_hood" data-name="Flat projecting rain hood" d="M340 258 L340 235 C340 218 352 206 369 206 L655 206 C672 206 684 218 684 235 L684 258 Z" fill="url(#linear-gradient-3)"/>
+        <circle id="Green_glass_lens" data-name="Green glass lens" cx="512" cy="359" r="55" fill="url(#linear-gradient-4)"/>
+        <circle id="Unlit_caution_lens" data-name="Unlit caution lens" cx="512" cy="499" r="55" fill="url(#linear-gradient-5)"/>
+        <circle id="Red_glass_lens" data-name="Red glass lens" cx="512" cy="639" r="55" fill="url(#linear-gradient-6)"/>
+        <path id="Slate_signal_housing" data-name="Slate signal housing" d="M370 677 L370 269 L654 269 L654 677 C654 702 637 719 612 719 L412 719 C387 719 370 702 370 677 Z M465.331 312.331 C439.558 338.104 439.558 379.896 465.331 405.669 C491.104 431.442 532.896 431.442 558.669 405.669 C584.442 379.896 584.442 338.104 558.669 312.331 C532.896 286.558 491.104 286.558 465.331 312.331 Z M465.331 452.331 C439.558 478.104 439.558 519.896 465.331 545.669 C491.104 571.442 532.896 571.442 558.669 545.669 C584.442 519.896 584.442 478.104 558.669 452.331 C532.896 426.558 491.104 426.558 465.331 452.331 Z M465.331 592.331 C439.558 618.104 439.558 659.896 465.331 685.669 C491.104 711.442 532.896 711.442 558.669 685.669 C584.442 659.896 584.442 618.104 558.669 592.331 C532.896 566.558 491.104 566.558 465.331 592.331 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

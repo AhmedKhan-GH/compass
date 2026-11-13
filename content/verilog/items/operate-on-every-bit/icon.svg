@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="190" y="264" width="644" height="514" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="540" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="289" x2="512" y2="573" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="322" x2="512" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+  </defs>
+  <title>Bicycle rear light — flat rear view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Bicycle_rear_light___flat_rear_view" data-name="Bicycle rear light — flat rear view">
+        <path id="Seatpost_clamp_and_bracket" data-name="Seatpost clamp and bracket" d="M452 637 L452 584 L560 584 L560 595 L603 595 C650 595 683 628 683 674 C683 720 650 753 603 753 L536 753 L536 711 L601 711 C624 711 641 696 641 674 C641 652 624 637 601 637 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Weatherproof_housing" data-name="Weatherproof housing" d="M215 431 C215 346 272 289 353 289 L671 289 C752 289 809 346 809 431 C809 516 752 573 671 573 L353 573 C272 573 215 516 215 431 Z M353 311 C318.514 311 289.446 322.693 268.993 343.702 C248.608 364.642 237 394.611 237 431 C237 467.389 248.608 497.358 268.993 518.298 C289.446 539.307 318.514 551 353 551 L671 551 C705.486 551 734.554 539.307 755.007 518.298 C775.392 497.358 787 467.389 787 431 C787 394.611 775.392 364.642 755.007 343.702 C734.554 322.693 705.486 311 671 311 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Red_capsule_lens" data-name="Red capsule lens" d="M353 322 L671 322 C734 322 776 364 776 431 C776 498 734 540 671 540 L353 540 C290 540 248 498 248 431 C248 364 290 322 353 322 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Tapered_diffuser_highlight" data-name="Tapered diffuser highlight" d="M284 397 C289 365 313 348 353 348 L671 348 C713 348 737 366 742 400 C723 379 700 374 671 374 L353 374 C325 374 301 379 284 397 Z" fill="#fbe6e6"/>
+      </g>
+    </g>
+  </g>
+</svg>

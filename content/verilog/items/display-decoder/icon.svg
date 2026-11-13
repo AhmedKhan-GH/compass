@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="183" y="259" width="658" height="518" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="322" x2="512" y2="548" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="284" x2="512" y2="586" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="597" x2="512" y2="752" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Bakery Number Display — front view countertop display</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Bakery_counter_display" data-name="Bakery counter display">
+        <path id="Unlit_red_acrylic_display_window" data-name="Unlit red acrylic display window" d="M256 322 L768 322 C773.523 322 778 326.477 778 332 L778 538 C778 543.523 773.523 548 768 548 L256 548 C250.477 548 246 543.523 246 538 L246 332 C246 326.477 250.477 322 256 322 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Display_enclosure" data-name="Display enclosure" d="M208 312 C208 296.536 220.536 284 236 284 L788 284 C803.464 284 816 296.536 816 312 L816 558 C816 573.464 803.464 586 788 586 L236 586 C220.536 586 208 573.464 208 558 Z M256 311 C244.406 311 235 320.406 235 332 L235 538 C235 549.594 244.406 559 256 559 L768 559 C779.594 559 789 549.594 789 538 L789 332 C789 320.406 779.594 311 768 311 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Short_stem_and_broad_counter_foot" data-name="Short stem and broad counter foot" d="M472 597 L552 597 L552 666 C552 678 561 687 573 690 L670 711 C682 714 690 725 690 738 L690 752 L334 752 L334 738 C334 725 342 714 354 711 L451 690 C463 687 472 678 472 666 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="312" y="163.496" width="400" height="692.254" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="314" x2="512" y2="509" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7a853d"/>
+      <stop offset="0.55" stop-color="#5d6a12"/>
+      <stop offset="1" stop-color="#434c0d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="195" x2="512" y2="309" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="520" x2="512" y2="831" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Vineyard Readings — soil moisture probe</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Soil_moisture_probe___front_elevation" data-name="Soil moisture probe — front elevation">
+        <path id="Rounded_sealed_sensor_head" data-name="Rounded sealed sensor head" d="M337 509 L337 395 C337 350 373 314 418 314 L606 314 C651 314 687 350 687 395 L687 509 Z" fill="url(#linear-gradient-2)"/>
+        <g id="Cable_with_exact_housing_clearance" data-name="Cable with exact housing clearance">
+          <polygon id="Short_sealed_cable" data-name="Short sealed cable" points="566.051,188.504 568.551,188.496 571.063,188.568 573.585,188.723 576.12,188.961 578.67,189.281 581.212,189.681 583.758,190.164 586.309,190.73 588.988,191.41 591.357,192.146 593.589,192.925 595.779,193.777 598.05,194.752 600.308,195.808 602.524,196.934 604.864,198.218 607.195,199.585 609.528,201.048 612.057,202.727 614.535,204.464 617.388,206.565 620.237,208.755 624.055,211.797 631.42,217.814 635.09,220.753 637.619,222.709 640.034,224.502 642.038,225.915 644.042,227.255 645.763,228.339 647.467,229.342 649.111,230.245 650.606,231.002 652.12,231.705 653.584,232.326 654.947,232.846 656.336,233.318 657.728,233.734 659.014,234.065 660.33,234.35 661.685,234.589 662.986,234.767 664.278,234.892 665.62,234.97 667.219,235.002 669.361,235.256 671.411,235.923 673.293,236.978 674.932,238.379 676.266,240.072 677.245,241.994 677.829,244.07 677.998,246.219 677.744,248.361 677.077,250.411 676.022,252.293 674.621,253.932 672.928,255.266 671.006,256.245 668.93,256.829 666.781,256.998 664.764,256.958 662.579,256.831 660.428,256.622 658.278,256.327 656.093,255.942 653.942,255.477 651.831,254.933 649.647,254.28 647.489,253.547 645.366,252.738 643.187,251.813 640.997,250.796 638.843,249.705 636.59,248.467 634.318,247.13 632.065,245.711 629.581,244.051 627.135,242.325 624.333,240.246 621.482,238.041 617.584,234.918 610.24,228.919 606.679,226.082 604.16,224.146 601.697,222.331 599.656,220.901 597.598,219.535 595.783,218.397 594.006,217.354 592.249,216.39 590.662,215.584 589.047,214.828 587.451,214.143 585.974,213.569 584.464,213.042 583.012,212.59 581.22,212.135 579.326,211.716 577.451,211.36 575.587,211.066 573.724,210.832 571.885,210.66 570.069,210.549 568.27,210.497 566.491,210.503 564.74,210.567 563.014,210.687 561.315,210.863 559.649,211.093 558.012,211.377 556.403,211.713 554.83,212.1 553.297,212.534 551.795,213.018 550.321,213.552 548.888,214.13 547.502,214.749 546.146,215.416 544.817,216.131 543.53,216.886 542.294,217.675 541.088,218.51 539.908,219.394 538.763,220.32 537.678,221.268 536.621,222.264 535.59,223.312 534.585,224.412 533.647,225.518 532.738,226.675 531.856,227.888 531,229.16 530.199,230.448 529.441,231.771 528.713,233.157 528.013,234.608 527.356,236.098 526.756,237.599 526.19,239.167 525.659,240.805 525.166,242.516 524.734,244.215 524.345,245.975 524,247.811 523.698,249.726 523.451,251.67 523.259,253.632 523.119,255.674 523.032,257.799 523,260.077 523,303 501,303 501,259.923 501.038,257.196 501.15,254.469 501.333,251.808 501.586,249.211 501.916,246.626 502.318,244.065 502.789,241.568 503.326,239.133 503.931,236.754 504.62,234.364 505.374,232.039 506.19,229.777 507.07,227.577 508.032,225.393 509.063,223.255 510.154,221.181 511.306,219.169 512.527,217.206 513.828,215.273 515.185,213.407 516.598,211.607 518.067,209.874 519.624,208.17 521.232,206.536 522.892,204.972 524.603,203.477 526.389,202.033 528.227,200.656 530.112,199.351 532.043,198.119 534.035,196.95 536.077,195.851 538.16,194.827 540.283,193.879 542.456,193.002 544.672,192.199 546.921,191.474 549.205,190.827 551.528,190.257 553.884,189.764 556.266,189.352 558.676,189.019 561.114,188.766 563.572,188.595" fill="url(#linear-gradient-3)"/>
+        </g>
+        <path id="Left_stainless_sensing_rod" data-name="Left stainless sensing rod" d="M379 520 L445 520 L445 758 C445 783 437 808 430 824 C426 833 398 833 394 824 C387 808 379 783 379 758 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Right_stainless_sensing_rod" data-name="Right stainless sensing rod" d="M579 520 L645 520 L645 758 C645 783 637 808 630 824 C626 833 598 833 594 824 C587 808 579 783 579 758 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

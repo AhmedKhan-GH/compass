@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="174.56" y="296.54" width="674.88" height="430.92" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="445.66" x2="512" y2="578.34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="399.65" x2="512" y2="624.35" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="387.88" x2="512" y2="640.4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="321.54" x2="512" y2="702.46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+  </defs>
+  <title>A missed bench fault — returned register board</title>
+  <desc>Returned register board, flat component-face view.</desc>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Returned_register_board___component_face" data-name="Returned register board — component face">
+        <path id="Elongated_register_package" data-name="Elongated register package" d="M384.67 445.66 L639.33 445.66 C645.75 445.66 648.96 448.87 648.96 455.29 L648.96 568.71 C648.96 575.13 645.75 578.34 639.33 578.34 L384.67 578.34 C378.25 578.34 375.04 575.13 375.04 568.71 L375.04 455.29 C375.04 448.87 378.25 445.66 384.67 445.66 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Broad_package_leads" data-name="Broad package leads" d="M381.46 386.81 L428.54 386.81 L428.54 433.89 L381.46 433.89 Z M452.08 386.81 L499.16 386.81 L499.16 433.89 L452.08 433.89 Z M522.7 386.81 L569.78 386.81 L569.78 433.89 L522.7 433.89 Z M593.32 386.81 L640.4 386.81 L640.4 433.89 L593.32 433.89 Z M381.46 590.11 L428.54 590.11 L428.54 637.19 L381.46 637.19 Z M452.08 590.11 L499.16 590.11 L499.16 637.19 L452.08 637.19 Z M522.7 590.11 L569.78 590.11 L569.78 637.19 L522.7 637.19 Z M593.32 590.11 L640.4 590.11 L640.4 637.19 L593.32 637.19 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Connector_sockets" data-name="Connector sockets" d="M251.99 387.88 L308.7 387.88 L308.7 640.4 L251.99 640.4 Z M715.3 387.88 L772.01 387.88 L772.01 640.4 L715.3 640.4 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Returned_register_board" data-name="Returned register board" d="M199.56 340.8 L218.82 321.54 L805.18 321.54 L824.44 340.8 L824.44 683.2 L805.18 702.46 L218.82 702.46 L199.56 683.2 Z M251.99 376.11 C245.49 376.11 240.22 381.38 240.22 387.88 L240.22 640.4 C240.22 646.9 245.49 652.17 251.99 652.17 L308.7 652.17 C315.2 652.17 320.47 646.9 320.47 640.4 L320.47 387.88 C320.47 381.38 315.2 376.11 308.7 376.11 Z M715.3 376.11 C708.8 376.11 703.53 381.38 703.53 387.88 L703.53 640.4 C703.53 646.9 708.8 652.17 715.3 652.17 L772.01 652.17 C778.51 652.17 783.78 646.9 783.78 640.4 L783.78 387.88 C783.78 381.38 778.51 376.11 772.01 376.11 Z M363.27 648.96 L660.73 648.96 L660.73 375.04 L363.27 375.04 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Package_index_recess" data-name="Package index recess" d="M488.46 445.66 L535.54 445.66 L535.54 460.64 C535.54 473.48 524.84 484.18 512 484.18 C499.16 484.18 488.46 473.48 488.46 460.64 Z" fill="#eceef0"/>
+      </g>
+    </g>
+  </g>
+</svg>

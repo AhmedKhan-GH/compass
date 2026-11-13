@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="226" y="153" width="552" height="694" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="394" x2="512" y2="696" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="178" x2="512" y2="338" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="553" x2="512" y2="655" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="349" x2="512" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7a853d"/>
+      <stop offset="0.5" stop-color="#5d6a12"/>
+      <stop offset="1" stop-color="#434c0d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="593" x2="512" y2="615" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="731" x2="512" y2="822" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Weather Report Envelope — weather-station radio</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Weather-station_radio___flat_front" data-name="Weather-station radio — flat front">
+        <path id="Mounting_ears" data-name="Mounting ears" d="M251 394 L304 394 L304 466 L251 466 Z M251 624 L304 624 L304 696 L251 696 Z M700 394 L753 394 L753 466 L700 466 Z M700 624 L753 624 L753 696 L700 696 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Straight_whip_aerial" data-name="Straight whip aerial" d="M361 192 C361 183 368 178 375 178 C382 178 389 183 389 192 L393 291 L357 291 Z M352 302 L398 302 L398 338 L352 338 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Recessed_cable_connector_panel" data-name="Recessed cable connector panel" d="M366 553 L638 553 C643.333 553 646 555.667 646 561 L646 647 C646 652.333 643.333 655 638 655 L366 655 C360.667 655 358 652.333 358 647 L358 561 C358 555.667 360.667 553 366 553 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Weatherproof_radio_housing" data-name="Weatherproof radio housing" d="M315 372 C315 356.667 322.667 349 338 349 L666 349 C681.333 349 689 356.667 689 372 L689 697 C689 712.333 681.333 720 666 720 L338 720 C322.667 720 315 712.333 315 697 Z M366 542 C360.857 542 355.925 543.519 352.222 547.222 C348.519 550.925 347 555.857 347 561 L347 647 C347 652.143 348.519 657.075 352.222 660.778 C355.925 664.481 360.857 666 366 666 L638 666 C643.143 666 648.075 664.481 651.778 660.778 C655.481 657.075 657 652.143 657 647 L657 561 C657 555.857 655.481 550.925 651.778 547.222 C648.075 543.519 643.143 542 638 542 Z" fill="url(#linear-gradient-5)"/>
+        <circle id="Recessed_service_connector" data-name="Recessed service connector" cx="408" cy="604" r="24" fill="#eceef0"/>
+        <circle id="Service_connector_opening" data-name="Service connector opening" cx="408" cy="604" r="11" fill="url(#linear-gradient-6)"/>
+        <path id="Lower_cable_gland" data-name="Lower cable gland" d="M572 731 L638 731 L656 749 L656 780 L554 780 L554 749 Z M574 791 L636 791 L636 822 L574 822 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

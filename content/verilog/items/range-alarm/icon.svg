@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="183" y="259" width="658" height="539" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="457" x2="512" y2="709" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.55" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="284" x2="512" y2="326" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="720" x2="512" y2="773" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="337" x2="512" y2="709" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.55" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+  </defs>
+  <title>Waterline Watch — aquarium tank</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Aquarium___front_elevation" data-name="Aquarium — front elevation">
+        <rect id="Clear_front_glass" data-name="Clear front glass" x="231" y="337" width="562" height="372" fill="#fffdf8"/>
+        <path id="Pale_water_body" data-name="Pale water body" d="M231 463 C325 457 414 463 512 463 C610 463 699 457 793 463 L793 709 L231 709 Z" fill="#e4eefb"/>
+        <path id="Blue_water_meniscus_and_lower_glass" data-name="Blue water meniscus and lower glass" d="M231 463 C325 457 414 463 512 463 C610 463 699 457 793 463 L793 709 L231 709 Z M257 480 L257 674 C344 686 680 686 767 674 L767 480 C682 476 601 481 512 481 C423 481 342 476 257 480 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Upper_tank_rim" data-name="Upper tank rim" d="M218 284 L806 284 C811.523 284 816 288.477 816 294 L816 316 C816 321.523 811.523 326 806 326 L218 326 C212.477 326 208 321.523 208 316 L208 294 C208 288.477 212.477 284 218 284 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Tank_base" data-name="Tank base" d="M218 720 L806 720 C811.523 720 816 724.477 816 730 L816 763 C816 768.523 811.523 773 806 773 L218 773 C212.477 773 208 768.523 208 763 L208 730 C208 724.477 212.477 720 218 720 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Glass_corner_edges" data-name="Glass corner edges" d="M220 337 L242 337 L242 709 L220 709 Z M782 337 L804 337 L804 709 L782 709 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="325" y="171" width="374" height="701" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="737" x2="512" y2="847" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="235" x2="512" y2="389" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="271" x2="512" y2="367" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="565" x2="512" y2="661" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="196" x2="512" y2="763" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>museum-audio-guide-exercise</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Museum_audio_guide___straight_front" data-name="Museum audio guide — straight front">
+        <path id="Short_lanyard_loop" data-name="Short lanyard loop" d="M464 792 C464 785.72 464.789 779.659 466.311 774 L491.622 774 C489.26 779.091 488 785.266 488 792 C488 810 497 824 512 824 C527 824 536 810 536 792 C536 785.266 534.74 779.091 532.378 774 L557.689 774 C559.211 779.659 560 785.72 560 792 C560 822 542 847 512 847 C482 847 464 822 464 792 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Rounded_speaker_insert" data-name="Rounded speaker insert" d="M416 235 L608 235 C626 235 637 249 637 267 L637 303 C637 332 627 358 616 389 L408 389 C397 358 387 332 387 303 L387 267 C387 249 398 235 416 235 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Three_broad_speaker_vents" data-name="Three broad speaker vents" d="M447 271 L577 271 C583 271 587 275 587 281 C587 287 583 291 577 291 L447 291 C441 291 437 287 437 281 C437 275 441 271 447 271 Z M447 309 L577 309 C583 309 587 313 587 319 C587 325 583 329 577 329 L447 329 C441 329 437 325 437 319 C437 313 441 309 447 309 Z M447 347 L577 347 C583 347 587 351 587 357 C587 363 583 367 577 367 L447 367 C441 367 437 363 437 357 C437 351 441 347 447 347 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Blank_guide_display" data-name="Blank guide display" d="M445 434 L579 434 C583.418 434 587 437.582 587 442 L587 497 C587 501.418 583.418 505 579 505 L445 505 C440.582 505 437 501.418 437 497 L437 442 C437 437.582 440.582 434 445 434 Z" fill="#e4eefb"/>
+        <path id="Single_broad_listen_button" data-name="Single broad listen button" d="M509 565 L515 565 C537.091 565 555 582.909 555 605 L555 621 C555 643.091 537.091 661 515 661 L509 661 C486.909 661 469 643.091 469 621 L469 605 C469 582.909 486.909 565 509 565 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Blue_handset_body___straight_front" data-name="Blue handset body — straight front" d="M350 250 C350 218 367 196 397 196 L627 196 C657 196 674 218 674 250 L674 302 C674 346 657 386 642 431 C624 485 619 554 619 687 L619 711 C619 743 599 763 571 763 L453 763 C425 763 405 743 405 711 L405 687 C405 554 400 485 382 431 C367 386 350 346 350 302 Z M416 224 C403.816 224 393.539 228.879 386.449 237.032 C379.7 244.793 376 255.334 376 267 L376 303 C376 318.517 378.628 333.206 382.774 348.184 C386.747 362.54 392.018 376.853 397.633 392.679 C399.191 397.067 403.343 400 408 400 L616 400 C620.657 400 624.809 397.067 626.367 392.679 C631.982 376.853 637.253 362.54 641.226 348.184 C645.372 333.206 648 318.517 648 303 L648 267 C648 255.334 644.3 244.793 637.551 237.032 C630.461 228.879 620.184 224 608 224 Z M445 423 C434.51 423 426 431.51 426 442 L426 497 C426 507.49 434.51 516 445 516 L579 516 C589.49 516 598 507.49 598 497 L598 442 C598 431.51 589.49 423 579 423 Z M509 554 C480.838 554 458 576.838 458 605 L458 621 C458 649.162 480.838 672 509 672 L515 672 C543.162 672 566 649.162 566 621 L566 605 C566 576.838 543.162 554 515 554 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

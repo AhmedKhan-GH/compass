@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="290.2" y="178" width="420.8" height="671" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="685" x2="512" y2="824" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="353" x2="512" y2="674" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="297" x2="512" y2="342" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="203" x2="512" y2="286" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+  </defs>
+  <title>Scoreboard button — referee&apos;s wired pushbutton</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Referee_wired_scoring_button___refined_flat_view" data-name="Referee wired scoring button — refined flat view">
+        <path id="Short_hooked_scoreboard_cable" data-name="Short hooked scoreboard cable" d="M461.6 685 L509.6 685 L509.6 738 C509.6 767 537.2 784 573.2 784 C610.4 784 638 766 638 738 L638 710 C638 699 648.8 690 662 690 C675.2 690 686 699 686 710 L686 738 C686 790 639.2 824 573.2 824 C507.2 824 461.6 790 461.6 738 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Long_cylindrical_handgrip___straight_side_view" data-name="Long cylindrical handgrip — straight side view" d="M341.6 353 L629.6 353 L616.4 613 C615.2 652 563.6 674 485.6 674 C407.6 674 356 652 354.8 613 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Mechanical_flared_collar" data-name="Mechanical flared collar" d="M315.2 297 L656 297 L656 326 C656 336 646.4 342 634.4 342 L336.8 342 C324.8 342 315.2 336 315.2 326 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Flat_red_thumb_plunger" data-name="Flat red thumb plunger" d="M387.2 203 L584 203 C596 203 604.4 210 604.4 220 L604.4 286 L366.8 286 L366.8 220 C366.8 210 375.2 203 387.2 203 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

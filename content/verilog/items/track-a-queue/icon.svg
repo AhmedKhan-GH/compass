@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="185" y="269" width="654" height="527" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="294" x2="512" y2="411" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="624" x2="512" y2="693" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="294" x2="512" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="453" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="704" x2="512" y2="739" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Photo-booth spool — printer</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Photo-booth_printer___front_elevation" data-name="Photo-booth printer — front elevation">
+        <path id="Broad_blue_printer_lid" data-name="Broad blue printer lid" d="M259 294 L765 294 C794 294 814 314 814 343 L814 411 L210 411 L210 343 C210 314 230 294 259 294 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Long_blank_photo_strip" data-name="Long blank photo strip" d="M430 484 L594 484 L594 712 C594 737 603 756 622 771 L453 771 C438 756 430 737 430 712 Z" fill="#fffdf8"/>
+        <path id="Broad_receiving_ledge" data-name="Broad receiving ledge" d="M253 693 L253 624 L419 624 L419 693 Z M605 693 L605 624 L771 624 L771 693 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Low_photo_printer_cabinet" data-name="Low photo printer cabinet" d="M210 626 L210 422 L814 422 L814 626 C814 648.901 801.528 666.19 782 672.449 L782 624 C782 617.925 777.075 613 771 613 L605 613 L605 523 L752 523 C758.075 523 763 518.075 763 512 L763 453 C763 446.925 758.075 442 752 442 L272 442 C265.925 442 261 446.925 261 453 L261 512 C261 518.075 265.925 523 272 523 L419 523 L419 613 L253 613 C246.925 613 242 617.925 242 624 L242 672.449 C222.472 666.19 210 648.901 210 626 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Horizontal_print_exit" data-name="Horizontal print exit" d="M272 512 L272 453 L752 453 L752 512 L605 512 L605 484 C605 477.925 600.075 473 594 473 L430 473 C423.925 473 419 477.925 419 484 L419 512 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Pair_of_low_rubber_feet" data-name="Pair of low rubber feet" d="M254 704 L332 704 L332 739 L254 739 Z M692 704 L770 704 L770 739 L692 739 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

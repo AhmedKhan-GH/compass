@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="281" y="190" width="462" height="645" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="215" x2="512" y2="335" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="240" x2="512" y2="302" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="432" x2="512" y2="633" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="463" x2="512" y2="567" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="624" x2="512" y2="713" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="265" x2="512" y2="810" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+  </defs>
+  <title>Returned weather station — thermometer shelter</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Returned_weather-station_controller_board" data-name="Returned weather-station controller board">
+        <path id="Three_sensor_connector_housings" data-name="Three sensor connector housings" d="M329 215 L435 215 L435 335 L329 335 Z M459 215 L565 215 L565 335 L459 335 Z M589 215 L695 215 L695 335 L589 335 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Recessed_sensor_sockets" data-name="Recessed sensor sockets" d="M353 240 L411 240 L411 284 L397 284 L397 302 L367 302 L367 284 L353 284 Z M483 240 L541 240 L541 284 L527 284 L527 302 L497 302 L497 284 L483 284 Z M613 240 L671 240 L671 284 L657 284 L657 302 L627 302 L627 284 L613 284 Z" fill="url(#linear-gradient-3)"/>
+        <polygon id="Metal_shield_can" data-name="Metal shield can" points="354,432 487,432 503,448 503,633 354,633" fill="url(#linear-gradient-4)"/>
+        <polygon id="Shield_can_face" data-name="Shield can face" points="365,443 483,443 492,452 492,603 365,603" fill="#eceef0"/>
+        <circle id="Cylindrical_capacitor" data-name="Cylindrical capacitor" cx="606" cy="515" r="52" fill="url(#linear-gradient-5)"/>
+        <path id="Large_exposed_copper_contact_pads" data-name="Large exposed copper contact pads" d="M560 624 L658 624 L658 663 L560 663 Z M560 674 L658 674 L658 713 L560 713 Z" fill="url(#linear-gradient-6)"/>
+        <path id="Weather-station_sensor_interface_board" data-name="Weather-station sensor interface board" d="M446 346 L446 265 L448 265 L448 346 L576 346 L576 265 L578 265 L578 346 L706 346 L706 277 L718 289 L718 786 L694 810 L330 810 L306 786 L306 289 L318 277 L318 346 Z M343 421 L343 644 L514 644 L514 443.444 L491.556 421 Z M561.452 470.452 C536.851 495.054 536.851 534.946 561.452 559.548 C586.054 584.149 625.946 584.149 650.548 559.548 C675.149 534.946 675.149 495.054 650.548 470.452 C625.946 445.851 586.054 445.851 561.452 470.452 Z M549 613 L549 724 L669 724 L669 613 Z M353 736 C340.85 736 331 745.85 331 758 C331 770.15 340.85 780 353 780 C365.15 780 375 770.15 375 758 C375 745.85 365.15 736 353 736 Z M671 736 C658.85 736 649 745.85 649 758 C649 770.15 658.85 780 671 780 C683.15 780 693 770.15 693 758 C693 745.85 683.15 736 671 736 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

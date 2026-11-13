@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="165" y="311" width="694" height="403" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="336" x2="512" y2="579" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="590" x2="512" y2="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="631" x2="512" y2="689" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+  </defs>
+  <title>Cinema marquee — illuminated canopy</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Cinema_marquee_canopy" data-name="Cinema marquee canopy">
+        <path id="Wide_marquee_roof_cap" data-name="Wide marquee roof cap" d="M210 336 L814 336 C825.046 336 834 344.954 834 356 L834 373 L190 373 L190 356 C190 344.954 198.954 336 210 336 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Blank_illuminated_sign_face" data-name="Blank illuminated sign face" d="M255 419 L769 419 C773.418 419 777 422.582 777 427 L777 536 C777 540.418 773.418 544 769 544 L255 544 C250.582 544 247 540.418 247 536 L247 427 C247 422.582 250.582 419 255 419 Z" fill="#fffdf8"/>
+        <path id="Front_marquee_fascia_frame" data-name="Front marquee fascia frame" d="M211 579 L211 384 L813 384 L813 579 Z M255 408 C244.511 408 236 416.511 236 427 L236 536 C236 546.489 244.511 555 255 555 L769 555 C779.489 555 788 546.489 788 536 L788 427 C788 416.511 779.489 408 769 408 Z" fill="url(#linear-gradient-2)"/>
+        <rect id="Canopy_lower_mounting_rail" data-name="Canopy lower mounting rail" x="225" y="590" width="574" height="30" fill="url(#linear-gradient-3)"/>
+        <path id="Three_pendant_dome_lamp_lenses" data-name="Three pendant dome lamp lenses" d="M310 631 L394 631 L394 646 C394 670 375 689 352 689 C329 689 310 670 310 646 Z M470 631 L554 631 L554 646 C554 670 535 689 512 689 C489 689 470 670 470 646 Z M630 631 L714 631 L714 646 C714 670 695 689 672 689 C649 689 630 670 630 646 Z" fill="#fcf0d6"/>
+        <path id="Tapered_amber_lens_edges" data-name="Tapered amber lens edges" d="M313 652 C320 667 335 674 352 674 C374 674 387 660 394 637 L394 646 C394 670 375 689 352 689 C329 689 310 670 310 646 Z M473 652 C480 667 495 674 512 674 C534 674 547 660 554 637 L554 646 C554 670 535 689 512 689 C489 689 470 670 470 646 Z M633 652 C640 667 655 674 672 674 C694 674 707 660 714 637 L714 646 C714 670 695 689 672 689 C649 689 630 670 630 646 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

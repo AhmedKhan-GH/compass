@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="260" y="177" width="493" height="647" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="342" x2="512" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="337" x2="512" y2="767" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="235" x2="512" y2="423" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="202" x2="512" y2="331" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="531" x2="512" y2="632" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="655" x2="512" y2="751" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Coffee roast profiles — drum roaster</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Square_tile" data-name="Square tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Neutral_tile_border" data-name="Neutral tile border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Coffee_drum_roaster___front_view" data-name="Coffee drum roaster — front view">
+        <path id="Circular_drum_door" data-name="Circular drum door" d="M363 491 C363 408.71 429.71 342 512 342 C594.29 342 661 408.71 661 491 C661 547.583 629.459 596.8 583 622.028 L583 616 C583 613.728 582.297 611.512 580.987 609.656 L559 578.509 L559 531 C559 524.925 554.075 520 548 520 L476 520 C469.925 520 465 524.925 465 531 L465 578.509 L443.013 609.656 C441.703 611.512 441 613.728 441 616 L441 622.028 C394.541 596.8 363 547.583 363 491 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Red_drum_housing_and_chassis" data-name="Red drum housing and chassis" d="M304 493 C304 395.806 369.29 351.967 458.106 340.307 C435.631 348.346 415.448 361.278 398.863 377.863 C369.836 406.89 352 446.938 352 491 C352 563.023 399.598 623.937 465.051 644 L326.207 644 L304 621 Z M672 491 C672 421.554 627.747 362.435 565.904 340.309 C654.715 351.97 720 395.809 720 493 L720 621 L697.793 644 L558.949 644 C624.402 623.937 672 563.023 672 491 Z M332 799 L332 762 L692 762 L692 799 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Exhaust_elbow" data-name="Exhaust elbow" d="M285 261 C285 243.667 293.667 235 311 235 L373 235 L373 288 L350 288 C342.667 288 339 291.667 339 299 L339 377.663 C325.372 390.202 314.358 405.253 306.529 423 L285 423 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Bean_hopper_and_feed_neck" data-name="Bean hopper and feed neck" points="394,202 630,202 557,306 557,331 467,331 467,306" fill="url(#linear-gradient-5)"/>
+        <polygon id="Discharge_chute" data-name="Discharge chute" points="476,531 548,531 548,582 572,616 572,632 452,632 452,616 476,582" fill="url(#linear-gradient-6)"/>
+        <path id="Cooling_pan_rim_and_front" data-name="Cooling pan rim and front" d="M296 655 L728 655 L728 727 C728 743 720 751 704 751 L320 751 C304 751 296 743 296 727 Z" fill="url(#linear-gradient-7)"/>
+        <rect id="Pale_open_cooling_pan" data-name="Pale open cooling pan" x="319" y="671" width="386" height="30" fill="#eceef0"/>
+      </g>
+    </g>
+  </g>
+</svg>

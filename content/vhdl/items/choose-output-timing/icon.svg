@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="242" y="177" width="540" height="670" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="329" x2="512" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="444" x2="512" y2="532" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="202" x2="512" y2="822" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="246" x2="512" y2="778" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>choose-output-timing-exercise</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Walk-in_cooler_door___straight_front" data-name="Walk-in cooler door — straight front">
+        <path id="Two_broad_cooler_hinges" data-name="Two broad cooler hinges" d="M278 329 L326 329 L326 335 L384 343 C392 344 397 350 397 358 C397 366 392 372 384 373 L326 381 L326 387 L278 387 Z M278 622 L326 622 L326 628 L384 636 C392 637 397 643 397 651 C397 659 392 665 384 666 L326 674 L326 680 L278 680 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Heavy_cooler_latch_and_pull" data-name="Heavy cooler latch and pull" d="M667 444 L689 444 C704 444 714 455 714 470 L714 507 C714 522 704 532 689 532 L667 532 C652 532 642 522 642 507 L642 501 L591 501 C581 501 574 494 574 484 C574 474 581 467 591 467 L642 467 C644 453 653 444 667 444 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Thick_cooler_door_frame" data-name="Thick cooler door frame" d="M267 214 C267 207.373 272.373 202 279 202 L745 202 C751.627 202 757 207.373 757 214 L757 810 C757 816.627 751.627 822 745 822 L279 822 C272.373 822 267 816.627 267 810 L267 680 C267 686.075 271.925 691 278 691 L300 691 L300 769 C300 780.042 308.958 789 320 789 L704 789 C715.042 789 724 780.042 724 769 L724 516.138 C724.656 513.254 725 510.198 725 507 L725 470 C725 466.794 724.656 463.712 724 460.789 L724 255 C724 243.958 715.042 235 704 235 L320 235 C308.958 235 300 243.958 300 255 L300 318 L278 318 C271.925 318 267 322.925 267 329 Z M267 622 L267 387 C267 393.075 271.925 398 278 398 L300 398 L300 611 L278 611 C271.925 611 267 615.925 267 622 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Brushed_metal_kick_plate" data-name="Brushed metal kick plate" d="M342 691 L682 691 C684.761 691 687 693.239 687 696 L687 747 C687 749.761 684.761 752 682 752 L342 752 C339.239 752 337 749.761 337 747 L337 696 C337 693.239 339.239 691 342 691 Z" fill="#eceef0"/>
+        <path id="Insulated_blue_door_slab" data-name="Insulated blue door slab" d="M311 255 C311 250.029 315.029 246 320 246 L704 246 C708.971 246 713 250.029 713 255 L713 441.766 C706.783 436.245 698.5 433 689 433 L667 433 C651.387 433 638.902 441.477 633.482 456 L591 456 C574.925 456 563 467.925 563 484 C563 500.075 574.925 512 591 512 L631.29 512 C633.46 530.398 647.632 543 667 543 L689 543 C698.527 543 706.797 539.951 713 534.662 L713 769 C713 773.971 708.971 778 704 778 L320 778 C315.029 778 311 773.971 311 769 L311 691 L326 691 C326.272 691 326.541 690.99 326.807 690.971 C326.284 692.552 326 694.243 326 696 L326 747 C326 755.832 333.168 763 342 763 L682 763 C690.832 763 698 755.832 698 747 L698 696 C698 687.168 690.832 680 682 680 L363.005 680 L385.442 676.905 C398.872 675.19 408 664.557 408 651 C408 637.443 398.872 626.81 385.442 625.095 L336.372 618.326 C334.86 614.058 330.787 611 326 611 L311 611 L311 398 L326 398 C330.787 398 334.86 394.942 336.372 390.674 L385.442 383.905 C398.872 382.19 408 371.557 408 358 C408 344.443 398.872 333.81 385.442 332.095 L336.372 325.326 C334.86 321.058 330.787 318 326 318 L311 318 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

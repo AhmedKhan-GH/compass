@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="202" y="212" width="685" height="590" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="529" y1="237" x2="529" y2="777" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="529" y1="284.5" x2="529" y2="729.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="529" y1="545" x2="529" y2="671" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Observatory shutter — telescope aperture shutter</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Telescope_aperture_shutter_-_front_view" data-name="Telescope aperture shutter - front view">
+        <path id="Annular_shutter_housing" data-name="Annular shutter housing" d="M227 507 C227 357.883 347.883 237 497 237 C646.117 237 767 357.883 767 507 C767 513.144 766.795 519.239 766.391 525.281 C772.13 526.318 775 530.224 775 537 L775 679 C775 687 771 691 763 691 L710 691 C704.703 691 701.16 689.247 699.37 685.74 C649.9 741.708 577.571 777 497 777 C347.883 777 227 656.117 227 507 Z M497 279 C371.079 279 269 381.079 269 507 C269 632.921 371.079 735 497 735 C622.921 735 725 632.921 725 507 C725 381.079 622.921 279 497 279 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Iris_leaf_1" data-name="Iris leaf 1" d="M539.022 438.173 C512.059 400.517 504.003 345.163 502.619 290.072 C577.975 292.017 647.103 332.985 684.928 398.5 C721.852 462.455 723.604 540.548 690.182 605.844 C670.043 566.454 628.29 546.409 588.926 554.778 C590.748 505.665 572.348 464.948 539.022 438.173 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Iris_leaf_2" data-name="Iris leaf 2" d="M585.067 567.119 C623.452 555.496 666.316 576.04 683.588 617.788 C644.529 683.579 573.642 724.001 497 724.001 C423.476 724.001 355.249 686.801 315.336 625.692 C341.455 628.949 364.775 624.211 384.802 613.924 C406.251 602.905 423.851 585.561 437.117 564.992 C482.527 584.856 539.801 590.035 585.067 567.119 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Iris_leaf_3" data-name="Iris leaf 3" d="M491.615 290.067 C492.961 344.495 500.681 398.503 525.542 437.836 C501.4 442.629 481.691 456.952 466.46 475.933 C449.346 497.262 437.065 525.405 429.846 555.889 C417.42 576.191 400.571 593.457 379.776 604.139 C359.526 614.541 335.454 618.744 307.853 613.361 C270.313 546.609 270.72 464.929 309.072 398.5 C346.936 332.917 416.168 291.932 491.615 290.067 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Open_telescope_aperture" data-name="Open telescope aperture" d="M534.474 436.525 C535.891 436.389 537.305 436.808 538.42 437.693 C573.852 465.829 592.627 509.595 588.483 562.43 C588.334 564.336 587.205 566.027 585.503 566.897 C538.792 590.772 479.038 584.62 432.674 562.984 C430.317 561.884 429.053 559.283 429.644 556.75 C436.834 525.935 449.185 497.462 466.46 475.933 C483.753 454.381 506.504 439.215 534.474 436.525 Z" fill="#fffdf8"/>
+        <path id="Shutter_actuator_motor" data-name="Shutter actuator motor" d="M799 545 L849 545 C857.667 545 862 549.333 862 558 L862 658 C862 666.667 857.667 671 849 671 L799 671 C790.333 671 786 666.667 786 658 L786 558 C786 549.333 790.333 545 799 545 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

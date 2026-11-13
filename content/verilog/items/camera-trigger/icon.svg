@@ -9,9 +9,9 @@
     </linearGradient>
     <filter id="filter-2" filterUnits="userSpaceOnUse" x="223" y="215" width="604" height="594" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <linearGradient id="linear-gradient-2" x1="512" y1="474" x2="512" y2="750" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#7a853d"/>
-      <stop offset="0.5" stop-color="#5d6a12"/>
-      <stop offset="1" stop-color="#434c0d"/>
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
     </linearGradient>
     <linearGradient id="linear-gradient-3" x1="512" y1="305" x2="512" y2="348" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#514c46"/>
@@ -19,14 +19,14 @@
       <stop offset="1" stop-color="#1f1b15"/>
     </linearGradient>
     <linearGradient id="linear-gradient-4" x1="512" y1="359" x2="512" y2="567" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#514c46"/>
-      <stop offset="0.5" stop-color="#2b251d"/>
-      <stop offset="1" stop-color="#1f1b15"/>
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
     </linearGradient>
     <linearGradient id="linear-gradient-5" x1="512" y1="617" x2="512" y2="732" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#514c46"/>
-      <stop offset="0.5" stop-color="#2b251d"/>
-      <stop offset="1" stop-color="#1f1b15"/>
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
     </linearGradient>
     <linearGradient id="linear-gradient-6" x1="512" y1="240" x2="512" y2="784" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#6b8b4b"/>
@@ -43,9 +43,9 @@
   <g id="Layer_1" data-name="Layer 1">
     <g id="Bird_Feeder_Camera_lesson_icon" data-name="Bird Feeder Camera lesson icon">
       <g filter="url(#filter-1)">
-        <polygon id="Tile" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
+        <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
       </g>
-      <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+      <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
       <path id="Enclosed_front_panel" data-name="Enclosed front panel" d="M392 240 L632 240 C661.823 240 686 264.177 686 294 L686 730 C686 759.823 661.823 784 632 784 L392 784 C362.177 784 338 759.823 338 730 L338 294 C338 264.177 362.177 240 392 240 Z" fill="#fffdf8"/>
       <g filter="url(#filter-2)">
         <g id="Trail_camera" data-name="Trail camera">
@@ -53,9 +53,10 @@
           <path id="Infrared_illuminator_window" data-name="Infrared illuminator window" d="M402 305 L622 305 C628 305 631 311 627 316 L608 343 C606 346 603 348 599 348 L425 348 C421 348 418 346 416 343 L397 316 C393 311 396 305 402 305 Z" fill="url(#linear-gradient-3)"/>
           <path id="Lens_barrel" data-name="Lens barrel" d="M616 463 C616 520.438 569.438 567 512 567 C454.562 567 408 520.438 408 463 C408 405.562 454.562 359 512 359 C569.438 359 616 405.562 616 463 Z M585 463 C585 422.683 552.317 390 512 390 C471.683 390 439 422.683 439 463 C439 503.317 471.683 536 512 536 C552.317 536 585 503.317 585 463 Z" fill="url(#linear-gradient-4)"/>
           <path id="PIR_motion_sensor_dome" data-name="PIR motion sensor dome" d="M426 617 L598 617 C604.627 617 610 622.373 610 629 L610 663 C610 701.108 566.124 732 512 732 C457.876 732 414 701.108 414 663 L414 629 C414 622.373 419.373 617 426 617 Z" fill="url(#linear-gradient-5)"/>
+          <path id="Pale_motion_detector_lens" data-name="Pale motion detector lens" d="M438 663 L438 641 L586 641 L586 663 C586 675.299 577.001 685.463 567.48 692.167 C553.815 701.787 534.108 708 512 708 C489.892 708 470.185 701.787 456.52 692.167 C446.999 685.463 438 675.299 438 663 Z" fill="#eceef0"/>
           <path id="Upper_case_latch" data-name="Upper case latch" d="M306 346 L327 346 L327 417 L306 417 C298.268 417 292 410.732 292 403 L292 360 C292 352.268 298.268 346 306 346 Z" fill="url(#linear-gradient-6)"/>
           <path id="Lower_case_latch" data-name="Lower case latch" d="M306 622 L327 622 L327 693 L306 693 C298.268 693 292 686.732 292 679 L292 636 C292 628.268 298.268 622 306 622 Z" fill="url(#linear-gradient-6)"/>
-          <path id="Optical_glass" data-name="Optical glass" d="M450 463 C450 428.758 477.758 401 512 401 C546.242 401 574 428.758 574 463 C574 497.242 546.242 525 512 525 C477.758 525 450 497.242 450 463 Z M489.465 428.381 C478.64 435.566 475.85 448.863 477 461 C478.321 451.426 482.247 444.965 488.869 438.112 L488.873 438.115 C490.281 436.74 491.698 435.461 493.185 434.172 L493.182 434.169 C499.517 428.892 504.667 425.386 513 424 C504.559 422.984 496.741 423.552 489.465 428.381 Z" fill="url(#linear-gradient-7)"/>
+          <path id="Optical_glass" data-name="Optical glass" d="M450 463 C450 428.758 477.758 401 512 401 C546.242 401 574 428.758 574 463 C574 497.242 546.242 525 512 525 C477.758 525 450 497.242 450 463 Z" fill="url(#linear-gradient-7)"/>
           <path id="Weatherproof_housing" data-name="Weatherproof housing" d="M338 294 C338 264.177 362.177 240 392 240 L632 240 C661.823 240 686 264.177 686 294 L686 730 C686 759.823 661.823 784 632 784 L392 784 C362.177 784 338 759.823 338 730 Z M398 290 C382.536 290 370 302.536 370 318 L370 578 L654 578 L654 318 C654 302.536 641.464 290 626 290 Z M370 606 L370 714 C370 733.882 386.118 750 406 750 L618 750 C637.882 750 654 733.882 654 714 L654 606 Z" fill="url(#linear-gradient-6)"/>
         </g>
       </g>

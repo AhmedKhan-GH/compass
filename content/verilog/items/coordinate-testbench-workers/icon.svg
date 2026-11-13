@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="173" y="177" width="678" height="672" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="269" x2="512" y2="824" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="202" x2="512" y2="258" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="380" x2="512" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="535" x2="512" y2="595" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="606" x2="512" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Queue inspection bench — workstation monitor</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Electronics_repair_bench" data-name="Electronics repair bench">
+        <path id="Blue_bench_uprights_and_leg_frames" data-name="Blue bench uprights and leg frames" d="M246 269 L292 269 L292 524 L246 524 Z M732 269 L778 269 L778 524 L732 524 Z M258 606 L320 606 L320 790 L347 790 L347 824 L230 824 L230 790 L258 790 Z M704 606 L766 606 L766 790 L794 790 L794 824 L677 824 L677 790 L704 790 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Overhead_inspection_light_housing" data-name="Overhead inspection light housing" d="M242 202 L782 202 C789.732 202 796 208.268 796 216 L796 258 L228 258 L228 216 C228 208.268 234.268 202 242 202 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Equipment_mounting_shelf" data-name="Equipment mounting shelf" x="303" y="380" width="418" height="40" fill="url(#linear-gradient-4)"/>
+        <path id="Thick_wooden_repair_worktop" data-name="Thick wooden repair worktop" d="M212 535 L812 535 C819.732 535 826 541.268 826 549 L826 595 L198 595 L198 549 C198 541.268 204.268 535 212 535 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Under-bench_drawer" data-name="Under-bench drawer" d="M333 606 L503 606 L503 700 L347 700 C339.268 700 333 693.732 333 686 Z" fill="url(#linear-gradient-6)"/>
+        <path id="Light_diffuser_and_recessed_drawer_pull" data-name="Light diffuser and recessed drawer pull" d="M258 215 L766 215 L766 245 L258 245 Z M379 632 L457 632 L457 658 L379 658 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

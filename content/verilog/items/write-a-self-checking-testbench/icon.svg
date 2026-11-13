@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="212" y="205.75" width="600" height="642.25" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="226" x2="512" y2="781" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="792" x2="512" y2="823" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Greenhouse — flat front view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Greenhouse___flat_front_view" data-name="Greenhouse — flat front view">
+        <path id="Greenhouse_structural_frame" data-name="Greenhouse structural frame" d="M500 236 C507 229 517 229 524 236 L774 466 L774 781 L250 781 L250 466 Z M504.533 272.922 L319.533 443.922 C316.208 446.996 315.106 451.793 316.757 456.009 C318.407 460.225 322.472 463 327 463 L697 463 C701.528 463 705.593 460.225 707.243 456.009 C708.894 451.793 707.792 446.996 704.467 443.922 L519.467 272.922 C515.251 269.026 508.749 269.026 504.533 272.922 Z M285 496 C278.925 496 274 500.925 274 507 L274 746 C274 752.075 278.925 757 285 757 L430 757 C436.075 757 441 752.075 441 746 L441 507 C441 500.925 436.075 496 430 496 Z M476 496 C469.925 496 465 500.925 465 507 L465 762 C465 768.075 469.925 773 476 773 L548 773 C554.075 773 559 768.075 559 762 L559 507 C559 500.925 554.075 496 548 496 Z M594 496 C587.925 496 583 500.925 583 507 L583 746 C583 752.075 587.925 757 594 757 L739 757 C745.075 757 750 752.075 750 746 L750 507 C750 500.925 745.075 496 739 496 Z" fill="url(#linear-gradient-2)"/>
+        <polygon id="Gable_glass" data-name="Gable glass" points="327,452 512,281 697,452" fill="#e2f2e6"/>
+        <path id="Broad_wall_glazing" data-name="Broad wall glazing" d="M285 507 L430 507 L430 746 L285 746 Z M594 507 L739 507 L739 746 L594 746 Z" fill="#e2f2e6"/>
+        <rect id="Full-height_glass_door" data-name="Full-height glass door" x="476" y="507" width="72" height="255" fill="#fffdf8"/>
+        <rect id="Foundation_sill" data-name="Foundation sill" x="237" y="792" width="550" height="31" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="169" y="257" width="686" height="520" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="282" x2="512" y2="358" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="369" x2="512" y2="752" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="630" x2="512" y2="673" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="369" x2="512" y2="514" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Register inspection bench — repair workbench</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Register_inspection_bench_-_front_view" data-name="Register inspection bench - front view">
+        <path id="Solid_wood_bench_top" data-name="Solid wood bench top" d="M204 282 L820 282 C826.667 282 830 285.333 830 292 L830 348 C830 354.667 826.667 358 820 358 L204 358 C197.333 358 194 354.667 194 348 L194 292 C194 285.333 197.333 282 204 282 Z" fill="url(#linear-gradient-2)"/>
+        <polygon id="Left_steel_trestle" data-name="Left steel trestle" points="252,369 330,369 318,402 318,724 340,724 340,752 242,752 242,724 264,724 264,402" fill="url(#linear-gradient-3)"/>
+        <polygon id="Right_steel_trestle" data-name="Right steel trestle" points="694,369 772,369 760,402 760,724 782,724 782,752 684,752 684,724 706,724 706,402" fill="url(#linear-gradient-3)"/>
+        <path id="Lower_cross_brace" data-name="Lower cross brace" d="M333 630 L691 630 C693.667 630 695 631.333 695 634 L695 669 C695 671.667 693.667 673 691 673 L333 673 C330.333 673 329 671.667 329 669 L329 634 C329 631.333 330.333 630 333 630 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Single_deep_drawer" data-name="Single deep drawer" d="M402 377 C402 371.667 404.667 369 410 369 L674 369 C679.333 369 682 371.667 682 377 L682 506 C682 511.333 679.333 514 674 514 L410 514 C404.667 514 402 511.333 402 506 Z M464 416 C460.667 416 459 417.667 459 421 L459 437 C459 440.333 460.667 442 464 442 L620 442 C623.333 442 625 440.333 625 437 L625 421 C625 417.667 623.333 416 620 416 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

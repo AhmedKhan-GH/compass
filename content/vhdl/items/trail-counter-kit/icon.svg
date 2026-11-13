@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="200" y="226" width="595" height="545" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="405" x2="512" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="338" x2="512" y2="746" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="251" x2="512" y2="327" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="431" x2="512" y2="517" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="471" x2="512" y2="567" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Handheld trail counter — flat front view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Handheld_trail_counter___flat_front_view" data-name="Handheld trail counter — flat front view">
+        <path id="Finger_ring" data-name="Finger ring" d="M225 523 C225 450 260 405 319 405 C328.56 405 337.49 406.182 345.743 408.472 C340.131 420.752 335.857 434.254 333.033 448.868 C328.71 447.635 324.03 447 319 447 C285 447 267 476 267 523 C267 570 285 598 319 598 C322.675 598 326.164 597.673 329.463 597.03 C330.386 611.788 332.684 625.682 336.279 638.645 C330.777 639.543 325.013 640 319 640 C260 640 225 596 225 523 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Rounded_counter_body" data-name="Rounded counter body" d="M340 493 C340 397 394 338 478 338 L548 338 C630 338 684 397 684 493 L684 582 C684 685 618 746 512 746 C406 746 340 685 340 582 Z M398 420 C391.925 420 387 424.925 387 431 L387 517 C387 523.075 391.925 528 398 528 L626 528 C632.075 528 637 523.075 637 517 L637 431 C637 424.925 632.075 420 626 420 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Thumb_plunger" data-name="Thumb plunger" d="M494 290 C470 287 457 279 457 270 C457 257 481 251 512 251 C543 251 567 257 567 270 C567 279 554 287 530 290 L530 327 L494 327 Z" fill="url(#linear-gradient-4)"/>
+        <rect id="Blank_count_window" data-name="Blank count window" x="398" y="431" width="228" height="86" fill="url(#linear-gradient-5)"/>
+        <path id="Reset_knob" data-name="Reset knob" d="M695 483 L744 471 C759 467 770 478 770 493 L770 545 C770 560 759 571 744 567 L695 555 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="177" y="270" width="670" height="504" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="295" x2="512" y2="749" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="306" x2="512" y2="736" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+  </defs>
+  <title>update-or-hold-exercise</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Produce_crate___straight_front" data-name="Produce crate — straight front">
+        <path id="Projecting_wooden_corner_posts" data-name="Projecting wooden corner posts" d="M202 295 L256 295 L256 749 L202 749 Z M768 295 L822 295 L822 749 L768 749 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Upper_crate_slat" data-name="Upper crate slat" d="M267 424 L267 306 L757 306 L757 424 Z M425 341 C411.745 341 401 351.745 401 365 C401 378.255 411.745 389 425 389 L599 389 C612.255 389 623 378.255 623 365 C623 351.745 612.255 341 599 341 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Middle_crate_slat" data-name="Middle crate slat" x="267" y="462" width="490" height="118" fill="url(#linear-gradient-3)"/>
+        <rect id="Lower_crate_slat" data-name="Lower crate slat" x="267" y="618" width="490" height="118" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

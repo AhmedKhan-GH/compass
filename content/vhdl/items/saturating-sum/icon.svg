@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="274" y="199" width="476" height="628" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="224" x2="512" y2="802" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9261af"/>
+      <stop offset="0.5" stop-color="#7a3e9d"/>
+      <stop offset="1" stop-color="#582d71"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="514" x2="512" y2="566" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="464" x2="512" y2="552" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="614" x2="512" y2="762" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Arcade cabinet — flat front view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Arcade_cabinet___flat_front_view" data-name="Arcade cabinet — flat front view">
+        <path id="Cabinet_shell_and_hood" data-name="Cabinet shell and hood" d="M316 240 C316 231 323 224 332 224 L692 224 C701 224 708 231 708 240 L708 316 L684 316 L663 496 L725 536 L725 590 L684 590 L703 802 L321 802 L340 590 L299 590 L299 536 L361 496 L340 316 L316 316 Z M377 324 C370.439 324 365.33 329.721 366.07 336.24 L382.07 477.24 C382.701 482.8 387.405 487 393 487 L407.188 487 C407.749 492.91 409.56 498.29 412.437 503 L371 503 C368.738 503 366.531 503.698 364.679 504.997 L317.679 537.997 C314.746 540.057 313 543.416 313 547 L313 566 C313 572.075 317.925 577 324 577 L700 577 C706.075 577 711 572.075 711 566 L711 547 C711 543.416 709.254 540.057 706.321 537.997 L659.321 504.997 C657.469 503.698 655.262 503 653 503 L483.563 503 C486.44 498.29 488.251 492.91 488.812 487 L631 487 C636.595 487 641.299 482.8 641.93 477.24 L657.93 336.24 C658.67 329.721 653.561 324 647 324 Z M379 603 C373.27 603 368.499 607.399 368.036 613.111 L356.036 761.111 C355.517 767.511 360.579 773 367 773 L657 773 C663.421 773 668.483 767.511 667.964 761.111 L655.964 613.111 C655.501 607.399 650.73 603 645 603 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Blank_display_glass" data-name="Blank display glass" d="M393 476 L377 335 L647 335 L631 476 L488.324 476 C486.79 468.167 482.712 461.121 476.765 455.727 C460.983 441.413 435.017 441.413 419.235 455.727 C413.288 461.121 409.21 468.167 407.676 476 Z" fill="#ddf0f1"/>
+        <path id="Control_console" data-name="Control console" d="M324 547 L371 514 L422.688 514 C424.741 515.493 426.97 516.831 429.359 518 L420 518 C413.925 518 409 522.925 409 529 L409 551 C409 557.075 413.925 562 420 562 L476 562 C482.075 562 487 557.075 487 551 L487 529 C487 522.925 482.075 518 476 518 L466.641 518 C469.03 516.831 471.259 515.493 473.312 514 L653 514 L700 547 L700 566 L324 566 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Ball-top_joystick" data-name="Ball-top joystick" d="M442 521 L442 511 C427 507 418 497 418 483 C418 468 431 456 448 456 C465 456 478 468 478 483 C478 497 469 507 454 511 L454 529 L476 529 L476 551 L420 551 L420 529 L442 529 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Lower_access_panel" data-name="Lower access panel" points="379,614 645,614 657,762 367,762" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="176" y="283" width="671" height="458" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="360" x2="512" y2="664" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="430" x2="512" y2="594" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="430" x2="512" y2="594" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="326" x2="512" y2="698" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="483" x2="512" y2="541" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="308" x2="512" y2="716" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+  </defs>
+  <title>Observatory startup — cooled camera</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Cooled_astronomical_camera___side_elevation" data-name="Cooled astronomical camera — side elevation">
+        <rect id="Telescope_mounting_flange" data-name="Telescope mounting flange" x="351" y="360" width="39" height="304" fill="url(#linear-gradient-2)"/>
+        <rect id="Narrow_telescope_nosepiece" data-name="Narrow telescope nosepiece" x="236" y="430" width="104" height="164" fill="url(#linear-gradient-3)"/>
+        <rect id="Nosepiece_front_edge" data-name="Nosepiece front edge" x="201" y="430" width="24" height="164" fill="url(#linear-gradient-4)"/>
+        <path id="Three_broad_cooling_fins" data-name="Three broad cooling fins" d="M710 326 L740 326 L740 698 L710 698 Z M751 343 L781 343 L781 681 L751 681 Z M792 370 L822 370 L822 654 L792 654 Z" fill="url(#linear-gradient-5)"/>
+        <circle id="Side_cable_socket" data-name="Side cable socket" cx="639" cy="512" r="29" fill="url(#linear-gradient-6)"/>
+        <path id="Red_cooled-camera_barrel" data-name="Red cooled-camera barrel" d="M401 330 C401 318 411 308 423 308 L677 308 C689 308 699 318 699 330 L699 694 C699 706 689 716 677 716 L423 716 C411 716 401 706 401 694 Z M610.716 483.716 C595.097 499.335 595.097 524.665 610.716 540.284 C626.335 555.903 651.665 555.903 667.284 540.284 C682.903 524.665 682.903 499.335 667.284 483.716 C651.665 468.097 626.335 468.097 610.716 483.716 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

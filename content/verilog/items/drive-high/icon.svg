@@ -7,42 +7,47 @@
       <stop offset="0.5" stop-color="#efe8da"/>
       <stop offset="1" stop-color="#e3d9c7"/>
     </linearGradient>
-    <filter id="filter-2" filterUnits="userSpaceOnUse" x="245" y="231.5" width="534" height="561" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <linearGradient id="linear-gradient-2" x1="512" y1="419.451" x2="512" y2="722.5" gradientUnits="userSpaceOnUse">
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="227" y="217" width="570" height="582" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="242" x2="512" y2="449" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="460" x2="512" y2="518" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#787e8a"/>
       <stop offset="0.5" stop-color="#5a6270"/>
       <stop offset="1" stop-color="#414751"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-3" x1="512" y1="539.843" x2="512" y2="767.5" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#514c46"/>
-      <stop offset="0.5" stop-color="#2b251d"/>
-      <stop offset="1" stop-color="#1f1b15"/>
+    <linearGradient id="linear-gradient-4" x1="512" y1="529" x2="512" y2="641" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-4" x1="512" y1="256.5" x2="512" y2="487.5" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#428c5d"/>
-      <stop offset="0.55" stop-color="#19733a"/>
-      <stop offset="1" stop-color="#12532a"/>
+    <linearGradient id="linear-gradient-5" x1="512" y1="652" x2="512" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="731" x2="512" y2="774" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
     </linearGradient>
   </defs>
   <title>Drive high — panel pilot lamp</title>
   <g id="Layer_1" data-name="Layer 1">
     <g filter="url(#filter-1)">
-      <polygon id="Tile" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
-    <g id="Panel_pilot_lamp" data-name="Panel pilot lamp">
-      <path id="Domed_lens" data-name="Domed lens" d="M336 431.5 C336 328.5 414.795 256.5 512 256.5 C609.205 256.5 688 328.5 688 431.5 C688 462.428 609.205 487.5 512 487.5 C414.795 487.5 336 462.428 336 431.5 Z" fill="#e2f2e6"/>
-      <g filter="url(#filter-2)">
-        <g id="Lens_edge_and_mounting_hardware" data-name="Lens edge and mounting hardware">
-          <rect id="Panel_nut_front_face" data-name="Panel nut front face" x="391" y="681.5" width="242" height="41" fill="url(#linear-gradient-2)"/>
-          <polygon id="Panel_nut_left_face" data-name="Panel nut left face" points="270,625.5 380,678.5 380,718.5 270,665.5" fill="url(#linear-gradient-2)"/>
-          <polygon id="Panel_nut_right_face" data-name="Panel nut right face" points="644,678.5 754,625.5 754,665.5 644,718.5" fill="url(#linear-gradient-2)"/>
-          <path id="Lower_barrel_end" data-name="Lower barrel end" d="M390 733.5 C390 752.5 445 767.5 512 767.5 C579 767.5 634 752.5 634 733.5 Z" fill="url(#linear-gradient-3)"/>
-          <path id="Panel_nut_upper_face" data-name="Panel nut upper face" d="M270 612.5 L359 569.839 L359 600.5 C359 624.876 388.781 638.532 408.256 645.055 C435.155 654.065 471.793 659.5 512 659.5 C552.207 659.5 588.845 654.065 615.744 645.055 C635.219 638.532 665 624.876 665 600.5 L665 569.839 L754 612.5 L633 670.5 L391 670.5 Z" fill="url(#linear-gradient-2)"/>
-          <path id="Retaining_bezel" data-name="Retaining bezel" d="M278 466.5 C278 448.828 295.629 432.529 325.345 419.451 C325.116 423.422 325 427.439 325 431.5 C325 459.268 362.372 474.631 384.213 481.58 C417.161 492.064 462.248 498.5 512 498.5 C561.752 498.5 606.839 492.064 639.787 481.58 C661.628 474.631 699 459.268 699 431.5 C699 427.439 698.884 423.422 698.655 419.451 C728.371 432.529 746 448.828 746 466.5 C746 509.58 641.235 544.5 512 544.5 C382.765 544.5 278 509.58 278 466.5 Z" fill="url(#linear-gradient-2)"/>
-          <path id="Threaded_mounting_barrel" data-name="Threaded mounting barrel" d="M370 564.767 L370 539.843 C409.82 549.698 458.898 555.5 512 555.5 C565.102 555.5 614.18 549.698 654 539.843 L654 564.767 C652.561 565.599 650.844 566.414 648.868 567.217 C640.946 570.433 629.477 573.133 615.642 575.317 C587.426 579.773 549.713 582 512 582 C474.287 582 436.574 579.773 408.358 575.317 C394.523 573.133 383.054 570.433 375.132 567.217 C373.156 566.414 371.439 565.599 370 564.767 Z M370 600.5 L370 576.996 C370.326 577.135 370.658 577.272 370.993 577.408 C379.696 580.942 391.977 583.867 406.642 586.183 C435.426 590.727 473.713 593 512 593 C550.287 593 588.574 590.727 617.358 586.183 C632.023 583.867 644.304 580.942 653.007 577.408 C653.342 577.272 653.674 577.135 654 576.996 L654 600.5 C654 602.062 653.786 603.604 653.367 605.122 C652.066 605.831 650.562 606.529 648.868 607.217 C640.946 610.433 629.477 613.133 615.642 615.317 C587.426 619.773 549.713 622 512 622 C474.287 622 436.574 619.773 408.358 615.317 C394.523 613.133 383.054 610.433 375.132 607.217 C373.438 606.529 371.934 605.831 370.633 605.122 C370.214 603.604 370 602.062 370 600.5 Z M512 648.5 C456.116 648.5 407.418 637.72 384.296 621.677 C390.841 623.373 398.362 624.875 406.642 626.183 C435.426 630.727 473.713 633 512 633 C550.287 633 588.574 630.727 617.358 626.183 C625.638 624.875 633.159 623.373 639.704 621.677 C616.582 637.72 567.884 648.5 512 648.5 Z" fill="url(#linear-gradient-3)"/>
-          <path id="Tapered_lens_edge" data-name="Tapered lens edge" d="M394 303.5 C426 274 466 256.5 512 256.5 C609.205 256.5 688 328.5 688 431.5 C688 462.428 609.205 487.5 512 487.5 C441 487.5 380 467.5 354 437.5 C390 452.5 445 463.5 512 463.5 C590 463.5 654 452.5 654 424.5 C654 345 595 277.5 512 277.5 C466 277.5 423 284 394 303.5 Z" fill="url(#linear-gradient-4)"/>
-        </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Panel_pilot_lamp___side_elevation" data-name="Panel pilot lamp — side elevation">
+        <path id="Domed_indicator_glass" data-name="Domed indicator glass" d="M332 449 C332 326 412 242 512 242 C612 242 692 326 692 449 Z" fill="#e2f2e6"/>
+        <path id="Tapered_green_lens_edge" data-name="Tapered green lens edge" d="M382 295 C415 260 460 242 512 242 C612 242 692 326 692 449 L332 449 L332 424 C401 436 577 435 658 424 C658 323 597 262 512 262 C462 262 418 274 382 295 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Retaining_bezel___side_elevation" data-name="Retaining bezel — side elevation" d="M270 460 L754 460 C764 460 772 468 772 478 L772 500 C772 510 764 518 754 518 L270 518 C260 518 252 510 252 500 L252 478 C252 468 260 460 270 460 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Threaded_bushing___two_broad_grooves" data-name="Threaded bushing — two broad grooves" d="M382 529 L642 529 L642 559 L382 559 Z M382 570 L642 570 L642 600 L382 600 Z M382 611 L642 611 L642 641 L382 641 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Panel_nut___flat_side_elevation" data-name="Panel nut — flat side elevation" points="314,652 710,652 734,670 734,702 710,720 314,720 290,702 290,670" fill="url(#linear-gradient-5)"/>
+        <path id="Lower_mounting_barrel" data-name="Lower mounting barrel" d="M382 731 L642 731 L642 758 C642 767 635 774 626 774 L398 774 C389 774 382 767 382 758 Z" fill="url(#linear-gradient-6)"/>
       </g>
     </g>
   </g>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="191" y="244" width="634" height="570" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="745" x2="512" y2="789" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="393" x2="512" y2="567" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="289" x2="512" y2="671" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="269" x2="512" y2="691" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="569" x2="512" y2="734" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>connect-a-supplied-module-exercise</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Cabinet_alarm_horn___straight_side" data-name="Cabinet alarm horn — straight side">
+        <path id="Cabinet_mounting_foot" data-name="Cabinet mounting foot" d="M517 745 L785 745 C788.866 745 792 748.134 792 752 L792 782 C792 785.866 788.866 789 785 789 L517 789 C513.134 789 510 785.866 510 782 L510 752 C510 748.134 513.134 745 517 745 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Cylindrical_sounder_driver___side" data-name="Cylindrical sounder driver — side" d="M645 393 L735 393 C772 393 800 418 800 451 L800 509 C800 542 772 567 735 567 L645 567 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Flared_red_horn___side" data-name="Flared red horn — side" d="M280 289 C386 323 431 374 570 404 C589 408 614 409 634 409 L634 551 C614 551 589 552 570 556 C431 586 386 637 280 671 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Thick_mouth_flange" data-name="Thick mouth flange" d="M230 269 L255 269 C263 269 269 275 269 283 L269 677 C269 685 263 691 255 691 L230 691 C222 691 216 685 216 677 L216 283 C216 275 222 269 230 269 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Bent_sounder_mounting_bracket" data-name="Bent sounder mounting bracket" d="M735 578 C743.431 578 751.491 576.854 759 574.709 L759 704 C759 724 748 734 728 734 L528 734 L528 687 L708 687 L708 578 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

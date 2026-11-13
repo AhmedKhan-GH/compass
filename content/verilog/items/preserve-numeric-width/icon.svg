@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="158" y="275" width="708" height="509" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="439" x2="512" y2="710" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="300" x2="512" y2="607" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="431" x2="512" y2="498" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="721" x2="512" y2="759" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Room for the Total — readout</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Replacement_parts_readout___front_elevation" data-name="Replacement parts readout — front elevation">
+        <path id="Front_swivel_bracket_with_mounting_foot" data-name="Front swivel bracket with mounting foot" d="M223 710 L223 584.915 C230.121 603.028 246.22 615.364 267 617.625 L267 666 L757 666 L757 617.625 C777.78 615.364 793.879 603.028 801 584.915 L801 710 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Pale_blank_readout_glass" data-name="Pale blank readout glass" d="M285 350 L739 350 C749 350 757 358 757 368 L757 539 C757 549 749 557 739 557 L285 557 C275 557 267 549 267 539 L267 368 C267 358 275 350 285 350 Z" fill="#e4eefb"/>
+        <path id="Wide_replacement_readout_casing" data-name="Wide replacement readout casing" d="M230 344 C230 318 248 300 274 300 L750 300 C776 300 794 318 794 344 L794 563 C794 589 776 607 750 607 L274 607 C248 607 230 589 230 563 Z M285 339 C268.929 339 256 351.929 256 368 L256 539 C256 555.071 268.929 568 285 568 L739 568 C755.071 568 768 555.071 768 539 L768 368 C768 351.929 755.071 339 739 339 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Pair_of_broad_tilt_pivots" data-name="Pair of broad tilt pivots" d="M197 431 L219 431 L219 498 L197 498 C189 498 183 492 183 484 L183 445 C183 437 189 431 197 431 Z M805 431 L827 431 C835 431 841 437 841 445 L841 484 C841 492 835 498 827 498 L805 498 Z" fill="url(#linear-gradient-4)"/>
+        <rect id="Bench_mounting_plate" data-name="Bench mounting plate" x="298" y="721" width="428" height="38" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

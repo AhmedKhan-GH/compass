@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="180" y="255" width="664" height="522" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="280" x2="512" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="355" x2="512" y2="752" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>Parts Bin Totals — open-front parts bin</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Square_tile" data-name="Square tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Neutral_tile_border" data-name="Neutral tile border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Open-front_parts_bin___front_view" data-name="Open-front parts bin — front view">
+        <path id="Raised_rear_wall" data-name="Raised rear wall" d="M248 296 C248 285.333 253.333 280 264 280 L760 280 C770.667 280 776 285.333 776 296 L776 344 L765 344 C759.72 344 755.185 347.751 754.195 352.937 L716.306 551.359 C713.905 559.119 710.286 565.493 705.462 569.761 C700.973 573.732 695.315 576 688 576 L336 576 C332.144 576 328.719 575.491 325.684 574.514 C316.098 571.427 310.743 563.598 307.683 554.287 L269.81 352.966 C268.832 347.767 264.291 344 259 344 L248 344 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Light_recessed_bin_interior" data-name="Light recessed bin interior" d="M280 407.132 L280 315 L744 315 L744 406.328 L716.306 551.359 C713.905 559.119 710.286 565.493 705.462 569.761 C700.973 573.732 695.315 576 688 576 L336 576 C332.144 576 328.719 575.491 325.684 574.514 C316.098 571.427 310.743 563.598 307.683 554.287 Z" fill="#e4eefb"/>
+        <path id="Stacking_cheeks_and_low_scoop_front" data-name="Stacking cheeks and low scoop front" d="M205 355 L259 355 L297 557 C303 576 316 587 336 587 L688 587 C708 587 721 574 727 554 L765 355 L819 355 L787 738 C786.333 747.333 780.667 752 770 752 L254 752 C243.333 752 237.667 747.333 237 738 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Blank_front_label_recess" data-name="Blank front label recess" x="421" y="631" width="182" height="68" fill="#eceef0"/>
+      </g>
+    </g>
+  </g>
+</svg>

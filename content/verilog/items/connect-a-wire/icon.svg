@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>
-    <filter id="filter-1" filterUnits="userSpaceOnUse" x="72" y="72" width="880" height="880" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#f7f2e8"/>
       <stop offset="0.5" stop-color="#efe8da"/>
       <stop offset="1" stop-color="#e3d9c7"/>
     </linearGradient>
-    <filter id="filter-2" filterUnits="userSpaceOnUse" x="258.5" y="228.523" width="535.5" height="560.977" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <linearGradient id="linear-gradient-2" x1="512" y1="449" x2="512" y2="660" gradientUnits="userSpaceOnUse">
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="227" y="200.039" width="570" height="594.961" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="628" x2="512" y2="668" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#787e8a"/>
       <stop offset="0.5" stop-color="#5a6270"/>
       <stop offset="1" stop-color="#414751"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-3" x1="512" y1="246" x2="512" y2="522" gradientUnits="userSpaceOnUse">
+    <linearGradient id="linear-gradient-3" x1="512" y1="224" x2="512" y2="652" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#c14d54"/>
       <stop offset="0.5" stop-color="#b3262f"/>
       <stop offset="1" stop-color="#811b22"/>
     </linearGradient>
-    <linearGradient id="linear-gradient-4" x1="512" y1="513" x2="512" y2="772" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#514c46"/>
-      <stop offset="0.5" stop-color="#2b251d"/>
-      <stop offset="1" stop-color="#1f1b15"/>
+    <linearGradient id="linear-gradient-4" x1="512" y1="584" x2="512" y2="694" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="526" x2="512" y2="770" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="549" x2="512" y2="729" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
     </linearGradient>
   </defs>
   <title>Exhibit Switch</title>
   <g id="Exhibit_Switch" data-name="Exhibit Switch">
     <g filter="url(#filter-1)">
-      <polygon id="Tile" points="100,100 924,100 924,924 100,924" fill="url(#linear-gradient-1)"/>
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
     </g>
-    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
-    <ellipse id="Mounting_hole_interior" data-name="Mounting hole interior" cx="365" cy="620" rx="25" ry="15" fill="#fffdf8"/>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <path id="Mounting_plate___flat_front" data-name="Mounting plate — flat front" d="M280 526 L744 526 C759 526 772 539 772 554 L772 742 C772 757 759 770 744 770 L280 770 C265 770 252 757 252 742 L252 554 C252 539 265 526 280 526 Z" fill="#eceef0"/>
     <g filter="url(#filter-2)">
-      <g id="Panel_toggle_switch" data-name="Panel toggle switch">
-        <path id="Hex_mounting_nut" data-name="Hex mounting nut" d="M441 578 L464 564.471 L464 566 C464 573.955 466.475 581.484 470.996 588.136 C475.172 594.281 481.061 599.643 488.296 604.031 C501.783 612.209 519.975 617 540 617 C560.025 617 578.217 612.209 591.704 604.031 C598.939 599.643 604.828 594.281 609.004 588.136 C613.448 581.598 615.915 574.212 615.998 566.407 L622 568 L654 621 L587 660 L474 631 Z" fill="url(#linear-gradient-2)"/>
-        <path id="Red_insulated_bat_handle___thrown_left" data-name="Red insulated bat handle — thrown left" d="M347 302 C335 286 338 265 354 253 C370 241 391 245 403 261 C448 323 479 397 554 475 C567 489 563 506 550 516 C537 526 521 523 510 508 C450 421 390 359 347 302 Z" fill="url(#linear-gradient-3)"/>
-        <path id="Threaded_bushing" data-name="Threaded bushing" d="M561.929 467.376 C556.051 461.262 550.448 455.174 545.091 449.114 C578.695 450.628 605 467 605 487 L605 520.978 C563.441 540.771 508.618 537.892 475 518.556 L475 487 C475 484.496 475.412 482.049 476.2 479.681 C484.417 490.758 492.68 502.262 500.945 514.245 C501.005 514.333 501.067 514.419 501.13 514.505 C508.274 524.248 517.404 530.258 527.13 532.169 C537.234 534.154 547.693 531.652 556.707 524.719 C565.507 517.949 571.25 508.627 572.647 498.503 C574.098 487.984 570.813 476.941 562.061 467.515 C562.017 467.468 561.973 467.422 561.929 467.376 Z M475 555.556 L475 530.541 C508.701 549.86 564.041 552.767 605 533.071 L605 557.978 C563.441 577.771 508.618 574.892 475 555.556 Z M540 606 C504.823 606 476.329 589.768 475.045 567.567 C508.659 586.811 563.76 589.743 604.667 570.23 C601.356 591.054 573.755 606 540 606 Z" fill="url(#linear-gradient-2)"/>
-        <path id="Mounting_plate" data-name="Mounting plate" d="M453 516 C456.485 513.909 460.151 512.911 464 513.006 L464 551.709 L435.423 568.519 C430.097 571.652 428.396 578.568 431.662 583.814 L464.662 636.814 C466.158 639.217 468.524 640.951 471.266 641.655 L584.266 670.655 C587.065 671.373 590.036 670.961 592.534 669.507 L659.534 630.507 C664.84 627.418 666.59 620.571 663.417 615.314 L651.995 596.398 L770 650 C778.667 654.667 778.667 659.667 770 665 L592 769 C585.333 773 578 773 570 769 L285 636 C273 629.333 273 621.667 285 613 Z M365 605 C351.193 605 340 611.716 340 620 C340 628.284 351.193 635 365 635 C378.807 635 390 628.284 390 620 C390 611.716 378.807 605 365 605 Z M678 662 C664.193 662 653 668.716 653 677 C653 685.284 664.193 692 678 692 C691.807 692 703 685.284 703 677 C703 668.716 691.807 662 678 662 Z" fill="url(#linear-gradient-4)"/>
+      <g id="Toggle_switch___front_elevation" data-name="Toggle switch — front elevation">
+        <circle id="Left_fixing_hole" data-name="Left fixing hole" cx="336" cy="648" r="20" fill="url(#linear-gradient-2)"/>
+        <circle id="Right_fixing_hole" data-name="Right fixing hole" cx="698" cy="648" r="20" fill="url(#linear-gradient-2)"/>
+        <path id="Red_insulated_bat_handle" data-name="Red insulated bat handle" d="M350 286 C337 267 342 242 361 230 C381 219 404 227 414 247 L548 609 C555 628 547 644 529 650 C511 656 497 645 490 627 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Bushing_collar" data-name="Bushing collar" d="M558.316 605.181 L552.202 588.665 C571.519 597.198 585 616.525 585 639 C585 669.376 560.376 694 530 694 C499.624 694 475 669.376 475 639 C475 633.901 475.694 628.965 476.992 624.279 L479.787 631.087 C484.145 642.245 490.842 651.246 499.435 656.759 C508.86 662.805 520.323 664.487 532.479 660.436 C544.339 656.482 553.154 648.927 557.816 639.084 C562.93 628.289 562.399 616.213 558.316 605.181 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Slate_mounting_plate_rim" data-name="Slate mounting plate rim" d="M252 554 C252 539 265 526 280 526 L436.643 526 L449.781 558 L292 558 C288 558 284 562 284 566 L284 730 C284 734 288 738 292 738 L732 738 C736 738 740 734 740 730 L740 566 C740 562 736 558 732 558 L540.851 558 L529.006 526 L744 526 C759 526 772 539 772 554 L772 742 C772 757 759 770 744 770 L280 770 C265 770 252 757 252 742 Z" fill="url(#linear-gradient-5)"/>
       </g>
     </g>
-    <ellipse id="Mounting_hole_interior-2" data-name="Mounting hole interior" cx="678" cy="677" rx="25" ry="15" fill="#fffdf8"/>
+    <path id="Hexagonal_panel_nut" data-name="Hexagonal panel nut" d="M547.246 575.276 L537.519 549 L582 549 L634 639 L582 729 L478 729 L426 639 L459.343 581.291 L470.933 609.521 C466.496 618.394 464 628.405 464 639 C464 675.451 493.549 705 530 705 C566.451 705 596 675.451 596 639 C596 608.516 575.333 582.859 547.246 575.276 Z" fill="url(#linear-gradient-6)"/>
   </g>
 </svg>

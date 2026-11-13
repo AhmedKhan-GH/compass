@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="259" y="187.385" width="523.231" height="628.846" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="242" x2="512" y2="438" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="449" x2="512" y2="793" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="465" x2="512" y2="551" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="212" x2="512" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+  </defs>
+  <title>Scanner to printer</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 901.478 L901.478 901.478 L901.478 122.523 L122.523 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Handheld_scanner___side_elevation" data-name="Handheld scanner — side elevation">
+        <path id="Scanner_head___flat_side_profile" data-name="Scanner head — flat side profile" d="M382 242 L618 242 L706 438 L428 438 C350 438 284 390 284 334 C284 279 327 242 382 242 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Moulded_light_side_panel" data-name="Moulded light side panel" d="M382 274 L597 274 L656 406 L428 406 C365 406 316 371 316 334 C316 298 343 274 382 274 Z" fill="#eceef0"/>
+        <path id="Curved_pistol_grip___slate_housing" data-name="Curved pistol grip — slate housing" d="M392 449 L510 449 C512 486 497 514 480 534 C464 569 461 600 467 627 C472 662 443 744 411 779 C402 790 389 795 374 788 L342 772 C331 765 330 754 337 739 C372 670 391 608 393 555 C397 510 397 480 392 449 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Broad_red_trigger" data-name="Broad red trigger" d="M522 465 L561 465 C562 503 545 535 519 551 L499 527 C516 510 523 491 522 465 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Red_scan_window___edge_profile" data-name="Red scan window — edge profile" d="M623.12 226.547 L652.313 213.44 C658.358 210.726 665.46 213.427 668.175 219.473 L756.175 415.473 C758.889 421.519 756.189 428.62 750.143 431.335 L720.95 444.442 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

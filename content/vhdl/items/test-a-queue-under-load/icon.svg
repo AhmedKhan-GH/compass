@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="282" y="201" width="460" height="627" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="761" x2="512" y2="803" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="282" x2="512" y2="325" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="358" x2="512" y2="402" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="226" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="449" x2="512" y2="671" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Wrap and stall — test workstation</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Repair-shop_workstation___flat_front" data-name="Repair-shop workstation — flat front">
+        <path id="Projecting_workstation_feet" data-name="Projecting workstation feet" d="M330 761 L423 761 L423 803 L307 803 L307 784 Z M601 761 L694 761 L717 784 L717 803 L601 803 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Optical_drive_bay" data-name="Optical drive bay" d="M381 282 L643 282 C646.333 282 648 283.667 648 287 L648 320 C648 323.333 646.333 325 643 325 L381 325 C377.667 325 376 323.333 376 320 L376 287 C376 283.667 377.667 282 381 282 Z" fill="url(#linear-gradient-3)"/>
+        <circle id="Power_control" data-name="Power control" cx="620" cy="380" r="22" fill="url(#linear-gradient-4)"/>
+        <path id="Workstation_tower_chassis" data-name="Workstation tower chassis" d="M334 249 C334 233.667 341.667 226 357 226 L667 226 C682.333 226 690 233.667 690 249 L690 727 C690 742.333 682.333 750 667 750 L357 750 C341.667 750 334 742.333 334 727 Z M381 271 C376.684 271 372.568 272.376 369.472 275.472 C366.376 278.568 365 282.684 365 287 L365 320 C365 324.316 366.376 328.432 369.472 331.528 C372.568 334.624 376.684 336 381 336 L643 336 C647.316 336 651.432 334.624 654.528 331.528 C657.624 328.432 659 324.316 659 320 L659 287 C659 282.684 657.624 278.568 654.528 275.472 C651.432 272.376 647.316 271 643 271 Z M596.665 356.665 C583.781 369.55 583.781 390.45 596.665 403.335 C609.55 416.219 630.45 416.219 643.335 403.335 C656.219 390.45 656.219 369.55 643.335 356.665 C630.45 343.781 609.55 343.781 596.665 356.665 Z M398 438 C392.857 438 387.925 439.519 384.222 443.222 C380.519 446.925 379 451.857 379 457 L379 663 C379 668.143 380.519 673.075 384.222 676.778 C387.925 680.481 392.857 682 398 682 L626 682 C631.143 682 636.075 680.481 639.778 676.778 C643.481 673.075 645 668.143 645 663 L645 457 C645 451.857 643.481 446.925 639.778 443.222 C636.075 439.519 631.143 438 626 438 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Ventilation_insert" data-name="Ventilation insert" d="M390 457 C390 451.667 392.667 449 398 449 L626 449 C631.333 449 634 451.667 634 457 L634 663 C634 668.333 631.333 671 626 671 L398 671 C392.667 671 390 668.333 390 663 Z M429 488 L429 532 L595 532 L595 488 Z M429 586 L429 630 L595 630 L595 586 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

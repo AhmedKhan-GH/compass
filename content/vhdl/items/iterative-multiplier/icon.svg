@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="165" y="190" width="664" height="596" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="497" y1="349" x2="497" y2="501" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="497" y1="215" x2="497" y2="338" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="497" y1="512" x2="497" y2="572" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="497" y1="583" x2="497" y2="761" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+  </defs>
+  <title>Farm-stand total — weighing scale</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Square_tile" data-name="Square tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Neutral_tile_border" data-name="Neutral tile border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Farm-stand_scale___front_view" data-name="Farm-stand scale — front view">
+        <rect id="Offset_display_upright" data-name="Offset display upright" x="636" y="349" width="58" height="152" fill="url(#linear-gradient-2)"/>
+        <path id="Customer_readout_housing" data-name="Customer readout housing" d="M561 215 L773 215 C786.333 215 793 221.667 793 235 L793 318 C793 331.333 786.333 338 773 338 L561 338 C547.667 338 541 331.333 541 318 L541 235 C541 221.667 547.667 215 561 215 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Blank_readout_glass" data-name="Blank readout glass" x="565" y="239" width="204" height="75" fill="#e2f2e6"/>
+        <path id="Shallow_stainless_weighing_pan" data-name="Shallow stainless weighing pan" d="M190 512 L804 512 L785 557 C781 567 773.333 572 762 572 L232 572 C220.667 572 213 567 209 557 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Pale_weighing_surface" data-name="Pale weighing surface" points="214,523 780,523 772,543 222,543" fill="#eceef0"/>
+        <path id="Low_scale_body_with_two_feet" data-name="Low scale body with two feet" d="M259 583 L735 583 L788 694 C792 700.667 794 709 794 719 L794 738 L732 738 L732 761 L668 761 L668 738 L326 738 L326 761 L262 761 L262 738 L200 738 L200 719 C200 709 202 700.667 206 694 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

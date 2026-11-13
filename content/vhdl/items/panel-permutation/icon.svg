@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="290" y="169" width="548" height="686" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="519" y1="301" x2="519" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.55" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="519" y1="452" x2="519" y2="571" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.55" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="519" y1="603" x2="519" y2="722" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.55" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="519" y1="194" x2="519" y2="830" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="519" y1="624" x2="519" y2="719" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="519" y1="636" x2="519" y2="707" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Replacement Lights — exhibit light panel</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Replacement_exhibit_light_panel_-_front_view" data-name="Replacement exhibit light panel - front view">
+        <path id="Amber_inset_lamp" data-name="Amber inset lamp" d="M377 301 L627 301 C636.333 301 641 305.667 641 315 L641 406 C641 415.333 636.333 420 627 420 L377 420 C367.667 420 363 415.333 363 406 L363 315 C363 305.667 367.667 301 377 301 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Green_inset_lamp" data-name="Green inset lamp" d="M377 452 L627 452 C636.333 452 641 456.667 641 466 L641 557 C641 566.333 636.333 571 627 571 L377 571 C367.667 571 363 566.333 363 557 L363 466 C363 456.667 367.667 452 377 452 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Amber_inset_lamp-2" data-name="Amber inset lamp" d="M377 603 L627 603 C636.333 603 641 607.667 641 617 L641 708 C641 717.333 636.333 722 627 722 L377 722 C367.667 722 363 717.333 363 708 L363 617 C363 607.667 367.667 603 377 603 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Panel_enclosure_with_mounting_tabs" data-name="Panel enclosure with mounting tabs" d="M433 208 C433 198.667 437.667 194 447 194 L557 194 C566.333 194 571 198.667 571 208 L571 252 L670 252 C682.667 252 689 258.333 689 271 L689 753 C689 765.667 682.667 772 670 772 L571 772 L571 816 C571 825.333 566.333 830 557 830 L447 830 C437.667 830 433 825.333 433 816 L433 772 L334 772 C321.333 772 315 765.667 315 753 L315 271 C315 258.333 321.333 252 334 252 L433 252 Z M502 205 C492.611 205 485 212.611 485 222 C485 231.389 492.611 239 502 239 C511.389 239 519 231.389 519 222 C519 212.611 511.389 205 502 205 Z M377 290 C370.222 290 363.625 291.819 358.722 296.722 C353.819 301.625 352 308.222 352 315 L352 406 C352 412.778 353.819 419.375 358.722 424.278 C363.625 429.181 370.222 431 377 431 L627 431 C633.778 431 640.375 429.181 645.278 424.278 C650.181 419.375 652 412.778 652 406 L652 315 C652 308.222 650.181 301.625 645.278 296.722 C640.375 291.819 633.778 290 627 290 Z M377 441 C370.222 441 363.625 442.819 358.722 447.722 C353.819 452.625 352 459.222 352 466 L352 557 C352 563.778 353.819 570.375 358.722 575.278 C363.625 580.181 370.222 582 377 582 L627 582 C633.778 582 640.375 580.181 645.278 575.278 C650.181 570.375 652 563.778 652 557 L652 466 C652 459.222 650.181 452.625 645.278 447.722 C640.375 442.819 633.778 441 627 441 Z M377 592 C370.222 592 363.625 593.819 358.722 598.722 C353.819 603.625 352 610.222 352 617 L352 708 C352 714.778 353.819 721.375 358.722 726.278 C363.625 731.181 370.222 733 377 733 L627 733 C633.778 733 640.375 731.181 645.278 726.278 C650.181 721.375 652 714.778 652 708 L652 617 C652 610.222 650.181 603.625 645.278 598.722 C640.375 593.819 633.778 592 627 592 Z M502 785 C492.611 785 485 792.611 485 802 C485 811.389 492.611 819 502 819 C511.389 819 519 811.389 519 802 C519 792.611 511.389 785 502 785 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Connector_collar" data-name="Connector collar" d="M708 624 L741 624 C746.333 624 749 626.667 749 632 L749 711 C749 716.333 746.333 719 741 719 L708 719 C702.667 719 700 716.333 700 711 L700 632 C700 626.667 702.667 624 708 624 Z" fill="url(#linear-gradient-6)"/>
+        <polygon id="Connector_shell" data-name="Connector shell" points="760,636 794,636 813,655 813,688 794,707 760,707" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

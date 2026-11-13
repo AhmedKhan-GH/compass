@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="177" y="272" width="670" height="494" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="297" x2="512" y2="465" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="318" x2="512" y2="659" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="476" x2="512" y2="616" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="670" x2="512" y2="741" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Plotter jog limits — flatbed pen plotter</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Flatbed_pen_plotter_-_front_view" data-name="Flatbed pen plotter - front view">
+        <path id="Sliding_pen_carriage" data-name="Sliding pen carriage" d="M507 297 L607 297 C615.667 297 620 301.333 620 310 L620 452 C620 460.667 615.667 465 607 465 L507 465 C498.333 465 494 460.667 494 452 L494 310 C494 301.333 498.333 297 507 297 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Open_plotter_gantry" data-name="Open plotter gantry" d="M232 340 C232 325.333 239.333 318 254 318 L483 318 L483 372 L286 372 L286 659 L232 659 Z M631 372 L631 318 L770 318 C784.667 318 792 325.333 792 340 L792 659 L738 659 L738 372 Z" fill="url(#linear-gradient-3)"/>
+        <polygon id="Pen_barrel_and_nib" data-name="Pen barrel and nib" points="534,476 580,476 580,577 557,616 534,577" fill="url(#linear-gradient-4)"/>
+        <path id="Blank_paper_on_bed" data-name="Blank paper on bed" d="M308 627 L716 627 C719.333 627 721 628.667 721 632 L721 654 C721 657.333 719.333 659 716 659 L308 659 C304.667 659 303 657.333 303 654 L303 632 C303 628.667 304.667 627 308 627 Z" fill="#fffdf8"/>
+        <path id="Flat_platen_front" data-name="Flat platen front" d="M214 670 L810 670 C818 670 822 674 822 682 L822 729 C822 737 818 741 810 741 L214 741 C206 741 202 737 202 729 L202 682 C202 674 206 670 214 670 Z" fill="url(#linear-gradient-5)"/>
+      </g>
+    </g>
+  </g>
+</svg>

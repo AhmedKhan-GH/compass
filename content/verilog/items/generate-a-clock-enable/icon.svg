@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="153" y="223" width="718" height="522" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="248" x2="512" y2="367" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="378" x2="512" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="500" x2="512" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+  </defs>
+  <title>Departure board refresh — suspended display</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Suspended_departure_board___front_elevation" data-name="Suspended departure board — front elevation">
+        <path id="Two_straight_ceiling_rods" data-name="Two straight ceiling rods" d="M312 248 L356 248 L356 367 L312 367 Z M668 248 L712 248 L712 367 L668 367 Z" fill="url(#linear-gradient-2)"/>
+        <rect id="Upper_blank_departure_window" data-name="Upper blank departure window" x="233" y="423" width="558" height="96" fill="#fcf0d6"/>
+        <rect id="Lower_blank_departure_window" data-name="Lower blank departure window" x="233" y="579" width="558" height="96" fill="#fcf0d6"/>
+        <path id="Flat_station_display_casing" data-name="Flat station display casing" d="M178 410 C178 392 192 378 210 378 L814 378 C832 378 846 392 846 410 L846 688 C846 706 832 720 814 720 L210 720 C192 720 178 706 178 688 Z M233 412 C226.925 412 222 416.925 222 423 L222 519 C222 525.075 226.925 530 233 530 L791 530 C797.075 530 802 525.075 802 519 L802 423 C802 416.925 797.075 412 791 412 Z M233 568 C226.925 568 222 572.925 222 579 L222 675 C222 681.075 226.925 686 233 686 L791 686 C797.075 686 802 681.075 802 675 L802 579 C802 572.925 797.075 568 791 568 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Amber_display_retention_rails" data-name="Amber display retention rails" d="M233 500 L791 500 L791 519 L233 519 Z M233 656 L791 656 L791 675 L233 675 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

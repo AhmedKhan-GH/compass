@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="207" y="230" width="616" height="576" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="338" x2="512" y2="729" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="363" x2="512" y2="703" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="428" x2="512" y2="713" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="650" x2="512" y2="718" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="349" x2="512" y2="417" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="255" x2="512" y2="781" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+  </defs>
+  <title>Pocket trail logger — wooden gate</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Wooden_trail_gate___straight_front_view" data-name="Wooden trail gate — straight front view">
+        <rect id="Latch-end_gate_upright" data-name="Latch-end gate upright" x="732" y="338" width="66" height="391" fill="url(#linear-gradient-2)"/>
+        <path id="Broad_steel_hinge_straps" data-name="Broad steel hinge straps" d="M247 363 L354 363 L354 401 L247 401 Z M247 665 L354 665 L354 703 L247 703 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Diagonal_compression_brace" data-name="Diagonal compression brace" d="M325 637 L721 428 L721 504 L365 691.889 L365 665 C365 658.925 360.075 654 354 654 L325 654 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Level_lower_timber_rail" data-name="Level lower timber rail" d="M364.915 704.372 L467.935 650 L721 650 L721 718 L339.093 718 L346.672 714 L354 714 C359.611 714 364.24 709.799 364.915 704.372 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Level_upper_timber_rail" data-name="Level upper timber rail" d="M325 352 L325 349 L721 349 L721 417 L721 417 C720.998 417 720.994 417 720.989 417 L325 417 L325 412 L354 412 C360.075 412 365 407.075 365 401 L365 363 C365 356.925 360.075 352 354 352 Z" fill="url(#linear-gradient-6)"/>
+        <path id="Square_timber_hinge_post" data-name="Square timber hinge post" d="M232 781 L232 255 L314 255 L314 352 L247 352 C240.925 352 236 356.925 236 363 L236 401 C236 407.075 240.925 412 247 412 L314 412 L314 654 L247 654 C240.925 654 236 658.925 236 665 L236 703 C236 709.075 240.925 714 247 714 L314 714 L314 781 Z" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

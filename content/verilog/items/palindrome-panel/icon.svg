@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="159" y="231" width="706" height="590" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="459.761" x2="512" y2="519.761" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="374.648" x2="512" y2="434.648" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="310.162" x2="512" y2="370.162" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="275.457" x2="512" y2="335.457" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd923d"/>
+      <stop offset="0.5" stop-color="#c27a12"/>
+      <stop offset="1" stop-color="#8c580d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="256" x2="512" y2="796" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Balanced Lights — refined lighting arch</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Eight-lamp_theatre_lighting_arch" data-name="Eight-lamp theatre lighting arch">
+        <circle id="Red_stage_lamp_lens" data-name="Red stage lamp lens" cx="753.604" cy="489.761" r="30" fill="url(#linear-gradient-2)"/>
+        <circle id="Amber_stage_lamp_lens" data-name="Amber stage lamp lens" cx="714.173" cy="404.648" r="30" fill="url(#linear-gradient-3)"/>
+        <circle id="Amber_stage_lamp_lens-2" data-name="Amber stage lamp lens" cx="646.049" cy="340.162" r="30" fill="url(#linear-gradient-4)"/>
+        <circle id="Amber_stage_lamp_lens-3" data-name="Amber stage lamp lens" cx="558.902" cy="305.457" r="30" fill="url(#linear-gradient-5)"/>
+        <circle id="Amber_stage_lamp_lens-4" data-name="Amber stage lamp lens" cx="465.098" cy="305.457" r="30" fill="url(#linear-gradient-5)"/>
+        <circle id="Amber_stage_lamp_lens-5" data-name="Amber stage lamp lens" cx="377.951" cy="340.162" r="30" fill="url(#linear-gradient-4)"/>
+        <circle id="Amber_stage_lamp_lens-6" data-name="Amber stage lamp lens" cx="309.827" cy="404.648" r="30" fill="url(#linear-gradient-3)"/>
+        <circle id="Red_stage_lamp_lens-2" data-name="Red stage lamp lens" cx="270.396" cy="489.761" r="30" fill="url(#linear-gradient-2)"/>
+        <path id="Freestanding_lighting_arch" data-name="Freestanding lighting arch" d="M218 550 C218 387.62 349.62 256 512 256 C674.38 256 806 387.62 806 550 L806 756 L840 756 L840 796 L682 796 L682 756 L716 756 L716 550 C716 437.33 624.67 346 512 346 C399.33 346 308 437.33 308 550 L308 756 L342 756 L342 796 L184 796 L184 756 L218 756 Z M436.107 276.466 C420.097 292.475 420.097 318.439 436.107 334.449 C452.116 350.458 478.08 350.458 494.09 334.449 C510.099 318.439 510.099 292.475 494.09 276.466 C478.08 260.456 452.116 260.456 436.107 276.466 Z M529.91 276.466 C513.901 292.475 513.901 318.439 529.91 334.449 C545.92 350.458 571.884 350.458 587.893 334.449 C603.903 318.439 603.903 292.475 587.893 276.466 C571.884 260.456 545.92 260.456 529.91 276.466 Z M617.058 311.171 C601.049 327.18 601.049 353.145 617.058 369.154 C633.067 385.163 659.031 385.163 675.041 369.154 C691.05 353.145 691.05 327.18 675.041 311.171 C659.031 295.162 633.067 295.162 617.058 311.171 Z M348.959 311.171 C332.95 327.18 332.95 353.145 348.959 369.154 C364.969 385.163 390.933 385.163 406.942 369.154 C422.951 353.145 422.951 327.18 406.942 311.171 C390.933 295.162 364.969 295.162 348.959 311.171 Z M280.836 375.656 C264.827 391.666 264.827 417.63 280.836 433.639 C296.845 449.649 322.809 449.649 338.819 433.639 C354.828 417.63 354.828 391.666 338.819 375.656 C322.809 359.647 296.845 359.647 280.836 375.656 Z M685.181 375.656 C669.172 391.666 669.172 417.63 685.181 433.639 C701.191 449.649 727.155 449.649 743.164 433.639 C759.173 417.63 759.173 391.666 743.164 375.656 C727.155 359.647 701.191 359.647 685.181 375.656 Z M241.405 460.77 C225.396 476.779 225.396 502.743 241.405 518.753 C257.414 534.762 283.378 534.762 299.388 518.753 C315.397 502.743 315.397 476.779 299.388 460.77 C283.378 444.761 257.414 444.761 241.405 460.77 Z M724.612 460.77 C708.603 476.779 708.603 502.743 724.612 518.753 C740.622 534.762 766.586 534.762 782.595 518.753 C798.604 502.743 798.604 476.779 782.595 460.77 C766.586 444.761 740.622 444.761 724.612 460.77 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

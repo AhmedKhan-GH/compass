@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="243" y="205" width="538" height="629" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="230" x2="512" y2="321" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="332" x2="512" y2="809" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a26c26"/>
+      <stop offset="0.5" stop-color="#845518"/>
+      <stop offset="1" stop-color="#66410f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="332" x2="512" y2="723" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a26c26"/>
+      <stop offset="0.5" stop-color="#845518"/>
+      <stop offset="1" stop-color="#66410f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="431" x2="512" y2="531" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Door Chime Timing — gallery tubular chime</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Gallery_tubular_chime___refined_front_view" data-name="Gallery tubular chime — refined front view">
+        <path id="Flat_slate_mechanism_cover" data-name="Flat slate mechanism cover" d="M286 230 L738 230 C748 230 756 238 756 248 L756 321 L268 321 L268 248 C268 238 276 230 286 230 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Long_brass_tube___flat_front_view" data-name="Long brass tube — flat front view" d="M332 332 L412 332 C419 332 424 337 424 344 L424 793 C424 802 417 809 408 809 L336 809 C327 809 320 802 320 793 L320 344 C320 337 325 332 332 332 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Short_brass_tube___flat_front_view" data-name="Short brass tube — flat front view" d="M612 332 L692 332 C699 332 704 337 704 344 L704 707 C704 716 697 723 688 723 L616 723 C607 723 600 716 600 707 L600 344 C600 337 605 332 612 332 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Broad_solenoid_striker_body" data-name="Broad solenoid striker body" points="465,431 559,431 559,463 589,463 589,499 559,499 559,531 465,531 465,499 435,499 435,463 465,463" fill="url(#linear-gradient-5)"/>
+        <path id="Pale_mechanism_mounting_plate" data-name="Pale mechanism mounting plate" d="M435 452 L435 332 L589 332 L589 452 L570 452 L570 431 C570 424.925 565.075 420 559 420 L465 420 C458.925 420 454 424.925 454 431 L454 452 Z M435 655 L435 510 L454 510 L454 531 C454 537.075 458.925 542 465 542 L559 542 C565.075 542 570 537.075 570 531 L570 510 L589 510 L589 655 C589 668 578 679 565 679 L459 679 C446 679 435 668 435 655 Z" fill="#eceef0"/>
+      </g>
+    </g>
+  </g>
+</svg>

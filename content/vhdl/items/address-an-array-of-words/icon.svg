@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="175" y="179" width="674" height="650" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="204" x2="512" y2="287" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="298" x2="512" y2="804" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b26b37"/>
+      <stop offset="0.5" stop-color="#a14b0b"/>
+      <stop offset="1" stop-color="#743608"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="418" x2="512" y2="474" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="556" x2="512" y2="612" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+  </defs>
+  <title>Organ preset cards — refined electronic organ</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Two-manual_electronic_organ" data-name="Two-manual electronic organ">
+        <path id="Music_rest" data-name="Music rest" d="M366 204 L658 204 C664.627 204 670 209.373 670 216 L670 287 L354 287 L354 216 C354 209.373 359.373 204 366 204 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Five_unlettered_stop_tabs" data-name="Five unlettered stop tabs" d="M307 344 L349 344 L349 386 L307 386 Z M399 344 L441 344 L441 386 L399 386 Z M491 344 L533 344 L533 386 L491 386 Z M583 344 L625 344 L625 386 L583 386 Z M675 344 L717 344 L717 386 L675 386 Z" fill="#fffdf8"/>
+        <path id="Wooden_organ_cabinet_and_side_supports" data-name="Wooden organ cabinet and side supports" d="M200 316 L218 298 L806 298 L824 316 L824 686 L796 686 L796 804 L742 804 L742 686 L282 686 L282 804 L228 804 L228 686 L200 686 Z M307 333 C300.925 333 296 337.925 296 344 L296 386 C296 392.075 300.925 397 307 397 L349 397 C355.075 397 360 392.075 360 386 L360 344 C360 337.925 355.075 333 349 333 Z M399 333 C392.925 333 388 337.925 388 344 L388 386 C388 392.075 392.925 397 399 397 L441 397 C447.075 397 452 392.075 452 386 L452 344 C452 337.925 447.075 333 441 333 Z M491 333 C484.925 333 480 337.925 480 344 L480 386 C480 392.075 484.925 397 491 397 L533 397 C539.075 397 544 392.075 544 386 L544 344 C544 337.925 539.075 333 533 333 Z M583 333 C576.925 333 572 337.925 572 344 L572 386 C572 392.075 576.925 397 583 397 L625 397 C631.075 397 636 392.075 636 386 L636 344 C636 337.925 631.075 333 625 333 Z M675 333 C668.925 333 664 337.925 664 344 L664 386 C664 392.075 668.925 397 675 397 L717 397 C723.075 397 728 392.075 728 386 L728 344 C728 337.925 723.075 333 717 333 Z M251 407 L251 523 L773 523 L773 407 Z M251 545 L251 661 L773 661 L773 545 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Upper_manual_raised_keys" data-name="Upper manual raised keys" d="M338.7 418 L378.7 418 L378.7 476 L338.7 476 Z M543.1 418 L583.1 418 L583.1 476 L543.1 476 Z M645.3 418 L685.3 418 L685.3 476 L645.3 476 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Upper_manual_ivory_keys" data-name="Upper manual ivory keys" d="M262 418 L327.7 418 L327.7 487 L353.2 487 L353.2 512 L262 512 Z M389.7 418 L455.4 418 L455.4 512 L364.2 512 L364.2 487 L389.7 487 Z M466.4 418 L532.1 418 L532.1 487 L557.6 487 L557.6 512 L466.4 512 Z M594.1 418 L634.3 418 L634.3 487 L659.8 487 L659.8 512 L568.6 512 L568.6 487 L594.1 487 Z M696.3 418 L762 418 L762 512 L670.8 512 L670.8 487 L696.3 487 Z" fill="#fffdf8"/>
+        <path id="Lower_manual_raised_keys" data-name="Lower manual raised keys" d="M338.7 556 L378.7 556 L378.7 614 L338.7 614 Z M543.1 556 L583.1 556 L583.1 614 L543.1 614 Z M645.3 556 L685.3 556 L685.3 614 L645.3 614 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Lower_manual_ivory_keys" data-name="Lower manual ivory keys" d="M262 556 L327.7 556 L327.7 625 L353.2 625 L353.2 650 L262 650 Z M389.7 556 L455.4 556 L455.4 650 L364.2 650 L364.2 625 L389.7 625 Z M466.4 556 L532.1 556 L532.1 625 L557.6 625 L557.6 650 L466.4 650 Z M594.1 556 L634.3 556 L634.3 625 L659.8 625 L659.8 650 L568.6 650 L568.6 625 L594.1 625 Z M696.3 556 L762 556 L762 650 L670.8 650 L670.8 625 L696.3 625 Z" fill="#fffdf8"/>
+      </g>
+    </g>
+  </g>
+</svg>

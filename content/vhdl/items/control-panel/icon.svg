@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="167" y="239" width="690" height="572" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="264" x2="512" y2="786" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="334" x2="512" y2="398" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="486" x2="512" y2="542" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="562" x2="512" y2="618" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="447" x2="512" y2="654" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+  </defs>
+  <title>Backstage Console — refined front panel</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Backstage_cue_console" data-name="Backstage cue console">
+        <path id="Console_case_and_feet" data-name="Console case and feet" d="M192 296 C192 278.327 206.327 264 224 264 L800 264 C817.673 264 832 278.327 832 296 L832 718 C832 735.673 817.673 750 800 750 L776 750 L776 786 L672 786 L672 750 L352 750 L352 786 L248 786 L248 750 L224 750 C206.327 750 192 735.673 192 718 Z M240 288 C227.301 288 217 298.301 217 311 L217 692 C217 704.699 227.301 715 240 715 L784 715 C796.699 715 807 704.699 807 692 L807 311 C807 298.301 796.699 288 784 288 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Red_alert_window" data-name="Red alert window" d="M300 334 L724 334 C728.418 334 732 337.582 732 342 L732 390 C732 394.418 728.418 398 724 398 L300 398 C295.582 398 292 394.418 292 390 L292 342 C292 337.582 295.582 334 300 334 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Left_fader_cap" data-name="Left fader cap" d="M329 486 L437 486 C440.866 486 444 489.134 444 493 L444 535 C444 538.866 440.866 542 437 542 L329 542 C325.134 542 322 538.866 322 535 L322 493 C322 489.134 325.134 486 329 486 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Right_fader_cap" data-name="Right fader cap" d="M587 562 L695 562 C698.866 562 702 565.134 702 569 L702 611 C702 614.866 698.866 618 695 618 L587 618 C583.134 618 580 614.866 580 611 L580 569 C580 565.134 583.134 562 587 562 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Pale_control_faceplate" data-name="Pale control faceplate" d="M228 311 C228 304.373 233.373 299 240 299 L784 299 C790.627 299 796 304.373 796 311 L796 692 C796 698.627 790.627 704 784 704 L240 704 C233.373 704 228 698.627 228 692 Z M300 323 C289.51 323 281 331.51 281 342 L281 390 C281 400.49 289.51 409 300 409 L724 409 C734.49 409 743 400.49 743 390 L743 342 C743 331.51 734.49 323 724 323 Z M365 436 C358.925 436 354 440.925 354 447 L354 475 L329 475 C319.063 475 311 483.063 311 493 L311 535 C311 544.937 319.063 553 329 553 L354 553 L354 654 C354 660.075 358.925 665 365 665 L401 665 C407.075 665 412 660.075 412 654 L412 553 L437 553 C446.937 553 455 544.937 455 535 L455 493 C455 483.063 446.937 475 437 475 L412 475 L412 447 C412 440.925 407.075 436 401 436 Z M623 436 C616.925 436 612 440.925 612 447 L612 551 L587 551 C577.063 551 569 559.063 569 569 L569 611 C569 620.937 577.063 629 587 629 L612 629 L612 654 C612 660.075 616.925 665 623 665 L659 665 C665.075 665 670 660.075 670 654 L670 629 L695 629 C704.937 629 713 620.937 713 611 L713 569 C713 559.063 704.937 551 695 551 L670 551 L670 447 C670 440.925 665.075 436 659 436 Z" fill="#fffdf8"/>
+        <path id="Two_fader_slots" data-name="Two fader slots" d="M365 475 L365 447 L401 447 L401 475 Z M623 551 L623 447 L659 447 L659 551 Z M365 654 L365 553 L401 553 L401 654 Z M623 654 L623 629 L659 629 L659 654 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

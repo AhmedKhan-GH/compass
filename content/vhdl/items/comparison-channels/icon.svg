@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="245" y="201" width="578" height="644" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="226" x2="512" y2="262" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="491" x2="512" y2="548" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="657" x2="512" y2="753" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="273" x2="512" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="791" x2="512" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Rooftop Tanks — front view rainwater tank</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Rainwater_tank" data-name="Rainwater tank">
+        <path id="Inspection_cap" data-name="Inspection cap" d="M414 226 L542 226 C550 226 554 230 554 238 L554 262 L402 262 L402 238 C402 230 406 226 414 226 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Reinforcing_belt" data-name="Reinforcing belt" d="M270 491 L686 491 L686 540 C686 545.333 683.333 548 678 548 L278 548 C272.667 548 270 545.333 270 540 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Water_outlet_elbow" data-name="Water outlet elbow" d="M657 657 L734 657 C774 657 798 681 798 721 L798 753 L744 753 L744 720 C744 712.667 740.333 709 733 709 L657 709 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Moulded_tank_shell" data-name="Moulded tank shell" d="M278 360 C278 302 347 273 478 273 C609 273 678 302 678 360 L678 480 L278 480 Z M278 749 L278 559 L678 559 L678 646 L657 646 C650.925 646 646 650.925 646 657 L646 709 C646 715.075 650.925 720 657 720 L678 720 L678 749 C678 769.667 667.667 780 647 780 L309 780 C288.333 780 278 769.667 278 749 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Supporting_base" data-name="Supporting base" d="M295 791 L661 791 L661 810 C661 816.667 657.667 820 651 820 L305 820 C298.333 820 295 816.667 295 810 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>

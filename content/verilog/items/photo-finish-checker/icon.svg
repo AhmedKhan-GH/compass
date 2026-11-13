@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="174" y="297" width="670" height="506" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="322" x2="512" y2="559" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="375" x2="512" y2="506" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="330" x2="512" y2="551" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="330" x2="512" y2="551" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="570" x2="512" y2="689" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="512" y1="700" x2="512" y2="778" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Photo finish — finish-line camera</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Square_tile" data-name="Square tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Neutral_tile_border" data-name="Neutral tile border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Finish-line_camera___side_view" data-name="Finish-line camera — side view">
+        <path id="Horizontal_camera_body" data-name="Horizontal camera body" d="M540 322 L796 322 L819 345 L819 536 L796 559 L540 559 C526.667 559 520 552.333 520 539 L520 342 C520 328.667 526.667 322 540 322 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Long_lens_barrel_with_focus_collar" data-name="Long lens barrel with focus collar" d="M360 375 L415 375 L415 506 L360 506 C352 506 348 502 348 494 L348 387 C348 379 352 375 360 375 Z M426 375 L509 375 L509 506 L426 506 Z" fill="url(#linear-gradient-3)"/>
+        <polygon id="Flared_lens_hood_in_profile" data-name="Flared lens hood in profile" points="244,330 337,375 337,506 244,551" fill="url(#linear-gradient-4)"/>
+        <rect id="Thick_hood_front_lip" data-name="Thick hood front lip" x="199" y="330" width="34" height="221" fill="url(#linear-gradient-5)"/>
+        <path id="Articulated_mounting_head" data-name="Articulated mounting head" d="M606 570 L694 570 L694 609 L669 633 L669 689 L631 689 C614.333 689 606 680.667 606 664 L606 638 L580 611 L580 585 Z" fill="url(#linear-gradient-6)"/>
+        <polygon id="Flat_mounting_base" data-name="Flat mounting base" points="615,700 681,700 681,727 754,727 754,778 542,778 542,727 615,727" fill="url(#linear-gradient-7)"/>
+      </g>
+    </g>
+  </g>
+</svg>

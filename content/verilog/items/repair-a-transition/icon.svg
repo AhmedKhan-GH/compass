@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="143.56" y="312.04" width="736.88" height="399.92" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="337.04" x2="512" y2="432.08" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="514.16" x2="512" y2="559.52" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="443.96" x2="512" y2="686.96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Window turntable — rotating display pedestal</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Shop-window_display_turntable_-_side_view" data-name="Shop-window display turntable - side view">
+        <path id="Broad_rotating_platter_edge" data-name="Broad rotating platter edge" d="M185.84 337.04 L838.16 337.04 C849.68 337.04 855.44 342.8 855.44 354.32 L855.44 414.8 C855.44 426.32 849.68 432.08 838.16 432.08 L185.84 432.08 C174.32 432.08 168.56 426.32 168.56 414.8 L168.56 354.32 C168.56 342.8 174.32 337.04 185.84 337.04 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Recessed_motor_switch" data-name="Recessed motor switch" d="M657.8 514.16 L698.84 514.16 C703.88 514.16 706.4 516.68 706.4 521.72 L706.4 551.96 C706.4 557 703.88 559.52 698.84 559.52 L657.8 559.52 C652.76 559.52 650.24 557 650.24 551.96 L650.24 521.72 C650.24 516.68 652.76 514.16 657.8 514.16 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Low_cylindrical_drive_housing" data-name="Low cylindrical drive housing" d="M263.6 467.72 C263.6 451.88 271.52 443.96 287.36 443.96 L736.64 443.96 C752.48 443.96 760.4 451.88 760.4 467.72 L760.4 628.64 L784.16 628.64 L784.16 686.96 L239.84 686.96 L239.84 628.64 L263.6 628.64 Z M657.8 502.28 C652.543 502.28 647.51 503.869 643.73 507.65 C639.949 511.43 638.36 516.463 638.36 521.72 L638.36 551.96 C638.36 557.217 639.949 562.25 643.73 566.03 C647.51 569.811 652.543 571.4 657.8 571.4 L698.84 571.4 C704.097 571.4 709.13 569.811 712.91 566.03 C716.691 562.25 718.28 557.217 718.28 551.96 L718.28 521.72 C718.28 516.463 716.691 511.43 712.91 507.65 C709.13 503.869 704.097 502.28 698.84 502.28 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

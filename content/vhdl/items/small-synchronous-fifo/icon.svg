@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="188" y="271" width="671" height="504" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="560" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="311" x2="512" y2="645" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="400" x2="512" y2="594" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="296" x2="512" y2="660" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="384" x2="512" y2="610" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+  </defs>
+  <title>Wind tunnel — flat side view</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <rect id="Tile" x="100" y="100" width="824" height="824" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M100 100 L924 100 L924 924 L100 924 Z M122.523 122.523 L122.523 901.478 L901.478 901.478 L901.478 122.523 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Wind_tunnel___flat_side_view" data-name="Wind tunnel — flat side view">
+        <path id="Two_support_stands" data-name="Two support stands" d="M690 720 L690 605 L738 605 L738 720 L767 720 L767 750 L661 750 L661 720 Z M363.275 629.526 C363.85 629.267 364.424 629.007 365 628.748 L365 720 L394 720 L394 750 L288 750 L288 720 L317 720 L317 648.034 C317.548 647.866 318.095 647.697 318.641 647.526 C334.378 642.581 348.673 636.116 363.275 629.526 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Smooth_contraction_housing" data-name="Smooth contraction housing" d="M265 311 C340 311 377 400 454 400 L454 594 C377 594 340 645 265 645 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Test-section_casing" data-name="Test-section casing" d="M465 594 L465 400 L786 400 L786 594 Z M497 421 C490.925 421 486 425.925 486 432 L486 562 C486 568.075 490.925 573 497 573 L754 573 C760.075 573 765 568.075 765 562 L765 432 C765 425.925 760.075 421 754 421 Z" fill="url(#linear-gradient-4)"/>
+        <rect id="Inlet_flange" data-name="Inlet flange" x="213" y="296" width="41" height="364" fill="url(#linear-gradient-5)"/>
+        <rect id="Observation_glass" data-name="Observation glass" x="497" y="432" width="257" height="130" fill="#ddf0f1"/>
+        <rect id="Outlet_flange" data-name="Outlet flange" x="797" y="384" width="37" height="226" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>
