@@ -1,0 +1,300 @@
+/* The circuit viewer, in a sandboxed frame. Roles only, from the pinned Sternbild release. */
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/vendor/fonts/source-code-pro-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--sb-background-app);
+  color: var(--sb-text);
+  font-family: var(--sb-font-family-text);
+  font-size: var(--sb-app-font-size-ui-small);
+  line-height: var(--sb-app-row);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  scrollbar-color: var(--sb-rule) transparent;
+  scrollbar-width: thin;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#controls {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--sb-space-2);
+  height: calc(var(--sb-app-row) + var(--sb-space-2));
+  padding: 0 var(--sb-space-3);
+  border-bottom: var(--sb-rule-width) solid var(--sb-rule-faint);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+#controls button,
+#io button {
+  height: var(--sb-app-key-button);
+  padding: 0 var(--sb-space-2);
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  border-radius: var(--sb-radius);
+  background: none;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#controls button:hover,
+#io button:hover {
+  background: var(--sb-surface-hover);
+}
+
+#controls button:active,
+#io button:active {
+  background: var(--sb-text);
+  color: var(--sb-background-app);
+}
+
+button:focus-visible,
+input:focus-visible,
+#viewport:focus-visible {
+  outline: var(--sb-rule-width) solid var(--sb-focus);
+  outline-offset: calc(var(--sb-rule-width) * -1);
+}
+
+#io button[aria-pressed="true"] {
+  background: var(--sb-selected);
+  color: var(--sb-accent);
+}
+
+button:disabled {
+  border-color: var(--sb-rule-faint);
+  color: var(--sb-text-faint);
+  cursor: default;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+#status,
+#zoom-level {
+  color: var(--sb-text-muted);
+}
+
+#zoom-level {
+  min-width: 5ch;
+  font-family: var(--sb-font-family-mono);
+  text-align: center;
+}
+
+#error {
+  margin: 0;
+  padding: var(--sb-space-2) var(--sb-space-3);
+  color: var(--sb-text);
+  white-space: pre-wrap;
+}
+
+#io {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: var(--sb-space-1) var(--sb-space-6);
+  max-height: 30vh;
+  padding: var(--sb-space-1) var(--sb-space-3);
+  overflow: auto;
+  border-bottom: var(--sb-rule-width) solid var(--sb-rule-faint);
+}
+
+#io:empty {
+  display: none;
+}
+
+#io fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sb-space-1) var(--sb-space-3);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#io legend {
+  float: left;
+  margin-right: var(--sb-space-2);
+  padding: 0;
+  color: var(--sb-text-muted);
+  font-size: var(--sb-app-font-size-ui-small);
+  letter-spacing: var(--sb-tracking-ui-label);
+  text-transform: uppercase;
+}
+
+.io-field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+  font-family: var(--sb-font-family-mono);
+}
+
+#io .io-field input {
+  height: var(--sb-app-key-button);
+  padding: 0 var(--sb-space-1);
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  border-radius: var(--sb-radius);
+  background: var(--sb-well);
+  font-family: var(--sb-font-family-mono);
+}
+
+.io-field output {
+  padding: 0 var(--sb-space-1);
+  background: var(--sb-well);
+  color: var(--sb-text);
+}
+
+#viewport {
+  flex: 1 1 auto;
+  min-height: 120px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--sb-well);
+}
+
+#paper {
+  width: max-content;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#paper .joint-paper {
+  background: var(--sb-well);
+}
+
+#paper .joint-element text {
+  font-family: var(--sb-font-family-text);
+  fill: var(--sb-text);
+}
+
+#paper .joint-element .numvalue,
+#paper .joint-element text.value,
+#paper .joint-element foreignObject input[type="text"] {
+  font-family: var(--sb-font-family-mono);
+  font-size: 12px;
+}
+
+#paper .joint-element .body,
+#paper .joint-element [fill="white"] {
+  fill: var(--sb-background-app);
+}
+
+#paper .joint-element [stroke="black"],
+#paper .joint-element .body {
+  stroke: var(--sb-text-muted);
+}
+
+#paper .joint-element [fill="black"] {
+  fill: var(--sb-text);
+}
+
+#paper .joint-element foreignObject {
+  color: var(--sb-text);
+}
+
+#paper .joint-element[data-type="Input"] foreignObject.tooltip,
+#paper .joint-element[data-type="Output"] foreignObject.tooltip,
+#paper .joint-element[data-type="Constant"] foreignObject.tooltip {
+  display: none;
+}
+
+#paper .joint-link .labels {
+  display: none;
+}
+
+#paper .djs.fixed .joint-link {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+#paper .djs.fixed .joint-element {
+  cursor: pointer;
+}
+
+.djs.fixed .joint-tools {
+  display: none;
+  pointer-events: none;
+}
+
+#paper .joint-link.is-selected .connection {
+  stroke: var(--sb-accent);
+  stroke-width: 3;
+}
+
+#paper .joint-element.is-selected > text.label {
+  fill: var(--sb-accent);
+}
+
+#selection {
+  flex: 0 0 auto;
+  min-height: var(--sb-app-row);
+  margin: 0;
+  padding: 0 var(--sb-space-3);
+  border-top: var(--sb-rule-width) solid var(--sb-rule-faint);
+  color: var(--sb-text-muted);
+  font-family: var(--sb-font-family-mono);
+  overflow-wrap: anywhere;
+}
+
+#key {
+  display: inline-flex;
+  gap: var(--sb-space-3);
+  margin-right: var(--sb-space-3);
+  color: var(--sb-text-muted);
+}
+
+.key::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  margin-right: var(--sb-space-1);
+  vertical-align: middle;
+  border-top: 2px solid var(--signal);
+}
+
+.key[data-signal="high"] {
+  --signal: var(--sb-data-verdigris);
+}
+
+.key[data-signal="low"] {
+  --signal: var(--sb-data-smalt);
+}
+
+.key[data-signal="def"] {
+  --signal: var(--sb-data-olive-ochre);
+}
+
+.key[data-signal="undef"] {
+  --signal: var(--sb-data-madder);
+}

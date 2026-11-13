@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Circuit</title>
+    <link rel="stylesheet" href="/sternbild/design/1.0.0/sternbild.css" />
+    <link rel="stylesheet" href="/circuit/viewer.css" />
+    <script defer src="/vendor/digitaljs/main.js"></script>
+    <script defer src="/vendor/elkjs/elk.bundled.js"></script>
+    <script defer src="/circuit/viewer.js"></script>
+  </head>
+  <body>
+    <div id="controls" aria-label="Circuit controls">
+      <button id="play" type="button">Pause</button>
+      <button id="reset" type="button">Reset</button>
+      <span id="status" role="status"></span>
+      <span class="spacer"></span>
+      <span id="key" aria-label="Signal key">
+        <span class="key" data-signal="high">High</span>
+        <span class="key" data-signal="low">Low</span>
+        <span class="key" data-signal="def">Word</span>
+        <span class="key" data-signal="undef">Unknown</span>
+      </span>
+      <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+      <output id="zoom-level" aria-label="Zoom">100%</output>
+      <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+      <button id="fit" type="button">Fit</button>
+    </div>
+    <p id="error" role="alert" hidden></p>
+    <div id="io" aria-label="Inputs and outputs"></div>
+    <div id="viewport" tabindex="0" aria-label="Circuit drawing">
+      <div id="paper"></div>
+    </div>
+    <p id="selection"></p>
+  </body>
+</html>
