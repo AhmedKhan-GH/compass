@@ -7,10 +7,13 @@
     "start": "tsx src/main.ts",
     "images": "tsx src/build-images.ts",
     "typecheck": "tsc --noEmit -p .",
-    "test": "node --import tsx --test \"test/**/!(*.docker).test.ts\"",
-    "test:docker": "node --import tsx --test --test-concurrency=1 \"test/**/*.docker.test.ts\""
+    "test": "node --import tsx --test \"test/*.test.ts\"",
+    "test:docker": "node --import tsx --test --test-concurrency=1 \"test/docker/*.docker.test.ts\""
   },
   "dependencies": {
     "@compass/schema": "*"
+  },
+  "devDependencies": {
+    "@compass/runner-client": "*"
   }
 }

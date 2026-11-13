@@ -1,0 +1,36 @@
+{
+  "source": "compass-legacy tracks/verilog/exercises/concept/workshop-controls",
+  "top": "top_module",
+  "solution": "top_module.v",
+  "itemKind": "concept",
+  "checks": "test_controls.py",
+  "reference": "exemplar.v",
+  "wrong": [
+    "ungrouped.v",
+    "both_buttons.v",
+    "reversed_block.v"
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "tests": [
+        "availability_is_the_inverse_of_blocked"
+      ]
+    },
+    {
+      "id": 2,
+      "tests": [
+        "first_button_requires_availability"
+      ]
+    },
+    {
+      "id": 3,
+      "tests": [
+        "either_button_can_request_start",
+        "blocking_applies_to_both_buttons",
+        "both_outputs_follow_changing_inputs"
+      ]
+    }
+  ],
+  "stages": []
+}

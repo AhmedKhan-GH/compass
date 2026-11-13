@@ -1,0 +1,30 @@
+{
+  "source": "compass-legacy tracks/verilog/exercises/concept/drive-high",
+  "top": "top_module",
+  "solution": "top_module.v",
+  "itemKind": "concept",
+  "checks": "test_output.py",
+  "reference": "exemplar.v",
+  "wrong": [
+    "low.v"
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "tests": [
+        "output_port_is_one_bit"
+      ]
+    },
+    {
+      "id": 2,
+      "tests": [
+        "output_is_high",
+        "output_stays_high"
+      ]
+    }
+  ],
+  "stages": [
+    "task_1.v",
+    "task_2.v"
+  ]
+}

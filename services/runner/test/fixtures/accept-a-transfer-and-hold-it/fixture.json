@@ -1,0 +1,29 @@
+{
+  "source": "compass-legacy tracks/verilog/exercises/concept/accept-a-transfer-and-hold-it",
+  "top": "top_module",
+  "solution": "top_module.v",
+  "itemKind": "concept",
+  "checks": "test_accept_a_transfer_and_hold_it.py",
+  "reference": "exemplar.v",
+  "wrong": [
+    "common_mistake.v"
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "tests": [
+        "basic_behavior"
+      ]
+    },
+    {
+      "id": 2,
+      "tests": [
+        "boundary_behavior"
+      ]
+    }
+  ],
+  "stages": [
+    "task_1.v",
+    "task_2.v"
+  ]
+}
