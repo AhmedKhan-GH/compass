@@ -96,6 +96,7 @@ before(() => {
   put(join(b, ".meta", "example.v"), "module top_module; endmodule\n");
   put(join(b, ".meta", "incorrect", "low.v"), "bad\n");
   put(join(b, ".docs", "instructions.md"), "No tasks here.\n");
+  put(join(b, ".meta/stages/task_1.v"), "obsolete stage");
   put(join(b, ".docs", "hints.md"), "A hint.\n");
 
   const g = join(track, "exercises", "concept", "gamma");
@@ -166,6 +167,7 @@ describe("convert", () => {
     assert.equal(item.difficulty, 3);
     assert.deepEqual(item.design.support, ["helper.v"]);
     assert.equal(item.task, undefined);
+    assert.equal(existsSync(join(out, "items/beta/stages")), false);
     assert.equal(item.checks.reference, "example.v");
     assert.ok(existsSync(join(out, "items/beta/starter/helper.v")));
     assert.ok(existsSync(join(out, "items/beta/hints.md")));

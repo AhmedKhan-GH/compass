@@ -52,6 +52,8 @@ Options:
   --out <path>      Where build writes the index. The default is COMPASS_CONTENT_INDEX,
                     or .compass/content-index.json under the repository root.
   --static          Run only the checks that need no runner.
+  --item <slug>     Check only this item in the selected courses; repeat for a batch.
+                    Prerequisites are still checked against the full course order.
   --source <dir>    Check the packs under <dir> instead of the configured sources.
                     <dir> may also be a single pack.
   -h, --help        Show this help.
@@ -240,6 +242,7 @@ async function check(io: Io, args: string[], options: CliOptions): Promise<numbe
     args,
     options: {
       static: { type: "boolean" },
+      item: { type: "string", multiple: true },
       source: { type: "string" },
       help: { type: "boolean", short: "h" },
     },
@@ -261,7 +264,27 @@ async function check(io: Io, args: string[], options: CliOptions): Promise<numbe
     }
     packs = packs.filter((pack) => pack.manifest !== undefined && wanted.has(pack.manifest.id));
   }
-  const byPack = await staticDiagnostics(packs);
+  const wantedItems = values.item ? new Set(values.item) : undefined;
+  if (wantedItems) {
+    const unknown = [...wantedItems].filter((slug) => !packs.some((pack) => pack.items.some((item) => item.slug === slug)));
+    if (unknown.length > 0) {
+      io.err(`compass: no selected course has the item ${unknown.join(", ")}.`);
+      return EXIT_ERRORS;
+    }
+  }
+  // Static checks need the complete course for prerequisites; report and run only the selected items afterwards.
+  let byPack = await staticDiagnostics(packs);
+  if (wantedItems) {
+    const selectedDiagnostics = new Map<LoadedPack, Diagnostic[]>();
+    packs = packs.flatMap((pack) => {
+      const items = pack.items.filter((item) => wantedItems.has(item.slug));
+      if (items.length === 0) return [];
+      const selected = { ...pack, items };
+      selectedDiagnostics.set(selected, (byPack.get(pack) ?? []).filter((d) => !d.item || wantedItems.has(d.item)));
+      return [selected];
+    });
+    byPack = selectedDiagnostics;
+  }
   const runsByItem = new Map<LoadedItem, number>();
   const notRun = new Set<LoadedItem>();
   let unreachable: string | undefined;

@@ -241,7 +241,9 @@ Every run uses the starter files with the solution file replaced. When an item h
 (reference, wrong and stage) uses `reference/<name>` for each, so a wrong solution differs from the reference only in
 the solution file, except JSON bundles which also replace their named editable support files.
 
-`compass content check --static` runs only the static checks. CI runs the full check on `content/`.
+`compass content check --static` runs only the static checks. Repeated `--item <slug>` options select a batch across
+the selected courses; prerequisite validation still uses the full course order, and only the selected items are
+reported and submitted to the runner. An unknown slug is an error. CI runs the full check on `content/`.
 
 ## The content index
 
@@ -404,7 +406,7 @@ subject of a view given most of the window, labels as nouns, no explanatory sent
 and writes `course.toml` in the old learning-path order. It reads the old repository and never writes to it.
 `--all` converts the entire track. The converter maps the four legacy cocotb/native runner kinds to the registered
 Compass kinds, preserves VHDL top entities and source order, and discovers stages with the solution's HDL extension
-or `.json`. Native items override the course runner and default to no circuit pane. Code, checks and solution bundles
+or `.json`, copying only snapshots attached to declared tasks. Native items override the course runner and default to no circuit pane. Code, checks and solution bundles
 are copied byte for byte; Markdown uses the documented interface-label substitutions. Pack-owned icons survive
 reconversion. A converted VHDL pack is a runnable draft, replacing its planned list; SystemVerilog remains planned.
 The Verilog syllabus comes from `VERILOG_SYLLABUS.md`; VHDL uses the curriculum portion of its track README, before

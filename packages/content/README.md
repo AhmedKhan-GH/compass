@@ -62,3 +62,13 @@ error. Colour is used only when standard output is a terminal and `NO_COLOR` is 
 `npm test -w @compass/content` runs the unit tests with `node:test` and `tsx`. They use the fixture pack in
 `test/fixtures/verilog` (the old `drive-high` exercise, transcribed, and a small practice item with an editable
 support file, with icons and a category) and `test/fixtures/plan` (a course in development) and a fake runner client; they need neither Docker nor the network.
+
+
+For a verification batch, repeat `--item` to check only those slugs in the selected courses:
+
+```sh
+compass content check --item drive-high --item trail-counter-kit sternbild/verilog sternbild/vhdl
+```
+
+The static prerequisite check still uses the full course order. Only the selected items' variants are sent to the
+runner; an unknown slug is an error.

@@ -163,3 +163,25 @@ test("a missing configuration is a plain error", async (t) => {
   assert.equal(result.code, 1);
   assert.match(result.err, /^compass: No compass\.config\.toml was found in .* or any folder above it\.\n$/);
 });
+
+
+test("item selection runs only the named variants and retains prerequisite context", async (t) => {
+  const { root, pack } = await temporaryRepository(t);
+  const client = fakeRunner();
+  const selected = await run(["content", "check", "--item", "light-bank"], { cwd: root, createRunner: () => client });
+  assert.equal(selected.code, 0, selected.out + selected.err);
+  assert.equal(client.requests.length, 2);
+  assert.ok(client.requests.every((request) => request.checks.name === "test_bank.py"));
+  assert.doesNotMatch(selected.out, /drive-high/);
+  assert.match(selected.out, /Checked 1 pack and 1 item: no errors/);
+  const both = fakeRunner();
+  assert.equal((await run(["content", "check", "--item", "drive-high", "--item", "light-bank"],
+    { cwd: root, createRunner: () => both })).code, 0);
+  assert.equal(both.requests.length, 6);
+  const unknown = await run(["content", "check", "--item", "typo"], { cwd: root });
+  assert.equal(unknown.code, 1);
+  assert.match(unknown.err, /no selected course has the item typo/);
+  await rm(path.join(pack, "items/drive-high/wrong/low.v"));
+  const isolated = await run(["content", "check", "--static", "--item", "light-bank"], { cwd: root });
+  assert.equal(isolated.code, 0, isolated.out + isolated.err);
+});

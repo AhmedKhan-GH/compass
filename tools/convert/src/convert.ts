@@ -263,13 +263,9 @@ function buildItem(
   }
   for (const w of incorrect) out.copy(join(dir, w), into(`wrong/${basename(w)}`));
   const stagesDir = join(dir, ".meta", "stages");
-  let stages = 0;
-  if (existsSync(stagesDir)) {
-    for (const name of readdirSync(stagesDir).sort()) {
-      out.copy(join(stagesDir, name), into(`stages/${name}`));
-      stages++;
-    }
-  }
+  const stages = taskList.flatMap((task) => task.stage ? [task.stage] : []);
+  // Some old practice folders retain snapshots from earlier task-based lessons. Only declared tasks have stages.
+  for (const name of stages) out.copy(join(stagesDir, name), into(`stages/${name}`));
   const docs = join(dir, ".docs");
   const intro = join(docs, "introduction.md");
   if (existsSync(intro)) out.copyMarkdown(intro, into("intro.md"));
@@ -280,7 +276,7 @@ function buildItem(
   }
   const design_ = join(dir, ".meta", "design.md");
   if (existsSync(design_)) out.copyMarkdown(design_, into("notes.md"));
-  return { manifest, tasks: taskList.length, wrong: incorrect.length, stages };
+  return { manifest, tasks: taskList.length, wrong: incorrect.length, stages: stages.length };
 }
 
 export function repoRoot(start: string): string {
