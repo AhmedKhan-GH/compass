@@ -83,7 +83,6 @@
 }
 
 .lesson-head {
-  --tone: var(--sb-text-muted);
   --tone-tint: var(--sb-surface);
   --tone-edge: var(--sb-rule);
   display: flex;
@@ -96,29 +95,9 @@
   background: var(--tone-tint);
 }
 
-.lesson-head[data-tone="passed"] {
-  --tone: var(--sb-state-passed);
-  --tone-tint: var(--sb-state-passed-tint);
-  --tone-edge: var(--sb-state-passed);
-}
 
-.lesson-head[data-tone="failed"] {
-  --tone: var(--sb-state-failed);
-  --tone-tint: var(--sb-state-failed-tint);
-  --tone-edge: var(--sb-state-failed);
-}
 
-.lesson-head[data-tone="running"] {
-  --tone: var(--sb-state-running);
-  --tone-tint: var(--sb-state-running-tint);
-  --tone-edge: var(--sb-state-running);
-}
 
-.lesson-head[data-tone="information"] {
-  --tone: var(--sb-state-information);
-  --tone-tint: var(--sb-state-information-tint);
-  --tone-edge: var(--sb-state-information);
-}
 
 .lesson-head-text {
   display: flex;
@@ -150,17 +129,8 @@
   white-space: nowrap;
 }
 
-.lesson-meta .sb-status-word {
-  color: var(--tone);
-}
-
-.lesson-meta .sb-status-glyph {
-  color: var(--tone);
-}
-
-.lesson-head:not([data-tone="passed"], [data-tone="failed"], [data-tone="running"], [data-tone="information"])
-  .lesson-meta
-  :is(.sb-status-word, .sb-status-glyph) {
+/* The lesson header keeps one header colour; only the task headers show status colours. */
+.lesson-meta :is(.sb-status-word, .sb-status-glyph) {
   color: var(--sb-text-muted);
 }
 
