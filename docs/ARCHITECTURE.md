@@ -400,9 +400,15 @@ subject of a view given most of the window, labels as nouns, no explanatory sent
 
 ## Conversion
 
-`tools/convert` turns an exercise of the old app (`tracks/verilog/exercises/{concept,practice}/<slug>`) into an item
-folder, and writes or updates `course.toml`. It reads the old repository and never writes to it. Converting the rest
-of the course is one command over the remaining slugs.
+`tools/convert` turns exercises from `tracks/{verilog,vhdl}/exercises/{concept,practice}/<slug>` into item folders
+and writes `course.toml` in the old learning-path order. It reads the old repository and never writes to it.
+`--all` converts the entire track. The converter maps the four legacy cocotb/native runner kinds to the registered
+Compass kinds, preserves VHDL top entities and source order, and discovers stages with the solution's HDL extension
+or `.json`. Native items override the course runner and default to no circuit pane. Code, checks and solution bundles
+are copied byte for byte; Markdown uses the documented interface-label substitutions. Pack-owned icons survive
+reconversion. A converted VHDL pack is a runnable draft, replacing its planned list; SystemVerilog remains planned.
+The Verilog syllabus comes from `VERILOG_SYLLABUS.md`; VHDL uses the curriculum portion of its track README, before
+`Run and author`. Relative syllabus links lose their targets so the pack remains self-contained.
 
 ## Checks and CI
 

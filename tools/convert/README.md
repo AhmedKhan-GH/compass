@@ -6,6 +6,7 @@ The format is defined in `docs/ARCHITECTURE.md` (the sections "A pack" and "Conv
 ```
 npm run convert -w @compass/convert -- --from <old repo> --track verilog --out content/verilog <slug>...
 npm run convert -w @compass/convert -- --from <old repo> --track verilog --out content/verilog --all
+npm run convert -w @compass/convert -- --from <old repo> --track vhdl --out content/vhdl --all
 ```
 
 A relative `--out` resolves from the repository root (the nearest ancestor holding `compass.config.toml`).
@@ -14,8 +15,14 @@ The command prints one line per exercise and a summary, and exits with 1 when an
 ## Behaviour
 
 - Reads `tracks/<track>/config.json`, the exercise folders, `concepts/` and `VERILOG_SYLLABUS.md`; never writes to the
-  old repository, and refuses an `--out` inside it. It never writes outside `--out`.
-- Refuses an exercise whose runner is not `icarus-cocotb-v1`, and converts nothing for it.
+  old repository (VHDL uses the curriculum section of its track README), and refuses an `--out` inside it. It never writes outside `--out`.
+- Maps `icarus-cocotb-v1`, `icarus-native-v1`, `ghdl-cocotb-v1` and `ghdl-native-v1` to the corresponding
+  versioned Compass kinds. Unknown runners and runners of a different language are refused.
+- Native items override the course runner and hide the circuit pane unless the source explicitly enables it.
+  VHDL retains its top entity, source analysis order and `.vhd`/`.vhdl` stage files.
+- JSON wrong solutions and stage snapshots remain bundles of solution text and editable support-file text,
+  validated before replacement. The mapping is documented in `docs/ARCHITECTURE.md`.
+- VHDL becomes a runnable draft with real items and no planned entries; SystemVerilog is not touched.
 - Copies code and test files byte for byte. Markdown goes through the table in `src/substitutions.ts`
   (`**Schematic**` to `**Circuit**`, `**Waveforms**` to `**Waveform**`); the syllabus is copied unchanged.
   Every substitution is reported.

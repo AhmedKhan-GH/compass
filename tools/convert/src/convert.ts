@@ -8,9 +8,9 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import { basename, dirname, join, resolve, sep } from "node:path";
+import { basename, dirname, extname, join, resolve, sep } from "node:path";
 import { parse, stringify } from "smol-toml";
-import { CourseManifest, ItemManifest } from "@compass/schema";
+import { CourseManifest, ItemManifest, SolutionBundle, type TestRunnerKind } from "@compass/schema";
 import {
   isObject,
   obj,
@@ -27,7 +27,12 @@ import {
 import { PACK_OWN_ITEM_FILES } from "./pack-files.ts";
 import { substitute, type SubstitutionCount } from "./substitutions.ts";
 
-const RUNNER = "icarus-cocotb-v1";
+const RUNNERS: Record<string, { kind: TestRunnerKind; language: OldTrack["language"]; native: boolean }> = {
+  "icarus-cocotb-v1": { kind: "iverilog-cocotb@1", language: "verilog", native: false },
+  "icarus-native-v1": { kind: "iverilog-native@1", language: "verilog", native: true },
+  "ghdl-cocotb-v1": { kind: "ghdl-cocotb@1", language: "vhdl", native: false },
+  "ghdl-native-v1": { kind: "ghdl-native@1", language: "vhdl", native: true },
+};
 
 export interface ConvertOptions {
   /** the old repository root */
@@ -132,8 +137,9 @@ function buildItem(
   const files = obj(config, "files", where);
   const nebula = obj(obj(config, "custom", where), "nebula", `${where} custom`);
   const runner = optStr(nebula, "runner", where);
-  if (runner !== RUNNER) {
-    throw new Refusal(`runner "${runner ?? "none"}" is not ${RUNNER}`);
+  const mapped = runner !== undefined && Object.hasOwn(RUNNERS, runner) ? RUNNERS[runner] : undefined;
+  if (!mapped || mapped.language !== track.language) {
+    throw new Refusal(`runner "${runner ?? "none"}" is not supported for ${track.language}; known: ${Object.keys(RUNNERS).join(", ")}`);
   }
 
   const solution = strList(files, "solution", where)[0];
@@ -151,13 +157,14 @@ function buildItem(
   const base = `items/${entry.slug}`;
   const into = (rel: string) => `${base}/${rel}`;
   const design: ItemManifest["design"] = {
-    top: str(nebula, "top_module", where),
+    top: optStr(nebula, "top_entity", where) ?? str(nebula, "top_module", where),
+    ...(nebula["source_order"] !== undefined ? { sourceOrder: strList(nebula, "source_order", where) } : {}),
     solution,
     support,
     editable,
     schematic: true,
   };
-  const schematic = nebula["schematic"] ?? config["schematic"];
+  const schematic = nebula["schematic"] ?? config["schematic"] ?? (mapped.native ? false : undefined);
   if (schematic !== undefined) {
     if (typeof schematic !== "boolean") throw new Error(`${where}: schematic must be a boolean`);
     design.schematic = schematic;
@@ -174,8 +181,10 @@ function buildItem(
         id,
         tests: strList(t, "tests", `${where} tasks[${i}]`),
       };
-      const stageName = `task_${id}.v`;
-      if (existsSync(join(dir, ".meta", "stages", stageName))) task.stage = stageName;
+      const candidates = [`task_${id}${extname(solution)}`, `task_${id}.json`]
+        .filter((name) => existsSync(join(dir, ".meta", "stages", name)));
+      if (candidates.length > 1) throw new Error(`${where}: task ${id} has ambiguous stage files`);
+      if (candidates[0]) task.stage = candidates[0];
       taskList.push(task);
     });
   }
@@ -189,6 +198,7 @@ function buildItem(
     concepts: entry.concepts,
     ...(entry.difficulty !== undefined ? { difficulty: entry.difficulty } : {}),
     status: entry.status as ItemManifest["status"],
+    ...(mapped.native ? { runner: mapped.kind } : {}),
     design,
     checks: {
       file: basename(testFile),
@@ -209,8 +219,10 @@ function buildItem(
   };
   if (manifest.difficulty !== undefined) doc["difficulty"] = manifest.difficulty;
   doc["status"] = manifest.status;
+  if (manifest.runner) doc["runner"] = manifest.runner;
   const d: Record<string, unknown> = { top: design.top, solution: design.solution };
   if (support.length > 0) d["support"] = support;
+  if (design.sourceOrder) d["sourceOrder"] = design.sourceOrder;
   if (editable.length > 0) d["editable"] = editable;
   if (schematic !== undefined) d["schematic"] = design.schematic;
   doc["design"] = d;
@@ -228,6 +240,14 @@ function buildItem(
   }
   const toml = stringify(doc);
   ItemManifest.parse(parse(toml));
+
+  // Bundles are data: preserve their bytes, but validate every replacement before touching the destination.
+  for (const filename of [...incorrect, ...taskList.flatMap((task) => task.stage ? [`.meta/stages/${task.stage}`] : [])]) {
+    if (!filename.endsWith(".json")) continue;
+    const bundle = SolutionBundle.parse(readJson(join(dir, filename)));
+    for (const name of Object.keys(bundle.sourceFiles))
+      if (!editable.includes(name)) throw new Error(`${where}: bundle ${filename} replaces a non-editable file ${name}`);
+  }
 
   // Everything validated: now write.
   out.text(into("item.toml"), toml);
@@ -273,7 +293,7 @@ export function repoRoot(start: string): string {
   }
 }
 
-const COURSE = {
+const VERILOG_COURSE = {
   id: "sternbild/verilog",
   version: "0.1.0",
   title: "RTL design with Verilog",
@@ -309,7 +329,15 @@ function writeCourse(trackDir: string, repo: string, track: OldTrack, outRoot: s
     if (!track.concepts.some((k) => k.slug === c)) throw new Error(`concept "${c}" is not in config.json`);
   }
   const doc = {
-    ...COURSE,
+    ...VERILOG_COURSE,
+    ...(track.language === "vhdl" ? {
+      id: "sternbild/vhdl",
+      title: "RTL design with VHDL",
+      blurb: "Signals, processes, types and testbenches in VHDL.",
+      language: "vhdl",
+      runner: "ghdl-cocotb@1",
+      circuit: "ghdl-yosys-digitaljs@1",
+    } : {}),
     editor: { indent: 4 },
     concept: concepts.map((c) => ({ slug: c.slug, name: c.name })),
     item: items,
@@ -323,10 +351,13 @@ function writeCourse(trackDir: string, repo: string, track: OldTrack, outRoot: s
       out.copyMarkdown(join(src, f), `concepts/${c.slug}/${f}`);
     }
   }
-  const syllabus = join(repo, "VERILOG_SYLLABUS.md");
+  const syllabus = track.language === "vhdl" ? join(trackDir, "README.md") : join(repo, "VERILOG_SYLLABUS.md");
   // The old syllabus links to planning documents at the root of the old repository. A pack is self-contained, so
   // a relative link to a document outside it keeps its text and loses its target.
-  out.text("syllabus.md", unlinkOutsideDocuments(readFileSync(syllabus, "utf8")));
+  let syllabusText = readFileSync(syllabus, "utf8");
+  // The VHDL README ends with commands for operating the old app, outside the curriculum.
+  if (track.language === "vhdl") syllabusText = syllabusText.split(/^## Run and author\s*$/m)[0]!.trimEnd() + "\n";
+  out.text("syllabus.md", unlinkOutsideDocuments(syllabusText));
   return { exercises: [], items: slugs, concepts: concepts.map((c) => c.slug) };
 }
 

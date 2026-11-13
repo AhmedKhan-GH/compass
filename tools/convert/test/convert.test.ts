@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, before, describe, it } from "node:test";
@@ -237,4 +237,86 @@ it("links from the syllabus to documents outside the pack lose their target", as
     unlinkOutsideDocuments("See [ROADMAP.md](ROADMAP.md), [the audit](AUDIT.md#part), [a site](https://example.org) and [below](#scope)."),
     "See ROADMAP.md, the audit, [a site](https://example.org) and [below](#scope).",
   );
+});
+
+
+it("converts VHDL entities, source order, stages and native graders while replacing a planned course", () => {
+  const repo = join(root, "vhdl-old");
+  const target = join(root, "vhdl-pack");
+  const track = join(repo, "tracks/vhdl");
+  cpSync(join(old, "tracks/fake"), track, { recursive: true });
+  const config = JSON.parse(readFileSync(join(track, "config.json"), "utf8")) as Record<string, unknown>;
+  config.language = "VHDL";
+  put(join(track, "config.json"), JSON.stringify(config));
+  put(join(track, "README.md"), "# VHDL syllabus\n\nLearn entities.\n\n## Run and author\n\nOld commands.\n");
+  for (const file of tree(track)) {
+    const full = join(track, file);
+    if (file.endsWith(".v")) {
+      put(full + "hd", readFileSync(full, "utf8"));
+      rmSync(full);
+    } else if (file.endsWith(".meta/config.json")) {
+      put(full, readFileSync(full, "utf8").replaceAll('.v"', '.vhd"').replaceAll("icarus-cocotb-v1", "ghdl-cocotb-v1"));
+    }
+  }
+  const alpha = join(track, "exercises/concept/alpha/.meta/config.json");
+  put(alpha, exerciseConfig("ghdl-cocotb-v1", {
+    top_module: undefined, top_entity: "top_module", source_order: ["top_module.vhd"],
+    incorrect: [".meta/incorrect/low.vhd"], tasks: [{ id: 1, tests: ["t1"] }],
+  }, { solution: ["top_module.vhd"], exemplar: [".meta/exemplar.vhd"] }));
+  const beta = join(track, "exercises/practice/beta/.meta/config.json");
+  put(beta, readFileSync(beta, "utf8").replace("ghdl-cocotb-v1", "ghdl-native-v1"));
+  put(join(target, "course.toml"), 'status = "in-development"\n[[planned]]\nslug = "alpha"\n');
+  put(join(target, "icon.svg"), "course icon");
+  put(join(target, "items/alpha/icon.svg"), "item icon");
+  const result = convert({ from: repo, track: "vhdl", out: target, slugs: ["beta", "alpha"] });
+  assert.deepEqual(result.exercises.map((e) => e.status), ["converted", "converted"]);
+  const course = CourseManifest.parse(parse(readFileSync(join(target, "course.toml"), "utf8")));
+  assert.equal(course.language, "vhdl");
+  assert.equal(course.runner, "ghdl-cocotb@1");
+  assert.equal(course.circuit, "ghdl-yosys-digitaljs@1");
+  assert.notEqual(course.status, "in-development");
+  assert.deepEqual(course.planned, []);
+  assert.deepEqual(course.item.map((i) => i.slug), ["alpha", "beta"]);
+  const item = ItemManifest.parse(parse(readFileSync(join(target, "items/alpha/item.toml"), "utf8")));
+  assert.equal(item.design.top, "top_module");
+  assert.deepEqual(item.design.sourceOrder, ["top_module.vhd"]);
+  assert.equal(item.task?.[0]?.stage, "task_1.vhd");
+  const native = ItemManifest.parse(parse(readFileSync(join(target, "items/beta/item.toml"), "utf8")));
+  assert.equal(native.runner, "ghdl-native@1");
+  assert.equal(native.design.schematic, false);
+  assert.equal(readFileSync(join(target, "syllabus.md"), "utf8"), "# VHDL syllabus\n\nLearn entities.\n");
+  const snapshot = tree(target).map((name) => [name, readFileSync(join(target, name), "utf8")]);
+  convert({ from: repo, track: "vhdl", out: target, slugs: ["alpha", "beta"] });
+  assert.deepEqual(tree(target).map((name) => [name, readFileSync(join(target, name), "utf8")]), snapshot);
+  assert.equal(readFileSync(join(target, "icon.svg"), "utf8"), "course icon");
+  assert.equal(readFileSync(join(target, "items/alpha/icon.svg"), "utf8"), "item icon");
+});
+
+it("preserves native Verilog and multi-file wrong and stage bundles, refusing invalid bundles before replacing an item", () => {
+  const repo = join(root, "native-old");
+  const target = join(root, "native-pack");
+  cpSync(old, repo, { recursive: true });
+  const dir = join(repo, "tracks/fake/exercises/concept/alpha");
+  const bundle = JSON.stringify({ source: "solution", sourceFiles: { "helper.v": "helper" } }, null, 2);
+  put(join(dir, ".meta/config.json"), exerciseConfig("icarus-native-v1", {
+    editable_files: ["helper.v"], exemplar_files: { "helper.v": ".meta/helper.v" },
+    incorrect: [".meta/incorrect/mistake.json"], tasks: [{ id: 1, tests: ["test_checker"] }],
+  }, { editor: ["helper.v"] }));
+  put(join(dir, "helper.v"), "starter helper");
+  put(join(dir, ".meta/helper.v"), "reference helper");
+  put(join(dir, ".meta/incorrect/mistake.json"), bundle);
+  rmSync(join(dir, ".meta/stages/task_1.v"));
+  put(join(dir, ".meta/stages/task_1.json"), bundle);
+  const options = { from: repo, track: "fake", out: target, slugs: ["alpha"] };
+  assert.equal(convert(options).exercises[0]?.status, "converted");
+  const itemPath = join(target, "items/alpha/item.toml");
+  const item = ItemManifest.parse(parse(readFileSync(itemPath, "utf8")));
+  assert.equal(item.runner, "iverilog-native@1");
+  assert.equal(item.task?.[0]?.stage, "task_1.json");
+  assert.equal(readFileSync(join(target, "items/alpha/wrong/mistake.json"), "utf8"), bundle);
+  assert.equal(readFileSync(join(target, "items/alpha/stages/task_1.json"), "utf8"), bundle);
+  put(join(dir, ".meta/incorrect/mistake.json"), JSON.stringify({ source: "bad", sourceFiles: { "foreign.v": "bad" } }));
+  const before = readFileSync(itemPath, "utf8");
+  assert.equal(convert(options).exercises[0]?.status, "failed");
+  assert.equal(readFileSync(itemPath, "utf8"), before);
 });

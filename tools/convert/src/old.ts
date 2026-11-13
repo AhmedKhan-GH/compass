@@ -63,6 +63,7 @@ export interface OldConcept {
 }
 
 export interface OldTrack {
+  language: "verilog" | "vhdl";
   entries: Map<string, OldEntry>;
   concepts: OldConcept[];
   learningPath: string[];
@@ -94,6 +95,8 @@ function entries(list: Json | undefined, kind: "concept" | "practice"): OldEntry
 
 export function readTrack(path: string): OldTrack {
   const config = readJson(path);
+  const language = (optStr(config, "language", "config.json") ?? "Verilog").toLowerCase();
+  if (language !== "verilog" && language !== "vhdl") throw new Error(`unsupported track language: ${language}`);
   const ex = obj(config, "exercises", "config.json");
   const map = new Map<string, OldEntry>();
   for (const e of [...entries(ex["concept"], "concept"), ...entries(ex["practice"], "practice")]) {
@@ -114,6 +117,7 @@ export function readTrack(path: string): OldTrack {
     displayNames[k] = v;
   }
   return {
+    language,
     entries: map,
     concepts,
     learningPath: strList(nebula, "learning_path", "custom.nebula"),
