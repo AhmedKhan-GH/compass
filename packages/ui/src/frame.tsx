@@ -83,9 +83,38 @@ export function Label({ children, className }: { children: ReactNode; className?
   return <span className={join("sb-label", className)}>{children}</span>;
 }
 
-/** The placeholder where a thumbnail goes: a square dark tile with a 1 px parchment border and nothing inside. */
-export function Thumbnail({ size = 64, className }: { size?: number; className?: string }) {
-  return <span className={join("sb-thumbnail", className)} style={{ width: size, height: size }} aria-hidden="true" />;
+/**
+ * A thumbnail: the icon when there is one, shown as an image exactly as drawn (it carries its own tile), or else
+ * the placeholder tile, a square with a 1 px border and nothing inside. The alt is empty: a title always stands
+ * beside a thumbnail.
+ */
+export function Thumbnail({
+  size = 64,
+  src,
+  className,
+}: {
+  size?: number;
+  src?: string | undefined;
+  className?: string;
+}) {
+  if (src)
+    return (
+      <img
+        className={join("sb-icon", className)}
+        src={src}
+        width={size}
+        height={size}
+        alt=""
+        decoding="async"
+        draggable={false}
+      />
+    );
+  // The placeholder tile takes the same place as an icon's own tile, which is drawn inside its square with a margin.
+  return (
+    <span className={join("sb-thumbnail-slot", className)} style={{ width: size, height: size }} aria-hidden="true">
+      <span className="sb-thumbnail" />
+    </span>
+  );
 }
 
 /** The house style for Markdown and other running text. */
