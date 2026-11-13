@@ -1,7 +1,8 @@
 /*
- * The Compass base layer on the Sternbild roles. It needs the pinned release, sternbild.css, loaded first.
- * Only role names are used here: never a raw colour and never a --sb-palette-* name. The --sb-data-* colours mark
- * data only (traces, the pass and fail glyphs). --sb-text-faint is never set on --sb-surface-hover (4.18:1).
+ * The Compass base layer on the Sternbild roles. It needs the pinned release, sternbild.css, and a theme
+ * (themes/learn.css, the default, or themes/dark.css). Only role names are used here: never a raw colour and
+ * never a --sb-palette-* name. The state roles mark states only, always beside a glyph or a word.
+ * In the dark theme --sb-text-faint is never set on --sb-surface-hover (4.18:1).
  */
 
 /* Base */
@@ -13,7 +14,6 @@
 }
 
 html {
-  color-scheme: dark;
   height: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -96,7 +96,7 @@ samp {
 }
 
 ::selection {
-  background: var(--sb-rule);
+  background: var(--sb-selection);
   color: var(--sb-text);
 }
 
@@ -226,13 +226,57 @@ a.sb-wordmark-link {
   align-items: center;
   min-width: 0;
   padding: 0 var(--sb-space-3);
-  background: var(--sb-well);
+  background: var(--sb-status-ground);
   border-top: var(--sb-rule-width) solid var(--sb-rule);
   color: var(--sb-text-muted);
   font-size: var(--sb-app-font-size-ui-small);
   line-height: calc(var(--sb-app-status-bar) - var(--sb-rule-width));
   white-space: nowrap;
   overflow: hidden;
+}
+
+/* A toned status bar is filled with its state colour, and everything on it takes the state's ink. */
+.sb-status-bar[data-tone="running"] {
+  --tone: var(--sb-state-running);
+}
+.sb-status-bar[data-tone="passed"] {
+  --tone: var(--sb-state-passed);
+}
+.sb-status-bar[data-tone="failed"] {
+  --tone: var(--sb-state-failed);
+}
+.sb-status-bar[data-tone="warning"] {
+  --tone: var(--sb-state-warning);
+}
+.sb-status-bar[data-tone="information"] {
+  --tone: var(--sb-state-information);
+}
+.sb-status-bar[data-tone="neutral"] {
+  --tone: var(--sb-state-neutral);
+}
+
+.sb-status-bar[data-tone] {
+  background: var(--tone);
+  border-top-color: var(--tone);
+  color: var(--sb-on-state);
+}
+
+.sb-status-bar[data-tone]
+  .sb-status-item
+  :is(.sb-status-glyph, .sb-status-word, .sb-faint, .sb-muted, .sb-key, .sb-mono),
+.sb-status-bar[data-tone] .sb-status-item.sb-mono,
+.sb-status-bar[data-tone] .sb-status-item::before {
+  color: var(--sb-on-state);
+}
+
+.sb-status-bar[data-tone] .sb-segment button {
+  border-color: var(--sb-on-state);
+  color: var(--sb-on-state);
+}
+
+.sb-status-bar[data-tone] .sb-segment button[aria-pressed="true"] {
+  background: var(--sb-on-state);
+  color: var(--tone);
 }
 
 .sb-status-item {
@@ -319,58 +363,33 @@ a.sb-wordmark-link {
   color: var(--sb-accent);
 }
 
-/* The primary plate: a 1 px parchment outline with 45 degree cuts of --sb-cut on its corners. */
+/* The primary action: a square bronze plate, one per view, with its key in the plate's ink. */
 .sb-primary {
-  --cut: var(--sb-cut);
-  --inner-cut: calc(var(--sb-cut) - 0.4px);
   display: inline-flex;
-  height: var(--sb-app-pane-header);
-  padding: var(--sb-rule-width);
-  background: var(--sb-text);
-  clip-path: polygon(
-    var(--cut) 0,
-    calc(100% - var(--cut)) 0,
-    100% var(--cut),
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    var(--cut) 100%,
-    0 calc(100% - var(--cut)),
-    0 var(--cut)
-  );
+  align-items: center;
+  gap: 6px;
+  height: calc(var(--sb-app-key-button) + 2px);
+  padding: 0 var(--sb-space-3);
+  border: var(--sb-rule-width) solid var(--sb-accent);
+  border-radius: var(--sb-radius);
+  background: var(--sb-accent);
+  color: var(--sb-on-accent);
   line-height: 1;
   white-space: nowrap;
 }
 
-.sb-primary-plate {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  width: 100%;
-  padding: 0 var(--sb-space-3);
-  background: var(--sb-background-app);
-  color: var(--sb-text);
-  clip-path: polygon(
-    var(--inner-cut) 0,
-    calc(100% - var(--inner-cut)) 0,
-    100% var(--inner-cut),
-    100% calc(100% - var(--inner-cut)),
-    calc(100% - var(--inner-cut)) 100%,
-    var(--inner-cut) 100%,
-    0 calc(100% - var(--inner-cut)),
-    0 var(--inner-cut)
-  );
-}
-
 .sb-primary .sb-key {
-  color: var(--sb-accent);
+  color: var(--sb-on-accent);
 }
 
-.sb-primary:hover:not(:disabled) .sb-primary-plate {
-  background: var(--sb-surface-hover);
+.sb-primary:hover:not(:disabled) {
+  background: var(--sb-accent-hover);
+  border-color: var(--sb-accent-hover);
 }
 
-.sb-primary:active:not(:disabled) .sb-primary-plate {
+.sb-primary:active:not(:disabled) {
   background: var(--sb-text);
+  border-color: var(--sb-text);
   color: var(--sb-background-app);
 }
 
@@ -379,17 +398,87 @@ a.sb-wordmark-link {
 }
 
 .sb-primary:focus-visible {
-  outline: none;
-  background: var(--sb-focus);
+  outline: var(--sb-rule-width) solid var(--sb-focus);
+  outline-offset: var(--sb-rule-width);
 }
 
 .sb-primary:disabled {
-  background: var(--sb-rule);
+  background: transparent;
+  border-color: var(--sb-rule);
+  color: var(--sb-text-faint);
 }
 
-.sb-primary:disabled .sb-primary-plate,
 .sb-primary:disabled .sb-key {
   color: var(--sb-text-faint);
+}
+
+/* The action that is running: its button takes the running tint and colour, with a running mark. */
+.sb-key-button[data-running],
+.sb-primary[data-running] {
+  background: var(--sb-state-running-tint);
+  border-color: var(--sb-state-running);
+  color: var(--sb-state-running);
+}
+
+.sb-key-button[data-running] .sb-status-glyph,
+.sb-primary[data-running] .sb-status-glyph {
+  color: var(--sb-state-running);
+  animation: sb-running 900ms steps(2, jump-none) infinite alternate;
+}
+
+@keyframes sb-running {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-key-button[data-running] .sb-status-glyph,
+  .sb-primary[data-running] .sb-status-glyph {
+    animation: none;
+  }
+}
+
+/* The theme setting: two square options and their key. */
+.sb-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.sb-segment .sb-key {
+  margin-right: 6px;
+}
+
+.sb-segment button {
+  height: 16px;
+  padding: 0 6px;
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  color: var(--sb-text-muted);
+  font-size: var(--sb-app-font-size-ui-small);
+  line-height: 1;
+}
+
+.sb-segment button + button {
+  border-left: 0;
+}
+
+.sb-segment button:hover {
+  background: var(--sb-surface-hover);
+  color: var(--sb-text);
+}
+
+.sb-segment button[aria-pressed="true"] {
+  background: var(--sb-selected);
+  color: var(--sb-accent);
+}
+
+.sb-segment button:focus-visible {
+  outline: var(--sb-rule-width) solid var(--sb-focus);
+  outline-offset: calc(var(--sb-rule-width) * -1);
 }
 
 .sb-word-button {
@@ -711,12 +800,28 @@ a.sb-wordmark-link {
 
 .sb-status-glyph[data-status="passed"],
 .sb-status-glyph[data-status="completed"] {
-  color: var(--sb-data-verdigris);
+  color: var(--sb-state-passed);
 }
 
 .sb-status-glyph[data-status="failed"],
 .sb-status-glyph[data-status="error"] {
-  color: var(--sb-data-madder);
+  color: var(--sb-state-failed);
+}
+
+.sb-status-glyph[data-status="running"] {
+  color: var(--sb-state-running);
+}
+
+.sb-status-glyph[data-status="queued"] {
+  color: var(--sb-state-neutral);
+}
+
+.sb-status-glyph[data-status="in-progress"] {
+  color: var(--sb-state-information);
+}
+
+.sb-status-glyph[data-status="unavailable"] {
+  color: var(--sb-state-warning);
 }
 
 .sb-status-glyph[data-status="untested"],
@@ -726,9 +831,89 @@ a.sb-wordmark-link {
 }
 
 .sb-status[data-status="passed"] .sb-status-word,
-.sb-status[data-status="completed"] .sb-status-word,
+.sb-status[data-status="completed"] .sb-status-word {
+  color: var(--sb-state-passed);
+}
+
 .sb-status[data-status="failed"] .sb-status-word,
 .sb-status[data-status="error"] .sb-status-word {
+  color: var(--sb-state-failed);
+}
+
+.sb-status[data-status="running"] .sb-status-word {
+  color: var(--sb-state-running);
+}
+
+.sb-status[data-status="unavailable"] .sb-status-word {
+  color: var(--sb-state-warning);
+}
+
+/* The banner: an outcome in words on its state's tint, framed in the state colour. */
+.sb-banner {
+  --tone: var(--sb-state-neutral);
+  --tone-tint: var(--sb-state-neutral-tint);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sb-space-1) var(--sb-space-3);
+  border: var(--sb-rule-width) solid var(--tone);
+  background: var(--tone-tint);
+  color: var(--sb-text);
+}
+
+.sb-banner[data-tone="running"] {
+  --tone: var(--sb-state-running);
+  --tone-tint: var(--sb-state-running-tint);
+}
+.sb-banner[data-tone="passed"] {
+  --tone: var(--sb-state-passed);
+  --tone-tint: var(--sb-state-passed-tint);
+}
+.sb-banner[data-tone="failed"] {
+  --tone: var(--sb-state-failed);
+  --tone-tint: var(--sb-state-failed-tint);
+}
+.sb-banner[data-tone="warning"] {
+  --tone: var(--sb-state-warning);
+  --tone-tint: var(--sb-state-warning-tint);
+}
+.sb-banner[data-tone="information"] {
+  --tone: var(--sb-state-information);
+  --tone-tint: var(--sb-state-information-tint);
+}
+
+.sb-banner-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+  min-height: var(--sb-app-row);
+  white-space: nowrap;
+}
+
+.sb-banner .sb-status-glyph {
+  color: var(--tone);
+}
+
+.sb-banner-title {
+  color: var(--tone);
+  font-size: var(--sb-font-size-desc);
+}
+
+.sb-banner-facts {
+  display: inline-flex;
+  gap: var(--sb-space-3);
+  margin-left: var(--sb-space-2);
+  color: var(--sb-text-muted);
+  font-size: var(--sb-app-font-size-ui-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-banner-detail {
+  min-width: 0;
+  padding-left: calc(12px + var(--sb-space-2));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--sb-text);
 }
 
@@ -748,8 +933,12 @@ a.sb-wordmark-link {
 }
 
 .sb-meter-cell[data-state="complete"] {
-  background: var(--sb-text);
-  border-color: var(--sb-text);
+  background: var(--sb-state-passed);
+  border-color: var(--sb-state-passed);
+}
+
+.sb-meter-cell[data-state="started"] {
+  border-color: var(--sb-state-information);
 }
 
 .sb-meter-cell {
@@ -760,7 +949,7 @@ a.sb-wordmark-link {
   content: "";
   position: absolute;
   inset: 0 50% 0 0;
-  background: var(--sb-text-muted);
+  background: var(--sb-state-information);
 }
 
 /* The thumbnail placeholder */
@@ -768,8 +957,8 @@ a.sb-wordmark-link {
 .sb-thumbnail {
   display: inline-block;
   flex: 0 0 auto;
-  background: var(--sb-well);
-  border: var(--sb-rule-width) solid var(--sb-text);
+  background: var(--sb-mark-tile);
+  border: var(--sb-rule-width) solid var(--sb-mark-tile-border);
 }
 
 /* Prose */
@@ -909,4 +1098,45 @@ a.sb-wordmark-link {
   line-height: var(--sb-leading-solid);
   text-transform: uppercase;
   color: var(--sb-text);
+}
+
+/* Dialog: a small square modal over a scrim. */
+
+.sb-dialog {
+  width: min(440px, calc(100vw - 32px));
+  margin: auto;
+  padding: var(--sb-space-4);
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  border-radius: var(--sb-radius);
+  background: var(--sb-background-app);
+  color: var(--sb-text);
+}
+
+.sb-dialog::backdrop {
+  background: var(--sb-scrim);
+}
+
+.sb-dialog-title {
+  font-size: var(--sb-app-font-size-ui-small);
+  letter-spacing: var(--sb-tracking-ui-label);
+  line-height: var(--sb-app-row);
+  text-transform: uppercase;
+  color: var(--sb-text);
+}
+
+.sb-dialog-body {
+  margin-top: var(--sb-space-2);
+  color: var(--sb-text);
+  line-height: var(--sb-leading-desc);
+}
+
+.sb-dialog-body .sb-banner {
+  margin-top: var(--sb-space-3);
+}
+
+.sb-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sb-space-2);
+  margin-top: var(--sb-space-4);
 }

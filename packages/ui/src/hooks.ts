@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { detectPlatform, isPlainChord, matchChord, parseChord, type Chord, type Platform } from "./keys.ts";
+import { DEFAULT_THEME, THEME_STORAGE_KEY, type Theme } from "./theme.ts";
 
 const noSubscription = () => () => {};
 
@@ -79,6 +80,8 @@ export function useKeyBindings(bindings: readonly KeyBinding[]): void {
     };
     const listener = (event: KeyboardEvent) => {
       if (event.defaultPrevented || event.isComposing) return;
+      // A modal dialog has the keys to itself.
+      if (document.querySelector("dialog[open]")) return;
       for (const binding of current.current) {
         if (binding.enabled === false) continue;
         const chord = chordOf(binding.chord);
@@ -117,4 +120,24 @@ export function useFocusedPane(initial: string): [string, (pane: string) => void
     return () => document.removeEventListener("focusin", listener);
   }, []);
   return [pane, setPane];
+}
+
+function readTheme(): Theme {
+  return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "learn";
+}
+
+function subscribeTheme(listener: () => void): () => void {
+  const observer = new MutationObserver(listener);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
+
+/** The theme on the root element, and a setter that applies it and keeps it in local storage. */
+export function useTheme(): [Theme, (theme: Theme) => void] {
+  const theme = useSyncExternalStore(subscribeTheme, readTheme, () => DEFAULT_THEME);
+  const set = useCallback((next: Theme) => {
+    document.documentElement.setAttribute("data-theme", next);
+    writeStorage(THEME_STORAGE_KEY, next);
+  }, []);
+  return [theme, set];
 }

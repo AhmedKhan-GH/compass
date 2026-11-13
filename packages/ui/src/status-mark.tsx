@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { join } from "./classes.ts";
 
 /**
@@ -102,4 +103,41 @@ function glyph(status: Status) {
     case "not-started":
       return <rect x="2.5" y="2.5" width="7" height="7" fill="none" strokeWidth="1" />;
   }
+}
+
+export type Tone = "running" | "passed" | "failed" | "warning" | "information" | "neutral";
+
+/**
+ * The outcome of an action, in words, on its state's tint: a glyph and a title, facts after the title, actions on
+ * the right, and a detail line below.
+ */
+export function Banner({
+  tone,
+  status,
+  title,
+  facts,
+  detail,
+  actions,
+  className,
+}: {
+  tone: Tone;
+  status: Status;
+  title: string;
+  facts?: ReactNode;
+  detail?: ReactNode;
+  actions?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={join("sb-banner", className)} data-tone={tone} role="status" aria-live="polite">
+      <div className="sb-banner-head">
+        <StatusGlyph status={status} />
+        <span className="sb-banner-title">{title}</span>
+        {facts && <span className="sb-banner-facts">{facts}</span>}
+        <span className="sb-spacer" />
+        {actions}
+      </div>
+      {detail && <div className="sb-banner-detail">{detail}</div>}
+    </section>
+  );
 }

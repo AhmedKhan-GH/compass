@@ -1,4 +1,5 @@
 export { join } from "./classes.ts";
+export { Dialog } from "./dialog.tsx";
 export {
   AppFrame,
   CommandBar,
@@ -12,10 +13,19 @@ export {
   Trail,
   Wordmark,
 } from "./frame.tsx";
-export { KeyButton, KeyHint, PrimaryButton, TabStrip, WordButton, type Tab } from "./controls.tsx";
+export { KeyButton, KeyHint, PrimaryButton, TabStrip, ThemeSwitch, WordButton, type Tab } from "./controls.tsx";
 export { Pane, Split } from "./pane.tsx";
-export { StatusGlyph, StatusMark, statusWord, type Status } from "./status-mark.tsx";
-export { useFocusedPane, useKeyBindings, usePlatform, useStoredValue, writeStorage, type KeyBinding } from "./hooks.ts";
+export { Banner, StatusGlyph, StatusMark, statusWord, type Status, type Tone } from "./status-mark.tsx";
+export {
+  useFocusedPane,
+  useKeyBindings,
+  usePlatform,
+  useStoredValue,
+  useTheme,
+  writeStorage,
+  type KeyBinding,
+} from "./hooks.ts";
+export { DEFAULT_THEME, isTheme, THEME_SCRIPT, THEME_STORAGE_KEY, THEMES, type Theme } from "./theme.ts";
 export {
   detectPlatform,
   formatChord,

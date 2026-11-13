@@ -1,8 +1,9 @@
 "use client";
 import type { ComponentPropsWithRef, KeyboardEvent, ReactNode } from "react";
 import { join } from "./classes.ts";
-import { usePlatform } from "./hooks.ts";
+import { useKeyBindings, usePlatform, useTheme } from "./hooks.ts";
 import { formatChord } from "./keys.ts";
+import { StatusGlyph } from "./status-mark.tsx";
 
 /** A key chord in the mono face at the small size, for example "⌘↵". */
 export function KeyHint({ chord, className }: { chord: string; className?: string }) {
@@ -13,27 +14,46 @@ export function KeyHint({ chord, className }: { chord: string; className?: strin
 type ButtonProps = Omit<ComponentPropsWithRef<"button">, "children"> & {
   chord?: string;
   children?: ReactNode;
+  /** The action this button started is running: the button takes the running colour and a running mark. */
+  running?: boolean;
 };
 
 /** One target holding the key and the action it runs: "⌘↵ Run tests". */
-export function KeyButton({ chord, children, className, type = "button", ...props }: ButtonProps) {
+export function KeyButton({ chord, children, className, running, type = "button", ...props }: ButtonProps) {
   return (
-    <button {...props} type={type} className={join("sb-key-button", className)}>
-      {chord && <KeyHint chord={chord} />}
+    <button {...props} type={type} className={join("sb-key-button", className)} data-running={running || undefined}>
+      {running ? <StatusGlyph status="running" /> : chord && <KeyHint chord={chord} />}
       {children !== undefined && <span className="sb-key-button-label">{children}</span>}
     </button>
   );
 }
 
-/** The primary action: the cut-corner plate, one per view, with its key in bronze. */
-export function PrimaryButton({ chord, children, className, type = "button", ...props }: ButtonProps) {
+/** The primary action, one per view: a square bronze plate with its key. */
+export function PrimaryButton({ chord, children, className, running, type = "button", ...props }: ButtonProps) {
   return (
-    <button {...props} type={type} className={join("sb-primary", className)}>
-      <span className="sb-primary-plate">
-        {chord && <KeyHint chord={chord} />}
-        {children !== undefined && <span className="sb-primary-label">{children}</span>}
-      </span>
+    <button {...props} type={type} className={join("sb-primary", className)} data-running={running || undefined}>
+      {running ? <StatusGlyph status="running" /> : chord && <KeyHint chord={chord} />}
+      {children !== undefined && <span className="sb-primary-label">{children}</span>}
     </button>
+  );
+}
+
+const THEME_CHORD = "Alt+Shift+KeyL";
+
+/** The theme setting: light (the learn theme) or dark, with a key that switches between them. */
+export function ThemeSwitch() {
+  const [theme, setTheme] = useTheme();
+  useKeyBindings([{ chord: THEME_CHORD, run: () => setTheme(theme === "dark" ? "learn" : "dark") }]);
+  return (
+    <span className="sb-segment" role="group" aria-label="Theme">
+      <KeyHint chord={THEME_CHORD} />
+      <button type="button" aria-pressed={theme === "learn"} onClick={() => setTheme("learn")}>
+        Light
+      </button>
+      <button type="button" aria-pressed={theme === "dark"} onClick={() => setTheme("dark")}>
+        Dark
+      </button>
+    </span>
   );
 }
 

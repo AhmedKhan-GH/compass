@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { join } from "./classes.ts";
+import type { Tone } from "./status-mark.tsx";
 
 /** The application window: the command bar, the docked content, the status bar. */
 export function AppFrame({
@@ -60,10 +61,13 @@ export function Spacer() {
   return <span className="sb-spacer" />;
 }
 
-/** The status strip at the bottom of the window, on the well. */
-export function StatusBar({ children }: { children: ReactNode }) {
+/**
+ * The status strip at the bottom of the window. A `tone` fills it with a state colour (a run going, its outcome),
+ * so the state is seen from anywhere in the window.
+ */
+export function StatusBar({ children, tone }: { children: ReactNode; tone?: Tone }) {
   return (
-    <footer className="sb-status-bar" role="status" aria-live="polite">
+    <footer className="sb-status-bar" role="status" aria-live="polite" data-tone={tone}>
       {children}
     </footer>
   );
