@@ -1,19 +1,42 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { ItemProgress, ItemView, TaskStatus } from "@compass/schema";
-import { KeyButton, StatusGlyph, statusWord, type Status } from "@compass/ui";
-import { taskStatus, taskStatusMark } from "@/lib/runs";
+import type { ItemView, TaskStatus } from "@compass/schema";
+import { KeyButton, StatusGlyph, StatusMark, Thumbnail, statusWord, type Status } from "@compass/ui";
+import { assetUrl } from "@/lib/routes";
+import { taskStatusMark, type LessonState } from "@/lib/runs";
 import { Markdown } from "../markdown";
+
+/**
+ * The lesson's header: its icon, its title and a line with its state, kind, concepts and task count, on its state's
+ * tint like the task headers. It stays at the top of the instructions.
+ */
+export function LessonHeader({ item, concepts, lesson }: { item: ItemView; concepts: string[]; lesson: LessonState }) {
+  return (
+    <header className="lesson-head" data-tone={lesson.tone}>
+      <Thumbnail size={40} src={assetUrl(item.icon)} />
+      <div className="lesson-head-text">
+        <h1 className="lesson-title">{item.title}</h1>
+        <p className="lesson-meta">
+          <StatusMark status={lesson.status} label={lesson.word} />
+          <span>
+            · {item.kind === "concept" ? "Concept" : "Practice"} · {concepts.join(", ")}
+            {item.tasks.length ? ` · ${item.tasks.length} tasks` : ""}
+          </span>
+        </p>
+      </div>
+    </header>
+  );
+}
 
 /** The story and the tasks. The current task is marked; its header runs its tests. */
 export function InstructionsPane({
   item,
   concepts,
-  progress,
+  lesson,
   currentTask,
   scrollToTask,
   busy,
-  taskStates,
+  taskStatuses,
   runningTask,
   onSelectTask,
   onRunTask,
@@ -21,13 +44,13 @@ export function InstructionsPane({
 }: {
   item: ItemView;
   concepts: string[];
-  progress: ItemProgress | undefined;
+  lesson: LessonState;
   currentTask: number | undefined;
   /** Changes when the learner moves to a task with the keys; the pane then brings that task into view. */
   scrollToTask: number;
   busy: boolean;
-  /** Task statuses from the latest run of this revision, over the stored progress. */
-  taskStates: Record<string, TaskStatus>;
+  /** Each task's status: from the latest run of this revision, over the stored progress. */
+  taskStatuses: Record<string, TaskStatus>;
   /** The task whose run is in flight, or "all" for a run of every task. */
   runningTask: number | "all" | undefined;
   onSelectTask: (taskId: number) => void;
@@ -49,52 +72,48 @@ export function InstructionsPane({
   const statusOf = (taskId: number): Status =>
     runningTask === "all" || runningTask === taskId
       ? "running"
-      : taskStatusMark(taskStates[String(taskId)] ?? taskStatus(taskId, progress));
+      : taskStatusMark(taskStatuses[String(taskId)] ?? "untested");
   return (
     <>
-      {item.tasks.length > 0 && (
-        <div className="task-strip">
-          <span className="sb-label">Tasks</span>
-          {item.tasks.map((task) => {
-            const status = statusOf(task.id);
-            return (
-              <button
-                key={task.id}
-                type="button"
-                className="task-chip"
-                data-status={status}
-                aria-pressed={task.id === currentTask}
-                aria-label={`Task ${task.id}, ${statusWord(status)}`}
-                onClick={() => onSelectTask(task.id)}
-              >
-                <span className="task-chip-number">{task.id}</span>
-                <StatusGlyph status={status} />
-              </button>
-            );
-          })}
-          <span className="sb-spacer" />
-          <KeyButton
-            chord="Alt+BracketLeft"
-            aria-label="Previous task"
-            disabled={position <= 0}
-            onClick={() => onStepTask(-1)}
-          />
-          <KeyButton
-            chord="Alt+BracketRight"
-            aria-label="Next task"
-            disabled={position < 0 || position >= item.tasks.length - 1}
-            onClick={() => onStepTask(1)}
-          />
-        </div>
-      )}
+      <div className="lesson-top">
+        <LessonHeader item={item} concepts={concepts} lesson={lesson} />
+        {item.tasks.length > 0 && (
+          <div className="task-strip">
+            <span className="sb-label">Tasks</span>
+            {item.tasks.map((task) => {
+              const status = statusOf(task.id);
+              return (
+                <button
+                  key={task.id}
+                  type="button"
+                  className="task-chip"
+                  data-status={status}
+                  aria-pressed={task.id === currentTask}
+                  aria-label={`Task ${task.id}, ${statusWord(status)}`}
+                  onClick={() => onSelectTask(task.id)}
+                >
+                  <span className="task-chip-number">{task.id}</span>
+                  <StatusGlyph status={status} />
+                </button>
+              );
+            })}
+            <span className="sb-spacer" />
+            <KeyButton
+              chord="Alt+BracketLeft"
+              aria-label="Previous task"
+              disabled={position <= 0}
+              onClick={() => onStepTask(-1)}
+            />
+            <KeyButton
+              chord="Alt+BracketRight"
+              aria-label="Next task"
+              disabled={position < 0 || position >= item.tasks.length - 1}
+              onClick={() => onStepTask(1)}
+            />
+          </div>
+        )}
+      </div>
       <div className="instructions" ref={container}>
-        <header className="instructions-head">
-          <h1 className="sb-page-title">{item.title}</h1>
-          <p className="instructions-meta">
-            {item.kind === "concept" ? "Concept" : "Practice"} · {concepts.join(", ")}
-            {item.tasks.length ? ` · ${item.tasks.length} tasks` : ""}
-          </p>
-        </header>
         <Markdown>{item.instructions}</Markdown>
         {item.hints && <Hints text={item.hints} label="Hints" />}
         {item.tasks.map((task) => {

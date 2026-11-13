@@ -37,7 +37,7 @@ import { getCircuit, getProgress, getRun, listRuns, resetProgress, startCircuit,
 import { editableNames, sameFiles, shownNames, submittedFiles, type Files } from "@/lib/drafts";
 import { isBusy, type JobPhase } from "@/lib/job-poll";
 import { assetUrl, courseHref, itemHref } from "@/lib/routes";
-import { formatWhen, ranFiles, runOutcome, runScope, runStatus, taskStatusesFromRun } from "@/lib/runs";
+import { formatWhen, lessonState, ranFiles, runOutcome, runScope, runStatus, taskStatusesFromRun } from "@/lib/runs";
 import { Brand } from "../brand";
 import { RunnerStatus, useRunnerState } from "../runner-status";
 import { Markdown } from "../markdown";
@@ -45,7 +45,7 @@ import { CircuitActions, CircuitPane, type SourcePosition } from "./circuit-pane
 import type { CursorPosition } from "./code-editor";
 import { EditorPane, type EditorPaneHandle } from "./editor-pane";
 import { HistoryPane } from "./history-pane";
-import { InstructionsPane } from "./instructions-pane";
+import { InstructionsPane, LessonHeader } from "./instructions-pane";
 import { ResultsPane } from "./results-pane";
 import { useDraft } from "./use-draft";
 import { useElapsed } from "./use-elapsed";
@@ -370,6 +370,11 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   const circuitEarlier = circuitFiles !== undefined && !sameFiles(circuitFiles, submitted);
   const completed = progress?.status === "completed";
   const outcome = shown ? runOutcome(shown, item.tasks) : undefined;
+  // One source for the task headers, the chips and the lesson header: the latest run of this revision over the
+  // stored progress, with a run in flight on top.
+  const latestRun = shown && shown.id === latestId && shown.revision === item.revision ? shown : undefined;
+  const taskStatuses = { ...(progress?.tasks ?? {}), ...(latestRun ? taskStatusesFromRun(latestRun, item.tasks) : {}) };
+  const lesson = lessonState({ running: busy, progress, latestRun, tasks: taskStatuses });
   // The status bar is filled with the run's colour while it is in flight, and with its outcome until the next edit
   // or the next run.
   const statusTone: Tone | undefined = busy
@@ -493,23 +498,24 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
           className="instructions-pane"
         >
           {leftTab === "introduction" && item.intro ? (
-            <div className="instructions">
-              <Markdown>{item.intro}</Markdown>
-            </div>
+            <>
+              <div className="lesson-top">
+                <LessonHeader item={item} concepts={conceptNames} lesson={lesson} />
+              </div>
+              <div className="instructions">
+                <Markdown>{item.intro}</Markdown>
+              </div>
+            </>
           ) : (
             <InstructionsPane
               item={item}
               concepts={conceptNames}
-              progress={progress}
+              lesson={lesson}
               currentTask={taskId}
               scrollToTask={taskScroll}
               busy={busy}
               runningTask={busy ? (runMode === "task" ? taskId : "all") : undefined}
-              taskStates={
-                shown && shown.id === latestId && shown.revision === item.revision
-                  ? taskStatusesFromRun(shown, item.tasks)
-                  : {}
-              }
+              taskStatuses={taskStatuses}
               onSelectTask={selectTask}
               onRunTask={(id) => {
                 selectTask(id);

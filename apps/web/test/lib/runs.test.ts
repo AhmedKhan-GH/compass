@@ -4,6 +4,7 @@ import type { RunRecord, TestResult } from "@compass/schema";
 import {
   firstLine,
   formatDuration,
+  lessonState,
   runOutcome,
   runResult,
   runScope,
@@ -134,5 +135,44 @@ test("tasks a run did not cover are kept when asked", () => {
       [1, 1],
       [2, 0],
     ],
+  );
+});
+
+test("the lesson's state: running, completed, failed by the latest run, in progress, not started", () => {
+  const failing = { ...base, report: { status: "fail" as const, tests: [pass, fail] } };
+  const passing = { ...base, report: { status: "pass" as const, tests: [pass] } };
+  assert.equal(
+    lessonState({ running: true, progress: { status: "completed" }, latestRun: failing, tasks: {} }).word,
+    "Running",
+  );
+  assert.equal(
+    lessonState({ running: false, progress: { status: "completed" }, latestRun: failing, tasks: {} }).word,
+    "Completed",
+  );
+  assert.deepEqual(
+    lessonState({ running: false, progress: { status: "in-progress" }, latestRun: failing, tasks: { "1": "passed" } }),
+    {
+      tone: "failed",
+      status: "failed",
+      word: "Failed",
+    },
+  );
+  assert.equal(
+    lessonState({ running: false, progress: { status: "in-progress" }, latestRun: passing, tasks: { "1": "passed" } })
+      .tone,
+    "information",
+  );
+  assert.equal(
+    lessonState({
+      running: false,
+      progress: undefined,
+      latestRun: { ...base, state: "failed", error: { kind: "unavailable", message: "" } },
+      tasks: {},
+    }).word,
+    "Not started",
+  );
+  assert.equal(
+    lessonState({ running: false, progress: { status: "not-started" }, latestRun: undefined, tasks: {} }).tone,
+    "neutral",
   );
 });

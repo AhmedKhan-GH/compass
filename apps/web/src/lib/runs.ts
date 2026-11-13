@@ -213,3 +213,30 @@ export function ranFiles(run: Pick<RunRecord, "files">, files: Record<string, st
 }
 
 export type { RunSummary };
+
+export type LessonState = { tone: Tone; status: Status; word: string };
+
+/**
+ * The state of the whole lesson, for its header, from the same sources the task headers and the status bar use:
+ * a run in flight is running; a completed lesson stays completed; otherwise the latest run's outcome decides
+ * failed; a lesson with a passed task and no failure is in progress (the information colour, as on the course
+ * page); a lesson with no counted run is not started.
+ */
+export function lessonState({
+  running,
+  progress,
+  latestRun,
+  tasks,
+}: {
+  running: boolean;
+  progress: Pick<ItemProgress, "status"> | undefined;
+  latestRun: Pick<RunRecord, "state" | "report" | "error"> | undefined;
+  tasks: Record<string, TaskStatus>;
+}): LessonState {
+  if (running) return { tone: "running", status: "running", word: "Running" };
+  if (progress?.status === "completed") return { tone: "passed", status: "completed", word: "Completed" };
+  if (latestRun && runOutcome(latestRun).tone === "failed") return { tone: "failed", status: "failed", word: "Failed" };
+  if (progress?.status === "in-progress" || Object.values(tasks).includes("passed"))
+    return { tone: "information", status: "in-progress", word: "In progress" };
+  return { tone: "neutral", status: "not-started", word: "Not started" };
+}

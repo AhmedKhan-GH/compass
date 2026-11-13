@@ -62,24 +62,114 @@
   padding: var(--sb-space-4) var(--sb-space-4) var(--sb-space-12);
 }
 
-.instructions-head {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sb-space-1);
-  padding-bottom: var(--sb-space-3);
-  border-bottom: var(--sb-rule-width) solid var(--sb-rule-faint);
+/* The lesson header: the icon, the title and a line with the state, on the lesson state's tint, framed in its
+   colour like the task headers. Not started, it takes the pane headers' surface. It stays at the top of the pane
+   with the task strip under it. */
+.instructions-pane {
+  --lesson-head: calc(var(--sb-app-row) * 2 + var(--sb-space-2));
 }
 
-.instructions-meta {
+.lesson-top {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding-top: var(--sb-space-2);
+  background: var(--sb-background-app);
+}
+
+.lesson-top:only-child,
+.lesson-top:not(:has(.task-strip)) {
+  padding-bottom: var(--sb-space-1);
+}
+
+.lesson-head {
+  --tone: var(--sb-text-muted);
+  --tone-tint: var(--sb-surface);
+  --tone-edge: var(--sb-rule);
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-3);
+  height: var(--lesson-head);
+  margin: 0 var(--sb-space-2) var(--sb-space-1);
+  padding: 0 var(--sb-space-2);
+  border: var(--sb-rule-width) solid var(--tone-edge);
+  background: var(--tone-tint);
+}
+
+.lesson-head[data-tone="passed"] {
+  --tone: var(--sb-state-passed);
+  --tone-tint: var(--sb-state-passed-tint);
+  --tone-edge: var(--sb-state-passed);
+}
+
+.lesson-head[data-tone="failed"] {
+  --tone: var(--sb-state-failed);
+  --tone-tint: var(--sb-state-failed-tint);
+  --tone-edge: var(--sb-state-failed);
+}
+
+.lesson-head[data-tone="running"] {
+  --tone: var(--sb-state-running);
+  --tone-tint: var(--sb-state-running-tint);
+  --tone-edge: var(--sb-state-running);
+}
+
+.lesson-head[data-tone="information"] {
+  --tone: var(--sb-state-information);
+  --tone-tint: var(--sb-state-information-tint);
+  --tone-edge: var(--sb-state-information);
+}
+
+.lesson-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.lesson-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--sb-text);
+  font-family: var(--sb-font-family-display);
+  font-size: var(--sb-font-size-name);
+  letter-spacing: var(--sb-tracking-heading);
+  line-height: var(--sb-leading-heading);
+  text-transform: uppercase;
+}
+
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-1);
+  min-width: 0;
+  overflow: hidden;
   color: var(--sb-text-muted);
   font-size: var(--sb-app-font-size-ui-small);
+  white-space: nowrap;
+}
+
+.lesson-meta .sb-status-word {
+  color: var(--tone);
+}
+
+.lesson-meta .sb-status-glyph {
+  color: var(--tone);
+}
+
+.lesson-head:not([data-tone="passed"], [data-tone="failed"], [data-tone="running"], [data-tone="information"])
+  .lesson-meta
+  :is(.sb-status-word, .sb-status-glyph) {
+  color: var(--sb-text-muted);
 }
 
 .task {
   margin-top: var(--sb-space-2);
   border-top: var(--sb-rule-width) solid var(--sb-rule);
   /* Below the sticky task strip. */
-  scroll-margin-top: calc(var(--sb-app-row) + var(--sb-space-2) + var(--sb-space-2));
+  /* Below the lesson header and the task strip, which stay at the top of the pane. */
+  scroll-margin-top: calc(var(--lesson-head) + var(--sb-space-2) + var(--sb-app-row) + var(--sb-space-2) * 2);
 }
 
 .task-head {
@@ -635,9 +725,6 @@
 /* The task strip at the top of the instructions */
 
 .task-strip {
-  position: sticky;
-  top: 0;
-  z-index: 1;
   display: flex;
   align-items: center;
   gap: var(--sb-space-2);
