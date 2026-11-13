@@ -1,5 +1,6 @@
 /** What runs and circuits share: reading a runner job, in-flight submissions, and the bounds on stored text. */
-import { isTerminal, type Job, type JobError } from "@compass/schema";
+import { isTerminal, type Job, type JobError, type JobState } from "@compass/schema";
+import type { SeenJob } from "@compass/runner-client";
 import { isRunnerUnavailable, runnerClient } from "./runner.ts";
 
 /** Bytes of the simulation log kept: its tail. The old store kept 32 KiB. */
@@ -48,13 +49,29 @@ export type Observation =
   /** The runner does not know the job or cannot be reached; jobs do not survive a runner restart. */
   | { kind: "lost"; error: JobError };
 
-/** Reads a job from the runner, holding up to `waitMs` for a terminal state. */
-export async function observeJob(jobId: string, options: { waitMs: number; signal?: AbortSignal }): Promise<Observation> {
+/**
+ * True when a stored record is no longer what the browser saw: another state, or, when both are queued and a
+ * position was seen, another position. The runner applies the same rule to its jobs.
+ */
+export function differsFrom(record: { state: JobState; position?: number | undefined }, seen: SeenJob): boolean {
+  if (record.state !== seen.state) return true;
+  return record.state === "queued" && seen.position !== undefined && record.position !== seen.position;
+}
+
+/**
+ * Reads a job from the runner, holding up to `waitMs` for a terminal state, or with `seen` only until the job
+ * differs from it.
+ */
+export async function observeJob(
+  jobId: string,
+  options: { waitMs: number; seen?: SeenJob; signal?: AbortSignal },
+): Promise<Observation> {
   const client = await runnerClient();
   let job: Job | undefined;
   try {
     job = await client.get(jobId, {
       ...(options.waitMs > 0 ? { waitMs: options.waitMs } : {}),
+      ...(options.seen ? { seen: options.seen } : {}),
       ...(options.signal ? { signal: options.signal } : {}),
     });
   } catch (error) {

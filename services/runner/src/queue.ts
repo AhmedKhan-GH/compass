@@ -6,6 +6,18 @@ import { randomUUID } from "node:crypto";
 import { JobResult, isTerminal, type Job, type JobError, type JobRequest, type JobState } from "@compass/schema";
 import { JobFailure } from "./failure.ts";
 
+/** What a reader last saw of a job: its state and, while queued, its position. */
+export type SeenJob = { state: JobState; position?: number };
+
+/**
+ * True when the job is no longer as seen: another state, or, when both are queued and a position was seen, another
+ * position.
+ */
+export function differsFrom(job: { state: JobState; position?: number | undefined }, seen: SeenJob): boolean {
+  if (job.state !== seen.state) return true;
+  return job.state === "queued" && seen.position !== undefined && job.position !== seen.position;
+}
+
 /**
  * Runs one job. Rejects with JobFailure when the run cannot produce a result, and should stop soon after `signal`
  * aborts.
@@ -53,6 +65,7 @@ type Entry = {
   result?: JobResult;
   error?: JobError;
   controller?: AbortController;
+  /** Called whenever the job changes state or queue position; each waiter checks whether it is done. */
   waiters: Set<() => void>;
 };
 
@@ -105,20 +118,35 @@ export class JobQueue {
     return entry && this.snapshot(entry);
   }
 
-  /** Resolves when the job is terminal or `waitMs` has passed, with the job as it then is. */
-  async wait(id: string, waitMs: number, signal?: AbortSignal): Promise<Job | undefined> {
+  /**
+   * Resolves with the job as it then is when the job is terminal or `waitMs` has passed. With `seen` it also resolves,
+   * at once if need be, when the job differs from what was seen.
+   */
+  async wait(
+    id: string,
+    waitMs: number,
+    options: { seen?: SeenJob; signal?: AbortSignal } = {},
+  ): Promise<Job | undefined> {
+    const { seen, signal } = options;
     this.prune();
     const entry = this.jobs.get(id);
-    if (!entry || isTerminal(entry.state) || waitMs <= 0 || signal?.aborted) return entry && this.snapshot(entry);
+    if (!entry) return undefined;
+    const ready = () =>
+      isTerminal(entry.state) ||
+      (seen !== undefined && differsFrom({ state: entry.state, position: this.position(entry) }, seen));
+    if (ready() || waitMs <= 0 || signal?.aborted) return this.snapshot(entry);
     await new Promise<void>((resolve) => {
       const done = () => {
         clearTimeout(timer);
-        entry.waiters.delete(done);
+        entry.waiters.delete(check);
         signal?.removeEventListener("abort", done);
         resolve();
       };
+      const check = () => {
+        if (ready()) done();
+      };
       const timer = setTimeout(done, waitMs);
-      entry.waiters.add(done);
+      entry.waiters.add(check);
       signal?.addEventListener("abort", done, { once: true });
     });
     return this.get(id);
@@ -130,8 +158,10 @@ export class JobQueue {
     const entry = this.jobs.get(id);
     if (!entry) return undefined;
     if (entry.state === "queued") {
-      this.pending.splice(this.pending.indexOf(entry), 1);
+      const index = this.pending.indexOf(entry);
+      this.pending.splice(index, 1);
       this.finish(entry, "cancelled");
+      this.notifyPending(index);
     } else if (entry.state === "running") {
       this.finish(entry, "cancelled");
       // The executor removes the container; its worker slot frees when it settles.
@@ -156,10 +186,15 @@ export class JobQueue {
   }
 
   private dispatch(): void {
+    let started = false;
     while (!this.closed && this.active.size < this.concurrency && this.pending.length) {
       const entry = this.pending.shift();
-      if (entry) this.start(entry);
+      if (entry) {
+        this.start(entry);
+        started = true;
+      }
     }
+    if (started) this.notifyPending(0);
   }
 
   private start(entry: Entry): void {
@@ -173,6 +208,7 @@ export class JobQueue {
       this.dispatch();
     });
     this.active.add(run);
+    this.notify(entry);
   }
 
   private async execute(entry: Entry, signal: AbortSignal): Promise<void> {
@@ -205,7 +241,22 @@ export class JobQueue {
     entry.finishedAt = this.now();
     entry.result = outcome.result;
     entry.error = outcome.error;
-    for (const wake of [...entry.waiters]) wake();
+    this.notify(entry);
+  }
+
+  /** Lets the job's waiters check it again. */
+  private notify(entry: Entry): void {
+    for (const check of [...entry.waiters]) check();
+  }
+
+  /** Lets the waiters of the queued jobs from `from` on check again: their positions changed. */
+  private notifyPending(from: number): void {
+    for (const entry of this.pending.slice(from)) this.notify(entry);
+  }
+
+  /** Jobs ahead of a queued job; undefined when the job is not queued. */
+  private position(entry: Entry): number | undefined {
+    return entry.state === "queued" ? this.pending.indexOf(entry) : undefined;
   }
 
   /** Forgets finished jobs older than the retention period. */
@@ -226,7 +277,7 @@ export class JobQueue {
       createdAt: new Date(entry.createdAt).toISOString(),
       ...(startedAt ? { startedAt } : {}),
       ...(finishedAt ? { finishedAt } : {}),
-      ...(entry.state === "queued" ? { position: this.pending.indexOf(entry) } : {}),
+      ...(entry.state === "queued" ? { position: this.position(entry) } : {}),
       ...(entry.state === "succeeded" && entry.result ? { result: entry.result } : {}),
       ...(entry.state === "failed" && entry.error ? { error: entry.error } : {}),
     };

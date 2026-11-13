@@ -19,7 +19,7 @@ import {
   type JobState,
   type StartCircuitRequest,
 } from "@compass/schema";
-import type { RunnerClient } from "@compass/runner-client";
+import type { RunnerClient, SeenJob } from "@compass/runner-client";
 import { database, writeTransaction, type Db } from "./db.ts";
 import { mergeWithStarter, sourceHash, validateSubmittedFiles } from "./files.ts";
 import { HttpError } from "./http.ts";
@@ -28,6 +28,7 @@ import {
   DIAGNOSTICS_BYTES,
   awaitSubmission,
   boundError,
+  differsFrom,
   headBytes,
   isAbort,
   observeJob,
@@ -229,10 +230,13 @@ export async function startCircuit(
   return toRecord(row);
 }
 
-/** Reads a circuit, asking the runner about it when it is not terminal. Undefined when there is no such circuit. */
+/**
+ * Reads a circuit, asking the runner about it when it is not terminal. With `seen`, as for a run; a circuit has no
+ * queue position, so only the state is compared. Undefined when there is no such circuit.
+ */
 export async function readCircuit(
   id: string,
-  options: { waitMs?: number; signal?: AbortSignal } = {},
+  options: { waitMs?: number; seen?: SeenJob; signal?: AbortSignal } = {},
 ): Promise<CircuitRecord | undefined> {
   const db = database();
   let row = selectCircuit(db, id);
@@ -243,10 +247,13 @@ export async function readCircuit(
     const settled = settleCircuit(db, id, failed(unavailable("The circuit was never handed to the runner.")));
     return settled && toRecord(settled);
   }
+  const seen: SeenJob | undefined = options.seen && { state: options.seen.state };
+  if (seen && differsFrom({ state: row.state }, seen)) return toRecord(row);
   let observation: Observation;
   try {
     observation = await observeJob(row.job_id, {
       waitMs: options.waitMs ?? 0,
+      ...(seen ? { seen } : {}),
       ...(options.signal ? { signal: options.signal } : {}),
     });
   } catch (error) {

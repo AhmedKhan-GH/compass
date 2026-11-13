@@ -22,6 +22,7 @@ import {
   issueMessage,
   json,
   readJson,
+  seenParameter,
   waitParameter,
 } from "./http.ts";
 import { courseProgress, resetItem } from "./progress.ts";
@@ -95,11 +96,15 @@ export function runHistoryRoute(request: Request, params: Promise<ItemParams>): 
   });
 }
 
-/** GET /api/runs/[id]?wait=: 200 { run }. */
+/** GET /api/runs/[id]?wait=&state=&position=: 200 { run }. */
 export function readRunRoute(request: Request, params: Promise<IdParams>): Promise<Response> {
   return respond(request, async () => {
     const id = recordId(await params);
-    const run = await readRun(id, { waitMs: waitParameter(request), signal: request.signal });
+    const run = await readRun(id, {
+      waitMs: waitParameter(request),
+      seen: seenParameter(request),
+      signal: request.signal,
+    });
     if (!run) throw new HttpError(404, "not-found", "There is no such run.");
     return json({ run });
   });
@@ -115,11 +120,15 @@ export function startCircuitRoute(request: Request, params: Promise<ItemParams>)
   });
 }
 
-/** GET /api/circuits/[id]?wait=: 200 { circuit }. */
+/** GET /api/circuits/[id]?wait=&state=: 200 { circuit }. A position is accepted and ignored: a circuit has none. */
 export function readCircuitRoute(request: Request, params: Promise<IdParams>): Promise<Response> {
   return respond(request, async () => {
     const id = recordId(await params);
-    const circuit = await readCircuit(id, { waitMs: waitParameter(request), signal: request.signal });
+    const circuit = await readCircuit(id, {
+      waitMs: waitParameter(request),
+      seen: seenParameter(request),
+      signal: request.signal,
+    });
     if (!circuit) throw new HttpError(404, "not-found", "There is no such circuit.");
     return json({ circuit });
   });

@@ -89,6 +89,81 @@ test("a wait that ends before the job returns the job as it is", async (t) => {
   }
 });
 
+test("a wait with state and position returns as soon as the job differs from them", async (t) => {
+  const service = await startServer({ concurrency: 1 });
+  t.after(() => service.close());
+  const submit = async () =>
+    JobResponse.parse((await call(`${service.url}/v1/jobs`, { method: "POST", json: testRequest() })).body).job;
+  const first = await submit();
+  const second = await submit();
+  const third = await submit();
+  assert.equal(third.position, 1);
+  const read = async (query: string) => {
+    const response = await call(`${service.url}/v1/jobs/${third.id}?${query}`);
+    assert.equal(response.status, 200, query);
+    return JobResponse.parse(response.body).job;
+  };
+
+  // Held while the job is as seen; a cancel ahead of it moves it up.
+  const moved = read("wait=5000&state=queued&position=1");
+  await settle();
+  await call(`${service.url}/v1/jobs/${second.id}`, { method: "DELETE" });
+  const atFront = await moved;
+  assert.equal(atFront.state, "queued");
+  assert.equal(atFront.position, 0);
+
+  // Held until it starts.
+  const starting = read("wait=5000&state=queued&position=0");
+  await settle();
+  service.fake.call(0).resolve(PASSING_RESULT);
+  assert.equal((await starting).state, "running");
+  assert.equal(JobResponse.parse((await call(`${service.url}/v1/jobs/${first.id}`)).body).job.state, "succeeded");
+
+  // Already different: answered at once, well within the wait.
+  let started = Date.now();
+  assert.equal((await read("wait=5000&state=queued&position=0")).state, "running");
+  assert.equal((await read("wait=5000&state=queued")).state, "running");
+  assert.ok(Date.now() - started < 1000);
+
+  // As seen until the wait ends.
+  started = Date.now();
+  assert.equal((await read("wait=50&state=running")).state, "running");
+  assert.ok(Date.now() - started >= 45);
+
+  // Held until it ends.
+  const ending = read("wait=5000&state=running");
+  await settle();
+  service.fake.call(1).resolve(PASSING_RESULT);
+  assert.equal((await ending).state, "succeeded");
+  started = Date.now();
+  assert.equal((await read("wait=5000&state=succeeded")).state, "succeeded");
+  assert.ok(Date.now() - started < 1000);
+});
+
+test("a state or position that is not valid answers 400 invalid-wait", async (t) => {
+  const service = await startServer();
+  t.after(() => service.close());
+  const job = JobResponse.parse(
+    (await call(`${service.url}/v1/jobs`, { method: "POST", json: testRequest() })).body,
+  ).job;
+  for (const query of [
+    "wait=100&state=waiting",
+    "wait=100&state=",
+    "wait=100&state=QUEUED",
+    "wait=100&state=queued&position=-1",
+    "wait=100&state=queued&position=1.5",
+    "wait=100&state=queued&position=abc",
+    "wait=100&state=queued&position=",
+    "wait=100&position=0",
+  ]) {
+    const invalid = await call(`${service.url}/v1/jobs/${job.id}?${query}`);
+    assert.equal(invalid.status, 400, query);
+    assert.equal(errorCode(invalid.body), "invalid-wait");
+  }
+  const unknown = await call(`${service.url}/v1/jobs/unknown?wait=100&state=nothing`);
+  assert.equal(unknown.status, 400, "The query is checked before the job is looked up.");
+});
+
 test("invalid requests are refused with 400 and an error body", async (t) => {
   const service = await startServer();
   t.after(() => service.close());

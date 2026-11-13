@@ -56,6 +56,28 @@ test("requests carry JSON, the job id is encoded and the wait is capped", async 
   assert.equal(submit.calls[0]?.init.method, "POST");
 });
 
+test("a read with seen carries the state and position after the wait", async () => {
+  const { calls, fetch } = fakeFetch(() => json(200, { job }));
+  const client = createRunnerClient({ url: "http://runner", fetch });
+  await client.get("j1", { waitMs: 25_000, seen: { state: "queued", position: 2 } });
+  await client.get("j1", { waitMs: 25_000, seen: { state: "queued", position: 0 } });
+  await client.get("j1", { waitMs: 25_000, seen: { state: "running" } });
+  await client.get("j1", { seen: { state: "queued", position: 1 } });
+  await client.get("j1", { waitMs: 25_000 });
+  await client.get("j1");
+  assert.deepEqual(
+    calls.map((call) => call.url),
+    [
+      "http://runner/v1/jobs/j1?wait=25000&state=queued&position=2",
+      "http://runner/v1/jobs/j1?wait=25000&state=queued&position=0",
+      "http://runner/v1/jobs/j1?wait=25000&state=running",
+      "http://runner/v1/jobs/j1?state=queued&position=1",
+      "http://runner/v1/jobs/j1?wait=25000",
+      "http://runner/v1/jobs/j1",
+    ],
+  );
+});
+
 test("responses of the wrong shape and error bodies become RunnerRequestError", async () => {
   const cases: [Response, number, string][] = [
     [json(200, { job: { id: "j1" } }), 200, "invalid-response"],

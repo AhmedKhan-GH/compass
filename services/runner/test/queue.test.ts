@@ -1,8 +1,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { JobFailure } from "../src/failure.ts";
-import { JobQueue, QueueClosedError, QueueFullError } from "../src/queue.ts";
+import { JobQueue, QueueClosedError, QueueFullError, differsFrom } from "../src/queue.ts";
 import { ManualExecutor, PASSING_RESULT, circuitRequest, settle, testRequest } from "./helpers.ts";
+
+/** True when the promise has not settled after the pending continuations ran. */
+async function pending(promise: Promise<unknown>): Promise<boolean> {
+  let settled = false;
+  void promise.then(
+    () => (settled = true),
+    () => (settled = true),
+  );
+  await settle();
+  return !settled;
+}
 
 function setup(
   options: { concurrency?: number; capacity?: number; retentionMs?: number; rejectOnAbort?: boolean } = {},
@@ -160,13 +171,111 @@ test("wait resolves when the job finishes, or with the current job when the wait
 
   assert.equal(await queue.wait("missing", 1000), undefined);
   const aborted = new AbortController();
-  const held = queue.wait("job-2", 10_000, aborted.signal);
+  const held = queue.wait("job-2", 10_000, { signal: aborted.signal });
   aborted.abort();
   assert.equal((await held)?.state, "running");
 
   const cancelling = queue.wait("job-2", 10_000);
   queue.cancel("job-2");
   assert.equal((await cancelling)?.state, "cancelled");
+});
+
+test("a job differs from what was seen in its state, or in its position while both are queued", () => {
+  assert.equal(differsFrom({ state: "queued", position: 1 }, { state: "queued", position: 1 }), false);
+  assert.equal(differsFrom({ state: "queued", position: 0 }, { state: "queued", position: 1 }), true);
+  assert.equal(differsFrom({ state: "queued", position: 0 }, { state: "queued" }), false);
+  assert.equal(differsFrom({ state: "running" }, { state: "queued", position: 0 }), true);
+  assert.equal(differsFrom({ state: "running" }, { state: "running", position: 3 }), false);
+  assert.equal(differsFrom({ state: "succeeded" }, { state: "running" }), true);
+});
+
+test("a waiter with seen wakes when its queued job starts running", async () => {
+  const { fake, queue } = setup({ concurrency: 1 });
+  queue.submit(testRequest());
+  queue.submit(testRequest());
+  const waiting = queue.wait("job-2", 10_000, { seen: { state: "queued", position: 0 } });
+  assert.ok(await pending(waiting), "Nothing changed yet.");
+  fake.call(0).resolve(PASSING_RESULT);
+  const job = await waiting;
+  assert.equal(job?.state, "running");
+  assert.equal(job.position, undefined);
+  fake.call(1).resolve(PASSING_RESULT);
+  await settle();
+});
+
+test("a waiter with seen wakes when its queued job moves up, by a cancel or by a start", async () => {
+  const { fake, queue } = setup({ concurrency: 1 });
+  for (let n = 0; n < 4; n++) queue.submit(testRequest());
+  // job-1 runs; job-2, job-3 and job-4 wait at 0, 1 and 2.
+  const third = queue.wait("job-4", 10_000, { seen: { state: "queued", position: 2 } });
+  const unseenPosition = queue.wait("job-4", 10_000, { seen: { state: "queued" } });
+  assert.ok(await pending(third));
+  queue.cancel("job-2");
+  const moved = await third;
+  assert.equal(moved?.state, "queued");
+  assert.equal(moved.position, 1);
+  assert.ok(await pending(unseenPosition), "Without a seen position only the state counts.");
+
+  const second = queue.wait("job-4", 10_000, { seen: { state: "queued", position: 1 } });
+  assert.ok(await pending(second));
+  fake.call(0).resolve(PASSING_RESULT);
+  const next = await second;
+  assert.equal(queue.get("job-3")?.state, "running");
+  assert.equal(next?.state, "queued");
+  assert.equal(next.position, 0);
+  assert.ok(await pending(unseenPosition));
+
+  fake.call(1).resolve(PASSING_RESULT);
+  assert.equal((await unseenPosition)?.state, "running");
+  fake.call(2).resolve(PASSING_RESULT);
+  await settle();
+});
+
+test("a waiter with seen returns at once when the job already differs, and on the timeout when it does not", async () => {
+  const { fake, queue } = setup({ concurrency: 1 });
+  queue.submit(testRequest());
+  queue.submit(testRequest());
+  for (const seen of [
+    { state: "queued", position: 3 },
+    { state: "running" },
+    { state: "succeeded" },
+  ] as const) {
+    const answer = queue.wait("job-2", 10_000, { seen });
+    assert.equal(await pending(answer), false, JSON.stringify(seen));
+    assert.equal((await answer)?.position, 0);
+  }
+  assert.equal((await queue.wait("job-1", 10_000, { seen: { state: "queued", position: 0 } }))?.state, "running");
+
+  const started = Date.now();
+  const unchanged = await queue.wait("job-2", 30, { seen: { state: "queued", position: 0 } });
+  assert.ok(Date.now() - started >= 25);
+  assert.equal(unchanged?.state, "queued");
+  assert.equal(unchanged.position, 0);
+
+  // A terminal job answers at once, whatever was seen.
+  fake.call(0).resolve(PASSING_RESULT);
+  await settle();
+  const finished = queue.wait("job-1", 10_000, { seen: { state: "succeeded" } });
+  assert.equal(await pending(finished), false);
+  assert.equal((await finished)?.state, "succeeded");
+  fake.call(1).resolve(PASSING_RESULT);
+  await settle();
+});
+
+test("a waiter without seen still waits for the end through every queue move", async () => {
+  const { fake, queue } = setup({ concurrency: 1 });
+  queue.submit(testRequest());
+  queue.submit(testRequest());
+  queue.submit(testRequest());
+  const waiting = queue.wait("job-3", 10_000);
+  queue.cancel("job-2");
+  assert.ok(await pending(waiting), "A position change does not end the wait.");
+  fake.call(0).resolve(PASSING_RESULT);
+  await settle();
+  assert.equal(queue.get("job-3")?.state, "running");
+  assert.ok(await pending(waiting), "Starting does not end the wait.");
+  fake.call(1).resolve(PASSING_RESULT);
+  assert.equal((await waiting)?.state, "succeeded");
 });
 
 test("close cancels every job and refuses new ones", async () => {

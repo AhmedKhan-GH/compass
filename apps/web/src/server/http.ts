@@ -1,5 +1,6 @@
 /** What the API routes share: the error shape, JSON responses, bounded body reading and the loopback check. */
-import { MAX_WAIT_MS, type ApiError } from "@compass/schema";
+import { JobState, MAX_WAIT_MS, type ApiError } from "@compass/schema";
+import type { SeenJob } from "@compass/runner-client";
 import { isRunnerRequestError, isRunnerUnavailable } from "./runner.ts";
 
 /** The largest request body the API reads. A run carries at most 16 files of 64 KiB. */
@@ -95,6 +96,27 @@ export function waitParameter(request: Request): number {
   if (!/^\d{1,9}$/.test(value))
     throw new HttpError(400, "invalid-wait", "wait must be a whole number of milliseconds.");
   return Math.min(Number(value), MAX_WAIT_MS);
+}
+
+/**
+ * `&state=` and `&position=`: what the browser last saw of a run or circuit. Undefined without `state`, which keeps
+ * the wait for a terminal state. An empty value counts as absent, as for `wait`.
+ */
+export function seenParameter(request: Request): SeenJob | undefined {
+  const params = new URL(request.url).searchParams;
+  const state = params.get("state") || null;
+  const position = params.get("position") || null;
+  if (state === null) {
+    if (position !== null) throw new HttpError(400, "invalid-wait", "position needs a state.");
+    return undefined;
+  }
+  const parsed = JobState.safeParse(state);
+  if (!parsed.success)
+    throw new HttpError(400, "invalid-wait", `state must be one of ${JobState.options.join(", ")}.`);
+  if (position === null) return { state: parsed.data };
+  if (!/^\d{1,9}$/.test(position))
+    throw new HttpError(400, "invalid-wait", "position must be a whole number of jobs.");
+  return { state: parsed.data, position: Number(position) };
 }
 
 /** The first message of a failed schema parse, for a 400 response. */

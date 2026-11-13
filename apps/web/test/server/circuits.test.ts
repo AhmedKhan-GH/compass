@@ -47,6 +47,26 @@ test("a circuit is built by the course's circuit runner and read like a run", as
   assert.equal(runner.waits.at(-1), 2000);
 });
 
+test("a circuit read with seen compares the state only, from the store first and then at the runner", async () => {
+  const { runner } = freshEnvironment();
+  const started = await startCircuit(found(), { files: { "top_module.v": solution } });
+  assert.equal(started.state, "queued");
+  const calls = runner.waits.length;
+  const ahead = await readCircuit(started.id, { waitMs: 2000, seen: { state: "running" } });
+  assert.equal(ahead?.state, "queued");
+  assert.equal(runner.waits.length, calls, "The store already differs from what was seen.");
+
+  runner.run();
+  const running = await readCircuit(started.id, { waitMs: 2000, seen: { state: "queued", position: 4 } });
+  assert.equal(running?.state, "running");
+  assert.deepEqual(runner.seens.at(-1), { state: "queued" }, "A circuit has no position to compare.");
+  assert.equal(runner.waits.at(-1), 2000);
+
+  runner.succeed(built);
+  assert.equal((await readCircuit(started.id, { waitMs: 2000, seen: { state: "running" } }))?.state, "succeeded");
+  assert.deepEqual(runner.seens.at(-1), { state: "running" });
+});
+
 test("the same files for the same revision reuse the stored circuit; other files build a new one", async () => {
   const { runner } = freshEnvironment();
   const first = await startCircuit(found(), { files: { "top_module.v": solution } });

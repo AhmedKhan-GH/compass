@@ -23,7 +23,7 @@ import {
   type RunReport,
   type StartRunRequest,
 } from "@compass/schema";
-import type { RunnerClient } from "@compass/runner-client";
+import type { RunnerClient, SeenJob } from "@compass/runner-client";
 import { database, writeTransaction, type Db } from "./db.ts";
 import { mergeWithStarter, validateSubmittedFiles, type SourceFiles } from "./files.ts";
 import { HttpError } from "./http.ts";
@@ -32,6 +32,7 @@ import {
   WAVEFORM_BYTES,
   awaitSubmission,
   boundError,
+  differsFrom,
   headBytes,
   isAbort,
   observeJob,
@@ -310,11 +311,12 @@ export async function startRun(
 
 /**
  * Reads a run. When it is not terminal, asks the runner for its job (holding up to `waitMs`) and stores what the
- * runner says. Undefined when there is no such run.
+ * runner says. With `seen`, what the browser last saw, a stored run that already differs from it is returned at
+ * once, and otherwise the runner holds only until the job differs from it. Undefined when there is no such run.
  */
 export async function readRun(
   id: string,
-  options: { waitMs?: number; signal?: AbortSignal } = {},
+  options: { waitMs?: number; seen?: SeenJob; signal?: AbortSignal } = {},
 ): Promise<RunRecord | undefined> {
   const db = database();
   let row = selectRun(db, id);
@@ -326,10 +328,13 @@ export async function readRun(
     const settled = settleRun(db, id, failed(unavailable("The run was never handed to the runner.")));
     return settled && toRecord(settled);
   }
+  if (options.seen && differsFrom({ state: row.state, position: row.position ?? undefined }, options.seen))
+    return toRecord(row);
   let observation: Observation;
   try {
     observation = await observeJob(row.job_id, {
       waitMs: options.waitMs ?? 0,
+      ...(options.seen ? { seen: options.seen } : {}),
       ...(options.signal ? { signal: options.signal } : {}),
     });
   } catch (error) {

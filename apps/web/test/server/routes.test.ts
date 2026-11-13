@@ -151,6 +151,46 @@ test("bad requests get the right status and error code", async () => {
   assert.equal(runner.requests.length, 0);
 });
 
+test("run and circuit reads pass state and position on, and refuse values that are not valid", async () => {
+  const { runner } = freshEnvironment();
+  const started = await read(runsRoute.POST(post(`${course}/items/drive-high/runs`, { files: { "top_module.v": solution } }), itemContext()));
+  const run = RunRecord.parse((started.body as { run: unknown }).run);
+  assert.equal(run.position, 0);
+  const getRun = async (query: string) => {
+    const response = await read(runByIdRoute.GET(get(`/api/runs/${run.id}?${query}`), idContext(run.id)));
+    assert.equal(response.status, 200, query);
+    return RunRecord.parse((response.body as { run: unknown }).run);
+  };
+
+  // What the browser saw differs from the store: answered without asking the runner.
+  const calls = runner.waits.length;
+  assert.equal((await getRun("wait=5000&state=running")).state, "queued");
+  assert.equal((await getRun("wait=5000&state=queued&position=2")).position, 0);
+  assert.equal(runner.waits.length, calls);
+
+  await getRun("wait=5000&state=queued&position=0");
+  assert.deepEqual(runner.seens.at(-1), { state: "queued", position: 0 });
+  await getRun("wait=5000&state=queued&position=");
+  assert.deepEqual(runner.seens.at(-1), { state: "queued" });
+  await getRun("wait=5000&state=&position=");
+  assert.equal(runner.seens.at(-1), undefined);
+  await getRun("wait=5000");
+  assert.equal(runner.seens.at(-1), undefined);
+  assert.equal(runner.waits.at(-1), 5000);
+
+  const circuitStart = await read(circuitRoute.POST(post(`${course}/items/drive-high/circuit`, { files: { "top_module.v": solution } }), itemContext()));
+  const circuit = CircuitRecord.parse((circuitStart.body as { circuit: unknown }).circuit);
+  const circuitRead = await read(circuitByIdRoute.GET(get(`/api/circuits/${circuit.id}?wait=500&state=queued`), idContext(circuit.id)));
+  assert.equal(circuitRead.status, 200);
+  assert.deepEqual(runner.seens.at(-1), { state: "queued" });
+  assert.equal(runner.waits.at(-1), 500);
+
+  for (const query of ["state=waiting", "state=Queued", "state=queued&position=-1", "state=queued&position=1.5", "state=queued&position=x", "position=0"]) {
+    await expectError(runByIdRoute.GET(get(`/api/runs/${run.id}?wait=5000&${query}`), idContext(run.id)), 400, "invalid-wait");
+    await expectError(circuitByIdRoute.GET(get(`/api/circuits/${circuit.id}?wait=5000&${query}`), idContext(circuit.id)), 400, "invalid-wait");
+  }
+});
+
 test("requests from another site or addressed to another host are refused", async () => {
   const { runner } = freshEnvironment();
   const url = `${course}/items/drive-high/runs`;

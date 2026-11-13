@@ -7,6 +7,7 @@ import {
   RunnerRequestError,
   RunnerUnavailableError,
   type RunnerClient,
+  type SeenJob,
 } from "@compass/runner-client";
 import type {
   ContentIndex,
@@ -150,6 +151,8 @@ export class FakeRunner implements RunnerClient {
   readonly jobs = new Map<string, Job>();
   readonly requests: JobRequest[] = [];
   readonly waits: (number | undefined)[] = [];
+  /** The `seen` of each get, in order, beside `waits`. The fake answers at once whatever was seen. */
+  readonly seens: (SeenJob | undefined)[] = [];
   unreachable = false;
   busy = false;
   /** Delays every get, to let concurrent reads overlap. */
@@ -180,8 +183,9 @@ export class FakeRunner implements RunnerClient {
     return structuredClone(job);
   }
 
-  async get(id: string, options: { waitMs?: number } = {}): Promise<Job | undefined> {
+  async get(id: string, options: { waitMs?: number; seen?: SeenJob } = {}): Promise<Job | undefined> {
     this.waits.push(options.waitMs);
+    this.seens.push(options.seen && structuredClone(options.seen));
     if (this.unreachable) throw new RunnerUnavailableError(this.url);
     // The answer reflects the job when the request arrived, however long the response takes.
     const job = this.jobs.get(id);

@@ -105,8 +105,14 @@ export function createRunnerClient(options: RunnerClientOptions = {}): RunnerCli
 
     async get(id, options = {}) {
       const waitMs = Math.max(0, Math.min(MAX_WAIT_MS, Math.floor(options.waitMs ?? 0)));
-      const query = waitMs > 0 ? `?wait=${waitMs}` : "";
-      return requestJob(jobPath(id) + query, {
+      const query = new URLSearchParams();
+      if (waitMs > 0) query.set("wait", String(waitMs));
+      if (options.seen) {
+        query.set("state", options.seen.state);
+        if (options.seen.position !== undefined) query.set("position", String(options.seen.position));
+      }
+      const search = query.toString();
+      return requestJob(jobPath(id) + (search ? `?${search}` : ""), {
         timeoutMs: waitMs + REQUEST_TIMEOUT_MS,
         ...(options.signal ? { signal: options.signal } : {}),
       });

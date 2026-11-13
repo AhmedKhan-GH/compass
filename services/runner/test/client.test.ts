@@ -42,6 +42,26 @@ test("the client submits, reads, waits for and cancels jobs", async (t) => {
   assert.equal(await client.cancel("unknown"), undefined);
 });
 
+test("the client's read with seen returns when the job moves on", async (t) => {
+  const service = await startServer({ concurrency: 1 });
+  t.after(() => service.close());
+  const client = createRunnerClient({ url: service.url });
+  await client.submit(testRequest());
+  const queued = await client.submit(testRequest());
+  assert.equal(queued.position, 0);
+  const held = client.get(queued.id, { waitMs: 5000, seen: { state: "queued", position: 0 } });
+  await settle();
+  service.fake.call(0).resolve(PASSING_RESULT);
+  assert.equal((await held)?.state, "running");
+  const started = Date.now();
+  assert.equal((await client.get(queued.id, { waitMs: 5000, seen: { state: "queued" } }))?.state, "running");
+  assert.ok(Date.now() - started < 1000);
+  await assert.rejects(
+    client.get(queued.id, { waitMs: 100, seen: { state: "queued", position: -1 } }),
+    (error) => error instanceof RunnerRequestError && error.status === 400 && error.code === "invalid-wait",
+  );
+});
+
 test("the client rejects error responses with RunnerRequestError", async (t) => {
   const service = await startServer({ concurrency: 1, capacity: 1 });
   t.after(() => service.close());

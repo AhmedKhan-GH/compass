@@ -3,13 +3,14 @@ import { createServer, type IncomingMessage, type Server, type ServerResponse } 
 import type { AddressInfo } from "node:net";
 import {
   JobRequest,
+  JobState,
   MAX_WAIT_MS,
   RUNNER_KINDS,
   type ApiError,
   type JobResponse,
   type RunnerHealth,
 } from "@compass/schema";
-import { QueueClosedError, QueueFullError, type JobQueue } from "./queue.ts";
+import { QueueClosedError, QueueFullError, type JobQueue, type SeenJob } from "./queue.ts";
 import { checkJobRequest } from "./requests.ts";
 import { inspectImage as dockerInspectImage } from "./sandbox.ts";
 
@@ -78,6 +79,23 @@ function parseWait(value: string | null): number {
   if (!/^\d{1,9}$/.test(value))
     throw new HttpError(400, "invalid-wait", "wait must be a whole number of milliseconds.");
   return Math.min(Number(value), MAX_WAIT_MS);
+}
+
+/** `&state=` and `&position=`: what the caller last saw of the job. Undefined without `state`. */
+function parseSeen(params: URLSearchParams): SeenJob | undefined {
+  const state = params.get("state");
+  const position = params.get("position");
+  if (state === null) {
+    if (position !== null) throw new HttpError(400, "invalid-wait", "position needs a state.");
+    return undefined;
+  }
+  const parsed = JobState.safeParse(state);
+  if (!parsed.success)
+    throw new HttpError(400, "invalid-wait", `state must be one of ${JobState.options.join(", ")}.`);
+  if (position === null) return { state: parsed.data };
+  if (!/^\d{1,9}$/.test(position))
+    throw new HttpError(400, "invalid-wait", "position must be a whole number of jobs.");
+  return { state: parsed.data, position: Number(position) };
 }
 
 export function createRunnerServer(options: ServerOptions): Server {
@@ -154,9 +172,10 @@ export function createRunnerServer(options: ServerOptions): Server {
     const unknown = () => new HttpError(404, "not-found", "The job is unknown or has expired.");
     if (method === "GET") {
       const waitMs = parseWait(url.searchParams.get("wait"));
+      const seen = parseSeen(url.searchParams);
       const disconnected = new AbortController();
       res.once("close", () => disconnected.abort());
-      const job = await queue.wait(id, waitMs, disconnected.signal);
+      const job = await queue.wait(id, waitMs, { seen, signal: disconnected.signal });
       if (!job) throw unknown();
       return send(res, 200, { job } satisfies JobResponse);
     }

@@ -88,6 +88,72 @@ test("a run is stored queued, handed to the runner, and mirrors the job until it
   assert.deepEqual(itemProgress(COURSE_ID, TASKS_ITEM).tasks, { "1": "untested", "2": "passed" });
 });
 
+test("a read with seen answers from the store when the run already differs, and otherwise asks the runner", async () => {
+  const { runner } = freshEnvironment();
+  await startRun(found(), { files: { "top_module.v": solution } });
+  const run = await startRun(found(), { files: { "top_module.v": solution } });
+  assert.equal(run.state, "queued");
+  assert.equal(run.position, 1);
+
+  // Without state the runner is asked as before, with no seen.
+  await readRun(run.id, { waitMs: 100 });
+  assert.equal(runner.seens.at(-1), undefined);
+  assert.equal(runner.waits.at(-1), 100);
+
+  // The store holds something other than what the browser saw: answered without asking the runner.
+  const calls = runner.waits.length;
+  for (const seen of [{ state: "queued", position: 3 }, { state: "running" }, { state: "succeeded" }] as const) {
+    const read = await readRun(run.id, { waitMs: 5000, seen });
+    assert.equal(read?.state, "queued", JSON.stringify(seen));
+    assert.equal(read.position, 1);
+  }
+  assert.equal(runner.waits.length, calls);
+
+  // The store holds what the browser saw: the runner is asked with it, and its answer is stored.
+  runner.set(runner.lastJobId, { state: "queued", position: 0 });
+  const moved = await readRun(run.id, { waitMs: 5000, seen: { state: "queued", position: 1 } });
+  assert.equal(moved?.state, "queued");
+  assert.equal(moved.position, 0);
+  assert.deepEqual(runner.seens.at(-1), { state: "queued", position: 1 });
+  assert.equal(runner.waits.at(-1), 5000);
+
+  runner.run();
+  const running = await readRun(run.id, { waitMs: 5000, seen: { state: "queued", position: 0 } });
+  assert.equal(running?.state, "running");
+  assert.equal(running.position, undefined);
+  // Without a seen position only the state counts.
+  runner.set(runner.lastJobId, { state: "running" });
+  assert.equal((await readRun(run.id, { waitMs: 5000, seen: { state: "running" } }))?.state, "running");
+  assert.deepEqual(runner.seens.at(-1), { state: "running" });
+
+  // A late answer cannot move the stored run back to queued.
+  runner.set(runner.lastJobId, { state: "queued", position: 0 });
+  const kept = await readRun(run.id, { waitMs: 5000, seen: { state: "running" } });
+  assert.equal(kept?.state, "running");
+  assert.equal(kept.position, undefined);
+
+  runner.succeed(testResult(passReport([1, 2, 2])));
+  const done = await readRun(run.id, { waitMs: 5000, seen: { state: "running" } });
+  assert.equal(done?.state, "succeeded");
+  assert.equal(done.report?.status, "pass");
+
+  // A terminal run is answered from the store whatever was seen, and is never changed.
+  const settled = runner.waits.length;
+  runner.fail({ kind: "execution", message: "Too late." });
+  for (const seen of [{ state: "running" }, { state: "succeeded" }] as const)
+    assert.deepEqual(await readRun(run.id, { waitMs: 5000, seen }), done);
+  assert.equal(runner.waits.length, settled);
+});
+
+test("a read with seen of a job the runner forgot fails the run with unavailable", async () => {
+  const { runner } = freshEnvironment();
+  const run = await startRun(found(), { files: { "top_module.v": solution } });
+  runner.forget();
+  const lost = await readRun(run.id, { waitMs: 5000, seen: { state: "queued", position: 0 } });
+  assert.equal(lost?.state, "failed");
+  assert.equal(lost.error?.kind, "unavailable");
+});
+
 test("a failing report is stored as succeeded with a fail report", async () => {
   const { runner } = freshEnvironment();
   const run = await startRun(found(), { files: { "top_module.v": solution } });
