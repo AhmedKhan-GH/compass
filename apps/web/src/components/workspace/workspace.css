@@ -66,7 +66,7 @@
    colour like the task headers. Not started, it takes the pane headers' surface. It stays at the top of the pane
    with the task strip under it. */
 .instructions-pane {
-  --lesson-head: calc(var(--sb-app-row) * 2 + var(--sb-space-2));
+  --lesson-head: calc(64px + var(--sb-space-3) * 2);
 }
 
 .lesson-top {
@@ -133,7 +133,7 @@
   white-space: nowrap;
   color: var(--sb-text);
   font-family: var(--sb-font-family-display);
-  font-size: var(--sb-font-size-name);
+  font-size: var(--sb-font-size-heading);
   letter-spacing: var(--sb-tracking-heading);
   line-height: var(--sb-leading-heading);
   text-transform: uppercase;

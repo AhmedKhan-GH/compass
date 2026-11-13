@@ -13,7 +13,7 @@ import { Markdown } from "../markdown";
 export function LessonHeader({ item, concepts, lesson }: { item: ItemView; concepts: string[]; lesson: LessonState }) {
   return (
     <header className="lesson-head" data-tone={lesson.tone}>
-      <Thumbnail size={40} src={assetUrl(item.icon)} />
+      <Thumbnail size={64} src={assetUrl(item.icon)} />
       <div className="lesson-head-text">
         <h1 className="lesson-title">{item.title}</h1>
         <p className="lesson-meta">
