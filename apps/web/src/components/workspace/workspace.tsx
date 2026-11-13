@@ -92,6 +92,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   const [latestId, setLatestId] = useState<string>();
   const [historyVersion, setHistoryVersion] = useState(0);
   const [circuitFiles, setCircuitFiles] = useState<Files>();
+  const [circuitRecord, setCircuitRecord] = useState<CircuitRecord>();
   const [confirmingReset, setConfirmingReset] = useState(false);
   const [now, setNow] = useState(() => new Date());
   const editor = useRef<EditorPaneHandle>(null);
@@ -189,12 +190,16 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   async function buildCircuit() {
     if (!hasCircuit || isBusy(circuit.phase)) return;
     const files = submitted;
-    setCircuitFiles(files);
     setDockTab("circuit");
-    await circuit.follow(
+    const final = await circuit.follow(
       (signal) => startCircuit(course.id, item.slug, { files }, signal),
       (id, wait, signal) => getCircuit(id, wait, signal),
     );
+    // The drawing in view stays until the new circuit arrives, so the frame is not torn down during a build.
+    if (final?.phase === "finished") {
+      setCircuitRecord(final.record);
+      setCircuitFiles(files);
+    }
   }
 
   function showDockTab(tab: DockTab) {
@@ -421,7 +426,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
         <Split
           id="workspace-right"
           direction="column"
-          shares={[0.62, 0.38]}
+          shares={[0.55, 0.45]}
           minimums={[200, 150]}
           labels={["Editor", "Results"]}
         >
@@ -490,6 +495,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
               <div className="dock-circuit" hidden={dockTab !== "circuit"}>
                 <CircuitPane
                   phase={circuit.phase}
+                  record={circuitRecord}
                   earlierSource={circuitEarlier}
                   active={dockTab === "circuit"}
                   onBuild={() => void buildCircuit()}

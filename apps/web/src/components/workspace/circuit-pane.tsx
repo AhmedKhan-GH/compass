@@ -28,6 +28,25 @@ function isPositions(value: unknown): value is SourcePosition[] {
   );
 }
 
+type ForwardedKey = {
+  code: string;
+  key: string;
+  altKey: boolean;
+  metaKey: boolean;
+  ctrlKey: boolean;
+  shiftKey: boolean;
+};
+
+function isKey(value: unknown): value is ForwardedKey {
+  if (!value || typeof value !== "object") return false;
+  const key = value as Record<string, unknown>;
+  return (
+    typeof key.code === "string" &&
+    typeof key.key === "string" &&
+    ["altKey", "metaKey", "ctrlKey", "shiftKey"].every((name) => typeof key[name] === "boolean")
+  );
+}
+
 /**
  * The circuit of the current source, drawn by DigitalJS in a sandboxed frame (public/circuit/viewer.html). The pane
  * asks for a circuit, follows the job, and hands the finished circuit to the frame. A click on a cell in the frame
@@ -35,12 +54,15 @@ function isPositions(value: unknown): value is SourcePosition[] {
  */
 export function CircuitPane({
   phase,
+  record,
   earlierSource,
   active,
   onBuild,
   onSelectSource,
 }: {
   phase: JobPhase<CircuitRecord>;
+  /** The latest finished circuit job, kept while a new one is built. */
+  record: CircuitRecord | undefined;
   earlierSource: boolean;
   /** The circuit tab is visible; the simulation runs only then. */
   active: boolean;
@@ -50,7 +72,6 @@ export function CircuitPane({
   const frame = useRef<HTMLIFrameElement>(null);
   const [frameError, setFrameError] = useState("");
   const [showWarnings, setShowWarnings] = useState(false);
-  const record = phase.phase === "finished" ? phase.record : undefined;
   const circuit = record?.state === "succeeded" ? record.circuit : undefined;
   const busy = phase.phase === "starting" || phase.phase === "queued" || phase.phase === "running";
   const state = useRef({ circuit, active, earlierSource, onSelectSource });
@@ -62,8 +83,10 @@ export function CircuitPane({
     const listener = (event: MessageEvent) => {
       const data: unknown = event.data;
       if (event.source !== frame.current?.contentWindow || !data || typeof data !== "object") return;
-      const message = data as { type?: unknown; loaded?: unknown; error?: unknown; selection?: unknown };
+      const message = data as { type?: unknown; loaded?: unknown; error?: unknown; selection?: unknown; key?: unknown };
       if (message.type !== MESSAGE) return;
+      // A key pressed in the frame: replayed on this window for the workspace's key bindings.
+      if (isKey(message.key)) window.dispatchEvent(new KeyboardEvent("keydown", { ...message.key, cancelable: true }));
       if (message.loaded && state.current.circuit)
         frame.current?.contentWindow?.postMessage(
           { type: MESSAGE, circuit: state.current.circuit, active: state.current.active },

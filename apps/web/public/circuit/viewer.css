@@ -39,7 +39,8 @@ body {
   display: none !important;
 }
 
-#controls {
+#controls,
+#zoom {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
@@ -56,6 +57,7 @@ input {
 }
 
 #controls button,
+#zoom button,
 #io button {
   height: var(--sb-app-key-button);
   padding: 0 var(--sb-space-2);
@@ -67,11 +69,13 @@ input {
 }
 
 #controls button:hover,
+#zoom button:hover,
 #io button:hover {
   background: var(--sb-surface-hover);
 }
 
 #controls button:active,
+#zoom button:active,
 #io button:active {
   background: var(--sb-text);
   color: var(--sb-background-app);
@@ -95,10 +99,6 @@ button:disabled {
   cursor: default;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-
 #status,
 #zoom-level {
   color: var(--sb-text-muted);
@@ -117,35 +117,39 @@ button:disabled {
   white-space: pre-wrap;
 }
 
-#io {
+#main {
   display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  gap: var(--sb-space-1) var(--sb-space-6);
-  max-height: 30vh;
-  padding: var(--sb-space-1) var(--sb-space-3);
-  overflow: auto;
-  border-bottom: var(--sb-rule-width) solid var(--sb-rule-faint);
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
-#io:empty {
-  display: none;
+/* Inputs, outputs and the selection in a column beside the drawing: the pane is wide and short. */
+#side {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  width: 224px;
+  min-height: 0;
+  border-right: var(--sb-rule-width) solid var(--sb-rule-faint);
+}
+
+#io {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--sb-space-1) var(--sb-space-3);
+  overflow: auto;
 }
 
 #io fieldset {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--sb-space-1) var(--sb-space-3);
+  flex-direction: column;
   min-width: 0;
-  margin: 0;
+  margin: 0 0 var(--sb-space-2);
   padding: 0;
   border: 0;
 }
 
 #io legend {
-  float: left;
-  margin-right: var(--sb-space-2);
   padding: 0;
   color: var(--sb-text-muted);
   font-size: var(--sb-app-font-size-ui-small);
@@ -154,14 +158,25 @@ button:disabled {
 }
 
 .io-field {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--sb-space-2);
+  min-height: var(--sb-app-row);
   font-family: var(--sb-font-family-mono);
+}
+
+#io .io-field button {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #io .io-field input {
   height: var(--sb-app-key-button);
+  min-width: 0;
   padding: 0 var(--sb-space-1);
   border: var(--sb-rule-width) solid var(--sb-rule);
   border-radius: var(--sb-radius);
@@ -177,7 +192,8 @@ button:disabled {
 
 #viewport {
   flex: 1 1 auto;
-  min-height: 120px;
+  min-width: 0;
+  min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
   background: var(--sb-well);
@@ -258,19 +274,25 @@ button:disabled {
 
 #selection {
   flex: 0 0 auto;
-  min-height: var(--sb-app-row);
   margin: 0;
-  padding: 0 var(--sb-space-3);
+  padding: var(--sb-space-1) var(--sb-space-3);
   border-top: var(--sb-rule-width) solid var(--sb-rule-faint);
   color: var(--sb-text-muted);
   font-family: var(--sb-font-family-mono);
   overflow-wrap: anywhere;
 }
 
+#selection:empty {
+  display: none;
+}
+
 #key {
-  display: inline-flex;
-  gap: var(--sb-space-3);
-  margin-right: var(--sb-space-3);
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0 var(--sb-space-3);
+  padding: var(--sb-space-1) var(--sb-space-3);
+  border-top: var(--sb-rule-width) solid var(--sb-rule-faint);
   color: var(--sb-text-muted);
 }
 

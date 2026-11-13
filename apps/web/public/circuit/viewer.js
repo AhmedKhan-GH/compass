@@ -15,7 +15,8 @@
   let generation = 0;
   let layoutBounds;
   let cancelLayout;
-  const MIN_READABLE_SCALE = 0.85;
+  // Fitting shows the whole circuit, never larger than 100 % and never below this scale.
+  const MIN_FIT_SCALE = 0.3;
 
   const role = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const SIGNAL = {
@@ -85,7 +86,7 @@
       const value = (kind === "output" ? cell.getOutput() : cell.get("outputSignals").out).toBin();
       if (kind === "output") element.textContent = value;
       else if (element.tagName === "BUTTON") {
-        element.textContent = cell.get("net") + " = " + value;
+        element.textContent = value;
         element.setAttribute("aria-pressed", String(value === "1"));
       } else if (document.activeElement !== element && element.validity.valid) element.value = value;
     }
@@ -102,21 +103,31 @@
   function refreshScale() {
     if (!paper || !layoutBounds) return;
     paper.scale(scale);
-    // Include the rendered labels, port circles and routes, not just the model boxes.
-    paper.fitToContent({ padding: 28, allowNewOrigin: "any", useModelGeometry: false });
+    // Include the rendered labels, port circles and routes, not just the model boxes. The first fit after a scale
+    // change measures from the old origin, so it runs twice.
+    for (let pass = 0; pass < 2; pass++)
+      paper.fitToContent({ padding: 8, allowNewOrigin: "any", useModelGeometry: false });
     byId("zoom-level").textContent = Math.round(scale * 100) + "%";
   }
 
+  // Fits the whole circuit to the viewport. Called when a circuit is built, when the viewport changes size and
+  // when the frame is shown again, until the learner zooms; a new build fits again.
   function fit() {
+    fitted = true;
     if (!paper || !layoutBounds) return;
     const viewport = byId("viewport");
     if (!viewport.clientWidth || !viewport.clientHeight) return;
-    fitted = true;
     scale = Math.max(
-      MIN_READABLE_SCALE,
-      Math.min(1, (viewport.clientWidth - 56) / layoutBounds.width, (viewport.clientHeight - 56) / layoutBounds.height),
+      MIN_FIT_SCALE,
+      Math.min(1, (viewport.clientWidth - 16) / layoutBounds.width, (viewport.clientHeight - 16) / layoutBounds.height),
     );
     refreshScale();
+    // The rendered labels can reach past the layout's boxes; shrink once more if the drawing still overflows.
+    const over = Math.max(viewport.scrollWidth / viewport.clientWidth, viewport.scrollHeight / viewport.clientHeight);
+    if (over > 1.001 && scale > MIN_FIT_SCALE) {
+      scale = Math.max(MIN_FIT_SCALE, scale / over);
+      refreshScale();
+    }
     viewport.scrollTo({ left: 0, top: 0 });
   }
 
@@ -176,7 +187,7 @@
     const nodes = graph.getElements().map((cell) => {
       const view = currentPaper.findViewByModel(cell);
       const bounds = view.el.getBBox();
-      const pad = 14;
+      const pad = 4;
       const box = {
         x: bounds.x - pad,
         y: bounds.y - pad,
@@ -248,12 +259,12 @@
             "elk.direction": "RIGHT",
             "elk.edgeRouting": "ORTHOGONAL",
             "elk.padding": "[top=12,left=12,bottom=12,right=12]",
-            "elk.spacing.nodeNode": "30",
-            "elk.spacing.edgeNode": "18",
-            "elk.spacing.edgeEdge": "12",
-            "elk.layered.spacing.nodeNodeBetweenLayers": "58",
-            "elk.layered.spacing.edgeNodeBetweenLayers": "22",
-            "elk.layered.spacing.edgeEdgeBetweenLayers": "12",
+            "elk.spacing.nodeNode": "10",
+            "elk.spacing.edgeNode": "6",
+            "elk.spacing.edgeEdge": "5",
+            "elk.layered.spacing.nodeNodeBetweenLayers": "32",
+            "elk.layered.spacing.edgeNodeBetweenLayers": "10",
+            "elk.layered.spacing.edgeEdgeBetweenLayers": "5",
             "elk.layered.nodePlacement.favorStraightEdges": "true",
             "elk.layered.crossingMinimization.strategy": "LAYER_SWEEP",
             "elk.separateConnectedComponents": "false",
@@ -308,6 +319,7 @@
           const Vector = cell.get("outputSignals").out.constructor;
           cell.setInput(Vector.fromBin("0".repeat(bits), bits));
           if (bits === 1) {
+            field.append(document.createTextNode(cell.get("net")));
             control = document.createElement("button");
             control.type = "button";
             control.setAttribute("aria-label", "Toggle " + cell.get("net"));
@@ -345,9 +357,17 @@
     }
   }
 
+  // The layout measures the labels, so the faces must be loaded before the first drawing.
+  const fonts = Promise.all([
+    document.fonts.load('12px "IBM Plex Sans Condensed"'),
+    document.fonts.load('12px "Source Code Pro"'),
+  ]).catch(() => undefined);
+
   async function load(next) {
     shutdown();
     const token = generation;
+    await fonts;
+    if (token !== generation) return;
     try {
       data = next;
       fitted = true;
@@ -390,6 +410,12 @@
       prepareCells(circuit);
       buildControls();
       paper = circuit.displayOn($("<div>").appendTo("#paper"));
+      // DigitalJS refits the paper after every render with its own padding, which would undo the fit; the
+      // viewer sizes the paper itself.
+      circuit.stopListening(paper, "render:done");
+      paper.on("render:done", () => {
+        if (layoutBounds) refreshScale();
+      });
       paper.on("element:pointerclick link:pointerclick", describe);
       await new Promise((resolve) => paper.once("render:done", resolve));
       await nextFrame();
@@ -435,10 +461,27 @@
   resize.observe(byId("viewport"));
   window.addEventListener("message", (event) => {
     if (event.source !== parent || event.data?.type !== TYPE) return;
+    const shown = event.data.active === true && !active;
     if (typeof event.data.active === "boolean") active = event.data.active;
     if (event.data.circuit) load(event.data.circuit);
-    else playState();
+    else {
+      playState();
+      if (shown && fitted) requestAnimationFrame(fit);
+    }
   });
+  // Keys with a modifier, and the function keys, belong to the workspace (run, submit, tabs, panes). The frame hands
+  // them to the page, which applies its own bindings, so the keys work while focus is in the drawing.
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (["Shift", "Alt", "Meta", "Control"].some((name) => event.code.startsWith(name))) return;
+      if (!event.altKey && !event.metaKey && !event.ctrlKey && !/^F\d{1,2}$/.test(event.code)) return;
+      if (event.altKey || event.code === "Enter" || /^F\d{1,2}$/.test(event.code)) event.preventDefault();
+      const { code, key, altKey, metaKey, ctrlKey, shiftKey } = event;
+      send({ key: { code, key, altKey, metaKey, ctrlKey, shiftKey } });
+    },
+    true,
+  );
   window.addEventListener("pagehide", () => {
     resize.disconnect();
     shutdown();
