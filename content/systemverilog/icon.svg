@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="169" y="245" width="686" height="534" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="717" x2="512" y2="754" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="270" x2="512" y2="706" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="518" y1="312" x2="518" y2="636" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="518" y1="401" x2="518" y2="553" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#428c5d"/>
+      <stop offset="0.5" stop-color="#19733a"/>
+      <stop offset="1" stop-color="#12532a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="606" x2="512" y2="662" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="736" y1="628" x2="736" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-8" x1="512" y1="327" x2="512" y2="399" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-9" x1="512" y1="426" x2="512" y2="490" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-10" x1="512" y1="520" x2="512" y2="584" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>SystemVerilog course — bench oscilloscope</title>
+  <g id="SystemVerilog_course" data-name="SystemVerilog course">
+    <g filter="url(#filter-1)">
+      <polygon id="Tile" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <path id="Enclosed_front_panel" data-name="Enclosed front panel" d="M230 270 L794 270 C813.882 270 830 286.118 830 306 L830 670 C830 689.882 813.882 706 794 706 L230 706 C210.118 706 194 689.882 194 670 L194 306 C194 286.118 210.118 270 230 270 Z" fill="#fffdf8"/>
+    <path id="Display_glass" data-name="Display glass" d="M250 312 L652 312 C659.732 312 666 318.268 666 326 L666 622 C666 629.732 659.732 636 652 636 L250 636 C242.268 636 236 629.732 236 622 L236 326 C236 318.268 242.268 312 250 312 Z" fill="#e2f2e6"/>
+    <g filter="url(#filter-2)">
+      <g id="Bench_oscilloscope" data-name="Bench oscilloscope">
+        <path id="Bench_feet" data-name="Bench feet" d="M238 717 L310 717 L310 744 C310 749.523 305.523 754 300 754 L248 754 C242.477 754 238 749.523 238 744 Z M714 717 L786 717 L786 744 C786 749.523 781.523 754 776 754 L724 754 C718.477 754 714 749.523 714 744 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Moulded_bench_enclosure" data-name="Moulded bench enclosure" d="M230 270 L794 270 C813.882 270 830 286.118 830 306 L830 670 C830 689.882 813.882 706 794 706 L230 706 C210.118 706 194 689.882 194 670 L194 306 C194 286.118 210.118 270 230 270 Z M236 301 C229.925 301 225 305.925 225 312 L225 664 C225 670.075 229.925 675 236 675 L788 675 C794.075 675 799 670.075 799 664 L799 312 C799 305.925 794.075 301 788 301 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Recessed_display_bezel" data-name="Recessed display bezel" d="M250 312 L652 312 C659.732 312 666 318.268 666 326 L666 622 C666 629.732 659.732 636 652 636 L250 636 C242.268 636 236 629.732 236 622 L236 326 C236 318.268 242.268 312 250 312 Z M270 339 C266.134 339 263 342.134 263 346 L263 602 C263 605.866 266.134 609 270 609 L632 609 C635.866 609 639 605.866 639 602 L639 346 C639 342.134 635.866 339 632 339 Z" fill="url(#linear-gradient-4)"/>
+        <polygon id="Square-wave_trace" data-name="Square-wave trace" points="281,521 314,521 314,401 428,401 428,521 478,521 478,401 592,401 592,521 622,521 622,551 562,551 562,431 508,431 508,551 398,551 398,431 344,431 344,551 281,551" fill="url(#linear-gradient-5)"/>
+        <path id="BNC_socket_rim" data-name="BNC socket rim" d="M708 634 C708 618.536 720.536 606 736 606 C751.464 606 764 618.536 764 634 C764 649.464 751.464 662 736 662 C720.536 662 708 649.464 708 634 Z M723.979 621.979 C717.336 628.622 717.336 639.378 723.979 646.021 C730.622 652.664 741.378 652.664 748.021 646.021 C754.664 639.378 754.664 628.622 748.021 621.979 C741.378 615.336 730.622 615.336 723.979 621.979 Z" fill="url(#linear-gradient-6)"/>
+        <circle id="Recessed_probe_contact" data-name="Recessed probe contact" cx="736" cy="634" r="6" fill="url(#linear-gradient-7)"/>
+        <path id="Timebase_knob" data-name="Timebase knob" d="M700 363 C700 343.118 716.118 327 736 327 C737.189 327 738.364 327.058 739.523 327.17 L739.523 327.17 L733 350 L744 353 L750.553 330.063 C763.186 335.653 772 348.297 772 363 C772 382.882 755.882 399 736 399 C716.118 399 700 382.882 700 363 Z" fill="url(#linear-gradient-8)"/>
+        <path id="Vertical_scale_knob" data-name="Vertical scale knob" d="M704 458 C704 442.202 715.448 429.078 730.5 426.471 L730.5 448 L741.5 448 L741.5 426.471 C756.552 429.078 768 442.202 768 458 C768 475.673 753.673 490 736 490 C718.327 490 704 475.673 704 458 Z" fill="url(#linear-gradient-9)"/>
+        <path id="Trigger_level_knob" data-name="Trigger level knob" d="M723.523 522.523 C727.357 520.899 731.574 520 736 520 C753.673 520 768 534.327 768 552 C768 569.673 753.673 584 736 584 C718.327 584 704 569.673 704 552 C704 542.909 707.791 534.704 713.878 528.878 L732 547 L740 539 Z" fill="url(#linear-gradient-10)"/>
+      </g>
+    </g>
+  </g>
+</svg>
