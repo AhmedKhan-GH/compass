@@ -3,7 +3,7 @@
  * records of packages/schema.
  */
 import type { IndexedTask, ItemProgress, RunRecord, RunSummary, TaskStatus, TestResult } from "@compass/schema";
-import type { Status } from "@compass/ui";
+import type { Status, Tone } from "@compass/ui";
 
 type RunLike = Pick<RunRecord, "state" | "report" | "error" | "kind" | "taskId">;
 
@@ -83,23 +83,89 @@ export function failureTitle(kind: string | undefined): string {
 }
 
 /** The tests of a report grouped by task, in task order, with tests that name no task at the end. */
+export type TaskGroup = { taskId: number | undefined; title: string | undefined; tests: TestResult[] };
+
+/**
+ * The tests of a report grouped by task, in task order, with tests that name no task at the end. With
+ * `includeEmpty`, tasks the run did not cover are kept with no tests.
+ */
 export function testsByTask(
   tests: readonly TestResult[],
   tasks: readonly Pick<IndexedTask, "id" | "title" | "tests">[],
-): { taskId: number | undefined; title: string | undefined; tests: TestResult[] }[] {
-  const groups = tasks.map((task) => ({
-    taskId: task.id as number | undefined,
-    title: task.title as string | undefined,
-    tests: [] as TestResult[],
-  }));
+  options: { includeEmpty?: boolean } = {},
+): TaskGroup[] {
+  const groups: TaskGroup[] = tasks.map((task) => ({ taskId: task.id, title: task.title, tests: [] }));
   const rest: TestResult[] = [];
   for (const test of tests) {
     const group = groups.find((candidate) => candidate.taskId !== undefined && candidate.taskId === test.task_id);
     if (group) group.tests.push(test);
     else rest.push(test);
   }
-  const result = groups.filter((group) => group.tests.length > 0);
+  const result = options.includeEmpty ? groups : groups.filter((group) => group.tests.length > 0);
   if (rest.length) result.push({ taskId: undefined, title: undefined, tests: rest });
+  return result;
+}
+
+export type Outcome = { tone: Tone; status: Status; title: string; detail?: string };
+
+/**
+ * A finished run in words, for the banner and the status bar: "All 3 tests passed", or "1 of 3 failed" with the
+ * first failure as the detail ("Task 2 · The indicator is on after settling · Expected out = 1…").
+ */
+export function runOutcome(
+  run: Pick<RunRecord, "state" | "report" | "error">,
+  tasks: readonly Pick<IndexedTask, "id" | "title">[] = [],
+): Outcome {
+  if (run.state === "queued") return { tone: "neutral", status: "queued", title: "Queued" };
+  if (run.state === "running") return { tone: "running", status: "running", title: "Running" };
+  if (run.state === "cancelled") return { tone: "neutral", status: "cancelled", title: "Cancelled" };
+  if (run.state === "failed") {
+    const message = run.error?.message ? firstLine(run.error.message) : undefined;
+    const outcome: Outcome = {
+      tone: "warning",
+      status: run.error?.kind === "unavailable" ? "unavailable" : "error",
+      title: failureTitle(run.error?.kind),
+    };
+    return message ? { ...outcome, detail: message } : outcome;
+  }
+  const report = run.report;
+  if (!report) return { tone: "warning", status: "error", title: "No report" };
+  if (report.status === "error")
+    return { tone: "failed", status: "error", title: "Error", detail: firstLine(report.message) };
+  const total = report.tests.length;
+  const failing = report.tests.filter((test) => test.status !== "pass");
+  if (!failing.length)
+    return { tone: "passed", status: "passed", title: total === 1 ? "The test passed" : `All ${total} tests passed` };
+  const first = failing[0];
+  const task = tasks.find((candidate) => candidate.id === first?.task_id);
+  const detail = first
+    ? [task ? `Task ${task.id}` : undefined, first.name, first.message ? firstLine(first.message) : undefined]
+        .filter(Boolean)
+        .join(" · ")
+    : undefined;
+  const outcome: Outcome = { tone: "failed", status: "failed", title: `${failing.length} of ${total} failed` };
+  return detail ? { ...outcome, detail } : outcome;
+}
+
+/**
+ * The status of each task a finished run covered: passed when all its tests passed, failed otherwise. A run that
+ * produced no test results (a compile error) fails every task it covered.
+ */
+export function taskStatusesFromRun(
+  run: Pick<RunRecord, "state" | "report" | "taskId">,
+  tasks: readonly Pick<IndexedTask, "id">[],
+): Record<string, TaskStatus> {
+  const result: Record<string, TaskStatus> = {};
+  if (run.state !== "succeeded" || !run.report) return result;
+  const covered = tasks.filter((task) => run.taskId === undefined || run.taskId === task.id);
+  for (const task of covered) {
+    if (run.report.status === "error") {
+      result[String(task.id)] = "failed";
+      continue;
+    }
+    const tests = run.report.tests.filter((test) => test.task_id === task.id);
+    if (tests.length) result[String(task.id)] = tests.every((test) => test.status === "pass") ? "passed" : "failed";
+  }
   return result;
 }
 

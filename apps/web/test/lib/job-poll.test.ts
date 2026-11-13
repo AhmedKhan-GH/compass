@@ -119,8 +119,9 @@ test("a read the server rejects is not retried", async () => {
   assert.equal(server.calls.length, 1);
 });
 
-test("a server that answers at once is not asked again before the minimum interval", async () => {
+test("an unchanged answer that comes back at once waits before the next read; a change does not", async () => {
   const server = script([
+    { id: "r6", state: "queued" },
     { id: "r6", state: "running" },
     { id: "r6", state: "succeeded" },
   ]);
@@ -140,6 +141,25 @@ test("a server that answers at once is not asked again before the minimum interv
     },
   });
   assert.deepEqual(pauses, [300]);
+});
+
+test("each read carries the record the browser last saw", async () => {
+  const seen: string[] = [];
+  const records: Job[] = [
+    { id: "r8", state: "queued", position: 0 },
+    { id: "r8", state: "running" },
+    { id: "r8", state: "succeeded" },
+  ];
+  await followJob<Job>({
+    start: async () => ({ id: "r8", state: "queued", position: 1 }),
+    get: async (_id, _wait, last) => {
+      seen.push(`${last.state}${last.position === undefined ? "" : `:${last.position}`}`);
+      return records.shift()!;
+    },
+    onPhase: () => {},
+    sleep: async () => {},
+  });
+  assert.deepEqual(seen, ["queued:1", "queued:0", "running"]);
 });
 
 test("aborting stops the poll and reports nothing more", async () => {

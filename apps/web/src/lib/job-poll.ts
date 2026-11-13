@@ -1,7 +1,8 @@
 /**
  * The life of a run or a circuit job as the browser sees it. `POST` returns a record in state `queued`; the browser
- * then asks for it with `?wait=` until its state is terminal, showing `queued` (with its position) and `running` on
- * the way. Pure apart from the injected requests, so the state machine can be tested without a server.
+ * then reads it with `?wait=`, sending the state and queue position it last saw, and the server answers as soon as
+ * the job differs. Repeating the read with each answer shows `queued` with each position, then `running`, then the
+ * terminal state. Pure apart from the injected requests, so the state machine can be tested without a server.
  */
 import type { JobState } from "@compass/schema";
 
@@ -44,7 +45,8 @@ export class RequestError extends Error {
 
 export type PollOptions<T extends JobLike> = {
   start: () => Promise<T>;
-  get: (id: string, waitMs: number) => Promise<T>;
+  /** Reads the job, held by the server until it differs from `last` or the wait ends. */
+  get: (id: string, waitMs: number, last: T) => Promise<T>;
   onPhase: (phase: JobPhase<T>) => void;
   signal?: AbortSignal;
   /** How long the server may hold each request. */
@@ -53,7 +55,7 @@ export type PollOptions<T extends JobLike> = {
   retries?: number;
   /** The pause before retry `attempt` (1-based). */
   retryDelayMs?: (attempt: number) => number;
-  /** The shortest time between two reads, in case the server answers at once. */
+  /** The shortest time between two reads that saw no change, in case the server does not hold reads. */
   minIntervalMs?: number;
   sleep?: (ms: number, signal?: AbortSignal) => Promise<void>;
   now?: () => number;
@@ -97,7 +99,7 @@ export async function followJob<T extends JobLike>(options: PollOptions<T>): Pro
   while (phase.phase === "queued" || phase.phase === "running") {
     const began = now();
     try {
-      record = await get(record.id, waitMs);
+      record = await get(record.id, waitMs, record);
       failures = 0;
     } catch (error) {
       signal?.throwIfAborted();
@@ -107,10 +109,12 @@ export async function followJob<T extends JobLike>(options: PollOptions<T>): Pro
       continue;
     }
     const next = phaseOf(record);
-    if (!samePhase(phase, next)) phase = report(next);
-    else phase = next;
+    const changed = !samePhase(phase, next);
+    phase = changed ? report(next) : next;
+    // A change is answered at once by design; an unchanged answer that came back early means the server did not
+    // hold the read, so the next one waits a little.
     const elapsed = now() - began;
-    if ((phase.phase === "queued" || phase.phase === "running") && elapsed < minIntervalMs)
+    if (!changed && (phase.phase === "queued" || phase.phase === "running") && elapsed < minIntervalMs)
       await sleep(minIntervalMs - elapsed, signal);
   }
   return phase;

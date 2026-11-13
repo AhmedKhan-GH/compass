@@ -10,6 +10,7 @@ import {
   RunHistoryPage,
   RunRecord,
   RunnerHealth,
+  type JobState,
   type StartCircuitRequest,
   type StartRunRequest,
 } from "@compass/schema";
@@ -82,9 +83,26 @@ export function startRun(courseId: string, itemSlug: string, body: StartRunReque
   return request(`${itemApi(courseId, itemSlug)}/runs`, RunResponse, post(body, signal));
 }
 
-export function getRun(id: string, waitMs?: number, signal?: AbortSignal) {
-  const query = waitMs ? `?wait=${waitMs}` : "";
-  return request(`/api/runs/${encodeURIComponent(id)}${query}`, RunResponse, signal ? { signal } : {});
+/** What the browser last saw of a job: the read is held until the job differs from it. */
+export type Seen = { state: JobState; position?: number | undefined };
+
+/** `?wait=<ms>&state=<state>&position=<n>`: the position only while queued, and only with a state. */
+export function waitQuery(waitMs: number | undefined, seen?: Seen): string {
+  if (!waitMs) return "";
+  const query = new URLSearchParams({ wait: String(waitMs) });
+  if (seen) {
+    query.set("state", seen.state);
+    if (seen.state === "queued" && seen.position !== undefined) query.set("position", String(seen.position));
+  }
+  return `?${query.toString()}`;
+}
+
+export function getRun(id: string, waitMs?: number, signal?: AbortSignal, seen?: Seen) {
+  return request(
+    `/api/runs/${encodeURIComponent(id)}${waitQuery(waitMs, seen)}`,
+    RunResponse,
+    signal ? { signal } : {},
+  );
 }
 
 export function listRuns(courseId: string, itemSlug: string, cursor?: string, signal?: AbortSignal) {
@@ -96,8 +114,8 @@ export function startCircuit(courseId: string, itemSlug: string, body: StartCirc
   return request(`${itemApi(courseId, itemSlug)}/circuit`, CircuitResponse, post(body, signal));
 }
 
-export function getCircuit(id: string, waitMs?: number, signal?: AbortSignal) {
-  const query = waitMs ? `?wait=${waitMs}` : "";
+export function getCircuit(id: string, waitMs?: number, signal?: AbortSignal, seen?: Seen) {
+  const query = waitQuery(waitMs, seen && { state: seen.state });
   return request(`/api/circuits/${encodeURIComponent(id)}${query}`, CircuitResponse, signal ? { signal } : {});
 }
 

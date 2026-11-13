@@ -4,6 +4,7 @@ import type { RunRecord, TestResult } from "@compass/schema";
 import {
   firstLine,
   formatDuration,
+  runOutcome,
   runResult,
   runScope,
   runStatus,
@@ -78,4 +79,60 @@ test("durations and first lines", () => {
   assert.equal(formatDuration(64_000), "1 min 4 s");
   assert.equal(formatDuration(undefined), "");
   assert.equal(firstLine("\n  top.v:3: syntax error\nmore"), "top.v:3: syntax error");
+});
+
+test("a finished run in words: all passed, some failed with the first failure, an error, an unavailable runner", () => {
+  const tasks = [
+    { id: 1, title: "First" },
+    { id: 2, title: "Second" },
+  ];
+  assert.deepEqual(
+    runOutcome(
+      { ...base, report: { status: "pass", tests: [pass, { ...pass, name: "b" }, { ...pass, name: "c" }] } },
+      tasks,
+    ),
+    {
+      tone: "passed",
+      status: "passed",
+      title: "All 3 tests passed",
+    },
+  );
+  assert.equal(runOutcome({ ...base, report: { status: "pass", tests: [pass] } }).title, "The test passed");
+  assert.deepEqual(runOutcome({ ...base, report: { status: "fail", tests: [pass, fail, error] } }, tasks), {
+    tone: "failed",
+    status: "failed",
+    title: "2 of 3 failed",
+    detail: "Task 2 · two · Expected 1",
+  });
+  assert.deepEqual(runOutcome({ ...base, report: { status: "error", message: "\ntop.v:3: syntax error\nmore" } }), {
+    tone: "failed",
+    status: "error",
+    title: "Error",
+    detail: "top.v:3: syntax error",
+  });
+  assert.deepEqual(
+    runOutcome({ ...base, state: "failed", error: { kind: "unavailable", message: "Docker is down" } }),
+    {
+      tone: "warning",
+      status: "unavailable",
+      title: "Runner unavailable",
+      detail: "Docker is down",
+    },
+  );
+  assert.equal(runOutcome({ ...base, state: "running" }).tone, "running");
+});
+
+test("tasks a run did not cover are kept when asked", () => {
+  const tasks = [
+    { id: 1, title: "First", tests: ["one"] },
+    { id: 2, title: "Second", tests: ["two"] },
+  ];
+  const groups = testsByTask([pass], tasks, { includeEmpty: true });
+  assert.deepEqual(
+    groups.map((group) => [group.taskId, group.tests.length]),
+    [
+      [1, 1],
+      [2, 0],
+    ],
+  );
 });

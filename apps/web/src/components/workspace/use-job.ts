@@ -10,7 +10,7 @@ export function useJob<T extends JobLike>() {
   const follow = useCallback(
     async (
       start: (signal: AbortSignal) => Promise<T>,
-      get: (id: string, waitMs: number, signal: AbortSignal) => Promise<T>,
+      get: (id: string, waitMs: number, signal: AbortSignal, last: T) => Promise<T>,
     ): Promise<JobPhase<T> | undefined> => {
       controller.current?.abort();
       const current = new AbortController();
@@ -18,7 +18,7 @@ export function useJob<T extends JobLike>() {
       try {
         return await followJob<T>({
           start: () => start(current.signal),
-          get: (id, waitMs) => get(id, waitMs, current.signal),
+          get: (id, waitMs, last) => get(id, waitMs, current.signal, last),
           onPhase: setPhase,
           signal: current.signal,
         });
