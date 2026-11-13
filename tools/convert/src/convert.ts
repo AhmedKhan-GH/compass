@@ -334,6 +334,7 @@ function writeCourse(trackDir: string, repo: string, track: OldTrack, outRoot: s
       runner: "ghdl-cocotb@1",
       circuit: "ghdl-yosys-digitaljs@1",
     } : {}),
+    status: slugs.length === track.learningPath.length ? "published" : "draft",
     editor: { indent: 4 },
     concept: concepts.map((c) => ({ slug: c.slug, name: c.name })),
     item: items,

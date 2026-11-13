@@ -185,6 +185,7 @@ describe("convert", () => {
     run(["beta", "alpha"]);
     const course = CourseManifest.parse(parse(readFileSync(join(out, "course.toml"), "utf8")));
     assert.equal(course.id, "sternbild/verilog");
+    assert.equal(course.status, "draft", "a partial conversion remains a draft");
     assert.deepEqual(course.item, [
       { slug: "alpha", prerequisites: [] },
       { slug: "beta", prerequisites: ["c1"] },
@@ -249,6 +250,10 @@ it("converts VHDL entities, source order, stages and native graders while replac
   cpSync(join(old, "tracks/fake"), track, { recursive: true });
   const config = JSON.parse(readFileSync(join(track, "config.json"), "utf8")) as Record<string, unknown>;
   config.language = "VHDL";
+  const exercises = config.exercises as { concept: { slug: string }[] };
+  exercises.concept = exercises.concept.filter((entry) => entry.slug !== "gamma");
+  const custom = config.custom as { nebula: { learning_path: string[] } };
+  custom.nebula.learning_path = ["alpha", "beta"];
   put(join(track, "config.json"), JSON.stringify(config));
   put(join(track, "README.md"), "# VHDL syllabus\n\nLearn entities.\n\n## Run and author\n\nOld commands.\n");
   for (const file of tree(track)) {
@@ -276,7 +281,7 @@ it("converts VHDL entities, source order, stages and native graders while replac
   assert.equal(course.language, "vhdl");
   assert.equal(course.runner, "ghdl-cocotb@1");
   assert.equal(course.circuit, "ghdl-yosys-digitaljs@1");
-  assert.notEqual(course.status, "in-development");
+  assert.equal(course.status, "published", "a complete conversion is available");
   assert.deepEqual(course.planned, []);
   assert.deepEqual(course.item.map((i) => i.slug), ["alpha", "beta"]);
   const item = ItemManifest.parse(parse(readFileSync(join(target, "items/alpha/item.toml"), "utf8")));

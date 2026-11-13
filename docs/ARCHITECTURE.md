@@ -408,7 +408,8 @@ and writes `course.toml` in the old learning-path order. It reads the old reposi
 Compass kinds, preserves VHDL top entities and source order, and discovers stages with the solution's HDL extension
 or `.json`, copying only snapshots attached to declared tasks. Native items override the course runner and default to no circuit pane. Code, checks and solution bundles
 are copied byte for byte; Markdown uses the documented interface-label substitutions. Pack-owned icons survive
-reconversion. A converted VHDL pack is a runnable draft, replacing its planned list; SystemVerilog remains planned.
+reconversion. A full learning-path conversion is published; a partial conversion stays draft. VHDL replaces its planned list
+with real exercises; SystemVerilog remains planned.
 The Verilog syllabus comes from `VERILOG_SYLLABUS.md`; VHDL uses the curriculum portion of its track README, before
 `Run and author`. Relative syllabus links lose their targets so the pack remains self-contained.
 

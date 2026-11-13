@@ -23,7 +23,8 @@ The command prints one line per exercise and a summary, and exits with 1 when an
   declared tasks are imported; obsolete snapshots in practice folders with no tasks are omitted.
 - JSON wrong solutions and stage snapshots remain bundles of solution text and editable support-file text,
   validated before replacement. The mapping is documented in `docs/ARCHITECTURE.md`.
-- VHDL becomes a runnable draft with real items and no planned entries; SystemVerilog is not touched.
+- A full learning-path conversion becomes published; partial conversions stay draft. VHDL has real items and no
+  planned entries; SystemVerilog is not touched.
 - Copies code and test files byte for byte. Markdown goes through the table in `src/substitutions.ts`
   (`**Schematic**` to `**Circuit**`, `**Waveforms**` to `**Waveform**`); the syllabus is copied unchanged.
   Every substitution is reported.
