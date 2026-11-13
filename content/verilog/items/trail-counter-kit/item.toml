@@ -1,0 +1,38 @@
+id = "24ac8687-46c4-40cd-ad17-ade79257ae7c"
+title = "Trail counter kit"
+topic = "Trail counter kit"
+blurb = "Build a portable arrival counter and milestone lamp for short surveys at trail entrances."
+kind = "concept"
+concepts = [ "source-organization" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+support = [ "counter.v", "indicator.v", "trail_defs.vh" ]
+editable = [ "counter.v", "indicator.v", "trail_defs.vh" ]
+
+[checks]
+file = "test_trail_counter_kit.py"
+reference = "exemplar.v"
+wrong = [ "wrong_clock.json", "strict_threshold.json", "lost_configuration.json", "overwritten_default.json" ]
+
+[[task]]
+id = 1
+tests = [ "shared_header_preserves_build_choices" ]
+stage = "task_1.json"
+
+[[task]]
+id = 2
+tests = [ "reusable_counter_resets_holds_and_wraps" ]
+stage = "task_2.json"
+
+[[task]]
+id = 3
+tests = [ "reusable_indicator_checks_each_threshold" ]
+stage = "task_3.json"
+
+[[task]]
+id = 4
+tests = [ "assembled_kits_keep_their_configuration" ]
+stage = "task_4.json"

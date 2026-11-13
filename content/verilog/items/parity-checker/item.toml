@@ -1,0 +1,17 @@
+id = "d4b9e5b3-47f1-4636-8b74-a75c265df149"
+title = "Weather Station Link"
+topic = "Parity checker"
+blurb = "Help an indoor display recognize a damaged sensor message using parity."
+kind = "practice"
+concepts = [ "reductions", "words" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_parity_checker.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

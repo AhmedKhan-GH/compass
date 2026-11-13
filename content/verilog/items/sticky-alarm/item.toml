@@ -1,0 +1,17 @@
+id = "5c3f1d21-b29c-4dcf-8843-581ce550f59d"
+title = "Pinsetter jam light"
+topic = "Sticky alarm"
+blurb = "A bowling pinsetter can report a brief jam and recover before the attendant looks over."
+kind = "practice"
+concepts = [ "update-or-hold", "boolean-logic" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

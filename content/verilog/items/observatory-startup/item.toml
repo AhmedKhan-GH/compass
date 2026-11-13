@@ -1,0 +1,29 @@
+id = "d8bb023f-846c-41a5-b9ba-417c754739fe"
+title = "Observatory startup"
+topic = "Observatory startup"
+blurb = "Start an observatory camera without missing readiness or waiting beyond its deadline."
+kind = "concept"
+concepts = [ "event-waits-and-time" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "grading_fixture.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.v"
+wrong = [ "edge_only.v", "one_sample_too_late.v", "wrong_time_unit.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_handles_readiness_now_and_later" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_observes_the_complete_deadline_schedule" ]
+stage = "task_2.v"

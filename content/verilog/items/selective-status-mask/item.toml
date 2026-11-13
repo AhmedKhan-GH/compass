@@ -1,0 +1,17 @@
+id = "1c4b1f3d-6a88-46ca-a2f5-4097ab4180e1"
+title = "Route Setter"
+topic = "Selective status mask"
+blurb = "Preview new climbing-wall lights while protecting part of the existing route."
+kind = "practice"
+concepts = [ "bitwise-operators", "selection" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_selective_status_mask.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

@@ -1,0 +1,31 @@
+id = "627fb8ad-8a0c-440b-bef5-eacd4cb375db"
+title = "Observatory shutter"
+topic = "Observatory shutter"
+blurb = "Explain a telescope shutter simulation whose startup controls have not yet settled."
+kind = "concept"
+concepts = [ "four-state-decisions" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.v"
+wrong = [ "optimistic_selection.v", "ordinary_equality.v", "uncertain_request.v" ]
+
+[[task]]
+id = 1
+tests = [ "only_a_definite_request_is_recorded" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "uncertain_selection_preserves_agreeing_bits" ]
+stage = "task_2.v"
+
+[[task]]
+id = 3
+tests = [ "diagnostics_compare_all_four_states_literally" ]
+stage = "task_3.v"

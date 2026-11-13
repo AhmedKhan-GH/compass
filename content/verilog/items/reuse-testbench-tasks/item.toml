@@ -1,0 +1,29 @@
+id = "56000000-0000-4000-8000-000000000059"
+title = "Repair bench routine"
+topic = "Reuse testbench tasks"
+blurb = "A repair shop repeats the same register checkout for every refurbished board."
+kind = "concept"
+concepts = [ "testbench-tasks" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_faulty.v" ]
+schematic = false
+
+[checks]
+file = "test_reuse_testbench_tasks.py"
+reference = "exemplar.v"
+wrong = [ "common_mistake.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_dut" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_rejects_faulty_dut" ]
+stage = "task_2.v"

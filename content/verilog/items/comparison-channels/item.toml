@@ -1,0 +1,18 @@
+id = "417d83fe-ffb1-45de-9634-1d08f8bb8372"
+title = "Rooftop Tanks"
+topic = "Comparison channels"
+blurb = "Monitor two rainwater tanks with independent comparisons and a shared alert."
+kind = "practice"
+concepts = [ "module-hierarchy" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+support = [ "level_compare.v" ]
+
+[checks]
+file = "test_comparison_channels.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

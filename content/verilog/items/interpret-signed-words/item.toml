@@ -1,0 +1,26 @@
+id = "ed221f9b-6c74-4d5d-9491-be628203b8e0"
+title = "Mountain Thermometer"
+topic = "Interpret signed words"
+blurb = "Compare temperatures and widen their representation without losing the sign."
+kind = "concept"
+concepts = [ "signed-words" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_interpret_signed_words.py"
+reference = "exemplar.v"
+wrong = [ "misconception.v" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]
+stage = "task_2.v"

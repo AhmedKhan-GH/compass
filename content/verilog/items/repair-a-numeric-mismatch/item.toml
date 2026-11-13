@@ -1,0 +1,17 @@
+id = "e1038212-c40c-48f5-a09a-1593644648be"
+title = "A Warmer Display?"
+topic = "Repair a numeric mismatch"
+blurb = "Repair the adapter that turns the hut's below-zero temperatures into positive readings."
+kind = "practice"
+concepts = [ "signed-words", "numeric-width" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_repair_a_numeric_mismatch.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

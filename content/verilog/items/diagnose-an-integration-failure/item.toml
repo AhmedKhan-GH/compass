@@ -1,0 +1,17 @@
+id = "56000000-0000-4000-8000-000000000076"
+title = "Belt-scale readout"
+topic = "Diagnose an integration failure"
+blurb = "A model grain conveyor doubles each accepted sample into its display units."
+kind = "practice"
+concepts = [ "controller-datapath", "numeric-width", "shifts", "update-or-hold" ]
+difficulty = 6
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_diagnose_an_integration_failure.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

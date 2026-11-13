@@ -1,0 +1,18 @@
+id = "95430f86-0c37-4629-a8fd-389ec584ac9f"
+title = "Sculpture Controls"
+topic = "Configurable selector"
+blurb = "Select and black out patterns on both small and large light sculptures."
+kind = "practice"
+concepts = [ "parameters", "selection" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "test_wrapper"
+solution = "top_module.v"
+support = [ "test_wrapper.v" ]
+
+[checks]
+file = "test_configurable_selector.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

@@ -1,0 +1,17 @@
+id = "0a8463a3-4b2b-42b8-a0cc-3c487aaa85d9"
+title = "Rehearsal Lights"
+topic = "Service router"
+blurb = "Send a brightness setting to one strip of footlights while the others stay dark."
+kind = "practice"
+concepts = [ "selection", "words" ]
+difficulty = 2
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_routing.py"
+reference = "example.v"
+wrong = [ "ignores_enable.v", "swapped_lanes.v", "reserved_routes.v" ]

@@ -1,0 +1,17 @@
+id = "e807f2c0-9a8e-4cef-9f5c-e6e3a15c6f8f"
+title = "Plotter jog limits"
+topic = "Clamp several samples"
+blurb = "A small plotter accepts manual position offsets for three axes, but each permitted offset lies between -40 and 60 steps."
+kind = "practice"
+concepts = [ "name-a-reusable-calculation", "signed-words" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

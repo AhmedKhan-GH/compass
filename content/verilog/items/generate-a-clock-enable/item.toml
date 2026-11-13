@@ -1,0 +1,26 @@
+id = "2ab66e30-5019-48d3-ae87-b5e4a8593fb3"
+title = "Departure board refresh"
+topic = "Generate a clock enable"
+blurb = "A model station departure board is scheduled to refresh once every four clock ticks."
+kind = "concept"
+concepts = [ "generate-a-clock-enable" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.v"
+wrong = [ "common_mistake.v" ]
+
+[[task]]
+id = 1
+tests = [ "update_pulses_every_four_edges" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "consumer_updates_only_at_pulses" ]
+stage = "task_2.v"

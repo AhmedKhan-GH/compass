@@ -7,7 +7,7 @@ environment = "code@1"
 runner = "iverilog-cocotb@1"
 circuit = "yosys-digitaljs@1"
 syllabus = "syllabus.md"
-status = "draft"
+status = "published"
 
 [category]
 id = "rtl-design"
@@ -29,16 +29,172 @@ slug = "boolean-logic"
 name = "Boolean logic"
 
 [[concept]]
+slug = "words"
+name = "Words"
+
+[[concept]]
+slug = "selection"
+name = "Selection"
+
+[[concept]]
+slug = "bitwise-operators"
+name = "Operate on every bit"
+
+[[concept]]
+slug = "reductions"
+name = "Reduce a word"
+
+[[concept]]
+slug = "combinational-procedures"
+name = "Complete conditional decisions"
+
+[[concept]]
+slug = "case-decoding"
+name = "Decode with case"
+
+[[concept]]
+slug = "unsigned-arithmetic"
+name = "Calculate with unsigned words"
+
+[[concept]]
+slug = "numeric-width"
+name = "Preserve numeric width"
+
+[[concept]]
+slug = "signed-words"
+name = "Interpret signed words"
+
+[[concept]]
+slug = "shifts"
+name = "Shift and scale"
+
+[[concept]]
 slug = "module-hierarchy"
 name = "Connect a supplied module"
+
+[[concept]]
+slug = "parameters"
+name = "Configure a reusable block"
+
+[[concept]]
+slug = "generate-blocks"
+name = "Generate repeated hardware"
+
+[[concept]]
+slug = "unknown-and-undriven-values"
+name = "Unknown and undriven values"
+
+[[concept]]
+slug = "write-a-self-checking-testbench"
+name = "Write a self-checking testbench"
+
+[[concept]]
+slug = "sample-on-a-clock-edge"
+name = "Sample on a clock edge"
+
+[[concept]]
+slug = "reset-stored-state"
+name = "Reset stored state"
 
 [[concept]]
 slug = "update-or-hold"
 name = "Update or hold"
 
 [[concept]]
+slug = "check-a-clocked-block"
+name = "Check a clocked block"
+
+[[concept]]
+slug = "count-and-wrap"
+name = "Count and wrap"
+
+[[concept]]
+slug = "generate-a-clock-enable"
+name = "Generate a clock enable"
+
+[[concept]]
+slug = "shift-and-load"
+name = "Shift and load"
+
+[[concept]]
+slug = "repeat-a-bounded-calculation"
+name = "Repeat a bounded calculation"
+
+[[concept]]
+slug = "name-a-reusable-calculation"
+name = "Name a reusable calculation"
+
+[[concept]]
+slug = "address-an-array-of-words"
+name = "Address an array of words"
+
+[[concept]]
+slug = "synchronous-memory"
+name = "Synchronous Memory"
+
+[[concept]]
+slug = "testbench-tasks"
+name = "Testbench Tasks"
+
+[[concept]]
+slug = "test-vectors"
+name = "Test Vectors"
+
+[[concept]]
+slug = "finite-state-machines"
+name = "Finite State Machines"
+
+[[concept]]
+slug = "output-timing"
+name = "Output Timing"
+
+[[concept]]
+slug = "controller-datapath"
+name = "Controller Datapath"
+
+[[concept]]
 slug = "ready-valid"
 name = "Ready Valid"
+
+[[concept]]
+slug = "queue-state"
+name = "Queue State"
+
+[[concept]]
+slug = "concurrent-testbenches"
+name = "Concurrent Testbenches"
+
+[[concept]]
+slug = "explicit-nets-and-drivers"
+name = "Explicit nets and drivers"
+
+[[concept]]
+slug = "expression-width-and-sign"
+name = "Expression width and sign"
+
+[[concept]]
+slug = "four-state-decisions"
+name = "Four state decisions"
+
+[[concept]]
+slug = "wildcard-decoding"
+name = "Wildcard decoding"
+
+[[concept]]
+slug = "simulation-ordering"
+name = "Simulation ordering"
+
+[[concept]]
+slug = "automatic-subprograms"
+name = "Automatic subprogram lifetime"
+
+[[concept]]
+slug = "event-waits-and-time"
+name = "Event waits and simulation time"
+
+[[concept]]
+slug = "source-organization"
+name = "Source-file organization"
 
 [[item]]
 slug = "drive-high"
@@ -57,5 +213,321 @@ slug = "camera-trigger"
 prerequisites = [ "boolean-logic" ]
 
 [[item]]
+slug = "status-word"
+prerequisites = [ "boolean-logic" ]
+
+[[item]]
+slug = "panel-permutation"
+prerequisites = [ "words" ]
+
+[[item]]
+slug = "palindrome-panel"
+prerequisites = [ "words", "boolean-logic" ]
+
+[[item]]
+slug = "choose-a-channel"
+prerequisites = [ "words", "boolean-logic" ]
+
+[[item]]
+slug = "service-router"
+prerequisites = [ "selection", "words" ]
+
+[[item]]
+slug = "priority-alert"
+prerequisites = [ "selection", "boolean-logic" ]
+
+[[item]]
+slug = "operate-on-every-bit"
+prerequisites = [ "words", "boolean-logic" ]
+
+[[item]]
+slug = "selective-status-mask"
+prerequisites = [ "bitwise-operators", "selection" ]
+
+[[item]]
+slug = "reduce-a-word"
+prerequisites = [ "bitwise-operators" ]
+
+[[item]]
+slug = "parity-checker"
+prerequisites = [ "reductions", "words" ]
+
+[[item]]
+slug = "complete-conditional-decisions"
+prerequisites = [ "selection", "reductions" ]
+
+[[item]]
+slug = "decode-with-case"
+prerequisites = [ "combinational-procedures" ]
+
+[[item]]
+slug = "display-decoder"
+prerequisites = [ "case-decoding" ]
+
+[[item]]
+slug = "repair-a-retained-output"
+prerequisites = [ "combinational-procedures" ]
+
+[[item]]
+slug = "control-panel"
+prerequisites = [ "combinational-procedures", "selection", "bitwise-operators" ]
+
+[[item]]
+slug = "calculate-with-unsigned-words"
+prerequisites = [ "words", "selection" ]
+
+[[item]]
+slug = "range-alarm"
+prerequisites = [ "unsigned-arithmetic" ]
+
+[[item]]
+slug = "preserve-numeric-width"
+prerequisites = [ "unsigned-arithmetic" ]
+
+[[item]]
+slug = "saturating-sum"
+prerequisites = [ "numeric-width", "selection" ]
+
+[[item]]
+slug = "interpret-signed-words"
+prerequisites = [ "numeric-width" ]
+
+[[item]]
+slug = "signed-temperature-alarm"
+prerequisites = [ "signed-words" ]
+
+[[item]]
+slug = "shift-and-scale"
+prerequisites = [ "signed-words", "bitwise-operators" ]
+
+[[item]]
+slug = "repair-a-numeric-mismatch"
+prerequisites = [ "signed-words", "numeric-width" ]
+
+[[item]]
+slug = "connect-a-supplied-module"
+prerequisites = [ "selection", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "comparison-channels"
+prerequisites = [ "module-hierarchy" ]
+
+[[item]]
+slug = "configure-a-reusable-block"
+prerequisites = [ "module-hierarchy", "words" ]
+
+[[item]]
+slug = "configurable-selector"
+prerequisites = [ "parameters", "selection" ]
+
+[[item]]
+slug = "generate-repeated-hardware"
+prerequisites = [ "parameters", "bitwise-operators" ]
+
+[[item]]
+slug = "parity-lanes"
+prerequisites = [ "generate-blocks", "module-hierarchy", "reductions" ]
+
+[[item]]
+slug = "unknown-and-undriven-values"
+prerequisites = [ "module-hierarchy", "boolean-logic" ]
+
+[[item]]
+slug = "write-a-self-checking-testbench"
+prerequisites = [ "unknown-and-undriven-values", "module-hierarchy" ]
+
+[[item]]
+slug = "find-a-miswired-block"
+prerequisites = [ "write-a-self-checking-testbench", "boolean-logic" ]
+
+[[item]]
+slug = "sample-on-a-clock-edge"
+prerequisites = [ "combinational-procedures", "write-a-self-checking-testbench" ]
+
+[[item]]
+slug = "two-stage-delay"
+prerequisites = [ "sample-on-a-clock-edge" ]
+
+[[item]]
+slug = "reset-stored-state"
+prerequisites = [ "sample-on-a-clock-edge" ]
+
+[[item]]
+slug = "update-or-hold"
+prerequisites = [ "reset-stored-state" ]
+
+[[item]]
+slug = "sticky-alarm"
+prerequisites = [ "update-or-hold", "boolean-logic" ]
+
+[[item]]
+slug = "check-a-clocked-block"
+prerequisites = [ "write-a-self-checking-testbench", "reset-stored-state" ]
+
+[[item]]
+slug = "repair-a-lost-cycle"
+prerequisites = [ "check-a-clocked-block" ]
+
+[[item]]
+slug = "count-and-wrap"
+prerequisites = [ "update-or-hold", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "pulse-duration-meter"
+prerequisites = [ "count-and-wrap", "update-or-hold" ]
+
+[[item]]
+slug = "generate-a-clock-enable"
+prerequisites = [ "count-and-wrap" ]
+
+[[item]]
+slug = "programmable-pulse-timer"
+prerequisites = [ "generate-a-clock-enable", "count-and-wrap", "update-or-hold" ]
+
+[[item]]
+slug = "shift-and-load"
+prerequisites = [ "update-or-hold", "shifts" ]
+
+[[item]]
+slug = "word-serializer"
+prerequisites = [ "shift-and-load", "count-and-wrap" ]
+
+[[item]]
+slug = "rising-edge-pulse"
+prerequisites = [ "sample-on-a-clock-edge", "update-or-hold", "boolean-logic" ]
+
+[[item]]
+slug = "repeat-a-bounded-calculation"
+prerequisites = [ "combinational-procedures", "bitwise-operators", "numeric-width" ]
+
+[[item]]
+slug = "population-count"
+prerequisites = [ "repeat-a-bounded-calculation", "numeric-width", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "name-a-reusable-calculation"
+prerequisites = [ "repeat-a-bounded-calculation" ]
+
+[[item]]
+slug = "clamp-several-samples"
+prerequisites = [ "name-a-reusable-calculation", "signed-words" ]
+
+[[item]]
+slug = "address-an-array-of-words"
+prerequisites = [ "parameters", "words", "repeat-a-bounded-calculation" ]
+
+[[item]]
+slug = "read-and-write-synchronous-memory"
+prerequisites = [ "address-an-array-of-words", "reset-stored-state" ]
+
+[[item]]
+slug = "circular-sample-recorder"
+prerequisites = [ "synchronous-memory", "count-and-wrap" ]
+
+[[item]]
+slug = "repair-parameter-boundaries"
+prerequisites = [ "parameters", "synchronous-memory", "count-and-wrap" ]
+
+[[item]]
+slug = "reuse-testbench-tasks"
+prerequisites = [ "check-a-clocked-block", "name-a-reusable-calculation" ]
+
+[[item]]
+slug = "replay-test-vectors"
+prerequisites = [ "testbench-tasks", "address-an-array-of-words" ]
+
+[[item]]
+slug = "strengthen-a-checker"
+prerequisites = [ "testbench-tasks", "check-a-clocked-block" ]
+
+[[item]]
+slug = "describe-named-states"
+prerequisites = [ "update-or-hold", "case-decoding" ]
+
+[[item]]
+slug = "interlocked-indicators"
+prerequisites = [ "finite-state-machines" ]
+
+[[item]]
+slug = "choose-output-timing"
+prerequisites = [ "finite-state-machines", "update-or-hold" ]
+
+[[item]]
+slug = "recognize-overlapping-patterns"
+prerequisites = [ "finite-state-machines", "shifts" ]
+
+[[item]]
+slug = "repair-a-transition"
+prerequisites = [ "finite-state-machines", "update-or-hold" ]
+
+[[item]]
+slug = "separate-controller-and-datapath"
+prerequisites = [ "finite-state-machines", "count-and-wrap" ]
+
+[[item]]
+slug = "iterative-multiplier"
+prerequisites = [ "controller-datapath", "shifts", "numeric-width" ]
+
+[[item]]
 slug = "accept-a-transfer-and-hold-it"
 prerequisites = [ "update-or-hold", "module-hierarchy" ]
+
+[[item]]
+slug = "one-word-buffer"
+prerequisites = [ "ready-valid", "reset-stored-state" ]
+
+[[item]]
+slug = "track-a-queue"
+prerequisites = [ "ready-valid", "count-and-wrap", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "small-synchronous-fifo"
+prerequisites = [ "queue-state", "synchronous-memory", "ready-valid", "parameters" ]
+
+[[item]]
+slug = "coordinate-testbench-workers"
+prerequisites = [ "testbench-tasks", "queue-state" ]
+
+[[item]]
+slug = "test-a-queue-under-load"
+prerequisites = [ "concurrent-testbenches", "queue-state" ]
+
+[[item]]
+slug = "repair-an-inferred-circuit"
+prerequisites = [ "combinational-procedures", "selection" ]
+
+[[item]]
+slug = "diagnose-an-integration-failure"
+prerequisites = [ "controller-datapath", "numeric-width", "shifts", "update-or-hold" ]
+
+[[item]]
+slug = "museum-audio-guide"
+prerequisites = [ "module-hierarchy", "unknown-and-undriven-values" ]
+
+[[item]]
+slug = "alpine-weather-station"
+prerequisites = [ "signed-words", "numeric-width", "unsigned-arithmetic" ]
+
+[[item]]
+slug = "observatory-shutter"
+prerequisites = [ "unknown-and-undriven-values", "combinational-procedures", "selection" ]
+
+[[item]]
+slug = "harbor-beacon-decoder"
+prerequisites = [ "case-decoding", "four-state-decisions", "reductions" ]
+
+[[item]]
+slug = "photo-finish-checker"
+prerequisites = [ "check-a-clocked-block", "testbench-tasks" ]
+
+[[item]]
+slug = "darkroom-timers"
+prerequisites = [ "testbench-tasks", "concurrent-testbenches" ]
+
+[[item]]
+slug = "observatory-startup"
+prerequisites = [ "concurrent-testbenches", "testbench-tasks" ]
+
+[[item]]
+slug = "trail-counter-kit"
+prerequisites = [ "parameters", "count-and-wrap", "module-hierarchy" ]

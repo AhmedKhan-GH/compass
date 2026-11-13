@@ -1,0 +1,18 @@
+id = "56000000-0000-4000-8000-000000000072"
+title = "Wind-tunnel samples"
+topic = "Small synchronous FIFO"
+blurb = "A wind-tunnel sensor sends bursts of readings to a display that pauses between updates."
+kind = "practice"
+concepts = [ "queue-state", "synchronous-memory", "ready-valid", "parameters" ]
+difficulty = 8
+status = "active"
+
+[design]
+top = "fifo_matrix"
+solution = "top_module.v"
+support = [ "parameter_wrapper.v" ]
+
+[checks]
+file = "test_small_synchronous_fifo.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

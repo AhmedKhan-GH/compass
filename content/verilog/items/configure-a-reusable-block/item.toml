@@ -1,0 +1,27 @@
+id = "512bf44b-43dd-488f-bc53-ea0f4a0e83cc"
+title = "Display Kits"
+topic = "Configure a reusable block"
+blurb = "Build one configurable live-pattern and lamp-test circuit for two kit sizes."
+kind = "concept"
+concepts = [ "parameters" ]
+status = "active"
+
+[design]
+top = "test_wrapper"
+solution = "top_module.v"
+support = [ "test_wrapper.v" ]
+
+[checks]
+file = "test_configure_a_reusable_block.py"
+reference = "exemplar.v"
+wrong = [ "misconception.v" ]
+
+[[task]]
+id = 1
+tests = [ "configured_outputs" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "nonzero_matches_shown" ]
+stage = "task_2.v"

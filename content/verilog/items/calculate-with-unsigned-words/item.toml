@@ -1,0 +1,26 @@
+id = "22fa53bc-da2e-4ad2-9dac-0d4f00d58af0"
+title = "Parts Bin Totals"
+topic = "Calculate with unsigned words"
+blurb = "Match a parts counter's limited arithmetic display and compare the original quantities."
+kind = "concept"
+concepts = [ "unsigned-arithmetic" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_calculate_with_unsigned_words.py"
+reference = "exemplar.v"
+wrong = [ "misconception.v" ]
+
+[[task]]
+id = 1
+tests = [ "task_one_behavior" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "task_two_behavior" ]
+stage = "task_2.v"

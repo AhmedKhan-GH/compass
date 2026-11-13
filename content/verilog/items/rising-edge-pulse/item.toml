@@ -1,0 +1,17 @@
+id = "f2fbc152-d04c-49e0-8620-c92b4e615fca"
+title = "Scoreboard button"
+topic = "Rising-edge pulse"
+blurb = "A gym scoreboard should add one point when its button is pressed, even if the referee keeps holding it."
+kind = "practice"
+concepts = [ "sample-on-a-clock-edge", "update-or-hold", "boolean-logic" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

@@ -1,0 +1,17 @@
+id = "2e0d0d50-aedc-4086-b0e6-484c228ed7f8"
+title = "Waterline Watch"
+topic = "Range alarm"
+blurb = "Accept aquarium levels within chosen bounds and report either kind of excursion."
+kind = "practice"
+concepts = [ "unsigned-arithmetic" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_range_alarm.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

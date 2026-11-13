@@ -1,0 +1,29 @@
+id = "170e9f3a-5f54-4789-ace8-f44acd67cff3"
+title = "Selector Checkout"
+topic = "Write a self-checking testbench"
+blurb = "Test replacement greenhouse selectors and distinguish reversed or stuck paths."
+kind = "concept"
+concepts = [ "write-a-self-checking-testbench" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_reversed.v", "dut_stuck.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.v"
+wrong = [ "always_pass.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_selector" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_rejects_miswired_selectors" ]
+stage = "task_2.v"

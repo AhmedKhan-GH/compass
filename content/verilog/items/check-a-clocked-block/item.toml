@@ -1,0 +1,29 @@
+id = "52e5dc34-c3f7-46a3-98ac-8d12a256b0d8"
+title = "Register inspection bench"
+topic = "Check a clocked block"
+blurb = "A repair shop is checking replacement sample_register components before fitting them to its boards."
+kind = "concept"
+concepts = [ "check-a-clocked-block" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_negedge.v", "dut_live.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.v"
+wrong = [ "always_pass.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_clocked_register" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_rejects_clock_phase_faults" ]
+stage = "task_2.v"

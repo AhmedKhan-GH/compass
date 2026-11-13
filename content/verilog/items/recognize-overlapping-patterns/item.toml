@@ -1,0 +1,17 @@
+id = "56000000-0000-4000-8000-000000000065"
+title = "Rocket telemetry marker"
+topic = "Recognize overlapping patterns"
+blurb = "A model rocket's telemetry receiver looks for marker 101 in its incoming bit stream."
+kind = "practice"
+concepts = [ "finite-state-machines", "shifts" ]
+difficulty = 6
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_recognize_overlapping_patterns.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

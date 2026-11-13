@@ -1,0 +1,20 @@
+id = "0ad900fc-415e-49ff-aae7-c5e47d7490f8"
+title = "Indicator Inspection"
+topic = "Find a miswired block"
+blurb = "Choose asymmetric tests that expose a bicycle harness's incorrect connections."
+kind = "practice"
+concepts = [ "write-a-self-checking-testbench", "boolean-logic" ]
+difficulty = 4
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_swapped.v", "dut_shared.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "example.v"
+wrong = [ "always_pass.v" ]

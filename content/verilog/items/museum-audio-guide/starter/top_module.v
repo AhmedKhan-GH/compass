@@ -1,0 +1,21 @@
+module top_module (
+    input wire [7:0] beacon,
+    input wire listen_button,
+    input wire signal_present,
+    output wire [3:0] recognized_stop,
+    output wire [3:0] speaker_volume,
+    output wire play_request
+);
+    wire [3:0] decoded_stop;
+    // Task 2: inspect the width of the receiver's volume connection.
+    guide_receiver receiver (
+        .beacon (beacon),
+        .stop_id(decdoed_stop),
+        .volume (volume_setting)
+    );
+
+    assign recognized_stop = decoded_stop;
+    assign speaker_volume = volume_setting;
+    assign play_request = listen_button;
+    assign play_request = 1'b0;
+endmodule

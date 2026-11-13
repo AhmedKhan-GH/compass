@@ -1,0 +1,17 @@
+id = "e93db6ba-2841-41c6-899a-b6f6f7d5798a"
+title = "Barn gauge link"
+topic = "Word serializer"
+blurb = "A farmhouse sends a gauge reading to a display in the barn over a serial data line with a shared clock."
+kind = "practice"
+concepts = [ "shift-and-load", "count-and-wrap" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

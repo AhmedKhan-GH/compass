@@ -1,0 +1,17 @@
+id = "31fbf0ba-4e42-4e2f-97f4-7904f9c7ad02"
+title = "Darkroom exposure"
+topic = "Programmable pulse timer"
+blurb = "A darkroom enlarger exposes a print for the duration chosen when the photographer presses start."
+kind = "practice"
+concepts = [ "generate-a-clock-enable", "count-and-wrap", "update-or-hold" ]
+difficulty = 5
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

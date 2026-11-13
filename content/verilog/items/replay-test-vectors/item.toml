@@ -1,0 +1,29 @@
+id = "56000000-0000-4000-8000-000000000060"
+title = "Returned weather station"
+topic = "Replay test vectors"
+blurb = "A weather-station board has returned to the repair bench with a short capture file."
+kind = "concept"
+concepts = [ "test-vectors" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_faulty.v", "vectors.hex" ]
+schematic = false
+
+[checks]
+file = "test_replay_test_vectors.py"
+reference = "exemplar.v"
+wrong = [ "common_mistake.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_dut" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_rejects_faulty_dut" ]
+stage = "task_2.v"

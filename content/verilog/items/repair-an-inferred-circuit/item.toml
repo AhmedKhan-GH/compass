@@ -1,0 +1,17 @@
+id = "56000000-0000-4000-8000-000000000075"
+title = "Ghost frame"
+topic = "Repair an inferred circuit"
+blurb = "A lecture-hall selector should blank its eight-bit display word when disabled, yet the previous image remains visible in the model."
+kind = "practice"
+concepts = [ "combinational-procedures", "selection" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_repair_an_inferred_circuit.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

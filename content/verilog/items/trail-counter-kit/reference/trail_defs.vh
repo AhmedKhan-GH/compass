@@ -1,0 +1,8 @@
+`ifndef NEBULA_TRAIL_DEFS_VH
+`define NEBULA_TRAIL_DEFS_VH
+
+`ifndef TRAIL_COUNT_WIDTH
+`define TRAIL_COUNT_WIDTH 8
+`endif
+
+`endif

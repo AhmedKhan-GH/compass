@@ -1,0 +1,13 @@
+module top_module (
+    input wire [7:0] samples,
+    output reg [7:0] inverted,
+    output reg [3:0] ones
+);
+    integer i;
+    always @* begin
+        for (i = 0; i <= 8; i = i + 1) begin
+            inverted[i] = ~samples[i];
+            ones = ones + samples[i];
+        end
+    end
+endmodule

@@ -1,0 +1,20 @@
+id = "c6234447-6de4-4471-a921-6bb6febfe367"
+title = "Speaker delay check"
+topic = "Repair a lost cycle"
+blurb = "A model public-address system sends one speaker the previous captured audio sample so two paths line up."
+kind = "practice"
+concepts = [ "check-a-clocked-block" ]
+difficulty = 5
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_one_stage.v", "dut_three_stage.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "example.v"
+wrong = [ "always_pass.v" ]

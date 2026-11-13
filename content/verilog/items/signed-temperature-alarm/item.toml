@@ -1,0 +1,17 @@
+id = "2d2bb8c8-066f-407d-bbf0-25ac5ab57b24"
+title = "Freezer Trials"
+topic = "Signed temperature alarm"
+blurb = "Check signed temperature limits during cooling and defrost test runs."
+kind = "practice"
+concepts = [ "signed-words" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_signed_temperature_alarm.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

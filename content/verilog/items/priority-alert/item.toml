@@ -1,0 +1,17 @@
+id = "761fa0f4-eb97-4837-a557-0853d3859f0c"
+title = "Aquarium Alerts"
+topic = "Priority alert"
+blurb = "Show the aquarium keeper the most urgent active message."
+kind = "practice"
+concepts = [ "selection", "boolean-logic" ]
+difficulty = 2
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_alerts.py"
+reference = "example.v"
+wrong = [ "reversed_priority.v", "critical_only_valid.v", "no_alert_code.v" ]

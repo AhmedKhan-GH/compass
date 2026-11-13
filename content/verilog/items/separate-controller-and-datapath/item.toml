@@ -1,0 +1,26 @@
+id = "56000000-0000-4000-8000-000000000067"
+title = "Arcade token hopper"
+topic = "Separate controller and datapath"
+blurb = "An arcade change machine dispenses a requested number of tokens one working edge at a time."
+kind = "concept"
+concepts = [ "controller-datapath" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_separate_controller_and_datapath.py"
+reference = "exemplar.v"
+wrong = [ "common_mistake.v" ]
+
+[[task]]
+id = 1
+tests = [ "basic_behavior" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "boundary_behavior" ]
+stage = "task_2.v"

@@ -1,0 +1,29 @@
+id = "56000000-0000-4000-8000-000000000073"
+title = "Queue inspection bench"
+topic = "Coordinate testbench workers"
+blurb = "The repair bench now needs to inspect a queue while sending and receiving happen independently."
+kind = "concept"
+concepts = [ "concurrent-testbenches" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_faulty.v" ]
+schematic = false
+
+[checks]
+file = "test_coordinate_testbench_workers.py"
+reference = "exemplar.v"
+wrong = [ "common_mistake.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_accepts_correct_dut" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_rejects_faulty_dut" ]
+stage = "task_2.v"

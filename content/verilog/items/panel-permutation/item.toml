@@ -1,0 +1,17 @@
+id = "61f4062b-648c-4494-9a6d-04def4e5fd05"
+title = "Replacement Lights"
+topic = "Panel permutation"
+blurb = "Adapt an exhibit's old controller to a new lamp-panel connector."
+kind = "practice"
+concepts = [ "words" ]
+difficulty = 2
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_panel.py"
+reference = "example.v"
+wrong = [ "unchanged.v", "reverse_every_bit.v", "flags_not_swapped.v" ]

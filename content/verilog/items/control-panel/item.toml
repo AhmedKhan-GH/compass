@@ -1,0 +1,17 @@
+id = "e2e106a5-71ab-4823-b103-13712ee494ae"
+title = "Backstage Console"
+topic = "Control panel"
+blurb = "Combine filtered backstage lights with an independent priority alert."
+kind = "practice"
+concepts = [ "combinational-procedures", "selection", "bitwise-operators" ]
+difficulty = 3
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_control_panel.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

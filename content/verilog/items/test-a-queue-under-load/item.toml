@@ -1,0 +1,20 @@
+id = "56000000-0000-4000-8000-000000000074"
+title = "Wrap and stall"
+topic = "Test a queue under load"
+blurb = "A queue passed the bench's three-byte checkout, but a longer field capture shows readings arriving out of order."
+kind = "practice"
+concepts = [ "concurrent-testbenches", "queue-state" ]
+difficulty = 8
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "dut_correct.v", "dut_faulty.v" ]
+schematic = false
+
+[checks]
+file = "test_test_a_queue_under_load.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

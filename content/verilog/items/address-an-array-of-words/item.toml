@@ -1,0 +1,26 @@
+id = "441ef290-6f83-4edc-83c7-4423d65e2457"
+title = "Organ preset cards"
+topic = "Address an array of words"
+blurb = "An electronic organ stores eight preset stop patterns as individual bytes."
+kind = "concept"
+concepts = [ "address-an-array-of-words" ]
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "exemplar.v"
+wrong = [ "common_mistake.v" ]
+
+[[task]]
+id = 1
+tests = [ "array_lookup_uses_word_indices" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "packed_lookup_uses_bit_offsets" ]
+stage = "task_2.v"

@@ -1,0 +1,17 @@
+id = "a584de60-a971-4b0c-9456-c03c06511c50"
+title = "Scoreboard Limit"
+topic = "Saturating sum"
+blurb = "Keep an arcade score at its display maximum and flag a larger total."
+kind = "practice"
+concepts = [ "numeric-width", "selection" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_saturating_sum.py"
+reference = "example.v"
+wrong = [ "misconception.v" ]

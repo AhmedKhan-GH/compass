@@ -1,0 +1,29 @@
+id = "acc86137-9a41-45e1-a23e-f7b72673fcc9"
+title = "Photo finish"
+topic = "Photo finish"
+blurb = "Repair a finish-line camera checker that mistakes the previous runner for the current one."
+kind = "concept"
+concepts = [ "simulation-ordering" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "grading_fixture.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.v"
+wrong = [ "zero_delay.v", "rising_edge_driver.v", "always_match.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_observes_settled_frames" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_presents_bibs_between_shutter_edges" ]
+stage = "task_2.v"

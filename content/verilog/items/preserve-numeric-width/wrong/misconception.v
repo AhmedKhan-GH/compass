@@ -1,0 +1,11 @@
+module top_module (
+    input wire [7:0] a,
+    input wire [7:0] b,
+    output wire [8:0] full_sum,
+    output wire [7:0] wrapped,
+    output wire carry
+);
+    assign full_sum = {1'b0, (a + b)};
+    assign wrapped = full_sum[7:0];
+    assign carry = full_sum[8];
+endmodule

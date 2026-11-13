@@ -1,0 +1,29 @@
+id = "7a25c483-5110-4299-a248-fa32f848b34e"
+title = "Darkroom timers"
+topic = "Darkroom timers"
+blurb = "Keep three photographic enlargers on independent timers when their exposures overlap."
+kind = "concept"
+concepts = [ "automatic-subprograms" ]
+status = "active"
+runner = "iverilog-native@1"
+
+[design]
+top = "testbench"
+solution = "testbench.v"
+support = [ "grading_fixture.v" ]
+schematic = false
+
+[checks]
+file = "test_native.py"
+reference = "exemplar.v"
+wrong = [ "static_lifetime.v", "overwrite_other_lamps.v", "too_short.v" ]
+
+[[task]]
+id = 1
+tests = [ "test_times_individual_exposures" ]
+stage = "task_1.v"
+
+[[task]]
+id = 2
+tests = [ "test_preserves_overlapping_exposures" ]
+stage = "task_2.v"

@@ -1,0 +1,1 @@
+Use different expected byte values and track which operations were accepted in the testbench. The expected stream must not come from DUT outputs or internal pointers. Ensure normal completion cancels the watchdog.

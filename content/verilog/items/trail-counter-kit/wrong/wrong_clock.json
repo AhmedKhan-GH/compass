@@ -1,0 +1,8 @@
+{
+  "source": "`include \"trail_defs.vh\"\n\nmodule top_module #(\n    parameter WIDTH = `TRAIL_COUNT_WIDTH,\n    parameter WARNING_AT = 6\n) (\n    input wire clk,\n    input wire reset,\n    input wire arrival,\n    output wire [WIDTH-1:0] visitors,\n    output wire busy\n);\n    trail_counter #(\n        .WIDTH(WIDTH)\n    ) counter (\n        .clk(clk),\n        .reset(reset),\n        .arrival(arrival),\n        .visitors(visitors)\n    );\n\n    trail_indicator #(\n        .WIDTH(WIDTH),\n        .WARNING_AT(WARNING_AT)\n    ) indicator (\n        .visitors(visitors),\n        .busy(busy)\n    );\nendmodule\n",
+  "sourceFiles": {
+    "counter.v": "`include \"trail_defs.vh\"\n\nmodule trail_counter #(\n    parameter WIDTH = `TRAIL_COUNT_WIDTH\n) (\n    input wire clk,\n    input wire reset,\n    input wire arrival,\n    output reg [WIDTH-1:0] visitors\n);\n    always @(negedge clk) begin\n        if (reset) visitors <= 0;\n        else if (arrival) visitors <= visitors + 1'b1;\n    end\nendmodule\n",
+    "indicator.v": "`include \"trail_defs.vh\"\n\nmodule trail_indicator #(\n    parameter WIDTH = `TRAIL_COUNT_WIDTH,\n    parameter WARNING_AT = 6\n) (\n    input wire [WIDTH-1:0] visitors,\n    output wire busy\n);\n    assign busy = visitors >= WARNING_AT;\nendmodule\n",
+    "trail_defs.vh": "`ifndef NEBULA_TRAIL_DEFS_VH\n`define NEBULA_TRAIL_DEFS_VH\n\n`ifndef TRAIL_COUNT_WIDTH\n`define TRAIL_COUNT_WIDTH 8\n`endif\n\n`endif\n"
+  }
+}

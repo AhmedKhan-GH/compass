@@ -1,0 +1,17 @@
+id = "be5b50dc-4fc4-4f0f-90f7-48ea63708e0f"
+title = "Light Trails"
+topic = "Two-stage delay"
+blurb = "Make an exhibit's second lamp row echo its pattern one sample behind."
+kind = "practice"
+concepts = [ "sample-on-a-clock-edge" ]
+difficulty = 4
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_design.py"
+reference = "example.v"
+wrong = [ "common_mistake.v" ]

@@ -1,0 +1,17 @@
+id = "cfc40ed9-0110-454b-ad42-ca457283772c"
+title = "Balanced Lights"
+topic = "Palindrome panel"
+blurb = "Tell a theatre desk whether an eight-lamp arch has a symmetric pattern."
+kind = "practice"
+concepts = [ "words", "boolean-logic" ]
+difficulty = 2
+status = "active"
+
+[design]
+top = "top_module"
+solution = "top_module.v"
+
+[checks]
+file = "test_palindrome.py"
+reference = "example.v"
+wrong = [ "outer_pair_only.v", "identical_halves.v", "missing_middle_pair.v" ]
