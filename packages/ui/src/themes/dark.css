@@ -1,0 +1,87 @@
+/*
+ * The dark Sternbild theme, selectable in Compass. The release (vendor/sternbild/1.0.0/sternbild.css) gives the
+ * grounds, the ink, the rules, bronze and the marks; this file adds the roles the learn theme introduced, built
+ * from the release's values. Where a data colour is too dark for text it is blended toward parchment.
+ * Applied by <html data-theme="dark">.
+ */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Grounds and ink come from the release. The status bar sits on the well; text selection is the code
+     selection below. */
+  --sb-status-ground: var(--sb-well);
+  --sb-selection: var(--sb-syntax-selection);
+  --sb-on-accent: var(--sb-well);
+  /* The scrim behind a modal dialog: the near-black at 72 %. */
+  --sb-scrim: rgba(18, 17, 15, 0.72);
+
+  /* States: the data colours, blended toward parchment until they read as text on the grounds (4.5 or more);
+     tints are 14 % of the state over the window ground. Fills carry the well's near-black text. */
+  --sb-state-running: color-mix(in srgb, var(--sb-data-smalt) 72%, var(--sb-text));
+  --sb-state-passed: var(--sb-data-verdigris);
+  --sb-state-failed: color-mix(in srgb, var(--sb-data-madder) 62%, var(--sb-text));
+  --sb-state-warning: color-mix(in srgb, var(--sb-data-olive-ochre) 70%, var(--sb-text));
+  --sb-state-information: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--sb-data-verdigris) 45%, var(--sb-data-smalt)) 75%,
+    var(--sb-text)
+  );
+  --sb-state-neutral: color-mix(in srgb, var(--sb-text-faint) 60%, var(--sb-text));
+  --sb-state-running-tint: color-mix(in srgb, var(--sb-state-running) 14%, var(--sb-background-app));
+  --sb-state-passed-tint: color-mix(in srgb, var(--sb-state-passed) 14%, var(--sb-background-app));
+  --sb-state-failed-tint: color-mix(in srgb, var(--sb-state-failed) 14%, var(--sb-background-app));
+  --sb-state-warning-tint: color-mix(in srgb, var(--sb-state-warning) 14%, var(--sb-background-app));
+  --sb-state-information-tint: color-mix(in srgb, var(--sb-state-information) 14%, var(--sb-background-app));
+  --sb-state-neutral-tint: color-mix(in srgb, var(--sb-state-neutral) 14%, var(--sb-background-app));
+  --sb-on-state: var(--sb-well);
+
+  /* Code on the well. The selection is a dark smalt, so every hue keeps 4.5 or more under it; comments are faint
+     blended toward parchment for the same reason. */
+  --sb-syntax-ground: var(--sb-well);
+  --sb-syntax-text: var(--sb-text);
+  --sb-syntax-keyword: color-mix(in srgb, var(--sb-data-madder) 55%, var(--sb-text));
+  --sb-syntax-type: var(--sb-data-verdigris);
+  --sb-syntax-number: color-mix(in srgb, var(--sb-data-olive-ochre) 55%, var(--sb-text));
+  --sb-syntax-string: color-mix(in srgb, var(--sb-data-smalt) 50%, var(--sb-text));
+  --sb-syntax-comment: color-mix(in srgb, var(--sb-text-faint) 70%, var(--sb-text));
+  --sb-syntax-definition: var(--sb-text);
+  --sb-syntax-meta: var(--sb-text-muted);
+  --sb-syntax-operator: var(--sb-text-muted);
+  --sb-syntax-gutter: var(--sb-text-faint);
+  --sb-syntax-active-line: var(--sb-background-app);
+  --sb-syntax-selection: color-mix(in srgb, var(--sb-data-smalt) 30%, var(--sb-well));
+
+  /* Waveform on the well. */
+  --sb-wave-ground: var(--sb-well);
+  --sb-wave-grid: var(--sb-rule-faint);
+  --sb-wave-bit: var(--sb-data-verdigris);
+  --sb-wave-bus: color-mix(in srgb, var(--sb-data-smalt) 72%, var(--sb-text));
+  --sb-wave-bus-tint: color-mix(in srgb, var(--sb-wave-bus) 18%, var(--sb-background-app));
+  --sb-wave-unknown: color-mix(in srgb, var(--sb-data-madder) 62%, var(--sb-text));
+  --sb-wave-unknown-tint: color-mix(in srgb, var(--sb-wave-unknown) 18%, var(--sb-background-app));
+  --sb-wave-cursor: var(--sb-accent);
+
+  /* Circuit: the waveform's key on the well. */
+  --sb-circuit-ground: var(--sb-well);
+  --sb-circuit-cell: var(--sb-background-app);
+  --sb-circuit-line: var(--sb-text-muted);
+  --sb-circuit-text: var(--sb-text);
+  --sb-circuit-high: var(--sb-wave-bit);
+  --sb-circuit-low: var(--sb-text-faint);
+  --sb-circuit-word: var(--sb-wave-bus);
+  --sb-circuit-unknown: var(--sb-wave-unknown);
+  --sb-circuit-selected: var(--sb-accent);
+
+  /* Marks: the release's tile, parchment and bronze stay as they are. The interior is the release's near-black,
+     the tile border parchment. The category hues reuse the data colours and two mark tones, all 3.3 or more on
+     the dark tile. */
+  --sb-mark-tile-border: var(--sb-mark-parchment);
+  --sb-mark-interior: var(--sb-background);
+  --sb-mark-hue-1: var(--sb-data-smalt);
+  --sb-mark-hue-2: var(--sb-data-verdigris);
+  --sb-mark-hue-3: var(--sb-data-olive-ochre);
+  --sb-mark-hue-4: var(--sb-data-madder);
+  --sb-mark-hue-5: var(--sb-mark-bronze-light);
+  --sb-mark-hue-6: var(--sb-mark-parchment-shade);
+}

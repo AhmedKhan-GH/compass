@@ -5,7 +5,9 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./themes/learn.css": "./src/themes/learn.css",
+    "./themes/dark.css": "./src/themes/dark.css"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p .",

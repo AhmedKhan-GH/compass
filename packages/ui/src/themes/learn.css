@@ -1,0 +1,129 @@
+/*
+ * The learn theme: the light Sternbild scheme for learning applications (Compass, later Alidade).
+ *
+ * Every role and value of the theme is in this file, so it can be proposed as a minor release of the style guide.
+ * It sets the release's role names (--sb-background-app, --sb-surface, --sb-text, --sb-accent and so on) and adds
+ * roles for the states, the code syntax, the waveform, the circuit and the marks. Components use only role names.
+ *
+ * Contrast is WCAG 2.2, truncated to two decimals. Text meets 4.5:1, glyphs and graphic marks 3:1. The ratios in
+ * the comments are against the grounds the role is used on; the full table is in the report that introduced the
+ * theme. It is applied by <html data-theme="learn">, the default.
+ */
+
+:root[data-theme="learn"] {
+  color-scheme: light;
+
+  /* Grounds. A warm ivory page, white panels for the editor, code and fields, a slightly darker strip for pane
+     headers and the status bar. The selected row has a bronze tint. */
+  --sb-background: #f8f5ee;
+  --sb-background-app: #f8f5ee;
+  --sb-well: #fffdf8;
+  --sb-surface: #efe9de;
+  --sb-surface-hover: #e7e0d2;
+  --sb-selected: #f3e6cf;
+  --sb-row-hover: #f1ebe0;
+  --sb-status-ground: #ece5d8;
+  --sb-selection: #e2ebf8;
+  /* The scrim behind a modal dialog: ink at 32 %. */
+  --sb-scrim: rgba(33, 29, 23, 0.32);
+
+  /* Rules: light and warm. Rules are graphic structure, not text. */
+  --sb-rule: #cdc3b1;
+  --sb-rule-faint: #e4ddd0;
+
+  /* Ink. On the page, the panels, the headers, the hover and the selected tint:
+     text 14.94 to 12.19, muted 8.04 to 6.62, faint 5.52 to 4.53. */
+  --sb-text: #211d17;
+  --sb-text-muted: #574f44;
+  --sb-text-faint: #6b6256;
+
+  /* Bronze, the brand accent: focus, selection, the primary action. Darkened for the light grounds:
+     5.77 on the page, 6.17 on the panels, 5.20 on the headers, 4.57 on the hover, 4.98 on the selected tint.
+     Text on a bronze fill: 6.17. */
+  --sb-accent: #845518;
+  --sb-accent-hover: #6f4612;
+  --sb-focus: #845518;
+  --sb-on-accent: #fffdf8;
+
+  /* States: a solid tone for glyphs, text and fills, and a tint for backgrounds. Each solid reads as text on its
+     own tint, the page, the panels and the headers (4.5 or more), and carries white text as a fill (4.5 or more).
+     Ink text on every tint is 13 or more. */
+  --sb-state-running: #1f5fb0;
+  --sb-state-running-tint: #e4eefb;
+  --sb-state-passed: #19733a;
+  --sb-state-passed-tint: #e2f2e6;
+  --sb-state-failed: #b3262f;
+  --sb-state-failed-tint: #fbe6e6;
+  --sb-state-warning: #8a5600;
+  --sb-state-warning-tint: #fcf0d6;
+  --sb-state-information: #0d6a71;
+  --sb-state-information-tint: #ddf0f1;
+  --sb-state-neutral: #5a6270;
+  --sb-state-neutral-tint: #eceef0;
+  --sb-on-state: #ffffff;
+
+  /* Code: a light syntax theme on the white panel. Every hue is 4.5 or more on the panel, the active line and the
+     selection. */
+  --sb-syntax-ground: #fffdf8;
+  --sb-syntax-text: #211d17;
+  --sb-syntax-keyword: #7a3e9d;
+  --sb-syntax-type: #0d6a71;
+  --sb-syntax-number: #a14b0b;
+  --sb-syntax-string: #27712b;
+  --sb-syntax-comment: #6b6256;
+  --sb-syntax-definition: #1f5fb0;
+  --sb-syntax-meta: #9b2f6a;
+  --sb-syntax-operator: #574f44;
+  --sb-syntax-gutter: #6b6256;
+  --sb-syntax-active-line: #f6f1e6;
+  --sb-syntax-selection: #e2ebf8;
+
+  /* Waveform: one-bit traces, words (buses), unknown values (x and z), the time cursor. Traces are 3 or more on
+     the panel; text inside a word or an unknown band is ink on its tint. */
+  --sb-wave-ground: #fffdf8;
+  --sb-wave-grid: #e4ddd0;
+  --sb-wave-bit: #0b7a6e;
+  --sb-wave-bus: #6b44a8;
+  --sb-wave-bus-tint: #f0eafa;
+  --sb-wave-unknown: #b95a00;
+  --sb-wave-unknown-tint: #fdeedb;
+  --sb-wave-cursor: #845518;
+
+  /* Circuit: the same key as the waveform. A high wire is a one-bit trace, a word is a bus, an unknown value is
+     x; a low wire is slate. Cells are white on the page, outlined in muted ink. */
+  --sb-circuit-ground: #f8f5ee;
+  --sb-circuit-cell: #fffdf8;
+  --sb-circuit-line: #574f44;
+  --sb-circuit-text: #211d17;
+  --sb-circuit-high: #0b7a6e;
+  --sb-circuit-low: #5a6270;
+  --sb-circuit-word: #6b44a8;
+  --sb-circuit-unknown: #b95a00;
+  --sb-circuit-selected: #845518;
+
+  /* Marks: the light counterparts of the release's mark colours, for course and exercise thumbnails drawn in the
+     app-mark style on light surfaces. The names follow the release: the tile and its gradient stops, the main
+     parts (parchment on dark tiles, ink here), the bronze accent, and the interior (#12110f on dark tiles).
+     Only the placeholder thumbnail uses the tile and its border so far.
+     Main parts on the tile 12.43, accent 5.22, interior on the main parts 14.91. */
+  --sb-mark-tile-light: #f7f2e8;
+  --sb-mark-tile: #efe8da;
+  --sb-mark-tile-dark: #e3d9c7;
+  --sb-mark-tile-border: #a3957e;
+  --sb-mark-parchment-light: #3d3529;
+  --sb-mark-parchment: #2b251d;
+  --sb-mark-parchment-shade: #1b1712;
+  --sb-mark-bronze-light: #a26c26;
+  --sb-mark-bronze: #845518;
+  --sb-mark-bronze-shade: #66410f;
+  --sb-mark-interior: #fffdf8;
+
+  /* Mark categories: six hues that tell categories apart, kept away from the state hues (running 214°,
+     passed 142°, failed 356°, warning 37°, information 184°) and 3 or more on the tile (4.61 to 6.18). */
+  --sb-mark-hue-1: #4a48a8;
+  --sb-mark-hue-2: #6b45a8;
+  --sb-mark-hue-3: #86398f;
+  --sb-mark-hue-4: #a3347f;
+  --sb-mark-hue-5: #5d6a12;
+  --sb-mark-hue-6: #4b7224;
+}

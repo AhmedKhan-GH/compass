@@ -2,6 +2,7 @@
 // The release's CSS reaches its fonts at ../../assets/fonts/, so the copy keeps that shape:
 //   public/sternbild/design/1.0.0/sternbild.css
 //   public/sternbild/assets/fonts/
+// The theme files of packages/ui go to public/sternbild/themes/, for the circuit viewer.
 // Then copies the browser assets of the circuit viewer (public/circuit/viewer.html), which runs in a sandboxed
 // frame and so cannot use the app's bundle:
 //   public/vendor/digitaljs/   DigitalJS's browser build and licences
@@ -69,3 +70,9 @@ await cp(
   path.join(vendor, "fonts/source-code-pro-latin-400-normal.woff2"),
 );
 await cp(path.join(mono, "LICENSE"), path.join(vendor, "fonts/OFL-source-code-pro.txt"));
+
+// The themes, for the circuit viewer's sandboxed frame, which cannot use the app's bundle.
+const themes = path.resolve(web, "../../packages/ui/src/themes");
+await mkdir(path.join(target, "themes"), { recursive: true });
+for (const name of await readdir(themes))
+  if (name.endsWith(".css")) await cp(path.join(themes, name), path.join(target, "themes", name));
