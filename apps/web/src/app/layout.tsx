@@ -2,6 +2,7 @@ import "@fontsource/source-code-pro/400.css";
 import "@compass/ui/styles.css";
 import "@compass/ui/themes/learn.css";
 import "@compass/ui/themes/dark.css";
+import "./frame.css";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { DEFAULT_THEME, THEME_SCRIPT } from "@compass/ui";

@@ -9,7 +9,7 @@ export const MARK_SRC = "/sternbild/marks/compass-icon.svg";
 export function Brand() {
   return (
     <Link href="/" className="sb-wordmark-link brand">
-      <Image src={MARK_SRC} alt="" width={18} height={18} unoptimized className="brand-mark" />
+      <Image src={MARK_SRC} alt="" width={32} height={32} unoptimized className="brand-mark" />
       <Wordmark>Compass</Wordmark>
     </Link>
   );

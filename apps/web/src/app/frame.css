@@ -1,0 +1,18 @@
+/* A larger command bar: the founder found the default too small for the Compass mark and name.
+   The doubled :root outranks the style release, which loads after this file. */
+:root:root {
+  --sb-app-command-bar: 48px;
+}
+
+.sb-wordmark-link.brand {
+  gap: var(--sb-space-3);
+}
+
+.sb-wordmark-link.brand .sb-wordmark {
+  font-size: var(--sb-font-size-heading);
+}
+
+.sb-wordmark-link.brand .brand-mark {
+  width: 32px;
+  height: 32px;
+}
