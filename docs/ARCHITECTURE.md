@@ -218,7 +218,9 @@ All bodies are JSON. The types are in `packages/schema/src/runner.ts`.
 | `GET /v1/jobs/:id` | `200 { job: Job }`; `404` when unknown or expired. `?wait=<ms>` holds the response until the job is terminal or the wait ends (at most 30 000 ms) |
 | `DELETE /v1/jobs/:id` | `200 { job: Job }`; cancels a queued or running job |
 
-Errors are `{ error: { code, message } }`.
+Errors are `{ error: { code, message } }`. A job must be sent as `application/json` (otherwise `415`), which stops
+another site from submitting jobs with a plain form post. A request the launcher would reject (no solution file, an
+undeclared task) is refused with `400` when it is submitted.
 
 A `JobRequest` carries everything the run needs: the runner kind, the top module, the source files, and for a test job
 the checks file, the task map and an optional task selection. The service never reads packs or the index.
@@ -234,7 +236,8 @@ queued ──▶ running ──▶ succeeded     the sandbox produced a valid re
 `succeeded`, `failed` and `cancelled` are terminal. A test job's result is a `RunReport` (`pass`, `fail`, or `error`
 with a message, for example a compile error), the simulation log, an optional VCD waveform, the image id and the
 duration. A circuit job's result is the DigitalJS circuit, the ports and the warnings. `job.error.kind` is one of
-`unavailable` (Docker or the image is missing), `timeout`, `execution`, `invalid-result` and `design` (the circuit
+`unavailable` (Docker or the image is missing), `timeout` (the container ran past the wall-clock limit; the test
+image stops its own simulation after 10 seconds and reports that as an `error` report), `execution`, `invalid-result` and `design` (the circuit
 runner rejected the design).
 
 ### The queue
@@ -245,7 +248,8 @@ restart; the web app treats a job the service no longer knows as failed with `un
 
 ### The sandbox
 
-Each job runs in a fresh container: `--network none`, one CPU, 256 MB of memory with no swap, a pids limit,
+Each job runs in a fresh container: `--network none`, one CPU, 256 MB of memory with no swap (512 MB for the circuit
+runner), a pids limit,
 a read-only root filesystem, all capabilities dropped, `no-new-privileges`, user `65534:65534`, a file-size ulimit,
 a small `tmpfs` at `/tmp`, the input mounted read-only and one writable output directory. The launcher enforces a
 wall-clock timeout, removes the container afterwards, and reads `results.json`, the log and the waveform through

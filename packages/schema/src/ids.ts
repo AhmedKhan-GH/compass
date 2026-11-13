@@ -18,7 +18,11 @@ export const CourseId = z.string().regex(COURSE_ID_PATTERN);
 export const Kind = z.string().regex(KIND_PATTERN);
 export const Semver = z.string().regex(SEMVER_PATTERN);
 export const Uuid = z.string().regex(UUID_PATTERN);
-export const FileName = z.string().regex(FILE_NAME_PATTERN);
+/** `__proto__` matches the pattern but cannot be a key of a plain record. */
+export const FileName = z
+  .string()
+  .regex(FILE_NAME_PATTERN)
+  .refine((name) => name !== "__proto__", "Reserved name.");
 export const Identifier = z.string().regex(IDENTIFIER_PATTERN);
 
 export function splitCourseId(id: string): { namespace: string; name: string } {
