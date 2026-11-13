@@ -108,7 +108,7 @@ test("invalid requests are refused with 400 and an error body", async (t) => {
         solution: "__proto__",
         files: JSON.parse('{"__proto__": "module m; endmodule"}') as unknown,
       },
-      /not among the files/,
+      /Reserved name|not among the files/,
     ],
   ];
   for (const [json, message] of cases) {

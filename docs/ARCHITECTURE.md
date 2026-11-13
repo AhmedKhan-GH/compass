@@ -316,7 +316,7 @@ origin is another site.
 ## The interface
 
 `packages/ui` builds on the role names of the vendored Sternbild release (`--sb-surface`, `--sb-text`, `--sb-accent`
-and so on) and never uses raw colour values. `apps/web/scripts/sync-sternbild.mjs` verifies `vendor/sternbild/1.0.0/`
+and so on) and never uses raw colour values. `apps/web/scripts/sync-assets.mjs` verifies `vendor/sternbild/1.0.0/`
 against its checksums and copies it under `apps/web/public/sternbild/` before `dev` and `build`. The rules of
 `~/CLionProjects/caliper/docs/wiki/explanation/ui-principles.md` apply: a dense workstation of docked panes, the
 subject of a view given most of the window, labels as nouns, no explanatory sentences on the surface.
