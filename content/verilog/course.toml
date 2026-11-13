@@ -9,6 +9,10 @@ circuit = "yosys-digitaljs@1"
 syllabus = "syllabus.md"
 status = "draft"
 
+[category]
+id = "rtl-design"
+title = "RTL design"
+
 [editor]
 indent = 4
 

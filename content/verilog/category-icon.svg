@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="177" y="193" width="670" height="638" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="218" x2="512" y2="806" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9c5da3"/>
+      <stop offset="0.5" stop-color="#86398f"/>
+      <stop offset="1" stop-color="#602967"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="218" x2="512" y2="806" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8666b8"/>
+      <stop offset="0.5" stop-color="#6b45a8"/>
+      <stop offset="1" stop-color="#4d3279"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="218" x2="512" y2="806" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+  </defs>
+  <title>RTL category — silicon wafer</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <polygon id="Tile___exact_Caliper_reference" data-name="Tile — exact Caliper reference" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border___neutral_taupe__expanded" data-name="Border — neutral taupe, expanded" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Silicon_wafer___25_dies__11_px_scribe_gaps__orientation_flat" data-name="Silicon wafer — 25 dies, 11 px scribe gaps, orientation flat">
+        <path id="Die_1.3___rim_cut" data-name="Die 1.3 — rim cut" d="M455.5 223.137 C473.82 219.763 492.704 218 512 218 C531.296 218 550.18 219.763 568.5 223.137 L568.5 336.5 L455.5 336.5 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Die_1.4" data-name="Die 1.4" d="M579.5 336.5 L579.5 225.37 C620.889 234.561 659.164 252.026 692.5 275.94 L692.5 336.5 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Die_1.2" data-name="Die 1.2" d="M331.5 275.94 C364.836 252.026 403.111 234.561 444.5 225.37 L444.5 336.5 L331.5 336.5 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Die_2.5___rim_cut" data-name="Die 2.5 — rim cut" d="M703.5 336.5 L703.5 284.205 C722.939 299.496 740.504 317.061 755.795 336.5 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Die_2.2___rim_cut" data-name="Die 2.2 — rim cut" d="M268.205 336.5 C283.496 317.061 301.061 299.496 320.5 284.205 L320.5 336.5 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Die_2.1" data-name="Die 2.1" d="M209.37 460.5 C218.561 419.111 236.026 380.836 259.94 347.5 L320.5 347.5 L320.5 460.5 Z" fill="url(#linear-gradient-2)"/>
+        <rect id="Die_2.2" data-name="Die 2.2" x="331.5" y="347.5" width="113" height="113" fill="url(#linear-gradient-2)"/>
+        <rect id="Die_2.3" data-name="Die 2.3" x="455.5" y="347.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_2.4" data-name="Die 2.4" x="579.5" y="347.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <path id="Die_2.5" data-name="Die 2.5" d="M703.5 460.5 L703.5 347.5 L764.06 347.5 C787.974 380.836 805.439 419.111 814.63 460.5 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Die_3.1___rim_cut" data-name="Die 3.1 — rim cut" d="M202 528 C202 508.704 203.763 489.82 207.137 471.5 L320.5 471.5 L320.5 584.5 L207.137 584.5 C203.763 566.18 202 547.296 202 528 Z" fill="url(#linear-gradient-2)"/>
+        <rect id="Die_3.2" data-name="Die 3.2" x="331.5" y="471.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_3.3" data-name="Die 3.3" x="455.5" y="471.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_3.4" data-name="Die 3.4" x="579.5" y="471.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <path id="Die_3.5___rim_cut" data-name="Die 3.5 — rim cut" d="M703.5 584.5 L703.5 471.5 L816.863 471.5 C820.237 489.82 822 508.704 822 528 C822 547.296 820.237 566.18 816.863 584.5 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Die_4.1" data-name="Die 4.1" d="M259.94 708.5 C236.026 675.164 218.561 636.889 209.37 595.5 L320.5 595.5 L320.5 708.5 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_4.2" data-name="Die 4.2" x="331.5" y="595.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_4.3" data-name="Die 4.3" x="455.5" y="595.5" width="113" height="113" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_4.4" data-name="Die 4.4" x="579.5" y="595.5" width="113" height="113" fill="url(#linear-gradient-4)"/>
+        <path id="Die_4.5" data-name="Die 4.5" d="M703.5 708.5 L703.5 595.5 L814.63 595.5 C805.439 636.889 787.974 675.164 764.06 708.5 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Die_5.2___rim_cut" data-name="Die 5.2 — rim cut" d="M320.5 771.795 C301.061 756.504 283.496 738.939 268.205 719.5 L320.5 719.5 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Die_5.2___rim_cut-2" data-name="Die 5.2 — rim cut" d="M331.5 780.06 L331.5 719.5 L444.5 719.5 L444.5 806 L374.673 806 C359.542 798.511 345.109 789.823 331.5 780.06 Z" fill="url(#linear-gradient-3)"/>
+        <rect id="Die_5.3" data-name="Die 5.3" x="455.5" y="719.5" width="113" height="86.5" fill="url(#linear-gradient-4)"/>
+        <path id="Die_5.4___rim_cut" data-name="Die 5.4 — rim cut" d="M579.5 806 L579.5 719.5 L692.5 719.5 L692.5 780.06 C678.891 789.823 664.458 798.511 649.327 806 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Die_5.5___rim_cut" data-name="Die 5.5 — rim cut" d="M703.5 771.795 L703.5 719.5 L755.795 719.5 C740.504 738.939 722.939 756.504 703.5 771.795 Z" fill="url(#linear-gradient-4)"/>
+      </g>
+    </g>
+  </g>
+</svg>

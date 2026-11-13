@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="169" y="325" width="686" height="450" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="350" x2="512" y2="536" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#379288"/>
+      <stop offset="0.5" stop-color="#0b7a6e"/>
+      <stop offset="1" stop-color="#08584f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="421" x2="512" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="394" x2="512" y2="492" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+  </defs>
+  <title>Workshop Controls</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <polygon id="Tile___exact_Caliper_geometry" data-name="Tile — exact Caliper geometry" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border___exact_Caliper_weight" data-name="Border — exact Caliper weight" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <path id="Interior___warm_white_belt_opening" data-name="Interior — warm white belt opening" d="M287 383 L737 383 C770.137 383 797 409.863 797 443 C797 476.137 770.137 503 737 503 L287 503 C253.863 503 227 476.137 227 443 C227 409.863 253.863 383 287 383 Z" fill="#fffdf8"/>
+    <g filter="url(#filter-2)">
+      <g id="Workshop_Controls___side_elevation" data-name="Workshop Controls — side elevation">
+        <path id="Endless_belt___two_tangent_semicircular_returns" data-name="Endless belt — two tangent semicircular returns" d="M287 350 L737 350 C788.363 350 830 391.637 830 443 C830 494.363 788.363 536 737 536 L287 536 C235.637 536 194 494.363 194 443 C194 391.637 235.637 350 287 350 Z M287 383 C253.863 383 227 409.863 227 443 C227 476.137 253.863 503 287 503 L737 503 C770.137 503 797 476.137 797 443 C797 409.863 770.137 383 737 383 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Frame_supports___gussets__straight_uprights_and_feet" data-name="Frame supports — gussets, straight uprights and feet" d="M672 547 L736 547 L726 587 L726 724 L748 724 L748 750 L660 750 L660 724 L682 724 L682 587 Z M288 547 L352 547 L342 587 L342 724 L364 724 L364 750 L276 750 L276 724 L298 724 L298 587 Z" fill="url(#linear-gradient-3)"/>
+        <circle id="Tail_roller" data-name="Tail roller" cx="287" cy="443" r="49" fill="url(#linear-gradient-4)"/>
+        <circle id="Drive_roller___steel" data-name="Drive roller — steel" cx="737" cy="443" r="49" fill="url(#linear-gradient-4)"/>
+        <path id="Frame___side_rail" data-name="Frame — side rail" d="M342.837 465 C348.386 450.893 348.386 435.107 342.837 421 L681.163 421 C675.614 435.107 675.614 450.893 681.163 465 Z" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

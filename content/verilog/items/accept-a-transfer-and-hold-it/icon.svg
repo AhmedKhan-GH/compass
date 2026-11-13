@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.16"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f2e8"/>
+      <stop offset="0.5" stop-color="#efe8da"/>
+      <stop offset="1" stop-color="#e3d9c7"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="314" y="214.293" width="491.555" height="604.813" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="257" x2="512" y2="493" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="286" x2="512" y2="466" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c14d54"/>
+      <stop offset="0.5" stop-color="#b3262f"/>
+      <stop offset="1" stop-color="#811b22"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="512" y1="471" x2="512" y2="558" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#477cbe"/>
+      <stop offset="0.5" stop-color="#1f5fb0"/>
+      <stop offset="1" stop-color="#16447f"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="512" y1="240" x2="512" y2="490" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#787e8a"/>
+      <stop offset="0.5" stop-color="#5a6270"/>
+      <stop offset="1" stop-color="#414751"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="512" y1="432" x2="512" y2="794" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#514c46"/>
+      <stop offset="0.5" stop-color="#2b251d"/>
+      <stop offset="1" stop-color="#1f1b15"/>
+    </linearGradient>
+  </defs>
+  <title>Scanner to printer</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g filter="url(#filter-1)">
+      <polygon id="Tile" points="264.8,100 759.2,100 924,264.8 924,759.2 759.2,924 264.8,924 100,759.2 100,264.8" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M264.8 99.999 L759.2 99.999 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L99.999 759.2 L99.999 264.8 Z M274.13 122.522 L122.523 274.13 L122.523 749.87 L274.13 901.478 L749.87 901.478 L901.478 749.87 L901.478 274.13 L749.87 122.522 Z" fill="#a3957e"/>
+    <g filter="url(#filter-2)">
+      <g id="Handheld_barcode_scanner" data-name="Handheld barcode scanner">
+        <path id="Angled_scan-window_rim" data-name="Angled scan-window rim" d="M651 258 C661 264 671 275 678 284 L777 402 C785 415 779 435 764 444 L687 487 C675 494 662 494 650 490 L556 336 C548 323 551 310 563 303 L634 261 C639 258 646 255 651 258 Z" fill="url(#linear-gradient-2)"/>
+        <path id="Red_optical_window" data-name="Red optical window" d="M580.367 324.097 L643.948 286.485 C644.822 287.288 645.686 288.119 646.533 288.967 C650.366 292.8 653.875 296.96 656.687 300.576 C656.892 300.839 657.101 301.099 657.316 301.354 L753.469 415.961 C753.108 417.786 751.858 419.7 750.319 420.715 L673.836 463.427 C673.688 463.509 673.541 463.593 673.395 463.678 C671.329 464.884 669.176 465.55 666.787 465.679 Z" fill="url(#linear-gradient-3)"/>
+        <path id="Trigger" d="M510 536 C530.856 519.316 543.36 497.76 548.094 471.332 L590.077 484.381 C585.809 515.208 566.998 542.876 539 556 C531 560 524 557 519 550 Z" fill="url(#linear-gradient-4)"/>
+        <path id="Tapered_head_cover" data-name="Tapered head cover" d="M635 248 C603.942 246.436 574.319 250.822 543.7 255.105 L543.7 255.129 C528.034 257.392 512.332 259.736 496.584 261.347 L496.584 261.357 C469.68 264.165 444.333 266.044 417.691 271.705 C399.656 275.537 390.361 279.632 375.497 290.393 L375.442 290.386 C374.887 290.736 374.377 291.108 373.841 291.491 L373.777 291.424 L372.461 292.372 L372.382 292.295 L371.06 293.253 L370.968 293.169 C370.712 293.359 370.044 293.924 369.715 293.921 C368.28 294.998 366.764 295.774 365.331 296.89 L365.199 296.797 L363.879 297.86 L363.742 297.77 C363.305 298.137 363.013 298.36 362.537 298.67 L362.411 298.673 C360.95 299.94 359.41 300.907 357.974 302.252 L357.836 302.184 L356.507 303.491 L356.373 303.431 C353.958 305.934 351.578 307.951 349.398 310.775 L349.33 310.789 C348.839 311.406 348.395 312.002 347.932 312.643 L347.853 312.624 L346.613 314.401 L346.573 314.401 C343.225 319.729 340.994 323.911 339 330 C339.746 275.154 379.516 256.792 427.076 248.496 C492.131 237.149 570.063 235.513 635 248 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Head_shell" data-name="Head shell" d="M616.363 258.653 L581.509 279.271 C548.489 298.804 525.841 307.703 551.384 349.551 L635.215 486.891 L442.221 426.907 C422.42 420.752 404.401 415.943 386.48 404.857 C363.382 390.569 344.051 368.542 339.834 340.97 C348.385 340.322 348.93 333.56 351.746 327.449 C355.297 319.742 361.858 312.361 368.901 307.653 C394.01 290.869 401.515 285.502 432.079 280.107 C459.274 275.306 485.967 273.986 513.198 270.493 C547.611 266.078 581.586 259.64 616.363 258.653 Z" fill="url(#linear-gradient-5)"/>
+        <path id="Curved_pistol_grip" data-name="Curved pistol grip" d="M400 669 C423.981 613.043 434.551 517.642 423.302 432.545 L537.588 468.067 C537.456 468.496 537.348 468.938 537.266 469.393 C533.002 493.197 521.903 512.39 503.128 527.41 C498.728 530.931 497.7 537.208 500.747 541.948 L507.006 551.684 C503.324 560.662 500.314 569.438 498 578 C489 614 506 635 496 671 C486 707 465 755 444 781 C435 793 423 797 411 792 L384 781 C368 775 362 762 369 746 Z" fill="url(#linear-gradient-6)"/>
+      </g>
+    </g>
+  </g>
+</svg>
