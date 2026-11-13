@@ -1,0 +1,15 @@
+{
+  "name": "@compass/convert",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "convert": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "node --import tsx --test \"test/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@compass/schema": "*",
+    "smol-toml": "^1"
+  }
+}

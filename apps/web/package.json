@@ -1,0 +1,44 @@
+{
+  "name": "@compass/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/sync-assets.mjs",
+    "predev": "npm run assets",
+    "prebuild": "npm run assets",
+    "dev": "next dev --hostname 127.0.0.1 --port 3100",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3100",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "node --import tsx --test \"test/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.11.0",
+    "@codemirror/language": "^6.12.4",
+    "@codemirror/legacy-modes": "^6.5.4",
+    "@codemirror/state": "^6.7.4",
+    "@codemirror/view": "^6.43.11",
+    "@compass/runner-client": "*",
+    "@compass/schema": "*",
+    "@compass/ui": "*",
+    "@fontsource/source-code-pro": "^5",
+    "@lezer/highlight": "^1.2.3",
+    "better-sqlite3": "13.0.3",
+    "codemirror": "^6.0.2",
+    "digitaljs": "0.14.2",
+    "elkjs": "0.11.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "9.6.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "playwright": "1.63.0",
+    "yosys2digitaljs": "0.10.3"
+  }
+}

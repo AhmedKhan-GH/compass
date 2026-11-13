@@ -1,0 +1,22 @@
+{
+  "name": "@compass/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "compass": "./bin/compass.mjs"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p .",
+    "test": "node --import tsx --test \"test/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@compass/runner-client": "*",
+    "@compass/schema": "*",
+    "smol-toml": "^1",
+    "tsx": "^4.23.13"
+  }
+}
