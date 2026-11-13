@@ -8,6 +8,14 @@ import { DEFAULT_THEME, THEME_SCRIPT } from "@compass/ui";
 
 export const metadata: Metadata = {
   title: { default: "Compass", template: "%s · Compass" },
+  // The approved mark (copied unchanged by scripts/sync-assets.mjs) and PNGs rendered from it in public/icons/.
+  icons: {
+    icon: [
+      { url: "/sternbild/marks/compass-icon.svg", type: "image/svg+xml" },
+      { url: "/icons/compass-icon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/compass-icon-180.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = { colorScheme: "light dark" };

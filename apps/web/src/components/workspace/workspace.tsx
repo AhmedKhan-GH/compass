@@ -26,7 +26,6 @@ import {
   StatusMark,
   ThemeSwitch,
   Trail,
-  Wordmark,
   useFocusedPane,
   useKeyBindings,
   useTheme,
@@ -38,6 +37,7 @@ import { editableNames, sameFiles, shownNames, submittedFiles, type Files } from
 import { isBusy, type JobPhase } from "@/lib/job-poll";
 import { courseHref, itemHref } from "@/lib/routes";
 import { formatWhen, ranFiles, runOutcome, runScope, runStatus, taskStatusesFromRun } from "@/lib/runs";
+import { Brand } from "../brand";
 import { RunnerStatus, useRunnerState } from "../runner-status";
 import { Markdown } from "../markdown";
 import { CircuitActions, CircuitPane, type SourcePosition } from "./circuit-pane";
@@ -384,9 +384,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
       className="workspace"
       commandBar={
         <CommandBar>
-          <Link href="/" className="sb-wordmark-link" aria-label="Compass">
-            <Wordmark>Compass</Wordmark>
-          </Link>
+          <Brand />
           <Trail>
             {[
               <Link key="courses" href="/">

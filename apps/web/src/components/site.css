@@ -27,7 +27,7 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
-  padding: var(--sb-space-6) var(--sb-space-7);
+  padding: var(--sb-space-5) var(--sb-space-7);
   scrollbar-gutter: stable;
 }
 
@@ -36,6 +36,40 @@
   align-items: baseline;
   gap: var(--sb-space-3);
   margin-bottom: var(--sb-space-5);
+}
+
+/* The front page's header: the mark beside the name in the display face. */
+.catalog-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-3);
+  margin-bottom: var(--sb-space-4);
+}
+
+.catalog-mark {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+}
+
+.catalog-heading-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-1);
+}
+
+.catalog-name {
+  font-family: var(--sb-font-family-display);
+  font-size: var(--sb-font-size-heading-l);
+  letter-spacing: var(--sb-tracking-name);
+  line-height: var(--sb-leading-solid);
+  text-transform: uppercase;
+  color: var(--sb-text);
+}
+
+.catalog-count {
+  color: var(--sb-text-muted);
+  font-size: var(--sb-app-font-size-ui-small);
 }
 
 .catalog-head,

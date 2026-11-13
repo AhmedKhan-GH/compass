@@ -2,6 +2,8 @@
 // The release's CSS reaches its fonts at ../../assets/fonts/, so the copy keeps that shape:
 //   public/sternbild/design/1.0.0/sternbild.css
 //   public/sternbild/assets/fonts/
+// The approved app marks in vendor/sternbild/marks/ are checked against their checksums and copied unchanged to
+//   public/sternbild/marks/
 // The theme files of packages/ui go to public/sternbild/themes/, for the circuit viewer.
 // Then copies the browser assets of the circuit viewer (public/circuit/viewer.html), which runs in a sandboxed
 // frame and so cannot use the app's bundle:
@@ -20,19 +22,25 @@ const web = path.resolve(import.meta.dirname, "..");
 const release = path.resolve(web, "../../vendor/sternbild", STERNBILD_VERSION);
 const target = path.join(web, "public/sternbild");
 
-async function verify() {
-  const sums = await readFile(path.join(release, "SHA256SUMS"), "utf8");
+/** Checks every file named in a folder's SHA256SUMS and returns their names. */
+async function verify(folder) {
+  const sums = await readFile(path.join(folder, "SHA256SUMS"), "utf8");
+  const names = [];
   for (const line of sums.split("\n").filter(Boolean)) {
     const [expected, name] = line.split(/\s+/);
     const actual = createHash("sha256")
-      .update(await readFile(path.join(release, name)))
+      .update(await readFile(path.join(folder, name)))
       .digest("hex");
     if (actual !== expected)
-      throw new Error(`vendor/sternbild/${STERNBILD_VERSION}/${name} does not match its checksum.`);
+      throw new Error(
+        `${path.relative(path.resolve(web, "../.."), path.join(folder, name))} does not match its checksum.`,
+      );
+    names.push(name);
   }
+  return names;
 }
 
-await verify();
+await verify(release);
 const design = path.join(target, "design", STERNBILD_VERSION);
 const fonts = path.join(target, "assets/fonts");
 await mkdir(design, { recursive: true });
@@ -76,3 +84,8 @@ const themes = path.resolve(web, "../../packages/ui/src/themes");
 await mkdir(path.join(target, "themes"), { recursive: true });
 for (const name of await readdir(themes))
   if (name.endsWith(".css")) await cp(path.join(themes, name), path.join(target, "themes", name));
+
+// The approved marks, unchanged.
+const marks = path.resolve(web, "../../vendor/sternbild/marks");
+await mkdir(path.join(target, "marks"), { recursive: true });
+for (const name of await verify(marks)) await cp(path.join(marks, name), path.join(target, "marks", name));

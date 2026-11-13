@@ -1,7 +1,8 @@
 "use client";
 import dynamic from "next/dynamic";
 import type { ItemView } from "@compass/schema";
-import { AppFrame, CommandBar, StatusBar, Wordmark } from "@compass/ui";
+import { AppFrame, CommandBar, StatusBar } from "@compass/ui";
+import { Brand } from "../brand";
 import type { WorkspaceCourse } from "./workspace";
 import "./workspace.css";
 
@@ -13,7 +14,7 @@ const Workspace = dynamic(() => import("./workspace"), {
     <AppFrame
       commandBar={
         <CommandBar>
-          <Wordmark>Compass</Wordmark>
+          <Brand />
         </CommandBar>
       }
       statusBar={<StatusBar>{null}</StatusBar>}

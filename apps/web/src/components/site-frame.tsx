@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-import { AppFrame, CommandBar, Spacer, StatusBar, StatusItem, ThemeSwitch, Trail, Wordmark } from "@compass/ui";
+import { AppFrame, CommandBar, Spacer, StatusBar, StatusItem, ThemeSwitch, Trail } from "@compass/ui";
+import { Brand } from "./brand";
 
 /** The frame of the catalog and course pages: the command bar with the trail, the page, the status bar. */
 export function SiteFrame({
@@ -18,9 +18,7 @@ export function SiteFrame({
     <AppFrame
       commandBar={
         <CommandBar>
-          <Link href="/" className="sb-wordmark-link" aria-label="Compass">
-            <Wordmark>Compass</Wordmark>
-          </Link>
+          <Brand />
           <Trail>{trail}</Trail>
           <Spacer />
           {commands}

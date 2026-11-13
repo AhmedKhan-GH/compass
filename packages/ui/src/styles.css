@@ -1140,3 +1140,14 @@ a.sb-wordmark-link {
   gap: var(--sb-space-2);
   margin-top: var(--sb-space-4);
 }
+
+/* The application's mark beside its wordmark in the command bar, at the app mark size. */
+.sb-wordmark-link {
+  gap: var(--sb-space-2);
+}
+
+.sb-wordmark-link img {
+  flex: 0 0 auto;
+  width: var(--sb-app-mark);
+  height: var(--sb-app-mark);
+}
