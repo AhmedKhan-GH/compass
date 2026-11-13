@@ -6,7 +6,9 @@ import { SiteFrame } from "@/components/site-frame";
 import { MARK_SRC } from "@/components/brand";
 import { RowNavigation } from "@/components/row-navigation";
 import { CatalogStatus } from "@/components/catalog-status";
-import { courseHref } from "@/lib/routes";
+import type { CourseView } from "@compass/schema";
+import { count, groupByCategory } from "@/lib/catalog";
+import { assetUrl, courseHref } from "@/lib/routes";
 import { progressCounts, readCourseProgress } from "./course-progress";
 import "@/components/site.css";
 
@@ -29,7 +31,7 @@ export default function CatalogPage() {
       }
       status={
         <>
-          <StatusItem>{courses.length === 1 ? "1 course" : `${courses.length} courses`}</StatusItem>
+          <StatusItem>{count(courses.length, "course", "courses")}</StatusItem>
           <CatalogStatus />
         </>
       }
@@ -40,58 +42,77 @@ export default function CatalogPage() {
           <div className="catalog-heading-text">
             <h1 className="catalog-name">Compass</h1>
             <p className="catalog-count">
-              {courses.length === 1 ? "1 course" : `${courses.length} courses`} ·{" "}
-              {exercises === 1 ? "1 exercise" : `${exercises} exercises`}
+              {count(courses.length, "course", "courses")} · {count(exercises, "exercise", "exercises")}
             </p>
           </div>
         </header>
         <RowNavigation className="catalog">
-          <div className="catalog-head" aria-hidden="true">
-            <span />
-            <Label>Course</Label>
-            <Label>Language</Label>
-            <Label className="numeric">Exercises</Label>
-            <Label>Progress</Label>
-          </div>
-          <ul className="sb-list">
-            {courses.map((course) => {
-              const counts = progressCounts(course, readCourseProgress(course));
-              return (
-                <li key={course.id}>
-                  <Link href={courseHref(course)} className="catalog-row sb-row" data-row>
-                    <Thumbnail size={64} />
-                    <span className="catalog-course">
-                      <span className="catalog-title sb-row-name">{course.title}</span>
-                      <span className="catalog-blurb">{course.blurb}</span>
-                      <span className="catalog-meta">
-                        {course.id} · {course.version}
-                        {course.status === "draft" ? " · Draft" : ""}
-                      </span>
-                    </span>
-                    <span className="catalog-cell">{languageName(course.language)}</span>
-                    <span className="catalog-cell numeric">{course.items.length}</span>
-                    <span className="catalog-progress">
-                      <Meter
-                        complete={counts.completed}
-                        started={counts.started}
-                        total={counts.total}
-                        label={`${counts.completed} of ${counts.total} completed`}
-                      />
-                      <span className="catalog-cell">
-                        {counts.completed} of {counts.total} completed
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          {groupByCategory(courses).map((group) => (
+            <section key={group.category?.id ?? "other"} className="catalog-group" aria-label={group.category?.title}>
+              {group.category && (
+                <h2 className="catalog-category">
+                  <Thumbnail size={32} src={assetUrl(group.category.icon)} />
+                  <span className="catalog-category-title">{group.category.title}</span>
+                  <span className="catalog-category-count">{count(group.courses.length, "course", "courses")}</span>
+                </h2>
+              )}
+              <div className="catalog-head" aria-hidden="true">
+                <span />
+                <Label>Course</Label>
+                <Label className="numeric">Exercises</Label>
+                <Label>Progress</Label>
+              </div>
+              <ul className="sb-list">
+                {group.courses.map((course) => (
+                  <li key={course.id}>
+                    <CourseRow course={course} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </RowNavigation>
       </div>
     </SiteFrame>
   );
 }
 
-function languageName(language: string): string {
-  return language.charAt(0).toUpperCase() + language.slice(1);
+function CourseRow({ course }: { course: CourseView }) {
+  const inDevelopment = course.status === "in-development";
+  const counts = inDevelopment ? undefined : progressCounts(course, readCourseProgress(course));
+  return (
+    <Link href={courseHref(course)} className="catalog-row sb-row" data-row>
+      <Thumbnail size={56} src={assetUrl(course.icon)} />
+      <span className="catalog-course">
+        <span className="catalog-title sb-row-name">{course.title}</span>
+        <span className="catalog-blurb">{course.blurb}</span>
+        <span className="catalog-meta">
+          {course.id} · {course.version}
+          {course.status === "draft" ? " · Draft" : ""}
+        </span>
+      </span>
+      <span className="catalog-cell numeric">
+        {inDevelopment ? `${course.planned.length} planned` : course.items.length}
+      </span>
+      {counts ? (
+        <span className="catalog-progress">
+          <Meter
+            complete={counts.completed}
+            started={counts.started}
+            total={counts.total}
+            label={`${counts.completed} of ${counts.total} completed`}
+          />
+          <span className="catalog-cell">
+            {counts.completed} of {counts.total} completed
+          </span>
+        </span>
+      ) : (
+        <span className="catalog-progress">
+          <span className="sb-tag" data-tone="neutral">
+            In development
+          </span>
+        </span>
+      )}
+    </Link>
+  );
 }

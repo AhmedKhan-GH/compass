@@ -12,6 +12,7 @@ import {
   type Status,
   type Tab,
 } from "@compass/ui";
+import type { StageGroup } from "@/lib/catalog";
 import { RowNavigation } from "./row-navigation";
 
 export type CourseItemRow = {
@@ -24,6 +25,8 @@ export type CourseItemRow = {
   status: string;
   concepts: { slug: string; name: string }[];
   prerequisites: { slug: string; name: string }[];
+  /** The icon's URL, when the exercise has one. */
+  icon?: string | undefined;
   tasks: number;
   progress: "not-started" | "in-progress" | "completed";
   passedTasks: number;
@@ -38,6 +41,8 @@ export function CourseBrowser({
   concepts,
   conceptPages,
   syllabus,
+  planned,
+  plannedCount,
   initialTab,
   initialConcept,
   continueHref,
@@ -47,19 +52,35 @@ export function CourseBrowser({
   concepts: { slug: string; name: string }[];
   conceptPages: Record<string, ConceptPage>;
   syllabus?: ReactNode;
+  /** Exercises still to come, by stage. They cannot be opened. */
+  planned: StageGroup[];
+  plannedCount: number;
   initialTab?: string;
   initialConcept?: string;
   continueHref?: string;
   continueLabel: string;
 }) {
   const router = useRouter();
+  // A course that is only a plan shows its planned exercises in the first tab; tabs without content are left out.
   const tabs: Tab[] = [
-    { id: "exercises", label: "Exercises", detail: String(items.length), chord: "Alt+Digit1" },
+    items.length
+      ? { id: "exercises", label: "Exercises", detail: String(items.length), chord: "Alt+Digit1" }
+      : { id: "exercises", label: "Planned exercises", detail: String(plannedCount), chord: "Alt+Digit1" },
     { id: "syllabus", label: "Syllabus", chord: "Alt+Digit2", hidden: !syllabus },
-    { id: "concepts", label: "Concepts", detail: String(concepts.length), chord: "Alt+Digit3" },
+    {
+      id: "concepts",
+      label: "Concepts",
+      detail: String(concepts.length),
+      chord: "Alt+Digit3",
+      hidden: !concepts.length,
+    },
   ];
   const [tab, setTab] = useState<TabId>(
-    initialTab === "syllabus" && syllabus ? "syllabus" : initialTab === "concepts" ? "concepts" : "exercises",
+    initialTab === "syllabus" && syllabus
+      ? "syllabus"
+      : initialTab === "concepts" && concepts.length
+        ? "concepts"
+        : "exercises",
   );
   const [concept, setConcept] = useState(
     concepts.find((candidate) => candidate.slug === initialConcept)?.slug ?? concepts[0]?.slug,
@@ -82,7 +103,7 @@ export function CourseBrowser({
   useKeyBindings([
     { chord: "Alt+Digit1", run: () => select("exercises") },
     { chord: "Alt+Digit2", run: () => select("syllabus"), enabled: Boolean(syllabus) },
-    { chord: "Alt+Digit3", run: () => select("concepts") },
+    { chord: "Alt+Digit3", run: () => select("concepts"), enabled: concepts.length > 0 },
     { chord: "Mod+Enter", run: () => continueHref && router.push(continueHref), enabled: Boolean(continueHref) },
   ]);
 
@@ -98,7 +119,12 @@ export function CourseBrowser({
         )}
       </div>
       <div className="course-panel" role="tabpanel" id={`course-panel-${tab}`} aria-labelledby={`course-tab-${tab}`}>
-        {tab === "exercises" && <ExerciseTable items={items} />}
+        {tab === "exercises" && (
+          <>
+            {items.length > 0 && <ExerciseTable items={items} />}
+            {plannedCount > 0 && <PlannedList groups={planned} count={plannedCount} labelled={items.length > 0} />}
+          </>
+        )}
         {tab === "syllabus" && <div className="course-prose">{syllabus}</div>}
         {tab === "concepts" && (
           <ConceptBrowser
@@ -142,7 +168,7 @@ function ExerciseTable({ items }: { items: CourseItemRow[] }) {
             <li key={item.slug} className="exercise-item">
               <Link href={item.href} className="exercise-row sb-row" data-row>
                 <span className="exercise-number numeric">{index + 1}</span>
-                <Thumbnail size={36} />
+                <Thumbnail size={36} src={item.icon} />
                 <span className="exercise-name">
                   <span className="exercise-title sb-row-name">{item.title}</span>
                   <span className="exercise-blurb">{item.blurb}</span>
@@ -248,5 +274,42 @@ function ConceptLinks({ label, items }: { label: string; items: CourseItemRow[] 
         </span>
       ))}
     </p>
+  );
+}
+
+/**
+ * Planned exercises by stage: each stage with its count, each exercise with its number, title, kind and blurb. They
+ * are plain text in muted ink: not links, not focusable, with no hover.
+ */
+function PlannedList({ groups, count, labelled }: { groups: StageGroup[]; count: number; labelled: boolean }) {
+  return (
+    <section className="planned" aria-label="Planned exercises">
+      {labelled && (
+        <h2 className="planned-heading">
+          <Label>Planned exercises</Label>
+          <span className="planned-count">{count}</span>
+        </h2>
+      )}
+      <div className="planned-stages">
+        {groups.map((group) => (
+          <section key={group.stage?.id ?? "other"} className="planned-stage" aria-label={group.stage?.name}>
+            <h3 className="planned-stage-head">
+              <span className="planned-stage-name">{group.stage?.name ?? "Other"}</span>
+              <span className="planned-count">{group.planned.length}</span>
+            </h3>
+            <ol className="sb-list">
+              {group.planned.map((entry) => (
+                <li key={entry.slug} className="planned-row">
+                  <span className="planned-number">{entry.number}</span>
+                  <span className="planned-title">{entry.title}</span>
+                  <span className="planned-kind">{entry.kind === "concept" ? "Concept" : "Practice"}</span>
+                  <span className="planned-blurb">{entry.blurb}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </section>
   );
 }

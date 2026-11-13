@@ -29,6 +29,13 @@
 
 /* Command bar */
 
+/* The exercise's icon beside its title, at the app mark size. */
+.workspace-trail-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .workspace-item-nav {
   display: inline-flex;
   align-items: center;

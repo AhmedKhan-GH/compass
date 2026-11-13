@@ -25,6 +25,7 @@ import {
   StatusItem,
   StatusMark,
   ThemeSwitch,
+  Thumbnail,
   Trail,
   useFocusedPane,
   useKeyBindings,
@@ -35,7 +36,7 @@ import {
 import { getCircuit, getProgress, getRun, listRuns, resetProgress, startCircuit, startRun } from "@/lib/api";
 import { editableNames, sameFiles, shownNames, submittedFiles, type Files } from "@/lib/drafts";
 import { isBusy, type JobPhase } from "@/lib/job-poll";
-import { courseHref, itemHref } from "@/lib/routes";
+import { assetUrl, courseHref, itemHref } from "@/lib/routes";
 import { formatWhen, ranFiles, runOutcome, runScope, runStatus, taskStatusesFromRun } from "@/lib/runs";
 import { Brand } from "../brand";
 import { RunnerStatus, useRunnerState } from "../runner-status";
@@ -393,7 +394,10 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
               <Link key="course" href={courseHref(course)}>
                 {course.title}
               </Link>,
-              <span key="item">{item.title}</span>,
+              <span key="item" className="workspace-trail-item">
+                {item.icon && <Thumbnail size={18} src={assetUrl(item.icon)} />}
+                {item.title}
+              </span>,
             ]}
           </Trail>
           <span className="workspace-item-nav">

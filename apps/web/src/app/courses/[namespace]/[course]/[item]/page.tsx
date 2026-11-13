@@ -16,7 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function ItemPage({ params }: { params: Promise<Params> }) {
   const { namespace, course: name, item: slug } = await params;
   const found = findItem(`${namespace}/${name}`, slug);
-  if (!found) notFound();
+  // A course in development has no environment or runner, so nothing in it can be opened.
+  if (!found || found.course.status === "in-development" || !found.course.environment || !found.course.runner)
+    notFound();
   const { course, item } = found;
   // Only the open item's text goes to the browser; the other items are names for the navigation.
   const summary: WorkspaceCourse = {
