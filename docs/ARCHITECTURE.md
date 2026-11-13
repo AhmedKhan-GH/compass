@@ -343,7 +343,7 @@ restart; the web app treats a job the service no longer knows as failed with `un
 
 Each job runs in a fresh container: `--network none`, one CPU, 256 MB of memory with no swap (512 MB for the circuit
 runner), a pids limit,
-a read-only root filesystem, all capabilities dropped, `no-new-privileges`, user `65534:65534`, a file-size ulimit,
+a read-only root filesystem, all capabilities dropped, `no-new-privileges`, user `65534:65534`, a file-size ulimit (1 MiB for Icarus tests, 8 MiB for GHDL tests, 4 MiB for circuits),
 a small `tmpfs` at `/tmp` (executable for GHDL test images because the pinned GCC backend emits a native executable), the input mounted read-only and one writable output directory. The launcher enforces a
 wall-clock timeout, removes the container afterwards, and reads `results.json`, the log and the waveform through
 size-bounded reads that reject symlinks. The report is validated before it is returned.

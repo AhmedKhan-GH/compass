@@ -6,7 +6,7 @@ import { runCircuitJob } from "../../src/circuit-launcher.ts";
 import { JobFailure } from "../../src/failure.ts";
 
 const signal = new AbortController().signal;
-const vhdl = (value: string) => `library ieee; use ieee.std_logic_1164.all;
+const vhdl = (value: string) => `library ieee; use ieee.std_logic_1164.all; use ieee.numeric_std.all;
 entity top_module is port (out_value: out std_logic); end;
 architecture rtl of top_module is begin out_value <= '${value}'; end;`;
 const cocotb: TestJobRequest = {
@@ -43,7 +43,7 @@ const nativeVerilog: TestJobRequest = {
 const nativeVhdl: TestJobRequest = {
   ...nativeVerilog, runner: "ghdl-native@1", solution: "testbench.vhd",
   files: {
-    "testbench.vhd": 'entity testbench is end; architecture sim of testbench is begin process begin wait for 1 ns; report "PASS"; std.env.finish; wait; end process; end;',
+    "testbench.vhd": 'library ieee; use ieee.numeric_std.all; entity testbench is end; architecture sim of testbench is begin process begin wait for 1 ns; report "PASS"; std.env.finish; wait; end process; end;',
     "dut_correct.vhd": "entity dut is end; architecture rtl of dut is begin end;",
   },
   checks: { name: "test_native.py", content: nativeChecks.replaceAll("simulate()", 'simulate("dut_correct.vhd")') },

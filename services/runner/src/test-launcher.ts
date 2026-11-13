@@ -26,6 +26,8 @@ export const TEST_PROFILE: SandboxProfile = {
 /** Debian's GHDL GCC backend executes the elaborated design from its temporary build directory. */
 export const GHDL_TEST_PROFILE: SandboxProfile = {
   ...TEST_PROFILE,
+  // The legacy VHDL launcher permits the GCC runtime and numeric packages in the linked executable.
+  fileSizeBytes: 8 * 1024 * 1024,
   tmpfs: "rw,nosuid,exec,size=64m",
 };
 
