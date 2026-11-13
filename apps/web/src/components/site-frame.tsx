@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { AppFrame, CommandBar, Spacer, StatusBar, Trail, Wordmark } from "@compass/ui";
+import { AppFrame, CommandBar, Spacer, StatusBar, StatusItem, ThemeSwitch, Trail, Wordmark } from "@compass/ui";
 
 /** The frame of the catalog and course pages: the command bar with the trail, the page, the status bar. */
 export function SiteFrame({
@@ -26,7 +26,15 @@ export function SiteFrame({
           {commands}
         </CommandBar>
       }
-      statusBar={<StatusBar>{status}</StatusBar>}
+      statusBar={
+        <StatusBar>
+          {status}
+          <Spacer />
+          <StatusItem>
+            <ThemeSwitch />
+          </StatusItem>
+        </StatusBar>
+      }
     >
       {children}
     </AppFrame>

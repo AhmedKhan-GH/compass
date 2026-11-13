@@ -21,11 +21,8 @@ type Props = {
   language: string;
   indent: number;
   focused: boolean;
-  confirmingReset: boolean;
+  /** Opens the dialog that starts the exercise over. */
   onAskReset: () => void;
-  onReset: () => void;
-  onCancelReset: () => void;
-  canReset: boolean;
   readOnlyContent: (name: string) => string;
 };
 
@@ -42,16 +39,11 @@ export const EditorPane = forwardRef<EditorPaneHandle, Props>(function EditorPan
     language,
     indent,
     focused,
-    confirmingReset,
     onAskReset,
-    onReset,
-    onCancelReset,
-    canReset,
     readOnlyContent,
   } = props;
   const editor = useRef<EditorHandle>(null);
   const pendingSelection = useRef<{ file: string; from: CursorPosition; to: CursorPosition } | null>(null);
-  const confirm = useRef<HTMLButtonElement>(null);
 
   useImperativeHandle(
     handle,
@@ -76,10 +68,6 @@ export const EditorPane = forwardRef<EditorPaneHandle, Props>(function EditorPan
     editor.current?.select(pending.from, pending.to);
   }, [active]);
 
-  useEffect(() => {
-    if (confirmingReset) confirm.current?.focus();
-  }, [confirmingReset]);
-
   const tabs: Tab[] = names.map((name) => ({
     id: name,
     label: name,
@@ -98,27 +86,9 @@ export const EditorPane = forwardRef<EditorPaneHandle, Props>(function EditorPan
       className="editor-pane"
       onFocusRequest={() => editor.current?.focus()}
       actions={
-        confirmingReset ? (
-          <>
-            <KeyButton
-              ref={confirm}
-              chord="Enter"
-              onClick={onReset}
-              onKeyDown={(event) => {
-                if (event.key === "Escape") onCancelReset();
-              }}
-            >
-              Reset to starter
-            </KeyButton>
-            <KeyButton chord="Escape" onClick={onCancelReset}>
-              Cancel
-            </KeyButton>
-          </>
-        ) : (
-          <KeyButton chord="Alt+Shift+KeyR" onClick={onAskReset} disabled={!canReset}>
-            Reset
-          </KeyButton>
-        )
+        <KeyButton chord="Alt+Shift+KeyR" onClick={onAskReset}>
+          Reset
+        </KeyButton>
       }
     >
       <CodeEditor

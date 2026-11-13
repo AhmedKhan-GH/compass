@@ -1,5 +1,32 @@
 /* The exercise workspace. Roles only; see packages/ui/src/styles.css. */
 
+/* State tones: a task, a chip, a result head or a test row takes its state's colour (--tone) and tint
+   (--tone-tint). Not run is neutral. A glyph or a word always stands beside the colour. */
+
+:is(.task, .task-chip, .results-group-head, .results-test) {
+  --tone: var(--sb-text-faint);
+  --tone-tint: var(--sb-background-app);
+  --tone-edge: var(--sb-rule);
+}
+
+:is(.task, .task-chip, .results-group-head, .results-test):is([data-status="passed"], [data-status="completed"]) {
+  --tone: var(--sb-state-passed);
+  --tone-tint: var(--sb-state-passed-tint);
+  --tone-edge: var(--sb-state-passed);
+}
+
+:is(.task, .task-chip, .results-group-head, .results-test):is([data-status="failed"], [data-status="error"]) {
+  --tone: var(--sb-state-failed);
+  --tone-tint: var(--sb-state-failed-tint);
+  --tone-edge: var(--sb-state-failed);
+}
+
+:is(.task, .task-chip, .results-group-head, .results-test):is([data-status="running"], [data-status="queued"]) {
+  --tone: var(--sb-state-running);
+  --tone-tint: var(--sb-state-running-tint);
+  --tone-edge: var(--sb-state-running);
+}
+
 /* Command bar */
 
 .workspace-item-nav {
@@ -53,25 +80,50 @@
   align-items: center;
   gap: var(--sb-space-2);
   height: calc(var(--sb-app-row) + var(--sb-space-2));
-  margin: 0 calc(var(--sb-space-2) * -1);
+  margin: var(--sb-space-1) calc(var(--sb-space-2) * -1) 0;
   padding: 0 var(--sb-space-2);
+  border: var(--sb-rule-width) solid var(--tone-edge);
+  background: var(--tone-tint);
   cursor: pointer;
 }
 
-.task-head:hover {
+.task-head .sb-status-glyph {
+  color: var(--tone);
+}
+
+.task:not([data-status="passed"], [data-status="failed"], [data-status="running"]) .task-head:hover {
   background: var(--sb-surface-hover);
 }
 
+/* The current task: a bronze frame over its state's tint. */
 .task[data-current] .task-head {
+  border-color: var(--sb-accent);
+}
+
+.task:not([data-status="passed"], [data-status="failed"], [data-status="running"])[data-current] .task-head {
   background: var(--sb-selected);
 }
 
+/* The task number on its state's solid colour; outlined when not run. */
 .task-number {
-  min-width: 2ch;
-  color: var(--sb-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 4px;
+  border: var(--sb-rule-width) solid var(--tone-edge);
+  background: var(--tone);
+  color: var(--sb-on-state);
   font-family: var(--sb-font-family-mono);
   font-size: var(--sb-app-font-size-ui-small);
   font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.task:not([data-status="passed"], [data-status="failed"], [data-status="running"]) .task-number {
+  background: transparent;
+  color: var(--sb-text-muted);
 }
 
 .task-title {
@@ -84,8 +136,7 @@
   font-size: var(--sb-app-font-size-ui);
 }
 
-.task[data-current] .task-number,
-.task[data-current] .task-title {
+.task:not([data-status="passed"], [data-status="failed"], [data-status="running"])[data-current] .task-title {
   color: var(--sb-accent);
 }
 
@@ -245,18 +296,37 @@
   padding-bottom: var(--sb-space-2);
 }
 
-.results-group + .results-group {
-  border-top: var(--sb-rule-width) solid var(--sb-rule-faint);
+.results-groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-1);
+  padding: var(--sb-space-1) var(--sb-space-3) var(--sb-space-2);
 }
 
+/* A task's head in its state's tint, framed in its colour; its count in the colour. */
 .results-group-head {
   display: flex;
   align-items: center;
   gap: var(--sb-space-2);
-  height: var(--sb-app-row);
-  margin-top: var(--sb-space-1);
-  padding: 0 var(--sb-space-3);
+  height: calc(var(--sb-app-row) + 2px);
+  padding: 0 var(--sb-space-2);
+  border: var(--sb-rule-width) solid var(--tone-edge);
+  background: var(--tone-tint);
   font-size: var(--sb-app-font-size-ui);
+}
+
+.results-group-head .sb-status-glyph {
+  color: var(--tone);
+}
+
+.results-count {
+  color: var(--tone);
+  font-size: var(--sb-app-font-size-ui-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.results-group-head[data-status="untested"] .results-count {
+  color: var(--sb-text-muted);
 }
 
 .results-task-number {
@@ -275,13 +345,20 @@
   color: var(--sb-text);
 }
 
+/* A test row in its result's tint, under its task's head. */
+.results-test {
+  margin-left: calc(2ch + var(--sb-space-2) * 2);
+  border-left: var(--sb-rule-width) solid var(--tone-edge);
+  background: var(--tone-tint);
+}
+
 .results-test-row {
   display: grid;
   grid-template-columns: 12px minmax(120px, max-content) minmax(0, 1fr);
   column-gap: var(--sb-space-2);
   align-items: center;
   height: var(--sb-app-row);
-  padding: 0 var(--sb-space-3) 0 calc(var(--sb-space-3) + 2ch + var(--sb-space-2));
+  padding: 0 var(--sb-space-2);
   list-style: none;
   cursor: pointer;
 }
@@ -290,16 +367,11 @@
   display: none;
 }
 
-.results-test-row:hover {
-  background: var(--sb-surface-hover);
-}
-
-.results-test[open] > .results-test-row {
-  background: var(--sb-selected);
-}
-
+.results-test-row:hover .results-test-name,
 .results-test[open] > .results-test-row .results-test-name {
-  color: var(--sb-accent);
+  text-decoration: underline;
+  text-decoration-thickness: var(--sb-rule-width);
+  text-underline-offset: 3px;
 }
 
 .results-test-name {
@@ -322,7 +394,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--sb-space-1);
-  padding: var(--sb-space-1) var(--sb-space-3) var(--sb-space-3) calc(var(--sb-space-3) + 2ch + var(--sb-space-2));
+  padding: var(--sb-space-1) var(--sb-space-2) var(--sb-space-2) calc(12px + var(--sb-space-2) * 2);
+  background: var(--sb-background-app);
 }
 
 .results-log {
@@ -448,7 +521,7 @@
 
 .waveform-grid,
 .waveform-row-rule {
-  stroke: var(--sb-rule-faint);
+  stroke: var(--sb-wave-grid);
   stroke-width: 1;
 }
 
@@ -459,19 +532,19 @@
 
 .waveform-bit {
   fill: none;
-  stroke: var(--sb-data-verdigris);
+  stroke: var(--sb-wave-bit);
   stroke-width: 1.5;
 }
 
 .waveform-bus path {
-  fill: none;
-  stroke: var(--sb-data-smalt);
+  fill: var(--sb-wave-bus-tint);
+  stroke: var(--sb-wave-bus);
   stroke-width: 1.5;
 }
 
 .waveform-unknown path {
-  fill: none;
-  stroke: var(--sb-data-madder);
+  fill: var(--sb-wave-unknown-tint);
+  stroke: var(--sb-wave-unknown);
   stroke-width: 1.5;
   stroke-dasharray: 3 2;
 }
@@ -482,7 +555,7 @@
 }
 
 .waveform-cursor {
-  stroke: var(--sb-accent);
+  stroke: var(--sb-wave-cursor);
   stroke-width: 1;
 }
 
@@ -584,12 +657,22 @@
   line-height: 1;
 }
 
-.task-chip:hover {
-  background: var(--sb-surface-hover);
+.task-chip {
+  border-color: var(--tone-edge);
+  background: var(--tone-tint);
 }
 
+.task-chip .sb-status-glyph {
+  color: var(--tone);
+}
+
+.task-chip:hover {
+  outline: var(--sb-rule-width) solid var(--tone-edge);
+}
+
+/* The current task's chip: a bronze frame. */
 .task-chip[aria-pressed="true"] {
-  background: var(--sb-selected);
+  border-color: var(--sb-accent);
 }
 
 .task-chip[aria-pressed="true"] .task-chip-number {
@@ -599,4 +682,20 @@
 .task-chip:focus-visible {
   outline: none;
   border-color: var(--sb-focus);
+}
+
+/* The banner at the top of Results: the state of the run in flight, or its outcome. */
+.results-banner {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: var(--sb-space-2) var(--sb-space-3) 0;
+}
+
+.results-banner .results-flag {
+  line-height: 16px;
+}
+
+.waveform-traces {
+  background: var(--sb-wave-ground);
 }

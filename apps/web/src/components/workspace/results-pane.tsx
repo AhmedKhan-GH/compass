@@ -1,18 +1,10 @@
 "use client";
 import type { IndexedTask, RunRecord, TestResult } from "@compass/schema";
-import { KeyButton, Label, StatusGlyph, StatusMark, WordButton } from "@compass/ui";
+import { Banner, KeyButton, Label, StatusGlyph, WordButton, type Status } from "@compass/ui";
 import type { JobPhase } from "@/lib/job-poll";
-import {
-  failureTitle,
-  firstLine,
-  formatDuration,
-  formatWhen,
-  runResult,
-  runScope,
-  runStatus,
-  testCounts,
-  testsByTask,
-} from "@/lib/runs";
+import { formatDuration, formatWhen, runOutcome, runScope, testsByTask, type TaskGroup } from "@/lib/runs";
+
+type Task = Pick<IndexedTask, "id" | "title" | "tests">;
 
 type Props = {
   phase: JobPhase<RunRecord>;
@@ -22,62 +14,76 @@ type Props = {
   /** The run was made from other files than the editor holds now. */
   earlierSource: boolean;
   revision: string;
-  tasks: readonly Pick<IndexedTask, "id" | "title" | "tests">[];
+  tasks: readonly Task[];
   currentTask: number | undefined;
   now: Date;
+  /** Seconds since the run in progress started, while one is. */
+  elapsed: string | undefined;
+  nextItem: { title: string } | undefined;
   onRunTests: () => void;
   onRunTask: () => void;
   onRestore: (run: RunRecord) => void;
   onShowLatest: () => void;
+  onNextItem: () => void;
 };
 
-/** The results of the run in view: each test with its task, status, message and code; or the error and the log. */
+/**
+ * The results of the run in view. A banner at the top gives the state or the outcome in words; below it every task
+ * of the item has a header row in its state's colour, and every test a row of its own.
+ */
 export function ResultsPane(props: Props) {
-  const { phase, run } = props;
-  if (phase.phase === "starting" || phase.phase === "queued" || phase.phase === "running")
+  const { phase, run, tasks } = props;
+  if (phase.phase === "starting" || phase.phase === "queued" || phase.phase === "running") {
+    const record = phase.phase === "starting" ? undefined : phase.record;
+    const scope = record ? runScope(record) : undefined;
+    const covered = (task: Task) => record?.taskId === undefined || record.taskId === task.id;
     return (
       <div className="results">
-        <LiveSummary phase={phase} />
+        <Banner
+          tone="running"
+          status={phase.phase === "running" ? "running" : "queued"}
+          title={phase.phase === "running" ? "Running" : phase.phase === "queued" ? "Queued" : "Starting"}
+          facts={
+            <>
+              {phase.phase === "queued" && phase.position !== undefined && (
+                <span>{phase.position === 0 ? "Next" : `${phase.position} ahead`}</span>
+              )}
+              {scope && <span>{scope}</span>}
+              {props.elapsed && <span>{props.elapsed}</span>}
+            </>
+          }
+          className="results-banner"
+        />
+        {tasks.length > 0 && (
+          <div className="results-groups">
+            {tasks.map((task) => (
+              <GroupHead
+                key={task.id}
+                taskId={task.id}
+                title={task.title}
+                status={covered(task) ? (phase.phase === "running" ? "running" : "queued") : "untested"}
+                count={covered(task) ? (phase.phase === "running" ? "Running" : "Waiting") : "Not run"}
+              />
+            ))}
+          </div>
+        )}
       </div>
     );
+  }
   return (
     <div className="results">
       {phase.phase === "error" && (
-        <div className="results-summary">
-          <StatusMark status="unavailable" label="Run not started" />
-          <span className="results-message">{phase.message}</span>
-        </div>
+        <Banner
+          tone="warning"
+          status="unavailable"
+          title="Run not started"
+          detail={phase.message}
+          className="results-banner"
+        />
       )}
       {run ? <RunView {...props} run={run} /> : phase.phase !== "error" && <Empty {...props} />}
     </div>
   );
-}
-
-function LiveSummary({ phase }: { phase: JobPhase<RunRecord> }) {
-  if (phase.phase === "starting")
-    return (
-      <div className="results-summary">
-        <StatusMark status="queued" label="Starting" />
-      </div>
-    );
-  if (phase.phase === "queued")
-    return (
-      <div className="results-summary">
-        <StatusMark status="queued" label="Queued" />
-        {phase.position !== undefined && (
-          <span className="results-fact">{phase.position === 0 ? "Next" : `${phase.position} ahead`}</span>
-        )}
-        <span className="results-fact">{runScope(phase.record)}</span>
-      </div>
-    );
-  if (phase.phase === "running")
-    return (
-      <div className="results-summary">
-        <StatusMark status="running" label="Running" />
-        <span className="results-fact">{runScope(phase.record)}</span>
-      </div>
-    );
-  return null;
 }
 
 function Empty({ tasks, currentTask, onRunTests, onRunTask }: Props) {
@@ -102,45 +108,51 @@ function RunView({
   revision,
   tasks,
   now,
+  nextItem,
   onRestore,
   onShowLatest,
+  onNextItem,
 }: Props & { run: RunRecord }) {
-  const status = runStatus(run);
-  const counts = testCounts(run);
+  const outcome = runOutcome(run, tasks);
+  const completed = run.kind === "submission" && run.report?.status === "pass";
   return (
     <>
-      <div className="results-summary">
-        <StatusMark
-          status={status}
-          label={run.state === "succeeded" && run.report?.status === "error" ? "Error" : runResult(run)}
-        />
-        <span className="results-fact">{runScope(run)}</span>
-        {counts && counts.errors > 0 && <span className="results-fact">{counts.errors} with errors</span>}
-        {run.durationMs !== undefined && <span className="results-fact">{formatDuration(run.durationMs)}</span>}
-        <span className="results-fact">{formatWhen(run.finishedAt ?? run.createdAt, now)}</span>
-        {run.revision !== revision && <span className="results-flag">Earlier revision</span>}
-        {earlierSource && <span className="results-flag">Earlier source</span>}
-        {run.kind === "submission" && run.report?.status === "pass" && (
-          <span className="results-flag">Exercise completed</span>
-        )}
-        <span className="sb-spacer" />
-        {!latest && (
+      <Banner
+        tone={outcome.tone}
+        status={outcome.status}
+        title={completed ? "Exercise completed" : outcome.title}
+        facts={
           <>
-            <WordButton onClick={() => onRestore(run)}>Restore source</WordButton>
-            <WordButton onClick={onShowLatest}>Latest run</WordButton>
+            {completed && <span>{outcome.title}</span>}
+            <span>{runScope(run)}</span>
+            {run.durationMs !== undefined && <span>{formatDuration(run.durationMs)}</span>}
+            <span>{formatWhen(run.finishedAt ?? run.createdAt, now)}</span>
+            {run.revision !== revision && <span className="results-flag">Earlier revision</span>}
+            {earlierSource && <span className="results-flag">Earlier source</span>}
           </>
-        )}
-      </div>
-      {run.state === "failed" && (
+        }
+        detail={outcome.detail}
+        actions={
+          <>
+            {!latest && (
+              <>
+                <WordButton onClick={() => onRestore(run)}>Restore source</WordButton>
+                <WordButton onClick={onShowLatest}>Latest run</WordButton>
+              </>
+            )}
+            {completed && latest && nextItem && (
+              <KeyButton chord="Alt+Shift+BracketRight" onClick={onNextItem}>
+                Next exercise
+              </KeyButton>
+            )}
+          </>
+        }
+        className="results-banner"
+      />
+      {run.error?.diagnostics && (
         <section className="results-block">
-          <Label>{failureTitle(run.error?.kind)}</Label>
-          <p className="results-text">{run.error?.message}</p>
-          {run.error?.diagnostics && <pre className="results-pre">{run.error.diagnostics}</pre>}
-        </section>
-      )}
-      {run.state === "cancelled" && (
-        <section className="results-block">
-          <Label>Cancelled</Label>
+          <Label>Diagnostics</Label>
+          <pre className="results-pre">{run.error.diagnostics}</pre>
         </section>
       )}
       {run.report?.status === "error" && (
@@ -163,22 +175,27 @@ function RunView({
   );
 }
 
-function TestGroups({ tests, tasks }: { tests: readonly TestResult[]; tasks: Props["tasks"] }) {
-  const groups = testsByTask(tests, tasks);
+function groupStatus(group: TaskGroup): Status {
+  if (!group.tests.length) return "untested";
+  return group.tests.every((test) => test.status === "pass") ? "passed" : "failed";
+}
+
+function TestGroups({ tests, tasks }: { tests: readonly TestResult[]; tasks: readonly Task[] }) {
+  const groups = testsByTask(tests, tasks, { includeEmpty: true });
   return (
     <div className="results-groups">
       {groups.map((group) => {
         const passed = group.tests.filter((test) => test.status === "pass").length;
+        const status = groupStatus(group);
         return (
           <section key={group.taskId ?? "other"} className="results-group" aria-label={group.title ?? "Tests"}>
             {(tasks.length > 0 || group.taskId !== undefined) && (
-              <h3 className="results-group-head">
-                <span className="results-task-number">{group.taskId ?? "·"}</span>
-                <span className="results-task-title">{group.title ?? "Other tests"}</span>
-                <span className="results-fact">
-                  {passed} of {group.tests.length} passed
-                </span>
-              </h3>
+              <GroupHead
+                taskId={group.taskId}
+                title={group.title ?? "Other tests"}
+                status={status}
+                count={group.tests.length ? `${passed} of ${group.tests.length} passed` : "Not run"}
+              />
             )}
             {group.tests.map((test, index) => (
               <TestRow key={`${test.name}-${index}`} test={test} />
@@ -187,6 +204,28 @@ function TestGroups({ tests, tasks }: { tests: readonly TestResult[]; tasks: Pro
         );
       })}
     </div>
+  );
+}
+
+/** A task's header row: its number, title, status glyph and count, on its state's tint. */
+function GroupHead({
+  taskId,
+  title,
+  status,
+  count,
+}: {
+  taskId: number | undefined;
+  title: string;
+  status: Status;
+  count: string;
+}) {
+  return (
+    <h3 className="results-group-head" data-status={status}>
+      <span className="results-task-number">{taskId ?? "·"}</span>
+      <StatusGlyph status={status} />
+      <span className="results-task-title">{title}</span>
+      <span className="results-count">{count}</span>
+    </h3>
   );
 }
 
@@ -200,7 +239,7 @@ function TestRow({ test }: { test: TestResult }) {
           title={status === "passed" ? "Passed" : status === "failed" ? "Failed" : "Error"}
         />
         <span className="results-test-name">{test.name}</span>
-        {test.message && <span className="results-test-message">{firstLine(test.message)}</span>}
+        {test.message && <span className="results-test-message">{test.message.split("\n")[0]}</span>}
       </summary>
       <div className="results-test-detail">
         {test.message && (

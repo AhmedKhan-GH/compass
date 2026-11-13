@@ -13,7 +13,9 @@ import {
 } from "@compass/schema";
 import {
   AppFrame,
+  Banner,
   CommandBar,
+  Dialog,
   KeyButton,
   Pane,
   PrimaryButton,
@@ -22,17 +24,20 @@ import {
   StatusBar,
   StatusItem,
   StatusMark,
+  ThemeSwitch,
   Trail,
   Wordmark,
   useFocusedPane,
   useKeyBindings,
+  useTheme,
   type Tab,
+  type Tone,
 } from "@compass/ui";
-import { getCircuit, getProgress, getRun, listRuns, startCircuit, startRun } from "@/lib/api";
-import { editableNames, sameFiles, shownNames, starterFiles, submittedFiles, type Files } from "@/lib/drafts";
+import { getCircuit, getProgress, getRun, listRuns, resetProgress, startCircuit, startRun } from "@/lib/api";
+import { editableNames, sameFiles, shownNames, submittedFiles, type Files } from "@/lib/drafts";
 import { isBusy, type JobPhase } from "@/lib/job-poll";
 import { courseHref, itemHref } from "@/lib/routes";
-import { formatWhen, ranFiles, runResult, runScope, runStatus } from "@/lib/runs";
+import { formatWhen, ranFiles, runOutcome, runScope, runStatus, taskStatusesFromRun } from "@/lib/runs";
 import { RunnerStatus, useRunnerState } from "../runner-status";
 import { Markdown } from "../markdown";
 import { CircuitActions, CircuitPane, type SourcePosition } from "./circuit-pane";
@@ -42,6 +47,7 @@ import { HistoryPane } from "./history-pane";
 import { InstructionsPane } from "./instructions-pane";
 import { ResultsPane } from "./results-pane";
 import { useDraft } from "./use-draft";
+import { useElapsed } from "./use-elapsed";
 import { useJob } from "./use-job";
 import { WaveformPane } from "./waveform-pane";
 
@@ -62,7 +68,13 @@ export type WorkspaceCourse = {
 type LeftTab = "instructions" | "introduction";
 type DockTab = "results" | "waveform" | "circuit" | "history";
 type PaneId = "instructions" | "editor" | "dock";
+type RunMode = "all" | "task" | "submit";
 const PANES: PaneId[] = ["instructions", "editor", "dock"];
+
+/** The time now, for event handlers. */
+function clock(): number {
+  return Date.now();
+}
 
 function firstOpenTask(item: ItemView, progress: ItemProgress | undefined): number | undefined {
   return item.tasks.find((task) => progress?.tasks[String(task.id)] !== "passed")?.id ?? item.tasks[0]?.id;
@@ -93,12 +105,21 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   const [historyVersion, setHistoryVersion] = useState(0);
   const [circuitFiles, setCircuitFiles] = useState<Files>();
   const [circuitRecord, setCircuitRecord] = useState<CircuitRecord>();
-  const [confirmingReset, setConfirmingReset] = useState(false);
+  // The reset dialog: open, waiting on the server, or showing why the reset failed.
+  const [resetOpen, setResetOpen] = useState(false);
+  const [resetBusy, setResetBusy] = useState(false);
+  const [resetError, setResetError] = useState<string>();
   const [now, setNow] = useState(() => new Date());
+  // The run in flight: which button started it and when; and the run that finished on this page.
+  const [runMode, setRunMode] = useState<RunMode>();
+  const [startedAt, setStartedAt] = useState<number>();
+  const [finishedId, setFinishedId] = useState<string>();
   const editor = useRef<EditorPaneHandle>(null);
+  const [theme] = useTheme();
 
   const hasCircuit = course.circuit && item.design.schematic;
   const busy = isBusy(run.phase);
+  const elapsed = useElapsed(busy ? startedAt : undefined);
   const index = course.items.findIndex((candidate) => candidate.slug === item.slug);
   const previousItem = index > 0 ? course.items[index - 1] : undefined;
   const nextItem = index >= 0 ? course.items[index + 1] : undefined;
@@ -121,9 +142,12 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     (final: JobPhase<RunRecord> | undefined) => {
       if (!final) return;
       setNow(new Date());
+      setRunMode(undefined);
+      setStartedAt(undefined);
       if (final.phase === "finished") {
         setShown(final.record);
         setLatestId(final.record.id);
+        setFinishedId(final.record.id);
         setHistoryVersion((version) => version + 1);
         void refreshProgress();
         if (final.record.error?.kind === "unavailable") setRunnerCheck((check) => check + 1);
@@ -133,21 +157,28 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   );
 
   // On opening: the progress, and the latest run with its results and waveform. A run still going is followed.
+  // Only runs since the exercise was last started over count: after a reset it opens without results.
   useEffect(() => {
     const controller = new AbortController();
-    void refreshProgress(controller.signal);
-    listRuns(course.id, item.slug, undefined, controller.signal)
-      .then(async (page) => {
+    Promise.all([
+      getProgress(course.id, controller.signal),
+      listRuns(course.id, item.slug, undefined, controller.signal),
+    ])
+      .then(async ([all, page]) => {
+        const mine = all.items[item.slug];
+        setProgress(mine);
+        if (!taskTouched.current) setTaskId(firstOpenTask(item, mine));
         const first = page.runs[0];
-        if (!first) return;
+        if (!first || !mine || mine.runs === 0) return;
         const record = await getRun(first.id, undefined, controller.signal);
         setShown(record);
         setLatestId(record.id);
+        if (!isTerminal(record.state)) setStartedAt(Date.parse(record.createdAt));
         if (!isTerminal(record.state))
           afterRun(
             await run.follow(
               () => Promise.resolve(record),
-              (id, wait, signal) => getRun(id, wait, signal),
+              (id, wait, signal, last) => getRun(id, wait, signal, last),
             ),
           );
       })
@@ -170,19 +201,21 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     });
   }, []);
 
-  async function runTests(mode: "all" | "task" | "submit", task = taskId) {
+  async function runTests(mode: RunMode, task = taskId) {
     if (busy) return;
+    setRunMode(mode);
+    setStartedAt(clock());
+    setDockTab("results");
     const body: StartRunRequest =
       mode === "submit"
         ? { files: submitted, submit: true }
         : mode === "task" && task !== undefined
           ? { files: submitted, taskId: task }
           : { files: submitted };
-    if (dockTab === "history" || dockTab === "circuit") setDockTab("results");
     afterRun(
       await run.follow(
         (signal) => startRun(course.id, item.slug, body, signal),
-        (id, wait, signal) => getRun(id, wait, signal),
+        (id, wait, signal, last) => getRun(id, wait, signal, last),
       ),
     );
   }
@@ -193,7 +226,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     setDockTab("circuit");
     const final = await circuit.follow(
       (signal) => startCircuit(course.id, item.slug, { files }, signal),
-      (id, wait, signal) => getCircuit(id, wait, signal),
+      (id, wait, signal, last) => getCircuit(id, wait, signal, last),
     );
     // The drawing in view stays until the new circuit arrives, so the frame is not torn down during a build.
     if (final?.phase === "finished") {
@@ -261,10 +294,35 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     draft.replace(files);
   }
 
-  function reset() {
-    draft.reset();
-    setConfirmingReset(false);
-    focusPane("editor");
+  function askReset() {
+    setResetError(undefined);
+    setResetOpen(true);
+  }
+
+  // Starts the exercise over: the server's progress first, then the starter code and a neutral workspace. A run
+  // still in flight is dropped; the server does not count it either. Past runs stay in History.
+  async function resetExercise() {
+    if (resetBusy) return;
+    setResetBusy(true);
+    setResetError(undefined);
+    try {
+      const next = await resetProgress(course.id, item.slug);
+      run.clear();
+      setRunMode(undefined);
+      setStartedAt(undefined);
+      draft.reset();
+      setProgress(next);
+      setShown(undefined);
+      setFinishedId(undefined);
+      setHistoryVersion((version) => version + 1);
+      taskTouched.current = false;
+      setTaskId(firstOpenTask(item, next));
+      setResetOpen(false);
+    } catch (error) {
+      setResetError(error instanceof Error ? error.message : String(error));
+    } finally {
+      setResetBusy(false);
+    }
   }
 
   function selectSource(positions: SourcePosition[]) {
@@ -294,11 +352,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     { chord: "Alt+BracketLeft", run: () => stepTask(-1) },
     { chord: "Alt+Shift+BracketRight", run: () => openItem(nextItem?.slug), enabled: Boolean(nextItem) },
     { chord: "Alt+Shift+BracketLeft", run: () => openItem(previousItem?.slug), enabled: Boolean(previousItem) },
-    {
-      chord: "Alt+Shift+KeyR",
-      run: () => setConfirmingReset(true),
-      enabled: !sameFiles(draft.files, starterFiles(item)),
-    },
+    { chord: "Alt+Shift+KeyR", run: askReset },
   ]);
 
   const leftTabs: Tab[] = [
@@ -314,6 +368,16 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   const earlierSource = shown !== undefined && !ranFiles(shown, submitted);
   const circuitEarlier = circuitFiles !== undefined && !sameFiles(circuitFiles, submitted);
   const completed = progress?.status === "completed";
+  const outcome = shown ? runOutcome(shown, item.tasks) : undefined;
+  // The status bar is filled with the run's colour while it is in flight, and with its outcome until the next edit
+  // or the next run.
+  const statusTone: Tone | undefined = busy
+    ? "running"
+    : run.phase.phase === "error"
+      ? "warning"
+      : shown && shown.id === finishedId && !earlierSource
+        ? outcome?.tone
+        : undefined;
 
   return (
     <AppFrame
@@ -354,22 +418,43 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
           {completed && <StatusMark status="completed" />}
           <Spacer />
           {item.tasks.length > 0 && taskId !== undefined && (
-            <KeyButton chord="Alt+Enter" disabled={busy} onClick={() => void runTests("task")}>
+            <KeyButton
+              chord="Alt+Enter"
+              disabled={busy}
+              running={busy && runMode === "task"}
+              onClick={() => void runTests("task")}
+            >
               Run task {taskId}
             </KeyButton>
           )}
-          <KeyButton chord="Mod+Enter" disabled={busy} onClick={() => void runTests("all")}>
+          <KeyButton
+            chord="Mod+Enter"
+            disabled={busy}
+            running={busy && runMode === "all"}
+            onClick={() => void runTests("all")}
+          >
             Run tests
           </KeyButton>
-          <PrimaryButton chord="Mod+Shift+Enter" disabled={busy} onClick={() => void runTests("submit")}>
+          <PrimaryButton
+            chord="Mod+Shift+Enter"
+            disabled={busy}
+            running={busy && runMode === "submit"}
+            onClick={() => void runTests("submit")}
+          >
             Submit
           </PrimaryButton>
         </CommandBar>
       }
       statusBar={
-        <StatusBar>
+        <StatusBar tone={statusTone}>
           <StatusItem>
-            <LiveStatus phase={run.phase} shown={shown} />
+            <LiveStatus
+              phase={run.phase}
+              shown={shown}
+              finished={shown !== undefined && shown.id === finishedId && !earlierSource}
+              elapsed={elapsed}
+              tasks={item.tasks}
+            />
           </StatusItem>
           <StatusItem>
             <RunnerStatus state={runner} />
@@ -383,6 +468,9 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
             {draft.state === "starter" ? "Starter" : draft.state === "saved" ? "Draft saved" : "Draft not saved"}
           </StatusItem>
           <StatusItem className="sb-mono">{item.revision.slice(0, 7)}</StatusItem>
+          <StatusItem>
+            <ThemeSwitch />
+          </StatusItem>
         </StatusBar>
       }
     >
@@ -414,6 +502,12 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
               currentTask={taskId}
               scrollToTask={taskScroll}
               busy={busy}
+              runningTask={busy ? (runMode === "task" ? taskId : "all") : undefined}
+              taskStates={
+                shown && shown.id === latestId && shown.revision === item.revision
+                  ? taskStatusesFromRun(shown, item.tasks)
+                  : {}
+              }
               onSelectTask={selectTask}
               onRunTask={(id) => {
                 selectTask(id);
@@ -442,14 +536,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
             language={course.language}
             indent={course.indent}
             focused={focusedPane === "editor"}
-            confirmingReset={confirmingReset}
-            onAskReset={() => setConfirmingReset(true)}
-            onReset={reset}
-            onCancelReset={() => {
-              setConfirmingReset(false);
-              focusPane("editor");
-            }}
-            canReset={!sameFiles(draft.files, starterFiles(item))}
+            onAskReset={askReset}
             readOnlyContent={(name) => item.starter[name] ?? ""}
           />
           <Pane
@@ -482,6 +569,9 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
                 tasks={item.tasks}
                 currentTask={taskId}
                 now={now}
+                elapsed={elapsed}
+                nextItem={nextItem}
+                onNextItem={() => openItem(nextItem?.slug)}
                 onRunTests={() => void runTests("all")}
                 onRunTask={() => void runTests("task")}
                 onRestore={restore}
@@ -496,6 +586,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
                 <CircuitPane
                   phase={circuit.phase}
                   record={circuitRecord}
+                  theme={theme}
                   earlierSource={circuitEarlier}
                   active={dockTab === "circuit"}
                   onBuild={() => void buildCircuit()}
@@ -517,6 +608,28 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
           </Pane>
         </Split>
       </Split>
+      <Dialog
+        open={resetOpen}
+        title="Reset exercise"
+        onCancel={() => setResetOpen(false)}
+        actions={
+          <>
+            <KeyButton chord="Escape" onClick={() => setResetOpen(false)}>
+              Cancel
+            </KeyButton>
+            <PrimaryButton chord="Enter" data-dialog-default disabled={resetBusy} onClick={() => void resetExercise()}>
+              Reset exercise
+            </PrimaryButton>
+          </>
+        }
+      >
+        <p>
+          {completed
+            ? "Your code goes back to the starter, every task starts over and the completion is cleared; past runs stay in History."
+            : "Your code goes back to the starter and every task starts over; past runs stay in History."}
+        </p>
+        {resetError && <Banner tone="failed" status="failed" title="Reset failed" detail={resetError} />}
+      </Dialog>
     </AppFrame>
   );
 }
@@ -527,17 +640,34 @@ function dockSubtitle(tab: DockTab, shown: RunRecord | undefined, latestId: stri
   return `Earlier run · ${formatWhen(shown.finishedAt ?? shown.createdAt, now)}`;
 }
 
-function LiveStatus({ phase, shown }: { phase: JobPhase<RunRecord>; shown: RunRecord | undefined }) {
-  if (phase.phase === "starting") return <StatusMark status="queued" label="Starting" />;
+/** The run in the status bar: in flight with its scope and time, then its outcome; otherwise the latest result. */
+function LiveStatus({
+  phase,
+  shown,
+  finished,
+  elapsed,
+  tasks,
+}: {
+  phase: JobPhase<RunRecord>;
+  shown: RunRecord | undefined;
+  finished: boolean;
+  elapsed: string | undefined;
+  tasks: ItemView["tasks"];
+}) {
+  const time = elapsed ? ` · ${elapsed}` : "";
+  if (phase.phase === "starting") return <StatusMark status="running" label={`Starting${time}`} />;
   if (phase.phase === "queued")
     return (
       <StatusMark
         status="queued"
-        label={`Queued${phase.position ? ` · ${phase.position} ahead` : ""} · ${runScope(phase.record)}`}
+        label={`Queued${phase.position ? ` · ${phase.position} ahead` : ""} · ${runScope(phase.record)}${time}`}
       />
     );
-  if (phase.phase === "running") return <StatusMark status="running" label={`Running · ${runScope(phase.record)}`} />;
-  if (phase.phase === "error") return <StatusMark status="unavailable" label="Run not started" />;
+  if (phase.phase === "running")
+    return <StatusMark status="running" label={`Running · ${runScope(phase.record)}${time}`} />;
+  if (phase.phase === "error") return <StatusMark status="unavailable" label={`Run not started · ${phase.message}`} />;
   if (!shown) return <span className="sb-faint">No runs</span>;
-  return <StatusMark status={runStatus(shown)} label={`${runResult(shown)} · ${runScope(shown)}`} />;
+  const outcome = runOutcome(shown, tasks);
+  const title = shown.kind === "submission" && shown.report?.status === "pass" ? "Exercise completed" : outcome.title;
+  return <StatusMark status={finished ? outcome.status : runStatus(shown)} label={`${title} · ${runScope(shown)}`} />;
 }

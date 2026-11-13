@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { ItemProgress, ItemView } from "@compass/schema";
-import { KeyButton, StatusGlyph, statusWord } from "@compass/ui";
+import type { ItemProgress, ItemView, TaskStatus } from "@compass/schema";
+import { KeyButton, StatusGlyph, statusWord, type Status } from "@compass/ui";
 import { taskStatus, taskStatusMark } from "@/lib/runs";
 import { Markdown } from "../markdown";
 
@@ -13,6 +13,8 @@ export function InstructionsPane({
   currentTask,
   scrollToTask,
   busy,
+  taskStates,
+  runningTask,
   onSelectTask,
   onRunTask,
   onStepTask,
@@ -24,6 +26,10 @@ export function InstructionsPane({
   /** Changes when the learner moves to a task with the keys; the pane then brings that task into view. */
   scrollToTask: number;
   busy: boolean;
+  /** Task statuses from the latest run of this revision, over the stored progress. */
+  taskStates: Record<string, TaskStatus>;
+  /** The task whose run is in flight, or "all" for a run of every task. */
+  runningTask: number | "all" | undefined;
   onSelectTask: (taskId: number) => void;
   onRunTask: (taskId: number) => void;
   onStepTask: (direction: 1 | -1) => void;
@@ -39,18 +45,24 @@ export function InstructionsPane({
   }, [scrollToTask]);
 
   const position = item.tasks.findIndex((task) => task.id === currentTask);
+  // A task in a run that is in flight shows as running; otherwise its latest status.
+  const statusOf = (taskId: number): Status =>
+    runningTask === "all" || runningTask === taskId
+      ? "running"
+      : taskStatusMark(taskStates[String(taskId)] ?? taskStatus(taskId, progress));
   return (
     <>
       {item.tasks.length > 0 && (
         <div className="task-strip">
           <span className="sb-label">Tasks</span>
           {item.tasks.map((task) => {
-            const status = taskStatusMark(taskStatus(task.id, progress));
+            const status = statusOf(task.id);
             return (
               <button
                 key={task.id}
                 type="button"
                 className="task-chip"
+                data-status={status}
                 aria-pressed={task.id === currentTask}
                 aria-label={`Task ${task.id}, ${statusWord(status)}`}
                 onClick={() => onSelectTask(task.id)}
@@ -86,7 +98,7 @@ export function InstructionsPane({
         <Markdown>{item.instructions}</Markdown>
         {item.hints && <Hints text={item.hints} label="Hints" />}
         {item.tasks.map((task) => {
-          const status = taskStatusMark(taskStatus(task.id, progress));
+          const status = statusOf(task.id);
           const current = task.id === currentTask;
           return (
             <section
@@ -94,6 +106,7 @@ export function InstructionsPane({
               className="task"
               data-task={task.id}
               data-current={current || undefined}
+              data-status={status}
               aria-labelledby={`task-${task.id}-title`}
             >
               <div className="task-head" onClick={() => onSelectTask(task.id)}>
