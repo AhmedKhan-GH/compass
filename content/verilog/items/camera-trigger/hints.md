@@ -1,0 +1,1 @@
+Keep the motion request high while the storage controller becomes busy. The camera must stop requesting a picture. Write the allowed value for each control before combining them; `inhibit=1` blocks the request.

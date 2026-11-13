@@ -1,0 +1,57 @@
+id = "sternbild/verilog"
+version = "0.1.0"
+title = "RTL design with Verilog"
+blurb = "Short exercises in synthesizable Verilog, from a constant output to handshakes and queues."
+language = "verilog"
+environment = "code@1"
+runner = "iverilog-cocotb@1"
+circuit = "yosys-digitaljs@1"
+syllabus = "syllabus.md"
+status = "draft"
+
+[editor]
+indent = 4
+
+[[concept]]
+slug = "constants"
+name = "Constants"
+
+[[concept]]
+slug = "connections"
+name = "Connections"
+
+[[concept]]
+slug = "boolean-logic"
+name = "Boolean logic"
+
+[[concept]]
+slug = "module-hierarchy"
+name = "Connect a supplied module"
+
+[[concept]]
+slug = "update-or-hold"
+name = "Update or hold"
+
+[[concept]]
+slug = "ready-valid"
+name = "Ready Valid"
+
+[[item]]
+slug = "drive-high"
+prerequisites = []
+
+[[item]]
+slug = "connect-a-wire"
+prerequisites = [ "constants" ]
+
+[[item]]
+slug = "workshop-controls"
+prerequisites = [ "connections" ]
+
+[[item]]
+slug = "camera-trigger"
+prerequisites = [ "boolean-logic" ]
+
+[[item]]
+slug = "accept-a-transfer-and-hold-it"
+prerequisites = [ "update-or-hold", "module-hierarchy" ]
