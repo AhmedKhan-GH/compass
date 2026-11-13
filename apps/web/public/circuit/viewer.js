@@ -1,7 +1,7 @@
 /* The circuit viewer. DigitalJS runs in this isolated frame (sandbox="allow-scripts", an opaque origin). ELK
    arranges the measured cells; simulation and source positions stay with the DigitalJS cells. The page sends
-   { type: "compass-circuit", circuit?, active? } and receives { loaded }, { ready }, { error } and { selection }.
-   Signal colours are the Sternbild data roles, read from the stylesheet. */
+   { type: "compass-circuit", circuit?, active?, theme? } and receives { loaded }, { ready }, { error },
+   { selection } and { key }. Signal colours are the theme's circuit roles, read from the stylesheet. */
 (() => {
   const TYPE = "compass-circuit";
   let circuit;
@@ -15,33 +15,46 @@
   let generation = 0;
   let layoutBounds;
   let cancelLayout;
-  // Fitting shows the whole circuit, never larger than 100 % and never below this scale.
-  const MIN_FIT_SCALE = 0.3;
+  // Fitting shows the whole circuit when it fits at a legible scale: never larger than 100 %, never smaller than
+  // this, so labels stay readable. A larger circuit scrolls.
+  const MIN_FIT_SCALE = 0.8;
+  const LABEL_SIZE = 14;
 
-  const role = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  const SIGNAL = {
-    high: role("--sb-data-verdigris"),
-    low: role("--sb-data-smalt"),
-    def: role("--sb-data-olive-ochre"),
-    undef: role("--sb-data-madder"),
+  // A role's colour, resolved through a probe element, since the dark theme blends its roles with color-mix.
+  const probe = document.createElement("span");
+  probe.hidden = true;
+  document.body.append(probe);
+  const resolve = (name) => {
+    probe.style.color = `var(${name})`;
+    return getComputedStyle(probe).color;
   };
 
-  // Recolour every cell view's signal and lamp states. Each view class holds its own copy of the attrs.
-  for (const View of Object.values(digitaljs.cells)) {
-    const attrs =
-      View && View.prototype && Object.prototype.hasOwnProperty.call(View.prototype, "attrs") && View.prototype.attrs;
-    if (!attrs) continue;
-    for (const group of ["signal", "lamp"]) {
-      for (const [state, selectors] of Object.entries(attrs[group] || {})) {
-        const colour = SIGNAL[state];
-        if (!colour) continue;
-        for (const selector of Object.values(selectors)) {
-          if ("stroke" in selector) selector.stroke = colour;
-          if ("fill" in selector) selector.fill = colour;
+  // Colours every cell view's signal and lamp states from the circuit roles. Each view class holds its own copy
+  // of the attrs.
+  function recolour() {
+    const signal = {
+      high: resolve("--sb-circuit-high"),
+      low: resolve("--sb-circuit-low"),
+      def: resolve("--sb-circuit-word"),
+      undef: resolve("--sb-circuit-unknown"),
+    };
+    for (const View of Object.values(digitaljs.cells)) {
+      const attrs =
+        View && View.prototype && Object.prototype.hasOwnProperty.call(View.prototype, "attrs") && View.prototype.attrs;
+      if (!attrs) continue;
+      for (const group of ["signal", "lamp"]) {
+        for (const [state, selectors] of Object.entries(attrs[group] || {})) {
+          const colour = signal[state];
+          if (!colour) continue;
+          for (const selector of Object.values(selectors)) {
+            if ("stroke" in selector) selector.stroke = colour;
+            if ("fill" in selector) selector.fill = colour;
+          }
         }
       }
     }
   }
+  recolour();
 
   // DigitalJS's WireView adds delete, reconnect and vertex tools on hover even when the paper is not interactive.
   // Keep the inspection events and never add tools.
@@ -154,7 +167,7 @@
 
   function prepareCells(modelCircuit) {
     for (const cell of modelCircuit._graph.getElements()) {
-      cell.attr("label/fontSize", 12);
+      cell.attr("label/fontSize", LABEL_SIZE);
       cell.attr("label/refDy", 8);
       const type = cell.get("type");
       if (type === "Subcircuit" && cell.get("celltype")?.startsWith("$paramod")) {
@@ -461,6 +474,13 @@
   resize.observe(byId("viewport"));
   window.addEventListener("message", (event) => {
     if (event.source !== parent || event.data?.type !== TYPE) return;
+    if (event.data.theme === "learn" || event.data.theme === "dark") {
+      const changed = document.documentElement.getAttribute("data-theme") !== event.data.theme;
+      document.documentElement.setAttribute("data-theme", event.data.theme);
+      recolour();
+      // The wires take the new colours when the circuit is drawn again.
+      if (changed && data && !event.data.circuit) load(data);
+    }
     const shown = event.data.active === true && !active;
     if (typeof event.data.active === "boolean") active = event.data.active;
     if (event.data.circuit) load(event.data.circuit);

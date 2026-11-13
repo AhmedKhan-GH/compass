@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { CircuitRecord } from "@compass/schema";
-import { KeyButton, Label, StatusMark, WordButton } from "@compass/ui";
+import { KeyButton, Label, StatusMark, WordButton, type Theme } from "@compass/ui";
 import type { JobPhase } from "@/lib/job-poll";
 import { failureTitle } from "@/lib/runs";
 
@@ -55,6 +55,7 @@ function isKey(value: unknown): value is ForwardedKey {
 export function CircuitPane({
   phase,
   record,
+  theme,
   earlierSource,
   active,
   onBuild,
@@ -63,6 +64,8 @@ export function CircuitPane({
   phase: JobPhase<CircuitRecord>;
   /** The latest finished circuit job, kept while a new one is built. */
   record: CircuitRecord | undefined;
+  /** The page's theme, handed to the frame. */
+  theme: Theme;
   earlierSource: boolean;
   /** The circuit tab is visible; the simulation runs only then. */
   active: boolean;
@@ -70,13 +73,15 @@ export function CircuitPane({
   onSelectSource: (positions: SourcePosition[]) => void;
 }) {
   const frame = useRef<HTMLIFrameElement>(null);
+  // The frame starts in the theme of the moment it loads; later changes are sent to it.
+  const [initialTheme] = useState(theme);
   const [frameError, setFrameError] = useState("");
   const [showWarnings, setShowWarnings] = useState(false);
   const circuit = record?.state === "succeeded" ? record.circuit : undefined;
   const busy = phase.phase === "starting" || phase.phase === "queued" || phase.phase === "running";
-  const state = useRef({ circuit, active, earlierSource, onSelectSource });
+  const state = useRef({ circuit, active, earlierSource, onSelectSource, theme });
   useEffect(() => {
-    state.current = { circuit, active, earlierSource, onSelectSource };
+    state.current = { circuit, active, earlierSource, onSelectSource, theme };
   });
 
   useEffect(() => {
@@ -89,7 +94,7 @@ export function CircuitPane({
       if (isKey(message.key)) window.dispatchEvent(new KeyboardEvent("keydown", { ...message.key, cancelable: true }));
       if (message.loaded && state.current.circuit)
         frame.current?.contentWindow?.postMessage(
-          { type: MESSAGE, circuit: state.current.circuit, active: state.current.active },
+          { type: MESSAGE, circuit: state.current.circuit, active: state.current.active, theme: state.current.theme },
           "*",
         );
       if (typeof message.error === "string") setFrameError(message.error);
@@ -108,6 +113,10 @@ export function CircuitPane({
   useEffect(() => {
     frame.current?.contentWindow?.postMessage({ type: MESSAGE, active }, "*");
   }, [active]);
+
+  useEffect(() => {
+    frame.current?.contentWindow?.postMessage({ type: MESSAGE, theme }, "*");
+  }, [theme]);
 
   return (
     <div className="circuit">
@@ -136,7 +145,7 @@ export function CircuitPane({
         <iframe
           ref={frame}
           title="Circuit"
-          src="/circuit/viewer.html"
+          src={`/circuit/viewer.html?theme=${initialTheme}`}
           sandbox="allow-scripts"
           className="circuit-frame"
           onLoad={() => setFrameError("")}

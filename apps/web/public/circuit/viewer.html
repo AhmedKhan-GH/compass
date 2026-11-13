@@ -4,7 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Circuit</title>
+    <script>
+      // The page's theme, from the frame's address, before the first paint.
+      document.documentElement.setAttribute(
+        "data-theme",
+        new URLSearchParams(location.search).get("theme") === "dark" ? "dark" : "learn",
+      );
+    </script>
     <link rel="stylesheet" href="/sternbild/design/1.0.0/sternbild.css" />
+    <link rel="stylesheet" href="/sternbild/themes/learn.css" />
+    <link rel="stylesheet" href="/sternbild/themes/dark.css" />
     <link rel="stylesheet" href="/circuit/viewer.css" />
     <script defer src="/vendor/digitaljs/main.js"></script>
     <script defer src="/vendor/elkjs/elk.bundled.js"></script>

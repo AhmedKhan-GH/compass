@@ -3,20 +3,26 @@ import { EditorView } from "@codemirror/view";
 import { tags } from "@lezer/highlight";
 
 /**
- * The editor in the Sternbild roles. Code is set in parchment; keywords recede to the secondary text, comments to
- * the faint text, and literal values stand out in parchment like names. No hue: the data colours are for data.
+ * The editor on the syntax roles of the theme: keywords, types, definitions, numbers, strings, comments and
+ * preprocessor lines each have a hue; names and values are set in the text ink.
  */
 const highlight = HighlightStyle.define([
   {
     tag: [tags.keyword, tags.modifier, tags.operatorKeyword, tags.controlKeyword, tags.definitionKeyword],
-    color: "var(--sb-text-muted)",
+    color: "var(--sb-syntax-keyword)",
   },
-  { tag: [tags.typeName, tags.className, tags.namespace, tags.standard(tags.name)], color: "var(--sb-text-muted)" },
-  { tag: [tags.comment, tags.lineComment, tags.blockComment, tags.meta], color: "var(--sb-text-faint)" },
-  { tag: [tags.number, tags.bool, tags.atom, tags.string, tags.special(tags.string)], color: "var(--sb-text)" },
-  { tag: [tags.variableName, tags.name, tags.propertyName, tags.definition(tags.name)], color: "var(--sb-text)" },
-  { tag: [tags.operator, tags.punctuation, tags.bracket, tags.separator], color: "var(--sb-text-muted)" },
-  { tag: tags.invalid, color: "var(--sb-text)", textDecoration: "underline" },
+  { tag: [tags.typeName, tags.className, tags.namespace, tags.standard(tags.name)], color: "var(--sb-syntax-type)" },
+  {
+    tag: [tags.definition(tags.variableName), tags.definition(tags.name), tags.function(tags.variableName)],
+    color: "var(--sb-syntax-definition)",
+  },
+  { tag: [tags.comment, tags.lineComment, tags.blockComment], color: "var(--sb-syntax-comment)" },
+  { tag: [tags.meta, tags.processingInstruction], color: "var(--sb-syntax-meta)" },
+  { tag: [tags.number, tags.bool, tags.atom], color: "var(--sb-syntax-number)" },
+  { tag: [tags.string, tags.special(tags.string)], color: "var(--sb-syntax-string)" },
+  { tag: [tags.variableName, tags.name, tags.propertyName], color: "var(--sb-syntax-text)" },
+  { tag: [tags.operator, tags.punctuation, tags.bracket, tags.separator], color: "var(--sb-syntax-operator)" },
+  { tag: tags.invalid, color: "var(--sb-state-failed)", textDecoration: "underline" },
 ]);
 
 export function codeEditorTheme() {
@@ -25,8 +31,8 @@ export function codeEditorTheme() {
       {
         "&": {
           height: "100%",
-          color: "var(--sb-text)",
-          backgroundColor: "var(--sb-well)",
+          color: "var(--sb-syntax-text)",
+          backgroundColor: "var(--sb-syntax-ground)",
           fontSize: "var(--sb-app-font-size-mono)",
         },
         "&.cm-focused": { outline: "none" },
@@ -35,21 +41,21 @@ export function codeEditorTheme() {
           lineHeight: "var(--sb-app-row)",
           overflow: "auto",
         },
-        ".cm-content": { padding: "var(--sb-space-2) 0", caretColor: "var(--sb-text)" },
+        ".cm-content": { padding: "var(--sb-space-2) 0", caretColor: "var(--sb-syntax-text)" },
         ".cm-line": { padding: "0 var(--sb-space-3)" },
-        ".cm-cursor, .cm-dropCursor": { borderLeft: "var(--sb-rule-width) solid var(--sb-text)" },
+        ".cm-cursor, .cm-dropCursor": { borderLeft: "var(--sb-rule-width) solid var(--sb-syntax-text)" },
         "&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection":
-          { backgroundColor: "var(--sb-rule)" },
+          { backgroundColor: "var(--sb-syntax-selection)" },
         ".cm-selectionMatch": { backgroundColor: "var(--sb-surface-hover)" },
-        ".cm-activeLine": { backgroundColor: "var(--sb-background-app)" },
+        ".cm-activeLine": { backgroundColor: "var(--sb-syntax-active-line)" },
         ".cm-gutters": {
-          backgroundColor: "var(--sb-well)",
-          color: "var(--sb-text-faint)",
+          backgroundColor: "var(--sb-syntax-ground)",
+          color: "var(--sb-syntax-gutter)",
           border: "none",
           borderRight: "var(--sb-rule-width) solid var(--sb-rule-faint)",
         },
         ".cm-lineNumbers .cm-gutterElement": { padding: "0 var(--sb-space-2) 0 var(--sb-space-3)", minWidth: "40px" },
-        ".cm-activeLineGutter": { backgroundColor: "var(--sb-background-app)", color: "var(--sb-text-muted)" },
+        ".cm-activeLineGutter": { backgroundColor: "var(--sb-syntax-active-line)", color: "var(--sb-syntax-text)" },
         ".cm-foldGutter .cm-gutterElement": { padding: "0 var(--sb-space-1)", color: "var(--sb-text-faint)" },
         "&.cm-focused .cm-matchingBracket": {
           backgroundColor: "transparent",
@@ -57,7 +63,7 @@ export function codeEditorTheme() {
         },
         "&.cm-focused .cm-nonmatchingBracket": {
           backgroundColor: "transparent",
-          outline: "var(--sb-rule-width) solid var(--sb-data-madder)",
+          outline: "var(--sb-rule-width) solid var(--sb-state-failed)",
         },
         ".cm-searchMatch": {
           backgroundColor: "var(--sb-surface-hover)",
@@ -111,7 +117,7 @@ export function codeEditorTheme() {
         },
         ".cm-tooltip.cm-completionInfo": { padding: "var(--sb-space-1) var(--sb-space-2)" },
       },
-      { dark: true },
+      { dark: false },
     ),
     syntaxHighlighting(highlight),
   ];

@@ -196,7 +196,7 @@ button:disabled {
   min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
-  background: var(--sb-well);
+  background: var(--sb-circuit-ground);
 }
 
 #paper {
@@ -206,37 +206,37 @@ button:disabled {
 }
 
 #paper .joint-paper {
-  background: var(--sb-well);
+  background: var(--sb-circuit-ground);
 }
 
 #paper .joint-element text {
   font-family: var(--sb-font-family-text);
-  fill: var(--sb-text);
+  fill: var(--sb-circuit-text);
 }
 
 #paper .joint-element .numvalue,
 #paper .joint-element text.value,
 #paper .joint-element foreignObject input[type="text"] {
   font-family: var(--sb-font-family-mono);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 #paper .joint-element .body,
 #paper .joint-element [fill="white"] {
-  fill: var(--sb-background-app);
+  fill: var(--sb-circuit-cell);
 }
 
 #paper .joint-element [stroke="black"],
 #paper .joint-element .body {
-  stroke: var(--sb-text-muted);
+  stroke: var(--sb-circuit-line);
 }
 
 #paper .joint-element [fill="black"] {
-  fill: var(--sb-text);
+  fill: var(--sb-circuit-text);
 }
 
 #paper .joint-element foreignObject {
-  color: var(--sb-text);
+  color: var(--sb-circuit-text);
 }
 
 #paper .joint-element[data-type="Input"] foreignObject.tooltip,
@@ -264,12 +264,12 @@ button:disabled {
 }
 
 #paper .joint-link.is-selected .connection {
-  stroke: var(--sb-accent);
+  stroke: var(--sb-circuit-selected);
   stroke-width: 3;
 }
 
 #paper .joint-element.is-selected > text.label {
-  fill: var(--sb-accent);
+  fill: var(--sb-circuit-selected);
 }
 
 #selection {
@@ -306,17 +306,17 @@ button:disabled {
 }
 
 .key[data-signal="high"] {
-  --signal: var(--sb-data-verdigris);
+  --signal: var(--sb-circuit-high);
 }
 
 .key[data-signal="low"] {
-  --signal: var(--sb-data-smalt);
+  --signal: var(--sb-circuit-low);
 }
 
 .key[data-signal="def"] {
-  --signal: var(--sb-data-olive-ochre);
+  --signal: var(--sb-circuit-word);
 }
 
 .key[data-signal="undef"] {
-  --signal: var(--sb-data-madder);
+  --signal: var(--sb-circuit-unknown);
 }
