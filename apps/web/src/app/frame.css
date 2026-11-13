@@ -23,7 +23,7 @@
 .sb-row-name.catalog-title,
 .sb-row-name.exercise-title {
   font-family: var(--sb-font-family-text);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: normal;
   text-transform: none;
 }
