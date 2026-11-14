@@ -17,9 +17,10 @@
   height: 32px;
 }
 
-/* Lesson and course names use the text face, in their own case. The Sternbild display face stays for the brand. */
+/* Category, course, concept and lesson names use the text face, in their own case. The Sternbild display face is only for the app's name. */
 .lesson-head .lesson-title,
 .course-title,
+.sb-page-title,
 .sb-row-name.catalog-title,
 .sb-row-name.exercise-title {
   font-family: var(--sb-font-family-text);
