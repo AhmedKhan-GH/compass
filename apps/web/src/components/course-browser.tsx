@@ -143,7 +143,10 @@ export function CourseBrowser({
 function progressMark(item: CourseItemRow): { status: Status; label: string } {
   if (item.progress === "completed") return { status: "completed", label: "Completed" };
   if (item.progress === "in-progress")
-    return { status: "in-progress", label: item.tasks ? `${item.passedTasks} of ${item.tasks} tasks` : "In progress" };
+    return {
+      status: "in-progress",
+      label: item.tasks ? `${item.passedTasks} of ${item.tasks} ${item.tasks === 1 ? "task" : "tasks"}` : "In progress",
+    };
   return { status: "not-started", label: "Not started" };
 }
 

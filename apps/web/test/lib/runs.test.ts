@@ -9,6 +9,8 @@ import {
   runResult,
   runScope,
   runStatus,
+  taskOfTest,
+  taskStatusesFromRun,
   testCounts,
   testsByTask,
 } from "../../src/lib/runs.ts";
@@ -175,4 +177,62 @@ test("the lesson's state: running, completed, failed by the latest run, in progr
     lessonState({ running: false, progress: { status: "not-started" }, latestRun: undefined, tasks: {} }).tone,
     "neutral",
   );
+});
+
+// An item without [[task]] has one implicit task: id 1, titled after the item, covering every test. Its results name
+// no task.
+const implicitTasks = [{ id: 1, title: "Bird Feeder Camera", tests: [], implicit: true as const }];
+const whole = (name: string, status: TestResult["status"], message?: string): TestResult =>
+  message === undefined ? { name, status, test_code: "t" } : { name, status, test_code: "t", message };
+
+test("each task takes the verdict of its own tests; a compile error fails every task the run covered", () => {
+  const tasks = [{ id: 1 }, { id: 2 }, { id: 3 }];
+  assert.deepEqual(taskStatusesFromRun({ ...base, report: { status: "fail", tests: [pass, fail] } }, tasks), {
+    "1": "passed",
+    "2": "failed",
+  });
+  assert.deepEqual(
+    taskStatusesFromRun({ ...base, taskId: 2, report: { status: "error", message: "syntax error" } }, tasks),
+    { "2": "failed" },
+  );
+  assert.deepEqual(taskStatusesFromRun({ ...base, state: "running" }, tasks), {});
+});
+
+test("an implicit task takes the verdict of the whole run", () => {
+  const passing = { status: "pass" as const, tests: [whole("a", "pass"), whole("b", "pass")] };
+  const failing = { status: "fail" as const, tests: [whole("a", "pass"), whole("b", "fail", "Expected 1")] };
+  const submission: RunRecord = { ...base, kind: "submission", report: failing };
+  const unavailable: RunRecord = { ...base, state: "failed", error: { kind: "unavailable", message: "" } };
+  // Run tests (no task) and Run task 1 both cover it.
+  assert.deepEqual(taskStatusesFromRun({ ...base, report: passing }, implicitTasks), { "1": "passed" });
+  assert.deepEqual(taskStatusesFromRun({ ...base, taskId: 1, report: passing }, implicitTasks), { "1": "passed" });
+  assert.deepEqual(taskStatusesFromRun({ ...base, taskId: 1, report: failing }, implicitTasks), { "1": "failed" });
+  assert.deepEqual(taskStatusesFromRun(submission, implicitTasks), {
+    "1": "failed",
+  });
+  assert.deepEqual(
+    taskStatusesFromRun({ ...base, report: { status: "error", message: "syntax error" } }, implicitTasks),
+    { "1": "failed" },
+  );
+  assert.deepEqual(taskStatusesFromRun(unavailable, implicitTasks), {});
+});
+
+test("results that name no task belong to the implicit task, in one group with the item's title", () => {
+  const tests = [whole("a", "pass"), whole("b", "fail", "Expected 1"), whole("c", "error", "Boom")];
+  assert.equal(taskOfTest(whole("a", "pass"), implicitTasks)?.id, 1);
+  assert.equal(taskOfTest(whole("a", "pass"), [{ id: 1 }, { id: 2 }]), undefined);
+  assert.deepEqual(
+    testsByTask(tests, implicitTasks, { includeEmpty: true }).map((group) => [
+      group.taskId,
+      group.title,
+      group.tests.map((test) => test.name),
+    ]),
+    [[1, "Bird Feeder Camera", ["a", "b", "c"]]],
+  );
+  assert.deepEqual(runOutcome({ ...base, report: { status: "fail", tests } }, implicitTasks), {
+    tone: "failed",
+    status: "failed",
+    title: "2 of 3 failed",
+    detail: "Task 1 · b · Expected 1",
+  });
 });

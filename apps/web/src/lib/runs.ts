@@ -82,22 +82,35 @@ export function failureTitle(kind: string | undefined): string {
   }
 }
 
+/**
+ * The task a test result belongs to: the task it names, or else the implicit task of an item without `[[task]]`,
+ * whose results name no task because that task covers every test.
+ */
+export function taskOfTest<T extends Pick<IndexedTask, "id" | "implicit">>(
+  test: Pick<TestResult, "task_id">,
+  tasks: readonly T[],
+): T | undefined {
+  const named = test.task_id === undefined ? undefined : tasks.find((task) => task.id === test.task_id);
+  return named ?? tasks.find((task) => task.implicit);
+}
+
 /** The tests of a report grouped by task, in task order, with tests that name no task at the end. */
 export type TaskGroup = { taskId: number | undefined; title: string | undefined; tests: TestResult[] };
 
 /**
- * The tests of a report grouped by task, in task order, with tests that name no task at the end. With
- * `includeEmpty`, tasks the run did not cover are kept with no tests.
+ * The tests of a report grouped by task, in task order, with tests that name no task at the end. An implicit task
+ * takes every test that names no task. With `includeEmpty`, tasks the run did not cover are kept with no tests.
  */
 export function testsByTask(
   tests: readonly TestResult[],
-  tasks: readonly Pick<IndexedTask, "id" | "title" | "tests">[],
+  tasks: readonly Pick<IndexedTask, "id" | "title" | "tests" | "implicit">[],
   options: { includeEmpty?: boolean } = {},
 ): TaskGroup[] {
   const groups: TaskGroup[] = tasks.map((task) => ({ taskId: task.id, title: task.title, tests: [] }));
   const rest: TestResult[] = [];
   for (const test of tests) {
-    const group = groups.find((candidate) => candidate.taskId !== undefined && candidate.taskId === test.task_id);
+    const task = taskOfTest(test, tasks);
+    const group = task && groups.find((candidate) => candidate.taskId === task.id);
     if (group) group.tests.push(test);
     else rest.push(test);
   }
@@ -114,7 +127,7 @@ export type Outcome = { tone: Tone; status: Status; title: string; detail?: stri
  */
 export function runOutcome(
   run: Pick<RunRecord, "state" | "report" | "error">,
-  tasks: readonly Pick<IndexedTask, "id" | "title">[] = [],
+  tasks: readonly Pick<IndexedTask, "id" | "title" | "implicit">[] = [],
 ): Outcome {
   if (run.state === "queued") return { tone: "neutral", status: "queued", title: "Queued" };
   if (run.state === "running") return { tone: "running", status: "running", title: "Running" };
@@ -137,7 +150,7 @@ export function runOutcome(
   if (!failing.length)
     return { tone: "passed", status: "passed", title: total === 1 ? "The test passed" : `All ${total} tests passed` };
   const first = failing[0];
-  const task = tasks.find((candidate) => candidate.id === first?.task_id);
+  const task = first ? taskOfTest(first, tasks) : undefined;
   const detail = first
     ? [task ? `Task ${task.id}` : undefined, first.name, first.message ? firstLine(first.message) : undefined]
         .filter(Boolean)
@@ -149,11 +162,12 @@ export function runOutcome(
 
 /**
  * The status of each task a finished run covered: passed when all its tests passed, failed otherwise. A run that
- * produced no test results (a compile error) fails every task it covered.
+ * produced no test results (a compile error) fails every task it covered. An implicit task takes the verdict of the
+ * whole run.
  */
 export function taskStatusesFromRun(
   run: Pick<RunRecord, "state" | "report" | "taskId">,
-  tasks: readonly Pick<IndexedTask, "id">[],
+  tasks: readonly Pick<IndexedTask, "id" | "implicit">[],
 ): Record<string, TaskStatus> {
   const result: Record<string, TaskStatus> = {};
   if (run.state !== "succeeded" || !run.report) return result;
@@ -161,6 +175,10 @@ export function taskStatusesFromRun(
   for (const task of covered) {
     if (run.report.status === "error") {
       result[String(task.id)] = "failed";
+      continue;
+    }
+    if (task.implicit) {
+      result[String(task.id)] = run.report.status === "pass" ? "passed" : "failed";
       continue;
     }
     const tests = run.report.tests.filter((test) => test.task_id === task.id);

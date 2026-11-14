@@ -12,6 +12,7 @@ import {
   writeStorage,
   type Status,
 } from "@compass/ui";
+import { count } from "@/lib/catalog";
 import { assetUrl } from "@/lib/routes";
 import { taskStatusMark, type LessonState } from "@/lib/runs";
 import { Markdown } from "../markdown";
@@ -30,7 +31,7 @@ export function LessonHeader({ item, concepts, lesson }: { item: ItemView; conce
           <StatusMark status={lesson.status} label={lesson.word} />
           <span>
             · {item.kind === "concept" ? "Concept" : "Practice"} · {concepts.join(", ")}
-            {item.tasks.length ? ` · ${item.tasks.length} tasks` : ""}
+            {item.tasks.length ? ` · ${count(item.tasks.length, "task", "tasks")}` : ""}
           </span>
         </p>
       </div>
@@ -211,19 +212,24 @@ export function InstructionsPane({
                 </button>
               );
             })}
-            <span className="sb-spacer" />
-            <KeyButton
-              chord="Alt+BracketLeft"
-              aria-label="Previous task"
-              disabled={position <= 0}
-              onClick={() => onStepTask(-1)}
-            />
-            <KeyButton
-              chord="Alt+BracketRight"
-              aria-label="Next task"
-              disabled={position < 0 || position >= item.tasks.length - 1}
-              onClick={() => onStepTask(1)}
-            />
+            {/* One task, such as the implicit task of a practice problem, has nowhere to step to. */}
+            {item.tasks.length > 1 && (
+              <>
+                <span className="sb-spacer" />
+                <KeyButton
+                  chord="Alt+BracketLeft"
+                  aria-label="Previous task"
+                  disabled={position <= 0}
+                  onClick={() => onStepTask(-1)}
+                />
+                <KeyButton
+                  chord="Alt+BracketRight"
+                  aria-label="Next task"
+                  disabled={position < 0 || position >= item.tasks.length - 1}
+                  onClick={() => onStepTask(1)}
+                />
+              </>
+            )}
           </div>
         )}
       </div>
@@ -238,7 +244,9 @@ export function InstructionsPane({
             storageKey={conceptKey(courseId, item.id)}
           />
         )}
+        {/* An implicit task has no section: the instructions above are its text, and the command bar runs it. */}
         {item.tasks.map((task) => {
+          if (task.implicit) return null;
           const status = statusOf(task.id);
           const current = task.id === currentTask;
           return (
