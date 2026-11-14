@@ -705,8 +705,17 @@ a.sb-wordmark-link {
   inset: -3px 0;
 }
 
-.sb-split-rule:hover {
+.sb-split-rule:not([data-fixed]):hover {
   background: var(--sb-text-faint);
+}
+
+/* The rule beside a pane of fixed size cannot be moved. */
+.sb-split > .sb-split-rule[data-fixed] {
+  cursor: default;
+}
+
+.sb-split-rule[data-fixed]::before {
+  content: none;
 }
 
 .sb-split-rule:focus-visible {

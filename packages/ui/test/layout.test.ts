@@ -61,6 +61,14 @@ test("the grid tracks carry the minimums and the shares", () => {
   assert.equal(gridTracks([1, 3], [200, 300]), "minmax(200px, 250fr) 1px minmax(300px, 750fr)");
 });
 
+test("a fixed pane takes its size, and the other panes share the rest", () => {
+  assert.equal(gridTracks([1, 3], [200, 300], 1, [48]), "48px 1px minmax(300px, 1000fr)");
+  assert.equal(
+    gridTracks([0.25, 0.5, 0.25], [100, 100, 100], 1, [undefined, 40]),
+    "minmax(100px, 500fr) 1px 40px 1px minmax(100px, 500fr)",
+  );
+});
+
 test("stored shares are read back only when they fit the split", () => {
   assert.deepEqual(parseStoredShares("[1,3]", 2), [0.25, 0.75]);
   assert.equal(parseStoredShares("[1,3]", 3), undefined);

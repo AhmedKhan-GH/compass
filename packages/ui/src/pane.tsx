@@ -90,7 +90,9 @@ const LARGE_STEP = 64;
 /**
  * Panes side by side (`row`) or stacked (`column`), as shares of the space with a minimum each and 1 px rules
  * between them. A rule can be dragged, or focused and moved with the arrow keys; a double click restores the
- * default shares. The shares are kept in local storage under `compass:split:<id>`.
+ * default shares. The shares are kept in local storage under `compass:split:<id>`. A pane given a `fixed` size (a
+ * collapsed sidebar) takes exactly that, its rules cannot be moved, and the stored shares are kept for when it is
+ * released.
  */
 export function Split({
   id,
@@ -98,6 +100,7 @@ export function Split({
   shares,
   minimums,
   labels,
+  fixed = [],
   children,
   className,
 }: {
@@ -109,6 +112,8 @@ export function Split({
   minimums: readonly number[];
   /** The panes' names, for the rules' accessible names. */
   labels: readonly string[];
+  /** Fixed sizes in pixels, by pane; undefined for a pane that takes its share. */
+  fixed?: readonly (number | undefined)[];
   children: ReactNode;
   className?: string;
 }) {
@@ -166,11 +171,13 @@ export function Split({
     commit(moveRule(total(), current, minimums, index, delta));
   }
 
-  const tracks = gridTracks(current, minimums);
+  const tracks = gridTracks(current, minimums, 1, fixed);
   const sizes = resolveSizes(1000, current, []);
   const cells: ReactNode[] = [];
   panes.forEach((pane, index) => {
-    if (index > 0) {
+    if (index > 0 && (fixed[index - 1] !== undefined || fixed[index] !== undefined)) {
+      cells.push(<div key={`rule-${index}`} className="sb-split-rule" data-fixed aria-hidden="true" />);
+    } else if (index > 0) {
       const before = labels[index - 1] ?? "";
       const after = labels[index] ?? "";
       cells.push(

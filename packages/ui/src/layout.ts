@@ -91,10 +91,20 @@ export function moveRule(
 }
 
 /** The CSS grid track list for a split: each pane `minmax(min, share fr)`, with a rule track between panes. */
-export function gridTracks(shares: readonly number[], minimums: readonly number[], rule = 1): string {
-  const normalized = normalizeShares(shares);
+export function gridTracks(
+  shares: readonly number[],
+  minimums: readonly number[],
+  rule = 1,
+  fixed: readonly (number | undefined)[] = [],
+): string {
+  // A pane with a fixed size (a collapsed sidebar) takes exactly that; the others share the rest as before.
+  const normalized = normalizeShares(shares.map((share, index) => (fixed[index] === undefined ? share : 0)));
   return normalized
-    .map((share, index) => `minmax(${Math.max(0, minimums[index] ?? 0)}px, ${round(share * 1000)}fr)`)
+    .map((share, index) => {
+      const size = fixed[index];
+      if (size !== undefined) return `${Math.max(0, size)}px`;
+      return `minmax(${Math.max(0, minimums[index] ?? 0)}px, ${round(share * 1000)}fr)`;
+    })
     .join(` ${rule}px `);
 }
 
