@@ -282,20 +282,68 @@ test("task selection is validated against the item", async () => {
     assert.rejects(promise, (error: unknown) => error instanceof HttpError && error.status === 400 && pattern.test(error.message));
   await rejects(startRun(found(), { files, taskId: 1, submit: true }), /leave out taskId/);
   await rejects(startRun(found(), { files, taskId: 3 }), /no task 3/);
-  await rejects(startRun(found(PLAIN_ITEM.slug), { files, taskId: 1 }), /no task 1/);
+  await rejects(startRun(found(PLAIN_ITEM.slug), { files, taskId: 2 }), /no task 2/);
+  await rejects(startRun(found(PLAIN_ITEM.slug), { files, taskId: 1, submit: true }), /leave out taskId/);
   await rejects(startRun(found(), { files: { "defs.vh": "x", "top_module.v": solution } }), /defs\.vh/);
   assert.equal(runHistory(COURSE_ID, TASKS_ITEM.id, null).total, 0);
 });
 
-test("an item without tasks sends no task map and records no task statuses", async () => {
+test("the implicit task of an item without tasks is run as a whole, and the whole run is its verdict", async () => {
   const { runner } = freshEnvironment();
-  const run = await startRun(found(PLAIN_ITEM.slug), { files: { "top_module.v": solution }, submit: true });
-  assert.equal((runner.requests[0] as TestJobRequest).tasks, undefined);
-  runner.succeed(testResult({ status: "pass", tests: [{ name: "Wire", status: "pass", test_code: "assert True" }] }));
-  await readOk(run.id);
+  const files = { "top_module.v": solution };
+  const wire = (status: "pass" | "fail") =>
+    testResult({ status, tests: [{ name: "Wire", status, test_code: "assert b == a", ...(status === "fail" ? { message: "b is 0" } : {}) }] });
+  const wholeRun = () => {
+    const request = runner.requests.at(-1) as TestJobRequest;
+    assert.equal(request.tasks, undefined, "no task map");
+    assert.equal(request.taskId, undefined, "no task selection");
+    assert.ok(!("tasks" in request) && !("taskId" in request));
+  };
+
+  // Run task 1: stored as a run of task 1, sent as a whole run.
+  const task = await startRun(found(PLAIN_ITEM.slug), { files, taskId: 1 });
+  assert.equal(task.kind, "test");
+  assert.equal(task.taskId, 1);
+  wholeRun();
+  runner.succeed(wire("fail"));
+  assert.equal((await readOk(task.id)).taskId, 1);
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM), { status: "in-progress", tasks: { "1": "failed" }, runs: 1 });
+  assert.equal(runHistory(COURSE_ID, PLAIN_ITEM.id, null).runs[0]?.taskId, 1);
+
+  // A full run.
+  const full = await startRun(found(PLAIN_ITEM.slug), { files });
+  assert.equal(full.taskId, undefined);
+  wholeRun();
+  runner.succeed(wire("pass"));
+  await readOk(full.id);
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "passed" });
+
+  // Failures outside the learner's code change nothing; a compile error or a timeout fails the task.
+  const broken = await startRun(found(PLAIN_ITEM.slug), { files, taskId: 1 });
+  runner.fail({ kind: "execution", message: "The container stopped." });
+  await readOk(broken.id);
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "passed" });
+  const compileError = await startRun(found(PLAIN_ITEM.slug), { files });
+  runner.succeed(testResult({ status: "error", message: "syntax error" }));
+  await readOk(compileError.id);
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "failed" });
+  const slow = await startRun(found(PLAIN_ITEM.slug), { files, taskId: 1 });
+  runner.succeed(wire("pass"));
+  await readOk(slow.id);
+  const timedOut = await startRun(found(PLAIN_ITEM.slug), { files, taskId: 1 });
+  runner.fail({ kind: "timeout", message: "The simulation ran out of time." });
+  await readOk(timedOut.id);
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "failed" });
+
+  // A passing submission completes the item and passes the task.
+  const submission = await startRun(found(PLAIN_ITEM.slug), { files, submit: true });
+  assert.equal(submission.kind, "submission");
+  wholeRun();
+  runner.succeed(wire("pass"));
+  const done = await readOk(submission.id);
   const progress = itemProgress(COURSE_ID, PLAIN_ITEM);
-  assert.deepEqual(progress.tasks, {});
-  assert.equal(progress.status, "completed");
+  assert.deepEqual(progress, { status: "completed", tasks: { "1": "passed" }, completedAt: done.finishedAt, runs: 7 });
+  assert.equal(runner.requests.length, 7);
 });
 
 test("the stored log keeps its tail and the waveform its head, within the bounds", async () => {

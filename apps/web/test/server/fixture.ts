@@ -71,7 +71,8 @@ export const PLAIN_ITEM: IndexedItem = {
   status: "active",
   revision: "b".repeat(64),
   instructions: "Connect it.",
-  tasks: [],
+  // An item without [[task]]: the build gives it one implicit task covering the whole run.
+  tasks: [{ id: 1, title: "Connect a wire", instructions: "", tests: [], implicit: true }],
   design: { top: "top_module", solution: "top_module.v", support: [], editable: [], schematic: false },
   starter: { "top_module.v": "module top_module(input a, output b);\nendmodule\n" },
   checks: { name: "test_wire.py", content: `# ${CHECKS_MARKER}\nasync def wire(dut): pass\n` },

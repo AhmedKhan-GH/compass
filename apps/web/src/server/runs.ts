@@ -127,6 +127,8 @@ export function testJobRequest(
       "unsupported-runner",
       runner ? `This app does not know the test runner ${runner}.` : "This course has no test runner.",
     );
+  // The implicit task of an item without [[task]] is the whole run: the runner gets no task map and no selection.
+  const mapped = item.tasks.filter((task) => !task.implicit);
   const parsed = TestJobRequest.safeParse({
     runner,
     top: item.design.top,
@@ -135,8 +137,8 @@ export function testJobRequest(
     files: mergeWithStarter(item, files),
     checks: item.checks,
     itemKind: item.kind,
-    ...(item.tasks.length > 0 ? { tasks: item.tasks.map((task) => ({ id: task.id, tests: task.tests })) } : {}),
-    ...(taskId !== undefined ? { taskId } : {}),
+    ...(mapped.length > 0 ? { tasks: mapped.map((task) => ({ id: task.id, tests: task.tests })) } : {}),
+    ...(taskId !== undefined && mapped.length > 0 ? { taskId } : {}),
   });
   if (!parsed.success) {
     // Only the paths are logged: the values include the checks.

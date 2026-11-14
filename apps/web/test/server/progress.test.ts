@@ -1,11 +1,15 @@
 import assert from "node:assert/strict";
+import { randomUUID } from "node:crypto";
 import { test } from "node:test";
+import type { JobError, RunKind, RunReport } from "@compass/schema";
 import { findCourse, findIndexedItem } from "../../src/server/content.ts";
+import { database } from "../../src/server/db.ts";
 import {
   courseProgress,
   deriveItemProgress,
   isPassingSubmission,
   itemProgress,
+  progressDependencies,
   resetItem,
   taskVerdicts,
   type ProgressRun,
@@ -55,11 +59,28 @@ test("task verdicts: scoped runs cover their task, full runs the tasks they repo
   });
   assert.deepEqual(taskVerdicts(tasks, 1, { error: { kind: "timeout", message: "slow" } }), { "1": "failed" });
   assert.deepEqual(taskVerdicts(tasks, undefined, { error: { kind: "unavailable", message: "down" } }), {});
-  assert.deepEqual(taskVerdicts([], undefined, { report: { status: "pass", tests: [pass()] } }), {});
   // One task, untagged tests.
   assert.deepEqual(taskVerdicts([{ id: 1, tests: ["a"] }], undefined, { report: { status: "pass", tests: [pass()] } }), {
     "1": "passed",
   });
+});
+
+test("a whole run, with no task map, judges the implicit task 1 by the whole report", () => {
+  const pass = { name: "t", status: "pass" as const, test_code: "x" };
+  const fail = { name: "u", status: "fail" as const, test_code: "y" };
+  for (const taskId of [undefined, 1]) {
+    assert.deepEqual(taskVerdicts([], taskId, { report: { status: "pass", tests: [pass, pass] } }), { "1": "passed" });
+    assert.deepEqual(taskVerdicts([], taskId, { report: { status: "fail", tests: [pass, fail] } }), { "1": "failed" });
+    assert.deepEqual(taskVerdicts([], taskId, { report: { status: "error", message: "syntax error" } }), { "1": "failed" });
+    assert.deepEqual(taskVerdicts([], taskId, { error: { kind: "timeout", message: "slow" } }), { "1": "failed" });
+    // Failures outside the learner's code and cancelled runs change nothing.
+    assert.deepEqual(taskVerdicts([], taskId, { error: { kind: "unavailable", message: "down" } }), {});
+    assert.deepEqual(taskVerdicts([], taskId, { error: { kind: "execution", message: "broke" } }), {});
+    assert.deepEqual(taskVerdicts([], taskId, {}), {});
+  }
+  // A report with no tests covers nothing, unless the run was of the task.
+  assert.deepEqual(taskVerdicts([], undefined, { report: { status: "pass", tests: [] } }), {});
+  assert.deepEqual(taskVerdicts([], 1, { report: { status: "pass", tests: [] } }), { "1": "failed" });
 });
 
 test("only a passing submission over every test completes an item", () => {
@@ -185,11 +206,123 @@ test("course progress lists items with runs by slug and leaves out the rest", as
   assert.deepEqual(courseProgress(course), {
     courseId: COURSE_ID,
     items: {
-      [PLAIN_ITEM.slug]: { status: "completed", tasks: {}, completedAt: finished?.finishedAt, runs: 1 },
+      [PLAIN_ITEM.slug]: { status: "completed", tasks: { "1": "passed" }, completedAt: finished?.finishedAt, runs: 1 },
     },
   });
   // A run of the same item id in another course is not this course's progress.
   const bare = findCourse("test/bare");
   assert.ok(bare);
   assert.deepEqual(courseProgress(bare).items, {});
+});
+
+/**
+ * Stores a finished run of the item without tasks exactly as the code before implicit tasks did: no task map, no
+ * task id (task 1 did not exist), empty verdicts, and a completion for a passing submission.
+ */
+function insertLegacyRun(kind: RunKind, outcome: { report?: RunReport; error?: JobError; cancelled?: boolean }): string {
+  const db = database();
+  const id = randomUUID();
+  const finishedAt = new Date().toISOString();
+  const state = outcome.cancelled ? "cancelled" : outcome.report ? "succeeded" : "failed";
+  db.prepare(
+    `INSERT INTO runs (id, course_id, item_id, item_slug, revision, kind, task_id, tasks_json, files_json, job_id, state,
+       created_at, finished_at, duration_ms, report_json, log, waveform, error_json, image_id, task_status_json)
+     VALUES (?, ?, ?, ?, ?, ?, NULL, '[]', ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, '{}')`,
+  ).run(
+    id,
+    COURSE_ID,
+    PLAIN_ITEM.id,
+    PLAIN_ITEM.slug,
+    PLAIN_ITEM.revision,
+    kind,
+    JSON.stringify({ "top_module.v": solution }),
+    `job-${id}`,
+    state,
+    finishedAt,
+    finishedAt,
+    outcome.report ? 42 : null,
+    outcome.report ? JSON.stringify(outcome.report) : null,
+    outcome.report ? "log\n" : null,
+    outcome.error ? JSON.stringify(outcome.error) : null,
+  );
+  if (isPassingSubmission(kind, undefined, outcome.report))
+    db.prepare(
+      `INSERT INTO completions (course_id, item_id, revision, run_id, completed_at) VALUES (?, ?, ?, ?, ?)
+       ON CONFLICT DO NOTHING`,
+    ).run(COURSE_ID, PLAIN_ITEM.id, PLAIN_ITEM.revision, id, finishedAt);
+  return id;
+}
+
+const wirePass: RunReport = { status: "pass", tests: [{ name: "Wire", status: "pass", test_code: "assert b == a" }] };
+const wireFail: RunReport = {
+  status: "fail",
+  tests: [{ name: "Wire", status: "fail", test_code: "assert b == a", message: "b is 0" }],
+};
+
+test("runs stored before implicit tasks still give task 1 its verdict, and a completed item stays completed", () => {
+  freshEnvironment();
+  const db = database();
+  const submission = insertLegacyRun("submission", { report: wirePass });
+  const completedAt = (db.prepare("SELECT completed_at FROM completions").get() as { completed_at: string }).completed_at;
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM), {
+    status: "completed",
+    tasks: { "1": "passed" },
+    completedAt,
+    runs: 1,
+  });
+  // The store is read, never rewritten.
+  assert.deepEqual(db.prepare("SELECT task_status_json FROM runs WHERE id = ?").get(submission), { task_status_json: "{}" });
+
+  // Runs that failed outside the learner's code, or were cancelled, change nothing.
+  insertLegacyRun("test", { error: { kind: "unavailable", message: "down" } });
+  insertLegacyRun("test", { cancelled: true });
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "passed" });
+
+  // The latest judged run decides: a failing run fails the task, and the item stays completed.
+  const failing = insertLegacyRun("test", { report: wireFail });
+  insertLegacyRun("test", { error: { kind: "execution", message: "broke" } });
+  const course = findCourse(COURSE_ID);
+  assert.ok(course);
+  assert.deepEqual(courseProgress(course).items[PLAIN_ITEM.slug], {
+    status: "completed",
+    tasks: { "1": "failed" },
+    completedAt,
+    runs: 5,
+  });
+  // Pruning keeps the run that decides task 1 and the run that completed the item.
+  assert.deepEqual(
+    progressDependencies(db, COURSE_ID, PLAIN_ITEM.id, PLAIN_ITEM.revision),
+    new Set([failing, submission]),
+  );
+
+  // A compile error and a timeout fail the task as well.
+  insertLegacyRun("test", { report: wirePass });
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "passed" });
+  insertLegacyRun("test", { report: { status: "error", message: "syntax error" } });
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "failed" });
+  insertLegacyRun("test", { report: wirePass });
+  const timedOut = insertLegacyRun("test", { error: { kind: "timeout", message: "slow" } });
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM).tasks, { "1": "failed" });
+  assert.deepEqual(
+    progressDependencies(db, COURSE_ID, PLAIN_ITEM.id, PLAIN_ITEM.revision),
+    new Set([timedOut, submission]),
+  );
+});
+
+test("a reset clears task 1 of an item without tasks, old runs and new alike", async () => {
+  const { runner } = freshEnvironment();
+  insertLegacyRun("submission", { report: wirePass });
+  assert.equal(itemProgress(COURSE_ID, PLAIN_ITEM).status, "completed");
+  assert.deepEqual(resetItem(COURSE_ID, PLAIN_ITEM), { status: "not-started", tasks: { "1": "untested" }, runs: 0 });
+  assert.deepEqual(progressDependencies(database(), COURSE_ID, PLAIN_ITEM.id, PLAIN_ITEM.revision), new Set());
+
+  // A run after the reset counts, with its verdict stored by the new code.
+  const run = await startRun(found(PLAIN_ITEM.slug), { files: { "top_module.v": solution }, taskId: 1 });
+  runner.succeed(testResult(wireFail));
+  await readRun(run.id);
+  assert.deepEqual(itemProgress(COURSE_ID, PLAIN_ITEM), { status: "in-progress", tasks: { "1": "failed" }, runs: 1 });
+  assert.deepEqual(database().prepare("SELECT task_status_json FROM runs WHERE id = ?").get(run.id), {
+    task_status_json: '{"1":"failed"}',
+  });
+  assert.deepEqual(resetItem(COURSE_ID, PLAIN_ITEM), { status: "not-started", tasks: { "1": "untested" }, runs: 0 });
 });

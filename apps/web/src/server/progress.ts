@@ -7,17 +7,20 @@
  */
 import { z } from "zod";
 import {
+  JobError,
+  RunReport,
   TaskStatus,
   type CourseProgress,
   type CourseView,
   type ItemProgress,
   type ItemView,
-  type JobError,
   type RunKind,
-  type RunReport,
   type TaskMap,
 } from "@compass/schema";
 import { database, writeTransaction, type Db } from "./db.ts";
+
+/** The id of the one implicit task of an item without `[[task]]`, which covers the whole run. */
+export const IMPLICIT_TASK_ID = 1;
 
 /** The verdict a finished run gives each task it covered, by task id. */
 export type TaskVerdicts = Record<string, Exclude<TaskStatus, "untested">>;
@@ -28,12 +31,14 @@ const StoredVerdicts = z.record(z.string(), TaskStatus.exclude(["untested"]));
  * A task-scoped run covers its task. A full run covers the tasks its report has tests for, or every task when
  * the design did not compile (`error` report) or the simulation timed out. Runs that failed for reasons
  * outside the learner's code (runner unavailable, execution errors) and cancelled runs cover nothing.
+ * A run without a task map is a whole run of an item without `[[task]]`: see `wholeRunVerdicts`.
  */
 export function taskVerdicts(
   tasks: TaskMap,
   taskId: number | undefined,
   outcome: { report?: RunReport; error?: JobError },
 ): TaskVerdicts {
+  if (tasks.length === 0) return wholeRunVerdicts(taskId, outcome);
   const verdicts: TaskVerdicts = {};
   const selected = tasks.filter((task) => taskId === undefined || task.id === taskId);
   const { report } = outcome;
@@ -56,6 +61,23 @@ export function taskVerdicts(
         : "failed";
   }
   return verdicts;
+}
+
+/**
+ * The verdict of a whole run, which is the verdict of the item's implicit task: passed when the report passes,
+ * failed when it fails, does not compile or times out. A run that tested nothing gives no verdict unless it was a
+ * run of the task, and runs that failed outside the learner's code or were cancelled give none, as for other tasks.
+ */
+export function wholeRunVerdicts(
+  taskId: number | undefined,
+  outcome: { report?: RunReport | undefined; error?: JobError | undefined },
+): TaskVerdicts {
+  const key = String(IMPLICIT_TASK_ID);
+  const { report } = outcome;
+  if (!report) return outcome.error?.kind === "timeout" ? { [key]: "failed" } : {};
+  if (report.status === "error") return { [key]: "failed" };
+  if (report.tests.length === 0) return taskId === undefined ? {} : { [key]: "failed" };
+  return { [key]: report.status === "pass" && report.tests.every((test) => test.status === "pass") ? "passed" : "failed" };
 }
 
 /** A submission over every test, all of which passed. */
@@ -93,11 +115,43 @@ export function deriveItemProgress(
   };
 }
 
-type ProgressRow = { item_id: string; seq: number; revision: string; task_status_json: string | null };
+/**
+ * The columns a run's verdicts are read from. A whole run (no task map) settled before items without `[[task]]` had
+ * an implicit task was stored with no verdicts; for such a run the report and error are read too, and its verdict
+ * is derived from them at read time. The store is not rewritten.
+ */
+const VERDICT_COLUMNS = `task_id, task_status_json,
+  CASE WHEN json_array_length(tasks_json) = 0 AND task_status_json = '{}' THEN 1 ELSE 0 END AS unjudged_whole_run,
+  CASE WHEN json_array_length(tasks_json) = 0 AND task_status_json = '{}' THEN report_json END AS whole_report_json,
+  CASE WHEN json_array_length(tasks_json) = 0 AND task_status_json = '{}' THEN error_json END AS whole_error_json`;
+
+type VerdictRow = {
+  task_id: number | null;
+  task_status_json: string | null;
+  unjudged_whole_run: 0 | 1;
+  whole_report_json: string | null;
+  whole_error_json: string | null;
+};
+
+/** The verdicts of a stored run; undefined while it is not finished. */
+function storedVerdicts(row: VerdictRow): TaskVerdicts | undefined {
+  if (row.task_status_json === null) return undefined;
+  if (row.unjudged_whole_run !== 1) return StoredVerdicts.parse(JSON.parse(row.task_status_json));
+  const parse = <T>(schema: z.ZodType<T>, json: string | null): T | undefined => {
+    if (json === null) return undefined;
+    const parsed = schema.safeParse(JSON.parse(json));
+    return parsed.success ? parsed.data : undefined;
+  };
+  return wholeRunVerdicts(row.task_id ?? undefined, {
+    report: parse(RunReport, row.whole_report_json),
+    error: parse(JobError, row.whole_error_json),
+  });
+}
+
+type ProgressRow = VerdictRow & { item_id: string; seq: number; revision: string };
 
 function toProgressRun(row: ProgressRow): ProgressRun {
-  const verdicts = row.task_status_json === null ? undefined : StoredVerdicts.parse(JSON.parse(row.task_status_json));
-  return { seq: row.seq, revision: row.revision, verdicts };
+  return { seq: row.seq, revision: row.revision, verdicts: storedVerdicts(row) };
 }
 
 export function readResetSeq(db: Db, courseId: string, itemId: string): number {
@@ -117,7 +171,7 @@ function readCompletedAt(db: Db, courseId: string, itemId: string, revision: str
 function readItemProgress(db: Db, courseId: string, item: ItemView): ItemProgress {
   const rows = db
     .prepare(
-      `SELECT item_id, seq, revision, task_status_json FROM runs
+      `SELECT item_id, seq, revision, ${VERDICT_COLUMNS} FROM runs
        WHERE course_id = ? AND item_id = ? AND revision = ? ORDER BY seq DESC`,
     )
     .all(courseId, item.id, item.revision) as ProgressRow[];
@@ -140,7 +194,7 @@ export function courseProgress(course: CourseView): CourseProgress {
   return db.transaction(() => {
     const runs = new Map<string, ProgressRun[]>();
     const rows = db
-      .prepare("SELECT item_id, seq, revision, task_status_json FROM runs WHERE course_id = ? ORDER BY seq DESC")
+      .prepare(`SELECT item_id, seq, revision, ${VERDICT_COLUMNS} FROM runs WHERE course_id = ? ORDER BY seq DESC`)
       .all(course.id) as ProgressRow[];
     for (const row of rows) {
       const list = runs.get(row.item_id) ?? [];
@@ -200,15 +254,15 @@ export function progressDependencies(db: Db, courseId: string, itemId: string, r
   const resetSeq = readResetSeq(db, courseId, itemId);
   const rows = db
     .prepare(
-      `SELECT id, seq, task_status_json FROM runs
+      `SELECT id, seq, ${VERDICT_COLUMNS} FROM runs
        WHERE course_id = ? AND item_id = ? AND revision = ? AND seq > ? AND task_status_json IS NOT NULL
        ORDER BY seq DESC`,
     )
-    .all(courseId, itemId, revision, resetSeq) as { id: string; seq: number; task_status_json: string }[];
+    .all(courseId, itemId, revision, resetSeq) as (VerdictRow & { id: string; seq: number })[];
   const keep = new Set<string>();
   const covered = new Set<string>();
   for (const row of rows)
-    for (const task of Object.keys(StoredVerdicts.parse(JSON.parse(row.task_status_json))))
+    for (const task of Object.keys(storedVerdicts(row) ?? {}))
       if (!covered.has(task)) {
         covered.add(task);
         keep.add(row.id);
