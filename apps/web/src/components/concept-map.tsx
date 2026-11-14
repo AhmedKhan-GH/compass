@@ -37,8 +37,8 @@ const STATE: Record<CourseItemRow["progress"], Status> = {
 
 /**
  * The course's concepts as a flow from left to right: one node per concept in the state of its lesson, an arrow
- * from each prerequisite to the concept that needs it. Selecting a node lights up the path through it, dims the rest
- * and shows the concept's lesson, prerequisites, practice and what it unlocks beside the map.
+ * from each prerequisite to the concept that needs it. Selecting a node lights up the paths that lead to it, dims the
+ * rest and shows the concept's lesson, prerequisites, practice and what it unlocks beside the map.
  */
 export function ConceptMap({
   concepts,

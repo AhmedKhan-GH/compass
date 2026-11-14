@@ -506,8 +506,8 @@
   font-size: var(--sb-app-font-size-ui-small);
 }
 
-/* Map: the concepts as a flow from left to right. Nodes take their lesson's state; a selection lights the path
-   through a node in bronze and dims the rest. */
+/* Map: the concepts as a flow from left to right. Nodes take their lesson's state; a selection lights the paths
+   that lead to a node in bronze and dims the rest. */
 
 .concept-map {
   display: grid;

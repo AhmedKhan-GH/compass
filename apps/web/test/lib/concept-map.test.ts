@@ -4,7 +4,6 @@ import {
   ancestors,
   conceptGraph,
   crossingCount,
-  descendants,
   edgePath,
   highlight,
   layoutMap,
@@ -218,14 +217,23 @@ test("nodes of a layer keep their order and their spacing", () => {
   assert.deepEqual(placeInOrder([10, 0, 50], [0, 20, 20]), [-5, 15, 50]);
 });
 
-test("a selection lights up what the concept depends on and what it unlocks; the rest dims", () => {
+test("a selection lights up the concept, what it depends on and the arrows leading to it; the rest dims", () => {
+  // a → b → d → e, a → c → d; selecting d lights a, b, c and d and the arrows into d; e, which d unlocks, dims.
   const graph = conceptGraph(concepts, items);
   assert.deepEqual([...ancestors(graph, "d")].sort(), ["a", "b", "c"]);
-  assert.deepEqual([...descendants(graph, "b")].sort(), ["d", "e"]);
-  const lit = highlight(graph, "b");
-  assert.deepEqual([...lit.nodes].sort(), ["a", "b", "d", "e"]);
-  assert.deepEqual([...lit.dimmed], ["c"]);
-  assert.deepEqual([...lit.edges].sort(), ["a>b", "b>d", "d>e"]);
+  assert.deepEqual([...ancestors(graph, "a")], []);
+  const lit = highlight(graph, "d");
+  assert.deepEqual([...lit.nodes].sort(), ["a", "b", "c", "d"]);
+  assert.deepEqual([...lit.edges].sort(), ["a>b", "a>c", "b>d", "c>d"]);
+  assert.deepEqual([...lit.dimmed], ["e"]);
+  assert.ok(!lit.edges.has("d>e"));
+
+  // From the middle of a chain, a side branch that does not lead to the selection dims as well.
+  const fromB = highlight(graph, "b");
+  assert.deepEqual([...fromB.nodes].sort(), ["a", "b"]);
+  assert.deepEqual([...fromB.edges], ["a>b"]);
+  assert.deepEqual([...fromB.dimmed].sort(), ["c", "d", "e"]);
+
   const none = highlight(graph, undefined);
   assert.equal(none.nodes.size + none.edges.size + none.dimmed.size, 0);
   assert.equal(highlight(graph, "nothing").dimmed.size, 0);

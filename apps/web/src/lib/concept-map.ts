@@ -529,60 +529,39 @@ export function edgePath(points: readonly Point[]): string {
 
 /** Everything a concept depends on, all the way back, along the arrows of the map. */
 export function ancestors(graph: Pick<ConceptGraph, "edges">, slug: string): Set<string> {
-  return reach(
-    graph.edges,
-    slug,
-    (edge) => edge.to,
-    (edge) => edge.from,
-  );
-}
-
-/** Everything a concept unlocks, all the way forward, along the arrows of the map. */
-export function descendants(graph: Pick<ConceptGraph, "edges">, slug: string): Set<string> {
-  return reach(
-    graph.edges,
-    slug,
-    (edge) => edge.from,
-    (edge) => edge.to,
-  );
-}
-
-function reach(edges: readonly Link[], start: string, near: (edge: Link) => string, far: (edge: Link) => string) {
   const found = new Set<string>();
-  const queue = [start];
+  const queue = [slug];
   while (queue.length) {
-    const slug = queue.shift()!;
-    for (const edge of edges)
-      if (near(edge) === slug && !found.has(far(edge)) && far(edge) !== start) {
-        found.add(far(edge));
-        queue.push(far(edge));
+    const next = queue.shift()!;
+    for (const edge of graph.edges)
+      if (edge.to === next && edge.from !== slug && !found.has(edge.from)) {
+        found.add(edge.from);
+        queue.push(edge.from);
       }
   }
   return found;
 }
 
 export type Highlight = {
-  /** The selected concept, what it depends on and what it unlocks. */
+  /** The selected concept and everything it depends on. */
   nodes: Set<string>;
-  /** The arrows among them, as "from>to". */
+  /** The arrows among them, as "from>to": the paths that lead to the selected concept. */
   edges: Set<string>;
-  /** Everything else. */
+  /** Everything else, what the concept unlocks included. */
   dimmed: Set<string>;
 };
 
-/** What a selection lights up and what it dims. With nothing selected, nothing is lit and nothing dims. */
+/**
+ * What a selection lights up and what it dims: the selected concept, everything it depends on and the arrows that
+ * lead to it are lit; the rest, what it unlocks included, dims. With nothing selected, nothing is lit or dimmed.
+ */
 export function highlight(graph: Pick<ConceptGraph, "nodes" | "edges">, selected: string | undefined): Highlight {
   if (selected === undefined || !graph.nodes.some((node) => node.slug === selected))
     return { nodes: new Set(), edges: new Set(), dimmed: new Set() };
-  const before = ancestors(graph, selected);
-  const after = descendants(graph, selected);
-  before.add(selected);
-  after.add(selected);
-  const nodes = new Set([...before, ...after]);
+  const nodes = ancestors(graph, selected);
+  nodes.add(selected);
   const edges = new Set(
-    graph.edges
-      .filter((edge) => (before.has(edge.from) && before.has(edge.to)) || (after.has(edge.from) && after.has(edge.to)))
-      .map((edge) => `${edge.from}>${edge.to}`),
+    graph.edges.filter((edge) => nodes.has(edge.from) && nodes.has(edge.to)).map((edge) => `${edge.from}>${edge.to}`),
   );
   const dimmed = new Set(graph.nodes.map((node) => node.slug).filter((slug) => !nodes.has(slug)));
   return { nodes, edges, dimmed };
