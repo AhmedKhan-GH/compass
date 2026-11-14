@@ -19,8 +19,13 @@ export const IndexedTask = z.strictObject({
   instructions: z.string(),
   /** Markdown. */
   hints: z.string().optional(),
-  /** The test function names that check this task. */
+  /** The test function names that check this task. Empty for an implicit task, which covers every test. */
   tests: z.array(Identifier),
+  /**
+   * True for the one task the build gives an item that has no `[[task]]`: id 1, titled after the item, covering
+   * the whole run. It has no heading and no text of its own; the item's instructions are its body.
+   */
+  implicit: z.literal(true).optional(),
 });
 export type IndexedTask = z.infer<typeof IndexedTask>;
 

@@ -168,6 +168,13 @@ versions. No other keys are allowed. Other wrong and stage files replace only th
 legacy bundles byte for byte; JSON is never passed to the compiler as HDL. Bundles remain author-only data and
 are not included in the content index.
 
+An item without `[[task]]` is checked as a whole, and still counts as one task. The build gives it one implicit task
+in the index (id 1, titled after the item, marked `implicit`, with no test list and no text of its own); the pack
+files do not change, and the item revision does not change either. The interface shows it as one task. Running that
+task is a run of every test: the web app sends the runner a job with no task map and no task selection, so the
+runner needs to know nothing about implicit tasks, and the verdict of the whole run is the task's verdict. The content
+check expects no stage file and no instruction heading for it.
+
 Task titles and task text come from `instructions.md`: each `## N. Title` heading starts task N, and the text before
 the first such heading is the preamble. The headings must match the `[[task]]` ids. `hints.md` is split the same way.
 
