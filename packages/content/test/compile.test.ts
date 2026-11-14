@@ -4,7 +4,7 @@ import { readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { test } from "node:test";
 import { ContentIndex, toItemView } from "@compass/schema";
-import { compileIndex, serializeIndex, writeIndex } from "../src/compile.ts";
+import { compileIndex, itemRevision, serializeIndex, writeIndex } from "../src/compile.ts";
 import { loadPack } from "../src/loader.ts";
 import { FIXTURE_PACK, load, temporaryDirectory, temporaryPack } from "./helpers.ts";
 
@@ -48,7 +48,12 @@ test("the index matches the schema and carries the course, concepts and items", 
   assert.deepEqual(Object.keys(drive.starter), ["top_module.v"]);
   assert.equal(drive.checks.name, "test_output.py");
   assert.ok(drive.checks.content.includes("async def output_is_high"));
-  assert.deepEqual(bank.tasks, []);
+  // No [[task]]: one implicit task titled after the item, with no text or tests of its own.
+  assert.deepEqual(bank.tasks, [{ id: 1, title: "Light Bank", instructions: "", tests: [], implicit: true }]);
+  assert.ok(bank.instructions.startsWith("A display bank holds two lamps"));
+  assert.equal(bank.instructions, (await readFile(path.join(FIXTURE_PACK, "items/light-bank/instructions.md"), "utf8")).trim());
+  assert.ok(!bank.instructions.includes("## 1."));
+  assert.equal(drive.tasks.some((task) => task.implicit), false);
   assert.deepEqual(bank.prerequisites, ["constants"]);
   assert.equal(bank.difficulty, 2);
   assert.ok(bank.hints?.startsWith("An instance names the module"));
@@ -120,6 +125,28 @@ test("the revision follows what a run uses or the learner reads, and nothing els
     await edit(relative, change);
     assert.notEqual(await revision(), before, relative);
   }
+});
+
+test("the implicit task leaves the revision as it was: it is computed from the manifest's task map", async (t) => {
+  const index = await compileAt(FIXTURE_PACK);
+  const [drive, bank] = index.courses[0]?.items ?? [];
+  // The revisions the compiler gave before items without [[task]] had an implicit task.
+  assert.equal(drive?.revision, "123e719ba3b4945fefac0ecaed6f74bc9a46c9f00ad2c6b0f5594bb824e8030b");
+  assert.equal(bank?.revision, "ceb8d61804c87ce98750d67e546ad271bcbbf322b8382ba46ac1afd054bf8ec3");
+  assert.equal(bank?.tasks[0]?.implicit, true);
+  const pack = await load(FIXTURE_PACK);
+  const item = pack.items.find((candidate) => candidate.slug === "light-bank");
+  assert.ok(item?.manifest && pack.manifest);
+  assert.equal(item.manifest.task, undefined, "the pack declares no task");
+  assert.equal(itemRevision(pack.manifest, item), bank?.revision);
+
+  // The implicit task is titled after the item, so a new title changes the revision as it always did.
+  const copy = await temporaryPack(t);
+  const manifest = path.join(copy, "items/light-bank/item.toml");
+  await writeFile(manifest, (await readFile(manifest, "utf8")).replace('title = "Light Bank"', 'title = "Lamp Bank"'));
+  const renamed = (await compileAt(copy)).courses[0]?.items[1];
+  assert.equal(renamed?.tasks[0]?.title, "Lamp Bank");
+  assert.notEqual(renamed?.revision, bank?.revision);
 });
 
 test("the index is written atomically, leaving no temporary file", async (t) => {

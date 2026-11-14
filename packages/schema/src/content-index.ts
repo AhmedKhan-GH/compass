@@ -58,11 +58,11 @@ export const IndexedItem = z.strictObject({
   revision: z.string().regex(/^[0-9a-f]{64}$/),
   /** Markdown: the concept introduction shown with the exercise. */
   intro: z.string().optional(),
-  /** Markdown: the text before the first task heading (the whole text when the item has no tasks). */
+  /** Markdown: the text before the first task heading (the whole text when the item has no `[[task]]`). */
   instructions: z.string(),
   /** Markdown: general hints, before any task heading. */
   hints: z.string().optional(),
-  /** Empty when the item is checked as a whole. */
+  /** An item without `[[task]]` has one implicit task. */
   tasks: z.array(IndexedTask),
   design: ItemDesign,
   /** The starter files by name: the solution file and every support file. */

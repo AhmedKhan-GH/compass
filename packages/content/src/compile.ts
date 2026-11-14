@@ -106,22 +106,34 @@ export class AssetSet {
   }
 }
 
+/**
+ * The one task of an item without `[[task]]`: id 1, titled after the item, covering the whole run. It has no text
+ * of its own (the item's instructions are its body) and no test list. The revision does not see it: it is computed
+ * from the manifest's task map, which stays empty.
+ */
+export function implicitTask(itemTitle: string): IndexedTask {
+  return { id: 1, title: itemTitle, instructions: "", tests: [], implicit: true };
+}
+
 export function compileItem(course: CourseManifest, item: LoadedItem, assets: AssetSet = new AssetSet()): IndexedItem {
   const manifest = item.manifest;
   if (!manifest || !item.checks || item.instructions === undefined)
     throw new CompileError(`${item.path}: the item has errors and cannot be compiled`);
   const tasks = manifest.task ?? [];
   const text = splitItemText(item.instructions, item.hints, tasks.map((task) => task.id));
-  const indexedTasks: IndexedTask[] = tasks.map((task, index) => {
-    const split = text.tasks[index];
-    return defined({
-      id: task.id,
-      title: split?.title ?? `Task ${task.id}`,
-      instructions: split?.instructions ?? "",
-      hints: split?.hints,
-      tests: [...task.tests],
-    });
-  });
+  const indexedTasks: IndexedTask[] =
+    tasks.length === 0
+      ? [implicitTask(manifest.title)]
+      : tasks.map((task, index) => {
+          const split = text.tasks[index];
+          return defined({
+            id: task.id,
+            title: split?.title ?? `Task ${task.id}`,
+            instructions: split?.instructions ?? "",
+            hints: split?.hints,
+            tests: [...task.tests],
+          });
+        });
   const starterNames = [manifest.design.solution, ...manifest.design.support];
   const starter: [string, string][] = [];
   for (const name of [...new Set(starterNames)].sort(compareText)) {
