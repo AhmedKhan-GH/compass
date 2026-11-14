@@ -505,3 +505,190 @@
   color: var(--sb-text-faint);
   font-size: var(--sb-app-font-size-ui-small);
 }
+
+/* Map: the concepts as a flow from left to right. Nodes take their lesson's state; a selection lights the path
+   through a node in bronze and dims the rest. */
+
+.concept-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+}
+
+.concept-map[data-selection] {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+/* A map smaller than its space sits in the middle; a larger one starts at the top left and scrolls. */
+.map-viewport {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.map-viewport[data-panning] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.map-canvas {
+  position: relative;
+  margin: auto;
+}
+
+.map-arrows {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+
+.map-arrow path {
+  fill: none;
+  stroke: var(--sb-text-faint);
+  stroke-width: 1;
+}
+
+.map-arrow[data-state="dimmed"] path {
+  stroke: var(--sb-rule);
+}
+
+.map-arrow[data-state="lit"] path {
+  stroke: var(--sb-accent);
+  stroke-width: 1.5;
+}
+
+.map-node {
+  --tone-edge: var(--sb-rule);
+  --tone-tint: var(--sb-well);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sb-space-2);
+  border: var(--sb-rule-width) solid var(--tone-edge);
+  background: var(--tone-tint);
+  color: var(--sb-text);
+  font-size: var(--sb-app-font-size-ui-small);
+  line-height: 16px;
+  text-align: left;
+  /* Brought into view with a layer to spare on either side, so the next step is in view too. */
+  scroll-margin: var(--sb-space-6) 200px;
+}
+
+.map-node[data-state="completed"] {
+  --tone-edge: var(--sb-state-passed);
+  --tone-tint: var(--sb-state-passed-tint);
+}
+
+.map-node[data-state="in-progress"] {
+  --tone-edge: var(--sb-state-information);
+  --tone-tint: var(--sb-state-information-tint);
+}
+
+/* A concept no lesson teaches. */
+.map-node[data-state="unavailable"] {
+  --tone-edge: var(--sb-rule-faint);
+  --tone-tint: var(--sb-background-app);
+  color: var(--sb-text-muted);
+}
+
+.map-node:hover {
+  outline: var(--sb-rule-width) solid var(--tone-edge);
+}
+
+.map-node[data-path] {
+  --tone-edge: var(--sb-accent);
+}
+
+.map-node[aria-pressed="true"] {
+  --tone-edge: var(--sb-accent);
+  --tone-tint: var(--sb-selected);
+  color: var(--sb-accent);
+}
+
+/* Off the selected path: the frame and the tint step back; the name stays legible and the glyph keeps the state. */
+.map-node[data-dimmed] {
+  --tone-edge: var(--sb-rule-faint);
+  --tone-tint: var(--sb-background-app);
+  color: var(--sb-text-faint);
+}
+
+.map-node:focus-visible {
+  outline: var(--sb-rule-width) solid var(--sb-focus);
+  outline-offset: 2px;
+}
+
+.map-node-name {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.map-node-name .sb-status-glyph {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.map-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-3);
+  min-height: 0;
+  overflow: auto;
+  padding: var(--sb-space-4) var(--sb-space-5) var(--sb-space-6);
+  border-left: var(--sb-rule-width) solid var(--sb-rule);
+}
+
+.map-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sb-space-3);
+}
+
+.map-detail-title {
+  color: var(--sb-text);
+  font-size: var(--sb-font-size-name);
+  line-height: var(--sb-leading-heading);
+}
+
+.map-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-1);
+  padding-top: var(--sb-space-2);
+  border-top: var(--sb-rule-width) solid var(--sb-rule-faint);
+}
+
+.map-detail-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sb-text);
+  text-align: left;
+  text-decoration: none;
+}
+
+.map-detail-entry:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--sb-rule);
+  text-decoration-thickness: var(--sb-rule-width);
+  text-underline-offset: 3px;
+}
+
+.map-detail-entry:focus-visible {
+  outline: var(--sb-rule-width) solid var(--sb-focus);
+  outline-offset: 2px;
+}
+
+.map-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 120px;
+}

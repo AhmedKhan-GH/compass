@@ -13,6 +13,7 @@ import {
   type Tab,
 } from "@compass/ui";
 import type { StageGroup } from "@/lib/catalog";
+import { ConceptMap } from "./concept-map";
 import { RowNavigation } from "./row-navigation";
 
 export type CourseItemRow = {
@@ -33,9 +34,9 @@ export type CourseItemRow = {
 };
 
 type ConceptPage = { name: string; introduction?: ReactNode; about?: ReactNode };
-type TabId = "exercises" | "syllabus" | "concepts";
+type TabId = "exercises" | "syllabus" | "concepts" | "map";
 
-/** The course's exercises, syllabus and concepts as tabs of one page. */
+/** The course's exercises, syllabus, concepts and concept map as tabs of one page. */
 export function CourseBrowser({
   items,
   concepts,
@@ -61,7 +62,8 @@ export function CourseBrowser({
   continueLabel: string;
 }) {
   const router = useRouter();
-  // A course that is only a plan shows its planned exercises in the first tab; tabs without content are left out.
+  // A course that is only a plan shows its planned exercises in the first tab; tabs without content are left out,
+  // except the map, which says when there are no concepts to draw.
   const tabs: Tab[] = [
     items.length
       ? { id: "exercises", label: "Exercises", detail: String(items.length), chord: "Alt+Digit1" }
@@ -74,13 +76,16 @@ export function CourseBrowser({
       chord: "Alt+Digit3",
       hidden: !concepts.length,
     },
+    { id: "map", label: "Map", chord: "Alt+Digit4" },
   ];
   const [tab, setTab] = useState<TabId>(
     initialTab === "syllabus" && syllabus
       ? "syllabus"
       : initialTab === "concepts" && concepts.length
         ? "concepts"
-        : "exercises",
+        : initialTab === "map"
+          ? "map"
+          : "exercises",
   );
   const [concept, setConcept] = useState(
     concepts.find((candidate) => candidate.slug === initialConcept)?.slug ?? concepts[0]?.slug,
@@ -104,6 +109,7 @@ export function CourseBrowser({
     { chord: "Alt+Digit1", run: () => select("exercises") },
     { chord: "Alt+Digit2", run: () => select("syllabus"), enabled: Boolean(syllabus) },
     { chord: "Alt+Digit3", run: () => select("concepts"), enabled: concepts.length > 0 },
+    { chord: "Alt+Digit4", run: () => select("map") },
     { chord: "Mod+Enter", run: () => continueHref && router.push(continueHref), enabled: Boolean(continueHref) },
   ]);
 
@@ -135,6 +141,7 @@ export function CourseBrowser({
             onSelect={(slug) => show("concepts", slug)}
           />
         )}
+        {tab === "map" && <ConceptMap concepts={concepts} items={items} />}
       </div>
     </div>
   );
