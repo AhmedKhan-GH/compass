@@ -29,7 +29,9 @@ import {
   Trail,
   useFocusedPane,
   useKeyBindings,
+  useStoredValue,
   useTheme,
+  writeStorage,
   type Tab,
   type Tone,
 } from "@compass/ui";
@@ -40,12 +42,11 @@ import { assetUrl, courseHref, itemHref } from "@/lib/routes";
 import { formatWhen, lessonState, ranFiles, runOutcome, runScope, runStatus, taskStatusesFromRun } from "@/lib/runs";
 import { Brand } from "../brand";
 import { RunnerStatus, useRunnerState } from "../runner-status";
-import { Markdown } from "../markdown";
 import { CircuitActions, CircuitPane, type SourcePosition } from "./circuit-pane";
 import type { CursorPosition } from "./code-editor";
 import { EditorPane, type EditorPaneHandle } from "./editor-pane";
 import { HistoryPane } from "./history-pane";
-import { InstructionsPane, LessonHeader } from "./instructions-pane";
+import { InstructionsPane, InstructionsRail, SIDEBAR_CHORD, SidebarToggle } from "./instructions-pane";
 import { ResultsPane } from "./results-pane";
 import { useDraft } from "./use-draft";
 import { useElapsed } from "./use-elapsed";
@@ -66,11 +67,14 @@ export type WorkspaceCourse = {
   items: { slug: string; title: string }[];
 };
 
-type LeftTab = "instructions" | "introduction";
 type DockTab = "results" | "waveform" | "circuit" | "history";
 type PaneId = "instructions" | "editor" | "dock";
 type RunMode = "all" | "task" | "submit";
 const PANES: PaneId[] = ["instructions", "editor", "dock"];
+/** The sidebar's state, the same for every lesson: "collapsed" or "expanded". */
+const SIDEBAR_KEY = "compass:sidebar";
+/** The width of the collapsed sidebar. */
+const RAIL_WIDTH = 52;
 
 /** The time now, for event handlers. */
 function clock(): number {
@@ -93,7 +97,10 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   const [taskId, setTaskId] = useState<number | undefined>(item.tasks[0]?.id);
   const taskTouched = useRef(false);
   const [taskScroll, setTaskScroll] = useState(0);
-  const [leftTab, setLeftTab] = useState<LeftTab>("instructions");
+  const storedSidebar = useStoredValue(SIDEBAR_KEY);
+  // Storage can be unavailable; the sidebar then keeps its state for this page only.
+  const [sidebarLocal, setSidebarLocal] = useState<boolean>();
+  const collapsed = sidebarLocal ?? storedSidebar === "collapsed";
   const [dockTab, setDockTab] = useState<DockTab>("results");
   const [focusedPane] = useFocusedPane("editor");
   const [progress, setProgress] = useState<ItemProgress>();
@@ -248,14 +255,29 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
       void buildCircuit();
   }
 
-  function showTab(tab: LeftTab | DockTab | "editor") {
+  function showTab(tab: DockTab | "editor") {
     if (tab === "editor") return focusPane("editor");
-    if (tab === "instructions" || tab === "introduction") {
-      setLeftTab(tab);
-      return focusPane("instructions");
-    }
     showDockTab(tab);
     focusPane("dock");
+  }
+
+  // Collapsing moves focus out of the sidebar to the editor, so it never stays in a pane that is gone; expanding
+  // puts it in the sidebar.
+  function toggleSidebar() {
+    const next = !collapsed;
+    setSidebarLocal(next);
+    writeStorage(SIDEBAR_KEY, next ? "collapsed" : "expanded");
+    if (!next) focusPane("instructions");
+    else if (document.activeElement?.closest('[data-pane="instructions"]')) focusPane("editor");
+  }
+
+  // F6 goes round the panes in view.
+  function cyclePane(direction: 1 | -1) {
+    const panes = collapsed ? PANES.filter((pane) => pane !== "instructions") : PANES;
+    const position = panes.indexOf(focusedPane as PaneId);
+    const next =
+      position < 0 ? (direction > 0 ? 0 : panes.length - 1) : (position + direction + panes.length) % panes.length;
+    focusPane(panes[next] ?? "editor");
   }
 
   function stepTask(direction: 1 | -1) {
@@ -266,7 +288,6 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     taskTouched.current = true;
     setTaskId(next.id);
     setTaskScroll((count) => count + 1);
-    setLeftTab("instructions");
   }
 
   function selectTask(id: number) {
@@ -337,18 +358,14 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     { chord: "Alt+Enter", run: () => void runTests("task"), enabled: item.tasks.length > 0 },
     { chord: "Mod+Shift+Enter", run: () => void runTests("submit") },
     { chord: "Alt+Shift+Enter", run: () => void buildCircuit(), enabled: hasCircuit },
-    { chord: "Alt+Digit1", run: () => showTab("instructions") },
-    { chord: "Alt+Digit2", run: () => showTab("introduction"), enabled: Boolean(item.intro) },
+    { chord: SIDEBAR_CHORD, run: toggleSidebar },
     { chord: "Alt+Digit3", run: () => showTab("editor") },
     { chord: "Alt+Digit4", run: () => showTab("results") },
     { chord: "Alt+Digit5", run: () => showTab("waveform") },
     { chord: "Alt+Digit6", run: () => showTab("circuit"), enabled: hasCircuit },
     { chord: "Alt+Digit7", run: () => showTab("history") },
-    { chord: "F6", run: () => focusPane(PANES[(PANES.indexOf(focusedPane as PaneId) + 1) % PANES.length] ?? "editor") },
-    {
-      chord: "Shift+F6",
-      run: () => focusPane(PANES[(PANES.indexOf(focusedPane as PaneId) + PANES.length - 1) % PANES.length] ?? "editor"),
-    },
+    { chord: "F6", run: () => cyclePane(1) },
+    { chord: "Shift+F6", run: () => cyclePane(-1) },
     { chord: "Alt+BracketRight", run: () => stepTask(1) },
     { chord: "Alt+BracketLeft", run: () => stepTask(-1) },
     { chord: "Alt+Shift+BracketRight", run: () => openItem(nextItem?.slug), enabled: Boolean(nextItem) },
@@ -356,10 +373,6 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
     { chord: "Alt+Shift+KeyR", run: askReset },
   ]);
 
-  const leftTabs: Tab[] = [
-    { id: "instructions", label: "Instructions", chord: "Alt+Digit1" },
-    { id: "introduction", label: "Guide", chord: "Alt+Digit2", hidden: !item.intro },
-  ];
   const dockTabs: Tab[] = [
     { id: "results", label: "Results", chord: "Alt+Digit4" },
     { id: "waveform", label: "Waveform", chord: "Alt+Digit5" },
@@ -375,6 +388,7 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
   const latestRun = shown && shown.id === latestId && shown.revision === item.revision ? shown : undefined;
   const taskStatuses = { ...(progress?.tasks ?? {}), ...(latestRun ? taskStatusesFromRun(latestRun, item.tasks) : {}) };
   const lesson = lessonState({ running: busy, progress, latestRun, tasks: taskStatuses });
+  const runningTask = busy ? (runMode === "task" ? taskId : "all") : undefined;
   // The status bar is filled with the run's colour while it is in flight, and with its outcome until the next edit
   // or the next run.
   const statusTone: Tone | undefined = busy
@@ -487,34 +501,36 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
         shares={[0.3, 0.7]}
         minimums={[300, 520]}
         labels={["Instructions", "Editor"]}
+        fixed={[collapsed ? RAIL_WIDTH : undefined]}
       >
-        <Pane
-          id="instructions"
-          title="Instructions"
-          tabs={leftTabs}
-          activeTab={leftTab}
-          onTab={(tab) => setLeftTab(tab as LeftTab)}
-          focused={focusedPane === "instructions"}
-          className="instructions-pane"
-        >
-          {leftTab === "introduction" && item.intro ? (
-            <>
-              <div className="lesson-top">
-                <LessonHeader item={item} concepts={conceptNames} lesson={lesson} />
-              </div>
-              <div className="instructions">
-                <Markdown>{item.intro}</Markdown>
-              </div>
-            </>
-          ) : (
+        {collapsed ? (
+          <InstructionsRail
+            item={item}
+            lesson={lesson}
+            currentTask={taskId}
+            taskStatuses={taskStatuses}
+            runningTask={runningTask}
+            focused={focusedPane === "instructions"}
+            onSelectTask={selectTask}
+            onExpand={toggleSidebar}
+          />
+        ) : (
+          <Pane
+            id="instructions"
+            title="Instructions"
+            actions={<SidebarToggle expanded onToggle={toggleSidebar} />}
+            focused={focusedPane === "instructions"}
+            className="instructions-pane"
+          >
             <InstructionsPane
+              courseId={course.id}
               item={item}
               concepts={conceptNames}
               lesson={lesson}
               currentTask={taskId}
               scrollToTask={taskScroll}
               busy={busy}
-              runningTask={busy ? (runMode === "task" ? taskId : "all") : undefined}
+              runningTask={runningTask}
               taskStatuses={taskStatuses}
               onSelectTask={selectTask}
               onRunTask={(id) => {
@@ -523,8 +539,8 @@ export default function Workspace({ course, item }: { course: WorkspaceCourse; i
               }}
               onStepTask={stepTask}
             />
-          )}
-        </Pane>
+          </Pane>
+        )}
         <Split
           id="workspace-right"
           direction="column"

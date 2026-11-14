@@ -82,10 +82,14 @@
   padding-bottom: var(--sb-space-1);
 }
 
-.lesson-head {
+.lesson-head,
+.sidebar-rail-state {
   --tone: var(--sb-text-muted);
   --tone-tint: var(--sb-surface);
   --tone-edge: var(--sb-rule);
+}
+
+.lesson-head {
   display: flex;
   align-items: center;
   gap: var(--sb-space-3);
@@ -96,25 +100,25 @@
   background: var(--tone-tint);
 }
 
-.lesson-head[data-tone="passed"] {
+:is(.lesson-head, .sidebar-rail-state)[data-tone="passed"] {
   --tone: var(--sb-state-passed);
   --tone-tint: var(--sb-state-passed-tint);
   --tone-edge: var(--sb-state-passed);
 }
 
-.lesson-head[data-tone="failed"] {
+:is(.lesson-head, .sidebar-rail-state)[data-tone="failed"] {
   --tone: var(--sb-state-failed);
   --tone-tint: var(--sb-state-failed-tint);
   --tone-edge: var(--sb-state-failed);
 }
 
-.lesson-head[data-tone="running"] {
+:is(.lesson-head, .sidebar-rail-state)[data-tone="running"] {
   --tone: var(--sb-state-running);
   --tone-tint: var(--sb-state-running-tint);
   --tone-edge: var(--sb-state-running);
 }
 
-.lesson-head[data-tone="information"] {
+:is(.lesson-head, .sidebar-rail-state)[data-tone="information"] {
   --tone: var(--sb-state-information);
   --tone-tint: var(--sb-state-information-tint);
   --tone-edge: var(--sb-state-information);
@@ -270,6 +274,171 @@
   margin-top: var(--sb-space-1);
   padding-left: var(--sb-space-3);
   border-left: var(--sb-rule-width) solid var(--sb-rule);
+}
+
+/* The concept text: a section like a task's between the story and the tasks. Its header is the button that opens
+   and closes it, with the sign where a task has its number. */
+.concept {
+  margin-top: var(--sb-space-2);
+  border-top: var(--sb-rule-width) solid var(--sb-rule);
+}
+
+.concept-heading {
+  margin: 0;
+  font: inherit;
+}
+
+.concept-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sb-space-2);
+  width: calc(100% + var(--sb-space-2) * 2);
+  height: calc(var(--sb-app-row) + var(--sb-space-2));
+  margin: var(--sb-space-1) calc(var(--sb-space-2) * -1) 0;
+  padding: 0 var(--sb-space-2);
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  background: var(--sb-background-app);
+  text-align: left;
+}
+
+.concept-head:hover {
+  background: var(--sb-surface-hover);
+}
+
+.concept-head:focus-visible {
+  outline: none;
+  border-color: var(--sb-focus);
+}
+
+.concept-sign {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  color: var(--sb-text-muted);
+  font-family: var(--sb-font-family-mono);
+  font-size: var(--sb-app-font-size-ui-small);
+  line-height: 1;
+}
+
+.concept-title {
+  flex: 0 0 auto;
+  color: var(--sb-text);
+  font-size: var(--sb-app-font-size-ui);
+}
+
+.concept-names {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--sb-text-muted);
+  font-size: var(--sb-app-font-size-ui-small);
+}
+
+.concept-body {
+  margin-top: var(--sb-space-2);
+}
+
+/* The sidebar's toggle: a square key at the edge of the instructions, beside its chord. */
+.sidebar-toggle-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sb-space-1);
+}
+
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sb-app-key-button);
+  height: var(--sb-app-key-button);
+  border: var(--sb-rule-width) solid var(--sb-rule);
+  color: var(--sb-text-muted);
+  font-family: var(--sb-font-family-mono);
+  font-size: var(--sb-app-font-size-ui);
+  line-height: 1;
+}
+
+.sidebar-toggle:hover {
+  background: var(--sb-surface-hover);
+  color: var(--sb-accent);
+}
+
+.sidebar-toggle:active {
+  background: var(--sb-text);
+  border-color: var(--sb-text);
+  color: var(--sb-background-app);
+}
+
+.sidebar-toggle:focus-visible {
+  outline: none;
+  border-color: var(--sb-focus);
+}
+
+/* The collapsed sidebar: a rail with the toggle in a pane header, the lesson's icon and state, and the task chips
+   in a column. */
+.sidebar-rail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--sb-background-app);
+}
+
+.sidebar-rail-head {
+  display: flex;
+  flex: 0 0 var(--sb-app-pane-header);
+  align-items: center;
+  justify-content: center;
+  height: var(--sb-app-pane-header);
+  background: var(--sb-surface);
+  border-bottom: var(--sb-rule-width) solid var(--sb-rule);
+}
+
+.sidebar-rail[data-focused] .sidebar-rail-head {
+  border-bottom-color: var(--sb-focus);
+}
+
+.sidebar-rail[data-focused] .sb-pane-key {
+  color: var(--sb-accent);
+}
+
+.sidebar-rail-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sb-space-2);
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--sb-space-2) 0;
+}
+
+.sidebar-rail-lesson,
+.sidebar-rail-state {
+  display: inline-flex;
+}
+
+.sidebar-rail-state .sb-status-glyph {
+  color: var(--tone);
+}
+
+.sidebar-rail-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sb-space-1);
+  width: calc(100% - var(--sb-space-2) * 2);
+  padding-top: var(--sb-space-2);
+  border-top: var(--sb-rule-width) solid var(--sb-rule-faint);
+}
+
+.sidebar-rail .task-chip {
+  justify-content: center;
+  gap: var(--sb-space-1);
+  padding: 0 2px;
 }
 
 /* Editor */
