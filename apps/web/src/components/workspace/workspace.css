@@ -136,7 +136,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--sb-text);
-  font-family: var(--sb-font-family-display);
+  font-family: var(--sb-font-family-text);
   font-size: var(--sb-font-size-heading);
   letter-spacing: var(--sb-tracking-heading);
   line-height: var(--sb-leading-heading);

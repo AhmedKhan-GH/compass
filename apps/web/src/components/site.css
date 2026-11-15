@@ -59,7 +59,7 @@
 }
 
 .catalog-name {
-  font-family: var(--sb-font-family-display);
+  font-family: var(--sb-font-family-text);
   font-size: var(--sb-font-size-heading-l);
   letter-spacing: var(--sb-tracking-name);
   line-height: var(--sb-leading-solid);

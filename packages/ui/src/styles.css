@@ -1103,10 +1103,10 @@ a.sb-wordmark-link {
   color: var(--sb-text-muted);
 }
 
-/* Page titles in Sternbild Display, which has capitals only. */
+/* Page titles use the text face. The display face is only for names. */
 
 .sb-page-title {
-  font-family: var(--sb-font-family-display);
+  font-family: var(--sb-font-family-text);
   font-size: var(--sb-font-size-heading);
   letter-spacing: var(--sb-tracking-heading);
   line-height: var(--sb-leading-heading);
