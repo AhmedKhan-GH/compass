@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="filter-1" filterUnits="userSpaceOnUse" x="60" y="60" width="904" height="904" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="8"/><feOffset dx="0" dy="14" result="shadow"/><feFlood flood-color="#000000" flood-opacity="0.3"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-1" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#36332d"/>
+      <stop offset="0.5" stop-color="#211f1b"/>
+      <stop offset="1" stop-color="#141311"/>
+    </linearGradient>
+    <filter id="filter-2" filterUnits="userSpaceOnUse" x="207.328" y="207.328" width="540.787" height="609.344" data-vc-blend="multiply" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="0" dy="8" result="shadow"/><feFlood flood-color="#050403" flood-opacity="0.35"/><feComposite in2="shadow" operator="in" result="paint"/><feMerge><feMergeNode in="paint"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="linear-gradient-2" x1="512" y1="219.6" x2="512" y2="804.4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f6f0e4"/>
+      <stop offset="0.5" stop-color="#e8e0d0"/>
+      <stop offset="1" stop-color="#cfc3aa"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="512" y1="305.6" x2="512" y2="718.4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d8b27a"/>
+      <stop offset="0.55" stop-color="#b38b59"/>
+      <stop offset="1" stop-color="#8d6a3e"/>
+    </linearGradient>
+  <linearGradient id="rim" x1="512" y1="100" x2="512" y2="924" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#dab6fc"/><stop offset="0.5" stop-color="#b391d2"/><stop offset="1" stop-color="#8e70a9"/></linearGradient></defs>
+  <title>current.svg</title>
+  <g id="Compass_app_icon" data-name="Compass app icon">
+    <g filter="url(#filter-1)">
+      <path id="Tile" d="M264.8 100 L759.2 100 L924 264.8 L924 759.2 L759.2 924 L264.8 924 L100 759.2 L100 264.8 Z" fill="url(#linear-gradient-1)"/>
+    </g>
+    <path id="Border" d="M269.465 111.261 L754.535 111.261 L912.739 269.465 L912.739 754.535 L754.535 912.739 L269.465 912.739 L111.261 754.535 L111.261 269.465 Z" fill="none" stroke="url(#rim)" stroke-width="22.523"/>
+    <circle id="Interior" cx="511.99" cy="512" r="279.2" fill="#12110f"/>
+    <g filter="url(#filter-2)">
+      <g id="Compass">
+        <g>
+          <g id="Bowl___open_tapered_ring" data-name="Bowl — open tapered ring">
+            <path id="Bowl___a_true_crescent__widest_at_west__tapering_to_the_tips" data-name="Bowl — a true crescent, widest at west, tapering to the tips" d="M232.328 512 C232.328 357.541 357.541 232.328 512 232.328 C596.273 232.328 671.841 269.602 723.115 328.563 C675.981 281.14 610.693 251.78 538.548 251.78 C394.832 251.78 278.328 368.285 278.328 512 C278.328 655.715 394.832 772.22 538.548 772.22 C610.693 772.22 675.981 742.86 723.115 695.437 C671.841 754.398 596.273 791.672 512 791.672 C357.541 791.672 232.328 666.459 232.328 512 Z" fill="url(#linear-gradient-2)"/>
+          </g>
+          <g id="Compass_star___eight_needle_points__north_longest" data-name="Compass star — eight needle points, north longest">
+            <path id="Compass_star___eight_needle_points__north_longest-2" data-name="Compass star — eight needle points, north longest" d="M511.316 331.329 C511.4 330.514 512.6 330.514 512.684 331.329 L528.35 482.659 L582.524 440.511 C583.157 440.018 583.982 440.843 583.489 441.476 L540.911 496.203 L662.585 511.317 C663.382 511.416 663.382 512.584 662.585 512.683 L540.911 527.798 L583.489 582.524 C583.982 583.157 583.157 583.982 582.524 583.489 L527.798 540.911 L512.683 662.585 C512.584 663.382 511.416 663.382 511.317 662.585 L496.203 540.911 L441.476 583.489 C440.843 583.982 440.018 583.157 440.511 582.524 L483.089 527.798 L361.415 512.683 C360.618 512.584 360.618 511.416 361.415 511.317 L483.089 496.203 L440.511 441.476 C440.018 440.843 440.843 440.018 441.476 440.511 L495.65 482.659 Z" fill="url(#linear-gradient-3)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

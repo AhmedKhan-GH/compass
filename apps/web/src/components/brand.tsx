@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Wordmark } from "@compass/ui";
 
 /** The approved Compass mark, verified and copied unchanged by scripts/sync-assets.mjs. */
-export const MARK_SRC = "/sternbild/marks/compass-icon.svg";
+export const MARK_SRC = "/sternbild/marks/compass-icon-minerals.svg";
 
 /** The mark and the wordmark at the start of the command bar, linking to the catalog. */
 export function Brand() {

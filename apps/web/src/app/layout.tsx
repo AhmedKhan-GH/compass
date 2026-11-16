@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   // The approved mark (copied unchanged by scripts/sync-assets.mjs) and PNGs rendered from it in public/icons/.
   icons: {
     icon: [
-      { url: "/sternbild/marks/compass-icon.svg", type: "image/svg+xml" },
-      { url: "/icons/compass-icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/sternbild/marks/compass-icon-minerals.svg", type: "image/svg+xml" },
+      { url: "/icons/compass-icon-minerals-32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/icons/compass-icon-180.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/icons/compass-icon-minerals-180.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
